@@ -128,120 +128,13 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                     <div id="btn_buy_back"></div>
                     <div class="buy-btn-wr"><button type="button" class="buy-op-btn">구매하기 <i class="fas fa-credit-card"></i></button></div>
                     <div class="scroll-no">
-                        <h3 class="product-title">
-                            <strong><?php echo stripslashes($it['it_name']); ?></strong>
-                            <span class="sound_only">요약정보 및 구매</span>
-                        </h3>
-                        <p class="text-gray"><?php echo $it['it_basic']; ?></p>
+
                         <?php if ($is_orderable) { ?>
                         <p class="sound_only">
                             상품 선택옵션 <?php echo $option_count; ?> 개, 추가옵션 <?php echo $supply_count; ?> 개
                         </p>
                         <?php } ?>
-                        <div class="shop-description-box table-list-eb">
-                            <table class="table">
-                                <tbody>
-                                    <?php if ($it['it_brand']) { ?>
-                                    <tr>
-                                        <th scope="row">보험회사</th>
-                                        <td>
-                                            <img src="<?php echo G5_URL; ?>/data/brand/<?php echo $it['it_brand']; ?>.png" alt="<?php echo $it['it_brand']; ?>" style="height:32px; vertical-align:middle; margin-right:5px;" onerror="this.style.display='none'">
-                                            <?php echo $it['it_brand']; ?>
-                                        </td>
-                                    </tr>
-                                    <?php } ?>
 
-                                    <?php if (!$it['it_use']) { // 판매가능이 아닐 경우 ?>
-                                    <tr>
-                                        <th scope="row">보험종류</th>
-                                        <td>판매중지</td>
-                                    </tr>
-                                    <?php } else if ($it['it_tel_inq']) { // 전화문의일 경우 ?>
-                                    <tr>
-                                        <th scope="row">보험종류</th>
-                                        <td>전화문의</td>
-                                    </tr>
-                                    <?php } else { // 전화문의가 아닐 경우?>
-                                    <tr>
-                                        <th scope="row">보험종류</th>
-                                        <td>
-                                            <?php echo $it['it_ins_type'] ? $it['it_ins_type'] : '보장성보험'; ?>
-                                            <input type="hidden" id="it_price" value="<?php echo get_price($it); ?>">
-                                        </td>
-                                    </tr>
-                                    <?php } ?>
-
-                                    <?php
-                                    /* 재고 표시하는 경우 주석 해제
-                                    <tr>
-                                        <th scope="row">재고수량</th>
-                                        <td><?php echo number_format(get_it_stock_qty($it_id)); ?> 개</td>
-                                    </tr>
-                                    */
-                                    ?>
-
-                                    <?php if ($config['cf_use_point']) { // 포인트 사용한다면 ?>
-                                    <tr>
-                                        <th scope="row">만기환급</th>
-                                        <td><?php echo $it['it_ins_refund'] ? $it['it_ins_refund'] : '적립형'; ?></td>
-                                    </tr>
-                                    <?php } ?>
-
-                                    <tr>
-                                        <th scope="row">납입기간</th>
-                                        <td>
-                                            <?php echo $it['it_ins_pay_term'] ? $it['it_ins_pay_term'] : '20년납'; ?>
-                                            <input type="hidden" name="ct_send_cost" id="ct_send_cost" value="0">
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">보험기간</th>
-                                        <td><?php echo $it['it_ins_period'] ? $it['it_ins_period'] : '세만기'; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">갱신여부</th>
-                                        <td><?php echo $it['it_ins_renewal'] ? $it['it_ins_renewal'] : '비갱신'; ?></td>
-                                    </tr>
-
-                                    <?php if($it['it_buy_min_qty']) { ?>
-                                    <tr>
-                                        <th>최소구매수량</th>
-                                        <td><?php echo number_format($it['it_buy_min_qty']); ?> 개</td>
-                                    </tr>
-                                    <?php } ?>
-                                    <?php if($it['it_buy_max_qty']) { ?>
-                                    <tr>
-                                        <th>최대구매수량</th>
-                                        <td><?php echo number_format($it['it_buy_max_qty']); ?> 개</td>
-                                    </tr>
-                                    <?php } ?>
-
-                                    <?php if ($it['it_maker']) { ?>
-                                    <tr>
-                                        <th scope="row">제조사</th>
-                                        <td><?php echo $it['it_maker']; ?></td>
-                                    </tr>
-                                    <?php } ?>
-
-                                    <?php if ($it['it_origin']) { ?>
-                                    <tr>
-                                        <th scope="row">원산지</th>
-                                        <td><?php echo $it['it_origin']; ?></td>
-                                    </tr>
-                                    <?php } ?>
-
-
-
-                                    <?php if ($it['it_model']) { ?>
-                                    <tr>
-                                        <th scope="row">모델</th>
-                                        <td><?php echo $it['it_model']; ?></td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                     
                     <div class="scroll-show">
@@ -305,43 +198,11 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
 
                         <?php if ($is_orderable) { ?>
                         <?php /* 선택된 옵션 시작 */ ?>
-                        <div id="sit_sel_option">
-                            <h3>선택된 옵션</h3>
-                            <?php
-                            if(!$optitem) {
-                                if(!$it['it_buy_min_qty'])
-                                    $it['it_buy_min_qty'] = 1;
-                            ?>
-                            <ul id="sit_opt_added">
-                                <li class="sit_opt_list">
-                                    <input type="hidden" name="io_type[<?php echo $it_id; ?>][]" value="0">
-                                    <input type="hidden" name="io_id[<?php echo $it_id; ?>][]" value="">
-                                    <input type="hidden" name="io_value[<?php echo $it_id; ?>][]" value="<?php echo $it['it_name']; ?>">
-                                    <input type="hidden" class="io_price" value="0">
-                                    <input type="hidden" class="io_stock" value="<?php echo $it['it_stock_qty']; ?>">
-                                    <div class="opt_name">
-                                        <span class="sit_opt_subj"><?php echo $it['it_name']; ?></span>
-                                    </div>
-                                    <div class="opt_count">
-                                        <label for="ct_qty_<?php echo $i; ?>" class="sound_only">수량</label>
-                                        <button type="button" class="sit_qty_minus"><i class="fas fa-minus" aria-hidden="true"></i><span class="sound_only">감소</span></button>
-                                        <input type="text" name="ct_qty[<?php echo $it_id; ?>][]" value="<?php echo $it['it_buy_min_qty']; ?>" id="ct_qty_<?php echo $i; ?>" class="num_input" size="5">
-                                        <button type="button" class="sit_qty_plus"><i class="fas fa-plus" aria-hidden="true"></i><span class="sound_only">증가</span></button>
-                                        <span class="sit_opt_prc">+0원</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <script>
-                            $(function() {
-                                price_calculate();
-                            });
-                            </script>
-                            <?php } ?>
-                        </div>
+
                         <?php /* 선택된 옵션 끝 */ ?>
 
                         <?php /* 총 구매액 */ ?>
-                        <div id="sit_tot_price"></div>
+
                         <?php } ?>
 
                         <?php if($is_soldout) { ?>
