@@ -1,0 +1,16 @@
+/* 여기에 작업 또는 수정할 당신의 css style을 설정하세요. (customizations) */
+
+/* FontAwesome 5 Global Fix */
+.fas, .fa {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+}
+
+.far {
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 400 !important;
+}
+
+.fab {
+    font-family: "Font Awesome 5 Brands" !important;
+}

@@ -1,0 +1,6 @@
+<?php
+if (!defined('_EYOOM_')) exit;
+$ec_item = array(
+	"0" => array("ci_no" => "11","ec_code" => "1653131816","ci_theme" => "eb4_shop_020","ci_state" => "1","ci_sort" => "1","ci_subject" => "a:1:{i:0;s:60:\"세계적인 트렌드를 가장 먼저 만날 수 있도록\";}","ci_text" => "a:2:{i:0;s:234:\"EYOOM ELECTRONIC은 최고만을 생각합니다.<br>다양한 제품, 빠른 배송, 우수한 품질로 만족시켜 드리겠습니다.<br>이제 글로벌 전자제품 유통 브랜드로써의 도약을 시작하고 있습니다.\";i:1;s:0:\"\";}","ci_content" => "","ci_link" => "a:1:{i:0;s:0:\"\";}","ci_target" => "a:1:{i:0;s:0:\"\";}","ci_img" => "a:1:{i:0;s:36:\"803f1b6c20eea0cb90fa47eaf022e191.jpg\";}","ci_period" => "1","ci_start" => "","ci_end" => "","ci_view_level" => "1","ci_regdt" => "2022-05-22 18:22:50"),
+	"1" => array("ci_no" => "12","ec_code" => "1653131816","ci_theme" => "eb4_shop_020","ci_state" => "1","ci_sort" => "2","ci_subject" => "a:1:{i:0;s:69:\"우수한 제품으로 고객들에게 기쁨을 드릴 수 있도록\";}","ci_text" => "a:2:{i:0;s:220:\"대한민국 최고의 전자제품 유통 브랜드로 자리매김 하겠습니다.<br>앞으로도 대한민국 전자제품 유통 대표 브랜드의 자존심을 지켜나가기 위해 최선을 다하겠습니다.\";i:1;s:0:\"\";}","ci_content" => "","ci_link" => "a:1:{i:0;s:0:\"\";}","ci_target" => "a:1:{i:0;s:0:\"\";}","ci_img" => "a:1:{i:0;s:36:\"2b1cdf91f049becbd095d0b40d3c3ab1.jpg\";}","ci_period" => "1","ci_start" => "","ci_end" => "","ci_view_level" => "1","ci_regdt" => "2022-05-22 18:23:41"),
+);
