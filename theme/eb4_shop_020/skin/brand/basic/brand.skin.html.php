@@ -53,10 +53,10 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
     margin: 0;
 }
 
-.brand-wrap {position:relative;overflow:hidden;padding:20px 0 0;min-height:144px; background: rgba(255,255,255,0.05); border-radius: 0; margin-bottom: 0;}
+.brand-wrap {position:relative;overflow:hidden;padding:20px 0 0;min-height:160px; background: rgba(255,255,255,0.05); border-radius: 0; margin-bottom: 0;}
 .brand-box .category-list {margin:0px auto; padding: 0 40px;} /* 좌우 여백 확보 */
 .brand-box .category-item {outline:none; text-align:center; padding: 10px 0 0; transition: all 0.3s ease;}
-.brand-box .category-img {position:relative;width:70px;height:70px;margin:0 auto; padding: 5px; background: transparent;}
+.brand-box .category-img {position:relative;width:85px;height:85px;margin:0 auto; padding: 5px; background: transparent;}
 .brand-box .category-img img {border-radius: 0;} /* 이미지 가공 */
 .brand-box .category-title {font-size:.9375rem;text-align:center;height:22px;line-height:22px; margin-bottom: 8px; color: #cbd5e0;} /* 옅은 회색으로 텍스트 색상 조절 */
 .brand-box .category-item a {display:block;position:relative; text-decoration: none;}
@@ -135,7 +135,7 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
 $(function() {
     $('.category-list').slick({
         infinite: true,
-        slidesToShow: 9,
+        slidesToShow: 8,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
