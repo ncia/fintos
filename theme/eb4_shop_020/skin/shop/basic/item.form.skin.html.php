@@ -4,6 +4,15 @@
  */
 if (!defined('_EYOOM_')) exit;
 
+/**
+ * 브레드크럼 영역의 경계선 제거
+ */
+?>
+<style>
+.shop-list-nav { border: none !important; }
+</style>
+<?php
+
 add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/slick/slick.min.css" type="text/css" media="screen">',0);
 add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotorama/fotorama.css" type="text/css" media="screen">',0);
 ?>
@@ -20,85 +29,88 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     </div>
     <?php }?>
 
-    <div class="row">
-        <div class="col-lg-5 lg-m-b-30">
-            <?php /* ---------- 상품이미지 미리보기 시작 ---------- */ ?>
-            <?php if ($item_view == 'zoom') { // 상품이미지 미리보기 종류 - zoom ?>
-            <div class="shop-product-img">
-                <div class="product-img-big">
-                    <?php foreach ($big_img as $k => $bimg) { ?>
-                    <a href="javascript:void(0);" <?php if (!G5_IS_MOBILE) { ?>class="elevaterzoom_item" data-bs-toggle="modal" data-bs-target=".shop-img-modal"<?php } ?>>
-                        <?php echo $bimg['image']; ?>
-                    </a>
-                    <?php } ?>
-                    <?php if ($big_img_count == 0) { ?>
-                    <i class="far fa-image"></i>
-                    <?php } ?>
-                </div>
-                <?php if ($thumb_total_count > 1) { ?>
-                <div class="product-thumb">
-                    <?php foreach ($thumb_info as $k => $timg) { ?>
-                    <div class="thumb-img">
-                        <?php echo $timg['image']; ?> <span class="sound_only"><?php echo $timg['cnt']; ?>번째 이미지 새창</span>
+    <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (이미지 + 내비게이션) */ ?>
+    <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>
+    <div class="item-visual-area-full" style="width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa;">
+        <?php /* 1. 멀티 슬라이드 이미지 영역 (Slick 사용) */ ?>
+        <div class="item-multi-slider" style="width: 100%; overflow: hidden;">
+            <div class="slick-items">
+                <?php /* 이미지들을 반복하여 캐러셀 효과 극대화 (2회 반복) */ ?>
+                <?php for ($i=0; $i<2; $i++) { ?>
+                    <?php foreach ($big_img as $k => $bimg) { 
+                        preg_match('/src="([^"]+)"/', $bimg['image'], $matches);
+                        $img_url = $matches[1];
+                    ?>
+                    <div style="padding: 0 5px;">
+                        <img src="<?php echo $img_url; ?>" alt="상품 이미지" style="width: 100%; height: auto; display: block; border-radius: 4px;">
                     </div>
                     <?php } ?>
-                </div>
-                <?php } ?>
-            </div>
-            <?php } else if ($item_view == 'slider') { ?>
-            <div class="shop-product-img">
-                <div class="product-img-big fotorama" data-nav="thumbs" data-max-width="100%" data-loop="true" data-allowfullscreen="false">
-                    <?php foreach ($big_img as $k => $bimg) { ?>
-                    <?php echo $bimg['image']; ?>
-                    <?php } ?>
-                    <?php if ($big_img_count == 0) { ?>
-                    <i class="far fa-image"></i>
-                    <?php } ?>
-                </div>
-            </div>
-            <?php } ?>
-            <div class="m-b-20"></div>
-
-            <?php /* 다른 상품 보기 시작 */ ?>
-            <div class="shop-product-prev-next">
-                <?php if ($prev_href || $next_href) { ?>
-                <a href="<?php echo $prev_href; ?>" class="product-prev">
-                    <i class="fas fa-chevron-left" aria-hidden="true"></i> 이전상품 <span class="sound_only"> <?php echo $prev_title; ?></span>
-                </a>
-                <a href="<?php echo $next_href; ?>" class="product-next">
-                    다음 상품 <span class="sound_only"> <?php echo $next_title; ?></span> <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                </a>
-                <?php } else { ?>
-                <span class="sound_only">이 분류에 등록된 다른 상품이 없습니다.</span>
-                <?php } ?>
-                <div class="ckearfix"></div>
-            </div>
-            <?php /* 다른 상품 보기 끝 */ ?>
-
-            <?php /* 상품 평점 및 SNS 공유버튼 시작 */ ?>
-            <div class="shop-product-star-sns">
-                <?php if ($star_score) { ?>
-                <span class="sound_only">고객평점</span>
-                <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="image" class="sit_star" width="80">
-                <span class="m-l-5">별<?php echo $star_score?>개</span>
-                <span class="li-divider"></span>
-                <?php } ?>
-                <span title="사용후기"><i class="far fa-comment-dots" aria-hidden="true"></i><span class="sound_only">사용후기</span> <?php echo $item_use_count; ?></span>
-                <span class="li-divider"></span>
-                <span title="위시리스트저장"><i class="far fa-heart" aria-hidden="true"></i><span class="sound_only">위시리스트저장</span> <?php echo get_wishlist_count_by_item($it['it_id']); ?></span>
-                <div class="btn-group item-share-wrap">
-                    <button type="button" class="item-share-btn" data-bs-toggle="dropdown"><i class="fas fa-share-alt" aria-hidden="true"></i><span class="sound_only">sns 공유</span></button>
-                    <div class="dropdown-menu">
-                        <div class="share-sns">
-                            <?php echo $sns_share_links; ?>
-                        </div>
-                        <a href="javascript:popup_item_recommend('<?php echo $it['it_id']; ?>');" class="share-rec" title="추천하기"><i class="far fa-envelope" aria-hidden="true"></i><span class="sound_only">추천하기</span></a>
+                    <?php /* 가상 이미지 추가 */ ?>
+                    <div style="padding: 0 5px;">
+                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/insurance_consultation_fake.png" alt="상담 안내 이미지" style="width: 100%; height: auto; display: block; border-radius: 4px;">
                     </div>
-                </div>
+                <?php } ?>
             </div>
-            <?php /* 상품 평점 및 SNS 공유버튼 끝 */ ?>
-            <?php /* ---------- 상품이미지 미리보기 끝 ---------- */ ?>
         </div>
+
+        <script src="<?php echo EYOOM_THEME_URL; ?>/plugins/slick/slick.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('.slick-items').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: false,
+                dots: false,
+                infinite: true,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+        </script>
+
+        <?php /* 2. 첨부 이미지 스타일의 풀와이드 내비게이션 바 */ ?>
+        <div class="item-navigator-all-v15" style="width: 100%;">
+            <?php /* 1단: 이전상품 / 다음상품 */ ?>
+            <div style="background: #0d1116; border-bottom: 1px solid #1a202c; display: flex; align-items: stretch; height: 55px;">
+                <a href="<?php echo $prev_href ? $prev_href : 'javascript:void(0);'; ?>" style="width: 65px; display: flex; align-items: center; justify-content: center; border-right: 1px solid #1a202c; color: #fff; text-decoration: none;">
+                    <i class="fas fa-chevron-left" style="font-size: 18px;"></i>
+                </a>
+                <div style="flex: 1; display: flex; justify-content: space-between; align-items: center; padding: 0 40px;">
+                    <a href="<?php echo $prev_href ? $prev_href : 'javascript:void(0);'; ?>" style="color: #fff; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: -0.5px;">이전상품</a>
+                    <a href="<?php echo $next_href ? $next_href : 'javascript:void(0);'; ?>" style="color: #fff; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: -0.5px;">다음 상품</a>
+                </div>
+                <a href="<?php echo $next_href ? $next_href : 'javascript:void(0);'; ?>" style="width: 65px; display: flex; align-items: center; justify-content: center; border-left: 1px solid #1a202c; color: #fff; text-decoration: none;">
+                    <i class="fas fa-chevron-right" style="font-size: 18px;"></i>
+                </a>
+            </div>
+            
+            <?php /* 2단: 아이콘 정보 */ ?>
+            <div style="background: #0d1116; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; height: 55px;">
+                <div style="display: flex; gap: 25px; align-items: center;">
+                    <span style="color: #cbd5e0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="far fa-comment-dots"></i> <?php echo $item_use_count; ?>
+                    </span>
+                    <span style="color: #2d3748; display: inline-block; width: 1px; height: 16px; background: #2d3748;"></span>
+                    <span style="color: #cbd5e0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="far fa-heart"></i> <?php echo get_wishlist_count_by_item($it['it_id']); ?>
+                    </span>
+                </div>
+                <div>
+                    <a href="javascript:void(0);" onclick="jQuery('.item-share-dropdown').toggle();" style="color: #cbd5e0; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 65px; border-left: 1px solid #1a202c; height: 55px; margin-right: -40px;">
+                        <i class="fas fa-share-alt" style="font-size: 18px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <div class="col-lg-7">
             <?php /* ---------- 상품 요약정보 및 구매 시작 ---------- */ ?>
