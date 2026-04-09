@@ -29,6 +29,15 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     </div>
     <?php }?>
 
+    <?php /* 상품명을 강조하는 상단 프리미엄 헤더 블록 */ ?>
+    <div class="shop-item-title-block" style="background: #0d1116; padding: 25px 0; margin-bottom: 0; border-bottom: 1px solid #1a202c;">
+        <div class="container" style="max-width: 100%; padding: 0 40px;">
+            <h1 style="color: #fff; font-size: 24px; font-weight: 800; margin: 0; text-align: center; letter-spacing: -1px;">
+                <?php echo stripslashes($it['it_name']); ?>
+            </h1>
+        </div>
+    </div>
+
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (이미지 + 내비게이션) */ ?>
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>
     <div class="item-visual-area-full" style="width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa;">
