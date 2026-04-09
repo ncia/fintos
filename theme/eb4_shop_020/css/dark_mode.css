@@ -1162,7 +1162,7 @@ img {filter:brightness(.8) contrast(1.2) !important}
 #sit_opt_added button:hover {color:#d5d5d5 !important}
 #sit_opt_added .num_input {background-color:#000 !important;border-color:#30363d !important;color:#b5b5b5 !important}
 #sit_btn_buy {background-color:#ab0000 !important}
-#sit_btn_cart {background-color:transparent !important;border-color:#ab0000 !important;color:#ab0000 !important}
+#sit_btn_cart {background-color:#3f4678 !important;border-color:#3f4678 !important;color:#fff !important}
 #sit_btn_wish {background-color:#161b22 !important;border-color:#30363d !important}
 #sit_btn_wish:hover {color:#d5d5d5 !important;border-color:#4a535e !important}
 #sit_rel {border-color:#30363d !important}

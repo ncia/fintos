@@ -10,6 +10,7 @@ if (!defined('_EYOOM_')) exit;
 ?>
 <style>
 .shop-list-nav { border: none !important; }
+#sit_btn_cart, #sit_btn_cart i { color: #fff !important; }
 </style>
 <?php
 
@@ -121,7 +122,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
         </div>
     </div>
 
-        <div class="col-lg-7">
+        <div class="col-lg-12">
             <?php /* ---------- 상품 요약정보 및 구매 시작 ---------- */ ?>
             <div class="sit-ov-height">
                 <div id="sit_ov" class="shop-product-form 2017_renewal_itemform">
@@ -209,15 +210,15 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                         <p id="sit_ov_soldout">상품의 재고가 부족하여 구매할 수 없습니다.</p>
                         <?php } ?>
 
-                        <div id="sit_ov_btn">
+                        <div id="sit_ov_btn" style="display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; width: 100%; margin: 30px 0 0 0;">
                             <?php if ($is_orderable) { ?>
-                            <button type="submit" onclick="document.pressed=this.value;" value="바로구매" id="sit_btn_buy">바로구매</button>
-                            <button type="submit" onclick="document.pressed=this.value;" value="장바구니" id="sit_btn_cart">장바구니</button>
+                            <button type="submit" onclick="document.pressed=this.value;" value="바로구매" id="sit_btn_buy"><i class="fas fa-credit-card" style="margin-right:7px;"></i>바로구매</button>
+                            <button type="submit" onclick="document.pressed=this.value;" value="장바구니" id="sit_btn_cart"><i class="fas fa-shopping-cart" style="margin-right:7px;"></i>장바구니</button>
                             <?php } ?>
                             <?php if(!$is_orderable && $it['it_soldout'] && $it['it_stock_sms']) { ?>
                             <a href="javascript:popup_stocksms('<?php echo $it['it_id']; ?>');" id="sit_btn_alm"><i class="far fa-bell" aria-hidden="true"></i> 재입고알림</a>
                             <?php } ?>
-                             <button type="button" onclick="item_wish(document.fitem, '<?php echo $it['it_id']; ?>');" id="sit_btn_wish">관심상품</button>
+                             <button type="button" onclick="item_wish(document.fitem, '<?php echo $it['it_id']; ?>');" id="sit_btn_wish"><i class="fas fa-heart" style="margin-right:7px;"></i>관심상품</button>
                             <?php if ($naverpay_button_js) { ?>
                             <div class="itemform-naverpay"><?php echo $naverpay_request_js.$naverpay_button_js; ?></div>
                             <?php } ?>
