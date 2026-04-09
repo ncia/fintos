@@ -217,7 +217,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                             <?php if(!$is_orderable && $it['it_soldout'] && $it['it_stock_sms']) { ?>
                             <a href="javascript:popup_stocksms('<?php echo $it['it_id']; ?>');" id="sit_btn_alm"><i class="far fa-bell" aria-hidden="true"></i> 재입고알림</a>
                             <?php } ?>
-                            <a href="javascript:item_wish(document.fitem, '<?php echo $it['it_id']; ?>');" id="sit_btn_wish"><i class="far fa-heart" aria-hidden="true"></i><span class="sound_only">위시리스트</span></a>
+                             <button type="button" onclick="item_wish(document.fitem, '<?php echo $it['it_id']; ?>');" id="sit_btn_wish">관심상품</button>
                             <?php if ($naverpay_button_js) { ?>
                             <div class="itemform-naverpay"><?php echo $naverpay_request_js.$naverpay_button_js; ?></div>
                             <?php } ?>
