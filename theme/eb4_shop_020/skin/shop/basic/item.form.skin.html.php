@@ -41,13 +41,12 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
 
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (이미지 + 내비게이션) */ ?>
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>
-    <?php /* 캐러셀 레이아웃 및 폰트 개선 스타일 */ ?>
     <style>
-    .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; background: #fafafa; }
-    .item-multi-slider { width: 100%; overflow: hidden; min-height: 250px; position: relative; }
+    /* 기존 테마 고유 디자인 유지 및 슬라이더 보호 */
+    .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa; clear: both; }
+    .item-multi-slider { width: 100%; overflow: hidden; min-height: 200px; position: relative; }
     .slick-items .slick-slide { padding: 0 5px; outline: none; }
-    .slick-items img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e5e5; display: block; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
-    .slick-items img:hover { transform: translateY(-3px); }
+    .slick-items img { width: 100%; height: auto; min-height: 250px; max-height: 450px; object-fit: cover; border-radius: 4px; border: 1px solid #1a202c; display: block; }
     </style>
 
     <div class="item-visual-area-full">
@@ -56,7 +55,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                 <?php 
                 $final_images = array();
                 
-                // 1. 기본 영카트 업로드 이미지 (it_img1 ~ 10)
+                // 로직 안정화: 배열 체크 및 정규식 추출
                 if (isset($big_img) && is_array($big_img)) {
                     foreach ($big_img as $bimg) {
                         if (isset($bimg['image']) && preg_match('/src="([^"]+)"/', $bimg['image'], $match)) {
@@ -65,7 +64,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                     }
                 }
                 
-                // 2. 상세설명 내 이미지 수집
+                // 상세설명 및 모바일 상세설명 통합 수집
                 $content_html = stripslashes($it['it_explan']) . stripslashes($it['it_mobile_explan']);
                 if (preg_match_all('/<img[^>]+src=["\']([^"\']+)["\']/', $content_html, $matches)) {
                     foreach ($matches[1] as $src) {
@@ -75,7 +74,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                     }
                 }
                 
-                // 3. 상품별 데이터 폴더 직접 확인
+                // 데이터 폴더 직접 확인 (파일 존재 여부 우선)
                 $it_data_path = G5_DATA_PATH.'/item/'.$it_id;
                 if (is_dir($it_data_path)) {
                     $handler = opendir($it_data_path);
@@ -90,16 +89,14 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                 $final_images = array_unique($final_images);
                 $fake_img = EYOOM_THEME_URL . '/image/insurance_consultation_fake.png';
 
-                // 표시할 이미지 리스트 구성
                 if (empty($final_images)) {
                     $final_images[] = $fake_img;
                 }
                 
-                // 슬라이더 효과를 위한 리스트 확장
+                // 슬라이더 안정 구동을 위한 리스트 최적화
                 $display_list = $final_images;
                 if (count($display_list) < 3) {
                     $display_list = array_merge($display_list, $display_list);
-                    if (count($display_list) < 3) $display_list[] = $fake_img;
                 }
                 
                 foreach ($display_list as $img_url) {
@@ -109,9 +106,9 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                 </div>
                 <?php } ?>
                 
-                <?php /* 상담 안내 전용 슬라이드 추가 */ ?>
+                <?php /* 가상 이미지 추가 (슬라이더 개수 확보) */ ?>
                 <div>
-                    <img src="<?php echo $fake_img; ?>" alt="무료상당 안내">
+                    <img src="<?php echo $fake_img; ?>" alt="상담 안내">
                 </div>
             </div>
         </div>
@@ -134,9 +131,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                         {
                             breakpoint: 768,
                             settings: {
-                                slidesToShow: 1,
-                                centerMode: true,
-                                centerPadding: '20px'
+                                slidesToShow: 1
                             }
                         }
                     ]
