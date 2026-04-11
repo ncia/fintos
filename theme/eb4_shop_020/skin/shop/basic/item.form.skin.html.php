@@ -63,53 +63,30 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                         }
                     }
                 }
-                
-                // 상세설명 및 모바일 상세설명 통합 수집
-                $content_html = stripslashes($it['it_explan']) . stripslashes($it['it_mobile_explan']);
-                if (preg_match_all('/<img[^>]+src=["\']([^"\']+)["\']/', $content_html, $matches)) {
-                    foreach ($matches[1] as $src) {
-                        if (!strpos($src, 'emoji') && !strpos($src, 'icon')) {
-                            $final_images[] = $src;
-                        }
-                    }
-                }
-                
-                // 데이터 폴더 직접 확인 (파일 존재 여부 우선)
-                $it_data_path = G5_DATA_PATH.'/item/'.$it_id;
-                if (is_dir($it_data_path)) {
-                    $handler = opendir($it_data_path);
-                    while (($file = readdir($handler)) !== false) {
-                        if (preg_match("/\.(jpg|jpeg|png|gif)$/i", $file)) {
-                            $final_images[] = G5_DATA_URL.'/item/'.$it_id.'/'.$file;
-                        }
-                    }
-                    closedir($handler);
-                }
 
                 $final_images = array_unique($final_images);
-                $fake_img = EYOOM_THEME_URL . '/image/insurance_consultation_fake.png';
 
                 if (empty($final_images)) {
-                    $final_images[] = $fake_img;
+                    // 이미지가 없는 경우 슬라이더 영역을 감추거나 기본 이미지를 넣을 수 있으나, 
+                    // 사용자 요청에 따라 가상 이미지는 제거함.
                 }
                 
                 // 슬라이더 안정 구동을 위한 리스트 최적화
                 $display_list = $final_images;
-                if (count($display_list) < 3) {
+                if (!empty($display_list) && count($display_list) < 3) {
                     $display_list = array_merge($display_list, $display_list);
                 }
                 
-                foreach ($display_list as $img_url) {
+                if (!empty($display_list)) {
+                    foreach ($display_list as $img_url) {
+                    ?>
+                    <div>
+                        <img src="<?php echo $img_url; ?>" alt="상품 이미지">
+                    </div>
+                    <?php 
+                    } 
+                }
                 ?>
-                <div>
-                    <img src="<?php echo $img_url; ?>" alt="상품 이미지">
-                </div>
-                <?php } ?>
-                
-                <?php /* 가상 이미지 추가 (슬라이더 개수 확보) */ ?>
-                <div>
-                    <img src="<?php echo $fake_img; ?>" alt="상담 안내">
-                </div>
             </div>
         </div>
 
