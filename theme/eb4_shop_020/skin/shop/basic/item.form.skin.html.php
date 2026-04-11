@@ -41,48 +41,102 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
 
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (이미지 + 내비게이션) */ ?>
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>
-    <div class="item-visual-area-full" style="width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa;">
-        <?php /* 1. 멀티 슬라이드 이미지 영역 (Slick 사용) */ ?>
-        <div class="item-multi-slider" style="max-width: 1266px; width: 100%; height: 422px; overflow: hidden; margin: 0 auto;">
+    <style>
+    /* 기존 테마 고유 디자인 유지 및 슬라이더 보호 */
+    .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa; clear: both; }
+    .item-multi-slider { max-width: 1266px; width: 100%; height: 422px; overflow: hidden; margin: 0 auto; position: relative; }
+    .slick-items .slick-slide { padding: 0; outline: none; }
+    .slick-items img { width: 100%; height: 422px; object-fit: cover; border-radius: 4px; display: block; }
+    </style>
+
+    <div class="item-visual-area-full">
+        <div class="item-multi-slider">
             <div class="slick-items">
-                <?php /* 이미지들을 반복하여 캐러셀 효과 극대화 (2회 반복) */ ?>
-                <?php for ($i=0; $i<2; $i++) { ?>
-                    <?php foreach ($big_img as $k => $bimg) { 
-                        preg_match('/src="([^"]+)"/', $bimg['image'], $matches);
-                        $img_url = $matches[1];
-                    ?>
-                    <div style="padding: 0;">
-                        <img src="<?php echo $img_url; ?>" alt="상품 이미지" style="width: 100%; height: 422px; display: block; border-radius: 4px; object-fit: cover;">
-                    </div>
-                    <?php } ?>
-                    <?php /* 가상 이미지 추가 */ ?>
-                    <div style="padding: 0;">
-                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/insurance_consultation_fake.png" alt="상담 안내 이미지" style="width: 100%; height: 422px; display: block; border-radius: 4px; object-fit: cover;">
-                    </div>
+                <?php 
+                $final_images = array();
+                
+                // 로직 안정화: 배열 체크 및 정규식 추출
+                if (isset($big_img) && is_array($big_img)) {
+                    foreach ($big_img as $bimg) {
+                        if (isset($bimg['image']) && preg_match('/src="([^"]+)"/', $bimg['image'], $match)) {
+                            $final_images[] = $match[1];
+                        }
+                    }
+                }
+                
+                // 상세설명 및 모바일 상세설명 통합 수집
+                $content_html = stripslashes($it['it_explan']) . stripslashes($it['it_mobile_explan']);
+                if (preg_match_all('/<img[^>]+src=["\']([^"\']+)["\']/', $content_html, $matches)) {
+                    foreach ($matches[1] as $src) {
+                        if (!strpos($src, 'emoji') && !strpos($src, 'icon')) {
+                            $final_images[] = $src;
+                        }
+                    }
+                }
+                
+                // 데이터 폴더 직접 확인 (파일 존재 여부 우선)
+                $it_data_path = G5_DATA_PATH.'/item/'.$it_id;
+                if (is_dir($it_data_path)) {
+                    $handler = opendir($it_data_path);
+                    while (($file = readdir($handler)) !== false) {
+                        if (preg_match("/\.(jpg|jpeg|png|gif)$/i", $file)) {
+                            $final_images[] = G5_DATA_URL.'/item/'.$it_id.'/'.$file;
+                        }
+                    }
+                    closedir($handler);
+                }
+
+                $final_images = array_unique($final_images);
+                $fake_img = EYOOM_THEME_URL . '/image/insurance_consultation_fake.png';
+
+                if (empty($final_images)) {
+                    $final_images[] = $fake_img;
+                }
+                
+                // 슬라이더 안정 구동을 위한 리스트 최적화
+                $display_list = $final_images;
+                if (count($display_list) < 3) {
+                    $display_list = array_merge($display_list, $display_list);
+                }
+                
+                foreach ($display_list as $img_url) {
+                ?>
+                <div>
+                    <img src="<?php echo $img_url; ?>" alt="상품 이미지">
+                </div>
                 <?php } ?>
+                
+                <?php /* 가상 이미지 추가 (슬라이더 개수 확보) */ ?>
+                <div>
+                    <img src="<?php echo $fake_img; ?>" alt="상담 안내">
+                </div>
             </div>
         </div>
 
         <script src="<?php echo EYOOM_THEME_URL; ?>/plugins/slick/slick.min.js"></script>
         <script>
         $(document).ready(function(){
-            $('.slick-items').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                arrows: false,
-                dots: false,
-                infinite: true,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1
+            var $target = $('.slick-items');
+            if ($target.length > 0) {
+                var imgCount = $target.find('img').length;
+                $target.slick({
+                    slidesToShow: imgCount >= 3 ? 3 : imgCount,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    arrows: false,
+                    dots: false,
+                    infinite: true,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 1
+                            }
                         }
-                    }
-                ]
-            });
+                    ]
+                });
+            }
         });
         </script>
 
@@ -186,8 +240,10 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                                 <div class="select m-b-10">
                                     <select id="it_supply_<?php echo $supitem[$i]['seq']; ?>" class="it_supply">
                                         <option value="">선택</option>
-                                        <?php foreach ($supitem[$i]['select'] as $k => $select) { ?>
-                                        <?php echo $select['opt_val']; ?>
+                                        <?php if (isset($supitem[$i]['select']) && is_array($supitem[$i]['select'])) { ?>
+                                            <?php foreach ($supitem[$i]['select'] as $k => $select) { ?>
+                                            <?php echo $select['opt_val']; ?>
+                                            <?php } ?>
                                         <?php } ?>
                                     </select><i></i>
                                 </div>
@@ -310,17 +366,7 @@ $(document).ready(function(){
 <?php } ?>
 <script>
 $(window).load(function(){
-    $('.product-thumb').fadeIn(300);
-});
-
-$(function(){
-    $('.product-thumb').slick({
-        arrows: true,
-        infinite: false,
-        slidesToShow: 5,
-        slidesToScroll: 5,
-        autoplay: false
-    });
+    /* 기존 테마의 중복 슬라이더 호출을 비활성화하여 레이아웃 충돌 방지 */
 });
 </script>
 
