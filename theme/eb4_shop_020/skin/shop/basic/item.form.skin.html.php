@@ -48,9 +48,29 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     .slick-items .slick-list { margin: 0 -5px !important; }
     .slick-items .slick-slide { padding: 0 5px; outline: none; background: #0d1116; }
     .slick-items img { width: 100%; height: 420px; object-fit: contain; display: block; background: #fff; }
+
+    /* 브랜드 섹션 스타일 */
+    .item-brand-area { margin-bottom: 20px; }
     </style>
 
     <div class="item-visual-area-full">
+        <?php if ($it['it_brand']) { 
+            // 브랜드 정보 가져오기
+            $br = sql_fetch("select * from {$g5['eyoom_brand']} where br_name = '{$it['it_brand']}' limit 1");
+            if ($br['br_code']) {
+                $br_cd = $br['br_code'];
+                if ($br['br_img']) {
+                    $br['img_url'] = G5_DATA_URL.'/brand/'.$br['br_img'];
+                } else {
+                    $br['img_url'] = G5_URL.'/data/brand/'.rawurlencode($br['br_name']).'.png';
+                }
+                
+                // 브랜드 상세 스킨 (shop/basic/brand.skin.html.php) 인클루드
+                // 이 스킨 내부에서 eb_brand('basic')를 호출하여 하단 캐러셀까지 출력함
+                include (EYOOM_THEME_SHOP_SKIN_PATH.'/brand.skin.html.php');
+            } ?>
+        <?php } ?>
+
         <div class="item-multi-slider">
             <div class="slick-items">
                 <?php 

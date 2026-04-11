@@ -182,8 +182,8 @@ $brand_bg_url = $tmp_theme_url . '/image/brand_bg/bg_' . $random_bg_num . '.png'
         <?php echo eb_brand('basic'); ?>
     </div>
     <?php } ?>
-    
-    <div class="brand-video" style="margin: 30px auto 40px; border-radius: 0; overflow: hidden; width: calc(100% - 10px);">
+
+    <?php if (!isset($it['it_id'])) { // 상품 상세페이지가 아닐 때만 비디오와 상품 목록 출력 ?>
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
             <?php 
                 // 브랜드별 유튜브 영상 ID 매핑
@@ -239,6 +239,5 @@ $brand_bg_url = $tmp_theme_url . '/image/brand_bg/bg_' . $random_bg_num . '.png'
         <?php echo $item_list; ?>
     </div>
 
-    <?php /* 페이지 */ ?>
-    <?php echo eb_paging($eyoom['paging_skin']);?>
+    <?php } ?>
 </div>
