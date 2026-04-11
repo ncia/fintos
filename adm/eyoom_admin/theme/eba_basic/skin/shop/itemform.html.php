@@ -601,18 +601,11 @@ $frm_submit .= $frm_eba_submit;
                 <div class="adm-form-header"><strong><i class="las la-caret-right m-r-10"></i>가격 및 재고</strong></div>
                 <div class="adm-form-tr adm-sm-100">
                     <div class="adm-form-td td-l">
-                        <label for="it_ins_type" class="label">보험종류</label>
+                        <label for="it_price" class="label">판매가격</label>
                     </div>
                     <div class="adm-form-td td-r td-rs">
-                        <div class="inline-group">
-                            <?php $ins_types = explode(',', $it['it_ins_type'] ?? ''); ?>
-                            <label class="checkbox"><input type="checkbox" name="it_ins_type[]" value="보장성" <?php echo in_array('보장성', $ins_types)?'checked':''; ?>><i></i>보장성</label>
-                            <label class="checkbox"><input type="checkbox" name="it_ins_type[]" value="저축성" <?php echo in_array('저축성', $ins_types)?'checked':''; ?>><i></i>저축성</label>
-                            <label class="checkbox"><input type="checkbox" name="it_ins_type[]" value="투자성" <?php echo in_array('투자성', $ins_types)?'checked':''; ?>><i></i>투자성</label>
-                        </div>
-                        <input type="hidden" name="it_price" value="<?php echo $it['it_price'] ? $it['it_price'] : '0'; ?>" id="it_price">
-                        <label class="input max-width-250px" style="display:none;">
-                            <input type="text" name="it_price_dummy" value="0">
+                        <label class="input max-width-250px">
+                            <input type="text" name="it_price" value="<?php echo $it['it_price']; ?>" id="it_price" required>
                         </label>
                         <div class="adm-form-td-rs">
                             <div class="inline-group">
@@ -672,19 +665,14 @@ $frm_submit .= $frm_eba_submit;
                 </div>
                 <div class="adm-form-tr adm-sm-100">
                     <div class="adm-form-td td-l">
-                        <label for="it_point" class="label">만기환급</label>
+                        <label for="it_point" class="label">포인트</label>
                     </div>
                     <div class="adm-form-td td-r td-rs">
-                        <div class="inline-group">
-                            <?php $ins_refunds = explode(',', $it['it_ins_refund'] ?? ''); ?>
-                            <label class="checkbox"><input type="checkbox" name="it_ins_refund[]" value="적립형" <?php echo in_array('적립형', $ins_refunds)?'checked':''; ?>><i></i>적립형</label>
-                            <label class="checkbox"><input type="checkbox" name="it_ins_refund[]" value="소멸형" <?php echo in_array('소멸형', $ins_refunds)?'checked':''; ?>><i></i>소멸형</label>
-                        </div>
-                        <input type="hidden" name="it_point" value="<?php echo $it['it_point'] ? $it['it_point'] : '0'; ?>" id="it_point">
-                        <label class="input max-width-250px" style="display:none;">
-                            <input type="text" name="it_point_dummy" value="0" class="text-end">
+                        <label class="input max-width-250px">
+                            <i id="it_point_unit" class="icon-append"><?php echo $it['it_point_type'] > 0 ? '%':'점'; ?></i>
+                            <input type="text" name="it_point" value="<?php echo $it['it_point']; ?>" id="it_point" class="text-end">
                         </label>
-                        <div class="note"><strong>Note:</strong> 주문완료후 환경설정에서 설정한 주문완료 설정일 후 회원에게 부여하는 포인트입니다.\n또, 포인트부여를 '아니오'로 설정한 경우 신용카드, 계좌이체로 주문하는 회원께는 부여하지 않습니다.</div>
+                        <div class="note"><strong>Note:</strong> 주문완료후 환경설정에서 설정한 주문완료 설정일 후 회원에게 부여하는 포인트입니다.<br>또, 포인트부여를 '아니오'로 설정한 경우 신용카드, 계좌이체로 주문하는 회원께는 부여하지 않습니다.</div>
                         <div class="adm-form-td-rs">
                             <div class="inline-group">
                                 <label for="chk_ca_it_point" class="checkbox"><input type="checkbox" name="chk_ca_it_point" value="1" id="chk_ca_it_point"><i></i>분류적용</label>
@@ -1320,35 +1308,16 @@ $frm_submit .= $frm_eba_submit;
                 </div>
                 <div class="adm-form-tr" id="sc_con_method">
                     <div class="adm-form-td td-l">
-                        <label for="it_ins_pay_term" class="label">납입기간</label>
+                        <label for="it_sc_method" class="label">배송비 결제방법</label>
                     </div>
                     <div class="adm-form-td td-r">
-                        <label class="input max-width-250px">
-                            <input type="text" name="it_ins_pay_term" value="<?php echo $it['it_ins_pay_term'] ? $it['it_ins_pay_term'] : '20년납'; ?>" id="it_ins_pay_term">
+                        <label class="select max-width-250px">
+                            <select name="it_sc_method" id="it_sc_method">
+                                <option value="0"<?php echo get_selected('0', $it['it_sc_method']); ?>>선불</option>
+                                <option value="1"<?php echo get_selected('1', $it['it_sc_method']); ?>>착불</option>
+                                <option value="2"<?php echo get_selected('2', $it['it_sc_method']); ?>>사용자선택</option>
+                            </select><i></i>
                         </label>
-                        <input type="hidden" name="it_sc_method" value="0" id="it_sc_method">
-                    </div>
-                </div>
-                <div class="adm-form-tr">
-                    <div class="adm-form-td td-l">
-                        <label class="label">보험기간</label>
-                    </div>
-                    <div class="adm-form-td td-r">
-                        <div class="inline-group">
-                            <label class="radio"><input type="radio" name="it_ins_period" value="세만기" <?php echo (!isset($it['it_ins_period']) || $it['it_ins_period'] == '세만기' || $it['it_ins_period'] == '') ? 'checked' : ''; ?>><i></i>세만기</label>
-                            <label class="radio"><input type="radio" name="it_ins_period" value="연만기" <?php echo (isset($it['it_ins_period']) && $it['it_ins_period'] == '연만기') ? 'checked' : ''; ?>><i></i>연만기</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="adm-form-tr">
-                    <div class="adm-form-td td-l">
-                        <label class="label">갱신여부</label>
-                    </div>
-                    <div class="adm-form-td td-r">
-                        <div class="inline-group">
-                            <label class="radio"><input type="radio" name="it_ins_renewal" value="갱신" <?php echo (isset($it['it_ins_renewal']) && $it['it_ins_renewal'] == '갱신') ? 'checked' : ''; ?>><i></i>갱신</label>
-                            <label class="radio"><input type="radio" name="it_ins_renewal" value="비갱신" <?php echo (!isset($it['it_ins_renewal']) || $it['it_ins_renewal'] == '비갱신' || $it['it_ins_renewal'] == '') ? 'checked' : ''; ?>><i></i>비갱신</label>
-                        </div>
                     </div>
                 </div>
                 <div class="adm-form-tr" id="sc_con_basic">
