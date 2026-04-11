@@ -43,7 +43,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>
     <div class="item-visual-area-full" style="width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa;">
         <?php /* 1. 멀티 슬라이드 이미지 영역 (Slick 사용) */ ?>
-        <div class="item-multi-slider" style="width: 100%; overflow: hidden;">
+        <div class="item-multi-slider" style="max-width: 1266px; width: 100%; height: 422px; overflow: hidden; margin: 0 auto;">
             <div class="slick-items">
                 <?php /* 이미지들을 반복하여 캐러셀 효과 극대화 (2회 반복) */ ?>
                 <?php for ($i=0; $i<2; $i++) { ?>
@@ -51,13 +51,13 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                         preg_match('/src="([^"]+)"/', $bimg['image'], $matches);
                         $img_url = $matches[1];
                     ?>
-                    <div style="padding: 0 5px;">
-                        <img src="<?php echo $img_url; ?>" alt="상품 이미지" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+                    <div style="padding: 0;">
+                        <img src="<?php echo $img_url; ?>" alt="상품 이미지" style="width: 100%; height: 422px; display: block; border-radius: 4px; object-fit: cover;">
                     </div>
                     <?php } ?>
                     <?php /* 가상 이미지 추가 */ ?>
-                    <div style="padding: 0 5px;">
-                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/insurance_consultation_fake.png" alt="상담 안내 이미지" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+                    <div style="padding: 0;">
+                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/insurance_consultation_fake.png" alt="상담 안내 이미지" style="width: 100%; height: 422px; display: block; border-radius: 4px; object-fit: cover;">
                     </div>
                 <?php } ?>
             </div>

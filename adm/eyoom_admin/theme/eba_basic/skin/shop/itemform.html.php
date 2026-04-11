@@ -28,11 +28,13 @@ $frm_submit .= $frm_eba_submit;
 .admin-shop-itemform .sit_option .sit-option-item {float:left;width:50%}
 .admin-shop-itemform .sit_option #sit_option_addfrm_btn {text-align:center;padding:10px 0;border-bottom:1px solid var(--tbc-default)}
 .admin-shop-itemform .sit_option #sit_option_addfrm_btn button {position:relative;top:inherit;right:inherit}
-.admin-shop-itemform .adm-form-thumb {display:flex}
+.admin-shop-itemform .adm-form-thumb {display:flex;flex-wrap:wrap;align-items:flex-start}
 .admin-shop-itemform .adm-form-thumb-img {flex-shrink:0;width:120px;margin-right:10px}
-.admin-shop-itemform .adm-form-thumb .goods-thumb {width:120px;height:auto;border:1px solid var(--tbc-default);padding:5px}
+.admin-shop-itemform .adm-form-thumb .goods-thumb {width:120px;height:auto;border:1px solid var(--tbc-default);padding:5px;overflow:hidden}
+.admin-shop-itemform .adm-form-thumb .goods-thumb img {display:block;max-width:100%;height:auto}
 .admin-shop-itemform .adm-form-thumb .no-goods-thumb {width:120px;height:auto;min-height:70px;border:1px dashed var(--tbc-default);padding:5px}
-.admin-shop-itemform .adm-form-thumb-file {flex-grow:1;position:relative}
+.admin-shop-itemform .adm-form-thumb-file {flex-grow:1;flex-basis:200px;min-width:0;position:relative}
+.admin-shop-itemform .adm-form-thumb-file .checkbox {word-break:break-all;white-space:normal}
 .admin-shop-itemform .relation-sbox-margin-top {margin-top:48px}
 .admin-shop-itemform #relation ul {list-style:none;margin:0;padding:0}
 .admin-shop-itemform #relation ul li {position:relative;border:1px solid var(--tbc-default);border-bottom:0;padding:10px;clear:both}

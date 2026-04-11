@@ -34,7 +34,7 @@ if (!defined('_EYOOM_')) exit;
                 <div class="main-section1-r1">
                     <div class="m-b-10">
                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#insAgeModal" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
-                            <img src="<?php echo G5_SHOP_URL; ?>/img/side_banner_ranking.png" class="img-fluid" alt="보험 나이 상령일 계산하는 법">
+                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/side_banner_ranking.png" class="img-fluid" alt="보험 나이 상령일 계산하는 법">
                         </a>
                     </div>
                     <div class="m-b-10">
@@ -444,7 +444,7 @@ if (!defined('_EYOOM_')) exit;
                         <p class="f-s-16r m-b-20 text-dark text-start" id="res_msg2"></p>
                         
                         <div class="text-center m-b-20">
-                            <img src="<?php echo G5_SHOP_URL; ?>/img/cat_helper.png" class="img-fluid" style="width:220px;">
+                            <img src="<?php echo G5_URL; ?>/img/cat_helper.png" class="img-fluid" style="width:220px;">
                         </div>
                         
                         <div class="text-start m-b-20 f-s-15r text-dark" id="res_msg3" style="line-height:1.5;"></div>
