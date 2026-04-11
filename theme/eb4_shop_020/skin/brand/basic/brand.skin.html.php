@@ -53,7 +53,7 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
     margin: 0;
 }
 
-.brand-wrap {position:relative;overflow:hidden;padding:20px 0 0;min-height:160px; background: rgba(255,255,255,0.05); border-radius: 0; margin-bottom: 0;}
+.brand-wrap {position:relative;overflow:hidden;padding:20px 0 0;min-height:160px; background: rgba(255,255,255,0.05); border-radius: 0; margin-bottom: 30px;}
 .brand-box .category-list {margin:0px auto; padding: 0 40px;} /* 좌우 여백 확보 */
 .brand-box .category-item {outline:none; text-align:center; padding: 10px 0 0; transition: all 0.3s ease;}
 .brand-box .category-img {position:relative;width:85px;height:85px;margin:0 auto; padding: 5px; background: transparent;}
