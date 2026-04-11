@@ -43,10 +43,10 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>
     <style>
     /* 기존 테마 고유 디자인 유지 및 슬라이더 보호 */
-    .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #f8f9fa; clear: both; }
+    .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #0d1116; clear: both; }
     .item-multi-slider { max-width: 1266px; width: 100%; height: 422px; overflow: hidden; margin: 0 auto; position: relative; }
     .slick-items .slick-slide { padding: 0; outline: none; }
-    .slick-items img { width: 100%; height: 422px; object-fit: cover; border-radius: 4px; display: block; }
+    .slick-items img { width: 100%; height: 422px; object-fit: cover; display: block; }
     </style>
 
     <div class="item-visual-area-full">
