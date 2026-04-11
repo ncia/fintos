@@ -45,9 +45,9 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     /* 기존 테마 고유 디자인 유지 및 슬라이더 보호 */
     .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #0d1116; clear: both; }
     .item-multi-slider { max-width: 1260px; width: 100%; height: 420px; overflow: hidden; margin: 0 auto; position: relative; background: #0d1116; }
-    .slick-items { margin: 0 -5px; }
-    .slick-items .slick-slide { padding: 0 5px; outline: none; }
-    .slick-items img { width: 100%; height: 420px; object-fit: contain; display: block; background: #0d1116; }
+    .slick-items .slick-list { margin: 0 -5px !important; }
+    .slick-items .slick-slide { padding: 0 5px; outline: none; background: #0d1116; }
+    .slick-items img { width: 100%; height: 420px; object-fit: contain; display: block; background: #fff; }
     </style>
 
     <div class="item-visual-area-full">
