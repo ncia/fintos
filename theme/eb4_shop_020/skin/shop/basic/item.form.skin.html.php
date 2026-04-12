@@ -44,10 +44,10 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     <style>
     /* 기존 테마 고유 디자인 유지 및 슬라이더 보호 */
     .item-visual-area-full { width: 100%; margin-bottom: 40px; border-top: 1px solid #1a202c; border-bottom: 1px solid #1a202c; background: #0d1116; clear: both; }
-    .item-multi-slider { max-width: 1290px; width: 100%; height: 430px; overflow: hidden; margin: 0 auto; position: relative; background: #0d1116; }
+    .item-multi-slider { max-width: 1290px; width: 100%; height: 323px; overflow: hidden; margin: 0 auto; position: relative; background: #0d1116; }
     .slick-items .slick-list { margin: 0 -5px !important; }
     .slick-items .slick-slide { padding: 0 5px; outline: none; background: #0d1116; }
-    .slick-items img { width: 430px; height: 430px; object-fit: contain; display: block; background: #fff; margin: 0 auto; }
+    .slick-items img { width: 430px; height: 323px; object-fit: contain; display: block; background: #fff; margin: 0 auto; }
 
     /* 브랜드 섹션 스타일 */
     .item-brand-area { margin-bottom: 20px; }
