@@ -171,26 +171,38 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                     </a>
                 </div>
             </div>
-        </div>
-        
-        <div class="item-tags-area" style="background: #0d1116; padding: 10px 40px 20px; border-bottom: 1px solid #1a202c;">
-            <div style="color: #9ca3af; font-size: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                    <span style="font-weight: bold; color: #cbd5e0;">태그 :</span>
-                    <?php if ($it['it_brand']) { ?>
-                    <span style="color: #3b82f6;">#<?php echo $it['it_brand']; ?></span>, 
-                    <?php } ?>
-                    <span style="color: #3b82f6;">#보장성</span>, 
-                    <span style="color: #3b82f6;">#종신</span>, 
-                    <span style="color: #3b82f6;">#비갱신</span>, 
-                    <span style="color: #3b82f6;">#사망보장</span>, 
-                    <span style="color: #3b82f6;">#연금전환</span>, 
-                    <span style="color: #3b82f6;">#노후자금</span>
-                </div>
-                <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 16px; color: #cbd5e0;">궁금할땐 바로 상담</span>
-                    <img src="<?php echo EYOOM_THEME_URL; ?>/image/telephone.gif" alt="상담" style="height: 32px; vertical-align: middle;">
-                    <span style="font-size: 16px; font-weight: bold; color: #fff;">0707007070</span>
+
+            <?php /* 3단: 태그 및 상담 정보 */ ?>
+            <div class="item-tags-consult-area" style="background: #0d1116; padding: 10px 40px; border-bottom: 1px solid #1a202c;">
+                <div style="display: flex; justify-content: space-between; align-items: center; min-height: 55px; flex-wrap: wrap; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 0; flex-wrap: wrap;">
+                        <span style="color: #fff; font-size: 15px; font-weight: 800; margin-right: 8px;">태그:</span>
+                        <?php
+                        $tags = array();
+                        // 해당 상품에 등록된 태그가 있는지 확인 (이윰 태그 게시물 정보 활용)
+                        $tag_row = sql_fetch("select wr_tag from {$g5['eyoom_tag_write']} where bo_table = 'shop' and wr_id = '{$it['it_id']}'");
+                        if ($tag_row['wr_tag']) {
+                            $tags = explode(',', $tag_row['wr_tag']);
+                        } else if ($it['it_id'] == '1775931123') {
+                            $tags = array('삼성생명', '보장성', '종신', '비갱신', '사망보장', '연금전환', '노후자금');
+                        }
+                        
+                        if ($tags) {
+                            $tag_count = count($tags);
+                            foreach($tags as $i => $tag_word) {
+                                $tag_word = trim($tag_word);
+                                if (!$tag_word) continue;
+                                echo '<a href="'.G5_URL.'/shop/search.php?q='.urlencode('#'.$tag_word).'" style="color: #3b82f6; font-size: 15px; text-decoration: none;">#'.$tag_word.'</a>';
+                                if ($i < $tag_count - 1) {
+                                    echo ' <span style="color:#666; margin: 0 5px;">,</span> ';
+                                }
+                            }
+                        }
+                        ?>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; color: #cbd5e0; font-size: 15px; white-space: nowrap;">
+                        궁금할땐 바로 상담 <img src="<?php echo EYOOM_THEME_URL; ?>/image/telephone.gif" style="height:32px; width:auto; vertical-align:middle;"> <strong style="color: #fff; font-size: 18px; letter-spacing: 0.5px;">0707007070</strong>
+                    </div>
                 </div>
             </div>
         </div>
