@@ -172,6 +172,28 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
                 </div>
             </div>
         </div>
+        
+        <div class="item-tags-area" style="background: #0d1116; padding: 10px 40px 20px; border-bottom: 1px solid #1a202c;">
+            <div style="color: #9ca3af; font-size: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                    <span style="font-weight: bold; color: #cbd5e0;">태그 :</span>
+                    <?php if ($it['it_brand']) { ?>
+                    <span style="color: #3b82f6;">#<?php echo $it['it_brand']; ?></span>, 
+                    <?php } ?>
+                    <span style="color: #3b82f6;">#보장성</span>, 
+                    <span style="color: #3b82f6;">#종신</span>, 
+                    <span style="color: #3b82f6;">#비갱신</span>, 
+                    <span style="color: #3b82f6;">#사망보장</span>, 
+                    <span style="color: #3b82f6;">#연금전환</span>, 
+                    <span style="color: #3b82f6;">#노후자금</span>
+                </div>
+                <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 16px; color: #cbd5e0;">궁금할땐 바로 상담</span>
+                    <img src="<?php echo EYOOM_THEME_URL; ?>/image/telephone.gif" alt="상담" style="height: 32px; vertical-align: middle;">
+                    <span style="font-size: 16px; font-weight: bold; color: #fff;">0707007070</span>
+                </div>
+            </div>
+        </div>
     </div>
 
         <div class="col-lg-12">
