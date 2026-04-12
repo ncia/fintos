@@ -221,7 +221,7 @@ define('G5_IS_MOBILE_DHTML_USE', false);
 define('G5_MYSQLI_USE', true);
 
 // Browscap 사용여부를 설정합니다.
-define('G5_BROWSCAP_USE', true);
+define('G5_BROWSCAP_USE', false);
 
 // 접속자 기록 때 Browscap 사용여부를 설정합니다.
 define('G5_VISIT_BROWSCAP_USE', false);
