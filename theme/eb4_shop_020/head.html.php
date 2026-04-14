@@ -318,7 +318,7 @@ $item_view = 'zoom';
                                                 <a href="<?php echo G5_SHOP_URL ?>/healthcare_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-file-medical m-r-5 text-primary"></i>의료 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=quiz" class="dropdown-item nav-link"><i class="fas fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><i class="fas fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
                                             </li>
                                         </ul>
                                     </div>
