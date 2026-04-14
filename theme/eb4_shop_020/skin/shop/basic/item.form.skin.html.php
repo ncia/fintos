@@ -176,7 +176,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
             <div class="item-tags-consult-area" style="background: #0d1116; padding: 10px 40px; border-bottom: 1px solid #1a202c;">
                 <div style="display: flex; justify-content: space-between; align-items: center; min-height: 55px; flex-wrap: wrap; gap: 15px;">
                     <div style="display: flex; align-items: center; gap: 0; flex-wrap: wrap;">
-                        <span style="color: #fff; font-size: 15px; font-weight: 800; margin-right: 8px;">태그:</span>
+                        <span style="color: #fff; font-size: 15px; font-weight: 800; margin-right: 8px;"><i class="fas fa-tags" style="margin-right:6px; color:#cbd5e0;"></i>태그:</span>
                         <?php
                         $tags = array();
                         // 해당 상품에 등록된 태그가 있는지 확인 (이윰 태그 게시물 정보 활용)
