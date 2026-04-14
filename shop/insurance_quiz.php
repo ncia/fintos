@@ -159,10 +159,7 @@ function showScreen(screenId) {
     $('#' + screenId).removeClass('d-none');
 }
 
-$(document).on('click', '[data-bs-target="#quizModal"]', function() {
-    var myModal = new bootstrap.Modal(document.getElementById('quizModal'));
-    myModal.show();
-});
+/* Bootstrap의 data-bs-toggle 속성으로 자동으로 작동하므로 별도의 JS 제어는 필요하지 않습니다. */
 
 function startQuiz() {
     currentIdx = 0;
