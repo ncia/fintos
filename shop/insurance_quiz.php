@@ -37,7 +37,7 @@ shuffle($quiz_data);
 <!-- 퀴즈 모달 -->
 <div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #eef2ff;">
+        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #2e4a31; border: 8px solid #5d4037; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
             
             <!-- 모달 헤더 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #4a86e8; color: white;">
@@ -51,7 +51,7 @@ shuffle($quiz_data);
                     
                     <!-- 초기 화면 -->
                     <div id="screen-start" class="quiz-screen">
-                        <div class="q-a-label f-s-16 mb-2">Q&A</div>
+                        <div class="q-a-label mb-2">Q&A</div>
                         <div class="quiz-layout">
                             <div class="character-box">
                                 <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="보드미" class="bodmi-img active">
@@ -63,14 +63,14 @@ shuffle($quiz_data);
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-5">
+                        <div style="margin-top: 68px;">
                             <button class="btn btn-primary px-5 py-3 fw-700 f-s-18 rounded-pill shadow" onclick="startQuiz()"><i class="fas fa-play m-r-10"></i>시작하기!</button>
                         </div>
                     </div>
 
                     <!-- 문제 화면 -->
                     <div id="screen-question" class="quiz-screen d-none">
-                        <div class="q-progress f-s-16 mb-2">Q<span id="q-idx">1</span> / 10</div>
+                        <div class="q-progress mb-2">Q<span id="q-idx">1</span> / 10</div>
                         <div class="quiz-layout">
                             <div class="character-box">
                                 <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="보드미" class="bodmi-img active">
@@ -95,7 +95,7 @@ shuffle($quiz_data);
 
                     <!-- 결과 및 해설 화면 (통합) -->
                     <div id="screen-result-item" class="quiz-screen d-none">
-                        <div id="result-label" class="q-a-label f-s-16 mb-2">정답입니다!</div>
+                        <div id="result-label" class="q-a-label mb-2">정답입니다!</div>
                         <div class="quiz-layout">
                             <div class="character-box">
                                 <img id="result-bodmi" src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_correct.png" alt="보드미" class="bodmi-img active">
@@ -115,10 +115,10 @@ shuffle($quiz_data);
 
                     <!-- 최종 점수 화면 -->
                     <div id="screen-final" class="quiz-screen d-none">
-                        <div class="q-a-label f-s-16 mb-2">최종 결과</div>
+                        <div class="q-a-label mb-2">최종 결과</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_correct.png" alt="보드미" class="bodmi-img active">
+                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_explain.png" alt="보드미" class="bodmi-img active">
                             </div>
                             <div class="bubble-box">
                                 <div class="speech-bubble p-5 shadow-sm bg-white">
@@ -240,15 +240,15 @@ function showFinalResult() {
 
 <style>
 #quizModal .modal-content { border: none; }
-.quiz-layout { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 20px; }
+.quiz-layout { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 50px; }
 @media (max-width: 767px) {
     .quiz-layout { flex-direction: column; }
 }
 
 .bodmi-img { width: 220px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
-.q-a-label { font-weight: 800; color: #4a2b2b; }
-.q-progress { font-weight: 700; color: #4a2b2b; }
+.q-a-label { font-weight: 800; color: #ffffff; font-size: 28px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
+.q-progress { font-weight: 700; color: #ffffff; font-size: 28px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
 
 .speech-bubble {
     position: relative;
@@ -302,12 +302,12 @@ function showFinalResult() {
 .fw-900 { font-weight: 900; }
 
 /* 다크모드 대응 */
-.dark-mode #quizModal .modal-content { background: #1a1a1a !important; }
-.dark-mode .speech-bubble { background: #2a2a2a !important; border-color: #444 !important; }
-.dark-mode .speech-bubble::after { border-right-color: #2a2a2a !important; }
-.dark-mode .speech-bubble::before { border-right-color: #444 !important; }
-.dark-mode .text-dark { color: #eee !important; }
-.dark-mode .q-a-label, .dark-mode .q-progress { color: #bbb !important; }
+.dark-mode #quizModal .modal-content { background: #2e4a31 !important; border-color: #3e2723 !important; }
+.dark-mode .q-a-label, .dark-mode .q-progress { color: #ffffff !important; }
+.dark-mode .speech-bubble { background: #fff !important; border-color: #aec6f5 !important; }
+.dark-mode .speech-bubble::after { border-right-color: #fff !important; }
+.dark-mode .speech-bubble::before { border-right-color: #aec6f5 !important; }
+.dark-mode .text-dark { color: #212529 !important; }
 </style>
 
 <?php
