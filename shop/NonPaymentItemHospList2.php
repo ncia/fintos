@@ -5,8 +5,7 @@ include_once(G5_PATH.'/head.php');
 
 <div class="non-benefit-container container m-t-30 m-b-50">
   <div class="main-heading m-b-30">
-    <h2 class="f-s-24 fw-600"><i class="fas fa-hand-holding-usd text-danger m-r-10"></i><strong>비급여 항목</strong> <span
-        class="text-muted">조회</span></h2>
+    <h2 class="f-s-24 fw-600"><i class="fas fa-hand-holding-usd text-danger m-r-10"></i><strong>병원 비급여 항목</strong></h2>
   </div>
 
   <div class="hospital-app-card bg-white border-0 shadow overflow-hidden">

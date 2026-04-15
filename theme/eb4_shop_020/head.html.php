@@ -398,7 +398,7 @@ $item_view = 'zoom';
                                             </li>
 
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/NonPaymentItemHospList2.php" class="dropdown-item nav-link"><i class="fas fa-hand-holding-usd m-r-5 text-danger"></i>비급여 항목 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/NonPaymentItemHospList2.php" class="dropdown-item nav-link"><i class="fas fa-hand-holding-usd m-r-5 text-danger"></i>병원 비급여 항목</a>
                                             </li>
                                         </ul>
                                     </div>
