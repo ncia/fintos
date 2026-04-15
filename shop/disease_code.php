@@ -67,7 +67,7 @@ $(document).ready(function() {
                 diseaseType: diseaseType,
                 searchText: searchText,
                 pageNo: page,
-                numOfRows: 10,
+                numOfRows: 20,
                 sickType: '1',
                 medTp: '1'
             },
@@ -132,7 +132,7 @@ $(document).ready(function() {
     }
 
     function renderPagination(totalCount, page) {
-        const totalPages = Math.ceil(totalCount / 10);
+        const totalPages = Math.ceil(totalCount / 20);
         if (totalPages <= 1) {
             $('#diseasePagination').empty();
             return;

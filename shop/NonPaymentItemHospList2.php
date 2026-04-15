@@ -197,7 +197,7 @@ $(document).ready(function() {
         clCd: clCd,
         npayMdivCd: npayMdivCd,
         pageNo: page,
-        numOfRows: 10
+        numOfRows: 20
       },
       dataType: 'json',
       success: function(data) {
@@ -351,7 +351,7 @@ $(document).ready(function() {
   }
 
   function renderPagination(totalCount, page) {
-    const totalPages = Math.ceil(totalCount / 10);
+    const totalPages = Math.ceil(totalCount / 20);
     if (totalPages <= 1) {
       $('#medicalPagination').empty();
       return;

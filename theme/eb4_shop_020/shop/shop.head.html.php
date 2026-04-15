@@ -436,6 +436,9 @@ $is_darkmode = 'yes';
                                                 <a href="<?php echo G5_SHOP_URL; ?>/getPharmacyMdfeeList.php" class="dropdown-item nav-link"><i class="fas fa-file-invoice-dollar m-r-5 text-info"></i>수가 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_SHOP_URL; ?>/surgery_1_3_1_5_search.php" class="dropdown-item nav-link"><i class="fas fa-search-plus m-r-5 text-success"></i>종 수술명 검색</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=myinsurance" class="dropdown-item nav-link"><i class="fas fa-user-shield m-r-5 text-success"></i>보험 통합 조회</a>
                                             </li>
 

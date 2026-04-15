@@ -164,7 +164,7 @@ $(document).ready(function() {
         $.ajax({
             url: '<?php echo G5_SHOP_URL; ?>/hospital_api.php',
             type: 'GET',
-            data: { searchText: searchText, sidoCd: sidoCd, gugunCd: gugunCd, hospitalType: hospitalType, pageNo: page, numOfRows: 10 },
+            data: { searchText: searchText, sidoCd: sidoCd, gugunCd: gugunCd, hospitalType: hospitalType, pageNo: page, numOfRows: 20 },
             success: function(data) { renderResults(data, page); },
             error: function() { $('#hospitalResultArea').html('<div class="alert alert-soft-danger text-center m-5 p-4">일시적인 오류가 발생했습니다.</div>'); }
         });
@@ -202,7 +202,7 @@ $(document).ready(function() {
     }
 
     function renderPagination(totalCount, page) {
-        const totalPages = Math.ceil(totalCount / 10);
+        const totalPages = Math.ceil(totalCount / 20);
         if (totalPages <= 1) { $('#hospitalPagination').empty(); return; }
         let html = '<ul class="pagination pagination-modern justify-content-center">';
         for (let i = Math.max(1, page - 2); i <= Math.min(totalPages, page + 2); i++) {

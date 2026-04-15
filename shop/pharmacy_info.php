@@ -181,7 +181,7 @@ $(document).ready(function() {
                 sidoCd: sidoCd,
                 gugunCd: gugunCd,
                 pageNo: page,
-                numOfRows: 10
+                numOfRows: 20
             },
             dataType: 'json',
             success: function(data) {
@@ -237,7 +237,7 @@ $(document).ready(function() {
     }
 
     function renderPagination(totalCount, page) {
-        const totalPages = Math.ceil(totalCount / 10);
+        const totalPages = Math.ceil(totalCount / 20);
         if (totalPages <= 1) {
             $('#pharmacyPagination').empty();
             return;
