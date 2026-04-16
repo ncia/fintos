@@ -466,7 +466,7 @@ $is_darkmode = 'yes';
                                     </div>
                                 </li>
                                 <li class="nav-social-btns" style="margin-left: 140px; display: flex; align-items: center; gap: 5px;">
-                                    <a href="https://blog.naver.com/YOUR_BLOG_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
+                                    <a href="https://blog.naver.com/fintos" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
                                         <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
                                     <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">

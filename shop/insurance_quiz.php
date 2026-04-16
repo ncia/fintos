@@ -27,6 +27,10 @@ shuffle($quiz_data);
         <h2 class="f-s-24 fw-600"><i class="fas fa-mortar-board text-primary m-r-10"></i><strong>보험 상식</strong> <span class="text-muted">퀴즈</span></h2>
     </div>
 
+    <div class="text-center m-b-20 px-3">
+        <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/quiz_intro.jpg" alt="보험 상식 퀴즈" style="width: 100%; max-width: 450px; height: auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+    </div>
+
     <div class="text-center m-b-30">
         <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow" data-bs-toggle="modal" data-bs-target="#quizModal">
             <i class="fas fa-play-circle m-r-10"></i>퀴즈 시작하기
@@ -37,7 +41,7 @@ shuffle($quiz_data);
 <!-- 퀴즈 모달 -->
 <div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #2e4a31; border: 8px solid #5d4037; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
+        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: url('<?php echo EYOOM_THEME_URL; ?>/image/quiz/quiz_bg_clean.png') no-repeat center center; background-size: cover; border: 8px solid #5d4037; box-shadow: inset 0 0 50px rgba(0,0,0,0.5);">
             
             <!-- 모달 헤더 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #4a86e8; color: white;">
@@ -47,7 +51,7 @@ shuffle($quiz_data);
 
             <!-- 모달 바디 (퀴즈 컨텐츠) -->
             <div class="modal-body p-0 position-relative" style="min-height: 500px;">
-                <div id="quiz-app" class="p-4 text-center h-100">
+                <div id="quiz-app" class="p-4 text-center h-100" style="width: 100%; margin: 0 auto;">
                     
                     <!-- 초기 화면 -->
                     <div id="screen-start" class="quiz-screen">
@@ -237,12 +241,12 @@ function showFinalResult() {
 
 <style>
 #quizModal .modal-content { border: none; }
-.quiz-layout { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 50px; }
+.quiz-layout { display: flex; align-items: center; justify-content: center; gap: 30px; margin: 50px auto 0; width: 100%; max-width: 800px; padding: 0; position: relative; left: -45px; }
 @media (max-width: 767px) {
     .quiz-layout { flex-direction: column; }
 }
 
-.bodmi-img { width: 220px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+.bodmi-img { width: 310px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
 .q-a-label { font-weight: 800; color: #ffffff; font-size: 28px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
 .q-progress { font-weight: 700; color: #ffffff; font-size: 28px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
@@ -299,7 +303,7 @@ function showFinalResult() {
 .fw-900 { font-weight: 900; }
 
 /* 다크모드 대응 */
-.dark-mode #quizModal .modal-content { background: #2e4a31 !important; border-color: #3e2723 !important; }
+.dark-mode #quizModal .modal-content { background: url('<?php echo EYOOM_THEME_URL; ?>/image/quiz/quiz_bg_clean.png') no-repeat center center !important; background-size: cover !important; border-color: #3e2723 !important; }
 .dark-mode .q-a-label, .dark-mode .q-progress { color: #ffffff !important; }
 .dark-mode .speech-bubble { background: #fff !important; border-color: #aec6f5 !important; }
 .dark-mode .speech-bubble::after { border-right-color: #fff !important; }
