@@ -465,6 +465,12 @@ $is_darkmode = 'yes';
                                         </ul>
                                     </div>
                                 </li>
+                                <li class="nav-kakao-btn" style="margin-left: 110px;">
+                                    <a href="http://pf.kakao.com/_YOUR_ID" target="_blank" class="nav-link" style="padding: 13px 15px !important;">
+                                        <span style="color: #fff176; margin-right: 5px; vertical-align: middle; font-size: 14px;">빠른 상담</span>
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="22" height="22" style="border-radius: 4px; vertical-align: middle;">
+                                    </a>
+                                </li>
                                 <?php if ($is_darkmode == 'yes') { ?>
                                 <li class="darkmode-menu">
                                     <a href="javascript:void(0);" class="nav-link dark-mode-btn">

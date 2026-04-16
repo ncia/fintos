@@ -59,7 +59,7 @@ shuffle($quiz_data);
                             <div class="bubble-box">
                                 <div class="speech-bubble p-4 shadow-sm bg-white">
                                     <h3 class="fw-700 f-s-20 mb-3 text-dark"><i class="fas fa-lightbulb text-warning m-r-10"></i>질문: 당신은 보험에 대해<br>얼마나 알고 있나요?</h3>
-                                    <div class="f-s-16 text-muted">생각해보세요!</div>
+                                    <div class="f-s-20 fw-700 text-primary">🤔 도전해보세요!</div>
                                 </div>
                             </div>
                         </div>
