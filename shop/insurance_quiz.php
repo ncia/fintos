@@ -51,7 +51,7 @@ shuffle($quiz_data);
 
             <!-- 모달 바디 (퀴즈 컨텐츠) -->
             <div class="modal-body p-0 position-relative" style="min-height: 500px;">
-                <div id="quiz-app" class="p-4 text-center h-100" style="width: 100%; margin: 0 auto;">
+                <div id="quiz-app" class="p-4 text-center h-100">
                     
                     <!-- 초기 화면 -->
                     <div id="screen-start" class="quiz-screen">
@@ -241,7 +241,7 @@ function showFinalResult() {
 
 <style>
 #quizModal .modal-content { border: none; }
-.quiz-layout { display: flex; align-items: center; justify-content: center; gap: 30px; margin: 50px auto 0; width: 100%; max-width: 800px; padding: 0; position: relative; left: -45px; }
+.quiz-layout { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 50px; }
 @media (max-width: 767px) {
     .quiz-layout { flex-direction: column; }
 }
