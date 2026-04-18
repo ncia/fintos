@@ -34,12 +34,12 @@ if (!defined('_EYOOM_')) exit;
                 <div class="main-section1-r1">
                     <div class="m-b-10">
                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#insAgeModal" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
-                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/side_banner_ranking.png" class="img-fluid" alt="보험 나이 상령일 계산하는 법">
+                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_age.png" class="img-fluid" alt="내 보험 나이 알아보기">
                         </a>
                     </div>
                     <div class="m-b-10">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
-                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_pet_insurance.png" class="img-fluid" alt="펫 보험 가입 상담하기">
+                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_pet.png" class="img-fluid" alt="펫 보험 가입 상담하기">
                         </a>
                     </div>
                 </div>
