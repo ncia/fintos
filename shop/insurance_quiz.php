@@ -28,7 +28,7 @@ shuffle($quiz_data);
     </div>
 
     <div class="text-center m-b-30">
-        <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/quiz_intro.png" alt="보험 상식 퀴즈" class="img-fluid rounded-3 shadow-sm border" style="max-width: 800px;">
+        <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/quiz_intro.png" alt="보험 상식 퀴즈" class="img-fluid rounded-3 shadow-sm border" style="width: 100%; max-width: 800px; height: auto;">
     </div>
 
     <div class="text-center m-b-30">
