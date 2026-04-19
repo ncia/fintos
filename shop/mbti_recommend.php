@@ -1,17 +1,36 @@
 <?php
 include_once('./_common.php');
 include_once(G5_PATH.'/head.php');
+
+// MBTI 추천 데이터 가져오기 (DB 연동)
+$mbr_table = $g5['table_prefix'] . 'shop_mbti_recommend';
+$mbq_types = ['E/I', 'S/N', 'T/F', 'J/P'];
+$mbti_quiz_data = [];
+
+foreach ($mbq_types as $type) {
+    $sql = " SELECT * FROM $mbr_table WHERE mbq_type = '$type' ORDER BY rand() LIMIT 5 ";
+    $res = sql_query($sql);
+    while($row = sql_fetch_array($res)) {
+        $mbti_quiz_data[] = [
+            'dim' => str_replace('/', '', $row['mbq_type']),
+            'q'   => $row['mbq_question'],
+            'a'   => $row['mbq_option_a'],
+            'b'   => $row['mbq_option_b']
+        ];
+    }
+}
+shuffle($mbti_quiz_data);
 ?>
 
 <div class="container m-t-30 m-b-50">
     <div class="main-heading m-b-30">
-        <h2 class="f-s-24 fw-600"><i class="fas fa-user-tag text-warning m-r-10"></i><strong>MBTI별</strong> <span class="text-muted">상품 추천</span></h2>
-        <p class="text-muted m-t-10 m-b-0">나의 MBTI 유형에 맞는 보험은 무엇일까요? 재미로 보는 성향별 보험 추천 서비스입니다.</p>
+        <h2 class="f-s-24 fw-600 text-white"><i class="fas fa-user-tag text-warning m-r-10"></i><strong>MBTI별</strong> 상품 추천</h2>
+        <p class="text-white opacity-80 m-t-10 m-b-0">나의 MBTI 유형에 맞는 보험은 무엇일까요? 재미로 보는 성향별 보험 추천 서비스입니다.</p>
     </div>
 
     <div class="text-center m-b-40">
         <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
-            <i class="fas fa-magic m-r-10"></i>나의 MBTI 기반 보험 추천 시작하기
+            <i class="fas fa-magic m-r-10"></i>나의 MBTI별 보험 상품 추천하기
         </button>
     </div>
 
@@ -24,6 +43,12 @@ include_once(G5_PATH.'/head.php');
             'ISTJ', 'ISFJ', 'ESTJ', 'ESFJ',
             'ISTP', 'ISFP', 'ESTP', 'ESFP'
         ];
+        $mbti_icons = [
+            'INTJ' => 'fa-chess-knight', 'INTP' => 'fa-microscope', 'ENTJ' => 'fa-crown', 'ENTP' => 'fa-lightbulb',
+            'INFJ' => 'fa-feather-alt', 'INFP' => 'fa-heart', 'ENFJ' => 'fa-users-cog', 'ENFP' => 'fa-star',
+            'ISTJ' => 'fa-clipboard-check', 'ISFJ' => 'fa-user-shield', 'ESTJ' => 'fa-gavel', 'ESFJ' => 'fa-hand-holding-heart',
+            'ISTP' => 'fa-tools', 'ISFP' => 'fa-paint-brush', 'ESTP' => 'fa-motorcycle', 'ESFP' => 'fa-music'
+        ];
         foreach ($mbtis as $mbti) {
             $color_class = "";
             if (strpos($mbti, 'NT') !== false) $color_class = "btn-outline-primary"; // 분석형
@@ -33,7 +58,7 @@ include_once(G5_PATH.'/head.php');
         ?>
         <div class="col-6 col-md-3">
             <button type="button" class="btn <?php echo $color_class; ?> w-100 py-3 fw-700 f-s-18 mbti-btn" onclick="selectMBTI('<?php echo $mbti; ?>')">
-                <?php echo $mbti; ?>
+                <i class="fas <?php echo $mbti_icons[$mbti]; ?> m-r-10"></i><?php echo $mbti; ?>
             </button>
         </div>
         <?php } ?>
@@ -115,7 +140,9 @@ include_once(G5_PATH.'/head.php');
                         <div class="q-progress mb-2">Q<span id="mbti-q-idx">1</span> / 20</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="보드미" class="bodmi-img active">
+                                <video autoplay loop muted playsinline class="bodmi-img active">
+                                    <source src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_anim.mp4" type="video/mp4">
+                                </video>
                             </div>
                             <div class="bubble-box" style="flex: 1;">
                                 <div class="speech-bubble p-4 shadow-sm bg-white d-flex flex-column align-items-center justify-content-center" style="min-height: 250px;">
@@ -209,7 +236,7 @@ const mbtiData = {
     },
     'ISFJ': {
         nickname: '용감한 수호자',
-        icon: 'fa-shield-heart',
+        icon: 'fa-user-shield',
         color: '#76a5af',
         desc: '타인을 보호하고 헌신하는 성향의 당신은 예기치 못한 상황에서도 가족이 흔들리지 않도록 완벽한 방패를 준비하려 합니다. 안전성이 최우선이며 보수적인 관점의 보험 설계를 선호합니다.',
         products: ['생활 밀착형 화재/책임 보험', '자녀를 위한 교육/어린이 보험', '노후 대비 간병 보험']
@@ -286,28 +313,7 @@ function selectMBTI(mbti) {
     $('html, body').animate({ scrollTop: $(".main-heading").offset().top - 100 }, 500);
 }
 
-const mbtiQuestions = [
-    { id: 1, dim: 'EI', q: '보험 가입을 알아볼 때 당신의 스타일은?', a: '지인이나 담당 설계사에게 바로 연락해서 물어본다.', b: '인터넷 검색이나 커뮤니티를 통해 조용히 정보를 찾는다.' },
-    { id: 2, dim: 'EI', q: '설계사와 대면 상담을 하게 되었다. 당신의 반응은?', a: '궁금한 점을 적극적으로 묻고 대화를 주도한다.', b: '설계사의 설명을 주로 듣고 나중에 혼자 꼼꼼히 고민한다.' },
-    { id: 3, dim: 'EI', q: '정말 괜찮은 신규 보험 상품 소식을 들었다면?', a: '주변 사람들에게 "이거 괜찮다던데 어때?" 하고 공유한다.', b: '내게 정말 필요한지 상품 안내장을 꼼꼼히 읽어본다.' },
-    { id: 4, dim: 'EI', q: '가입한 보험에 대해 궁금한 점이 생겼을 때?', a: '바로 고객센터로 전화를 걸어 상담원에게 직접 묻는다.', b: '보험사 앱이나 홈페이지에 들어가서 FAQ나 약관을 뒤져본다.' },
-    { id: 5, dim: 'EI', q: '보험사에서 주최하는 재무 설계 세미나가 있다면?', a: '유익할 것 같아 참석해서 정보도 얻고 사람들과 교류한다.', b: '굳이 참석하지 않고 요약된 자료나 브로슈어만 받아보고 싶다.' },
-    { id: 6, dim: 'SN', q: '보험 가입 시 가장 중요하게 보는 것은?', a: '정확한 보장 금액, 특약의 세부 조건, 매월 나가는 납입료.', b: '이 보험이 내 미래의 위험을 어떻게 막아주는지에 대한 큰 그림.' },
-    { id: 7, dim: 'SN', q: '수술비 특약을 고를 때 당신의 생각은?', a: '1~5종 수술비가 각각 구체적으로 얼마씩 나오는지 따져본다.', b: '웬만한 수술은 다 커버가 되는 든든하고 포괄적인 특약이면 충분하다.' },
-    { id: 8, dim: 'SN', q: '두꺼운 보험 약관을 받아보았다.', a: '보상하지 않는 손해나 구체적인 면책 조항을 찾아 읽어본다.', b: '내용이 너무 길고 복잡해서 전체적인 핵심 요약본만 훑어본다.' },
-    { id: 9, dim: 'SN', q: '상품의 장점에 대한 설명을 들을 때 더 와닿는 것은?', a: '구체적인 질병 발병 통계 수치나 실제 보험금 지급 사례.', b: '"가족의 안심", "든든한 노후" 같은 직관적인 느낌이나 비전.' },
-    { id: 10, dim: 'SN', q: '미래의 위험을 대비하는 방식은?', a: '현재 유행하는 질병이나 내 가족력을 바탕으로 실질적인 대비를 한다.', b: '혹시 모를 만약의 큰 사고나 희귀 질환까지 상상하며 폭넓게 대비한다.' },
-    { id: 11, dim: 'TF', q: '여러 보험 상품 중 하나를 최종 결정할 때 기준은?', a: '가성비, 환급률, 객관적인 보장 범위의 우수성.', b: '나와 내 가족의 평화를 지켜줄 수 있다는 심리적인 안도감.' },
-    { id: 12, dim: 'TF', q: '아는 지인이 보험 가입을 권유한다면?', a: '친분은 친분이고, 내게 필요한지 냉정하게 따보고 거절할 수 있다.', b: '지인의 실적이 걱정되거나 관계가 서먹해질까 봐 섣불리 거절하기 어렵다.' },
-    { id: 13, dim: 'TF', q: '보험금을 청구했는데 생각보다 적게 나왔을 때 반응은?', a: '지급 기준과 약관을 다시 확인하고 계산이 합당한지 분석한다.', b: '억울하고 속상한 마음이 먼저 들고, 내 편이 되어주지 않는 느낌에 서운하다.' },
-    { id: 14, dim: 'TF', q: '암보험 등 큰 병을 대비하는 주된 이유는?', a: '치료 기간 동안 발생하는 소득 상실과 병원비를 계산해보니 필요해서.', b: '내가 아플 때 남은 가족들이 경제적으로 고통받는 것을 원치 않아서.' },
-    { id: 15, dim: 'TF', q: '담당 보험설계사에게 바라는 점은?', a: '전문적인 지식으로 군더더기 없이 정확한 팩트와 장단점만 짚어주면 좋겠다.', b: '내 상황에 깊이 공감해주고 인간적으로 따뜻하게 관리해주면 좋겠다.' },
-    { id: 16, dim: 'JP', q: '보험료 납입에 대한 당신의 선호도는?', a: '매월 정해진 날짜에 정확하게 자동이체되는 것이 마음 편하다.', b: '여유가 있을 때 더 내거나, 상황에 따라 유예하는 등 유연했으면 좋겠다.' },
-    { id: 17, dim: 'JP', q: '내 보험들을 관리하는 방식은?', a: '보장 내역, 납입 기간, 만기일 등을 앱이나 엑셀에 체계적으로 정리해둔다.', b: '대략적으로 어떤 보험이 있는지만 알고 세부 내용은 청구할 일이 생길 때 찾아본다.' },
-    { id: 18, dim: 'JP', q: '새로운 보험에 가입하려고 마음먹었다면?', a: '가입 예산을 미리 정해두고 계획대로 빠르게 알아보고 가입을 마무리한다.', b: '천천히 여러 개를 둘러보고, 백 퍼센트 마음에 드는 것이 나올 때까지 결정을 미룬다.' },
-    { id: 19, dim: 'JP', q: '여유 자금이 생겨 비상금을 둔다면 보험과 관련해서는?', a: '갱신되어 오를 보험료나 혹시 모를 미납에 대비해 철저히 예비비로 둔다.', b: '당장 필요한 다른 곳에 쓰고, 보험료 문제는 그때 가서 다시 생각한다.' },
-    { id: 20, dim: 'JP', q: '갱신형 보험의 보험료가 크게 올랐다는 통보를 받았다면?', a: '즉시 전체 보장 분석을 다시 하고, 해지할지 유지할지 명확하게 결론을 내린다.', b: '일단 이번 달은 그냥 내고, 다음 달에 어떻게 할지 천천히 생각해본다.' }
-];
+const mbtiQuestions = <?php echo json_encode($mbti_quiz_data); ?>;
 
 let mbtiCurrentIdx = 0;
 let mbtiAnswers = [];
@@ -408,7 +414,7 @@ function resetSelection() {
 }
 
 .character-box { flex-shrink: 0; }
-img.bodmi-img.active { width: 220px; max-width: 100%; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+.bodmi-img.active { width: 220px; height: 220px; object-fit: cover; max-width: 100%; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); border-radius: 15px; }
 
 .q-a-label { font-weight: 800; color: #222; font-size: 24px; }
 .q-progress { font-weight: 700; color: #222; font-size: 24px; }
@@ -448,7 +454,8 @@ img.bodmi-img.active { width: 220px; max-width: 100%; height: auto; filter: drop
 .mbti-q-text { min-height: 50px; display: flex; align-items: center; justify-content: center; color: #555555 !important; font-weight: 800; opacity: 1 !important; }
 .mbti-btn-a { color: #563d00 !important; border-color: #ffc107 !important; border-width: 2px !important; }
 .mbti-btn-b { color: #002752 !important; border-color: #007bff !important; border-width: 2px !important; }
-.mbti-btn-a:hover, .mbti-btn-b:hover { color: #fff !important; background-color: inherit; }
+.mbti-btn-a:hover { background-color: #ffc107 !important; color: #fff !important; }
+.mbti-btn-b:hover { background-color: #007bff !important; color: #fff !important; }
 </style>
 
 <?php
