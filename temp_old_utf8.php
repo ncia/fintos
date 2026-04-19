@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 include_once('./_common.php');
 include_once(G5_PATH.'/head.php');
 
 $quiz_table = G5_TABLE_PREFIX.'shop_quiz';
 
-// 정답이 O인 문제 5개, X인 문제 5개 무작위 선택
+// ?뺣떟??O??臾몄젣 5媛? X??臾몄젣 5媛?臾댁옉???좏깮
 $sql_o = " SELECT * FROM $quiz_table WHERE qz_answer = 'O' ORDER BY rand() LIMIT 5 ";
 $res_o = sql_query($sql_o);
 $quiz_data = [];
@@ -18,66 +18,62 @@ while($row = sql_fetch_array($res_x)) {
     $quiz_data[] = $row;
 }
 
-// 10문제 섞기
+// 10臾몄젣 ?욊린
 shuffle($quiz_data);
 ?>
 
 <div class="container m-t-30 m-b-50">
     <div class="main-heading m-b-30">
-        <h2 class="f-s-24 fw-600"><i class="fas fa-mortar-board text-primary m-r-10"></i><strong>보험 상식</strong> <span class="text-muted">퀴즈</span></h2>
-    </div>
-
-    <div class="text-center mb-4 mx-auto" style="max-width: 450px;">
-        <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/quiz_intro.png" alt="보험 상식 퀴즈" class="img-fluid rounded-3 shadow-sm">
+        <h2 class="f-s-24 fw-600"><i class="fas fa-mortar-board text-primary m-r-10"></i><strong>蹂댄뿕 ?곸떇</strong> <span class="text-muted">?댁쫰</span></h2>
     </div>
 
     <div class="text-center m-b-30">
         <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow" data-bs-toggle="modal" data-bs-target="#quizModal">
-            <i class="fas fa-play-circle m-r-10"></i>퀴즈 시작하기
+            <i class="fas fa-play-circle m-r-10"></i>?댁쫰 ?쒖옉?섍린
         </button>
     </div>
 </div>
 
-<!-- 퀴즈 모달 -->
+<!-- ?댁쫰 紐⑤떖 -->
 <div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #fdfaf0; border: 8px solid #dcd3bd; box-shadow: inset 0 0 50px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.2);">
+        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #eef2ff;">
             
-            <!-- 모달 헤더 -->
+            <!-- 紐⑤떖 ?ㅻ뜑 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #4a86e8; color: white;">
-                <h5 class="modal-title fw-700" id="quizModalLabel"><i class="fas fa-graduation-cap m-r-10"></i>보험 상식 퀴즈</h5>
+                <h5 class="modal-title fw-700" id="quizModalLabel"><i class="fas fa-graduation-cap m-r-10"></i>蹂댄뿕 ?곸떇 ?댁쫰</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <!-- 모달 바디 (퀴즈 컨텐츠) -->
+            <!-- 紐⑤떖 諛붾뵒 (?댁쫰 而⑦뀗痢? -->
             <div class="modal-body p-0 position-relative" style="min-height: 500px;">
                 <div id="quiz-app" class="p-4 text-center h-100">
                     
-                    <!-- 초기 화면 -->
+                    <!-- 珥덇린 ?붾㈃ -->
                     <div id="screen-start" class="quiz-screen">
-                        <div class="q-a-label mb-2">Q&A</div>
+                        <div class="q-a-label f-s-16 mb-2">Q&A</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="보드미" class="bodmi-img active">
+                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="蹂대뱶誘? class="bodmi-img active">
                             </div>
                             <div class="bubble-box">
                                 <div class="speech-bubble p-4 shadow-sm bg-white">
-                                    <h3 class="fw-700 f-s-20 mb-3 text-dark"><i class="fas fa-lightbulb text-warning m-r-10"></i>질문: 당신은 보험에 대해<br>얼마나 알고 있나요?</h3>
-                                    <div class="f-s-20 fw-700 text-primary">🤔 도전해보세요!</div>
+                                    <h3 class="fw-700 f-s-20 mb-3 text-dark"><i class="fas fa-lightbulb text-warning m-r-10"></i>吏덈Ц: ?뱀떊? 蹂댄뿕?????br>?쇰쭏???뚭퀬 ?덈굹??</h3>
+                                    <div class="f-s-16 text-muted">?앷컖?대낫?몄슂!</div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-5">
-                            <button class="btn btn-primary px-5 py-3 fw-700 f-s-18 rounded-pill shadow" onclick="startQuiz()"><i class="fas fa-play m-r-10"></i>시작하기!</button>
+                            <button class="btn btn-primary px-5 py-3 fw-700 f-s-18 rounded-pill shadow" onclick="startQuiz()"><i class="fas fa-play m-r-10"></i>?쒖옉?섍린!</button>
                         </div>
                     </div>
 
-                    <!-- 문제 화면 -->
+                    <!-- 臾몄젣 ?붾㈃ -->
                     <div id="screen-question" class="quiz-screen d-none">
-                        <div class="q-progress mb-2">Q<span id="q-idx">1</span> / 10</div>
+                        <div class="q-progress f-s-16 mb-2">Q<span id="q-idx">1</span> / 10</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="보드미" class="bodmi-img active">
+                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_normal.png" alt="蹂대뱶誘? class="bodmi-img active">
                             </div>
                             <div class="bubble-box">
                                 <div class="speech-bubble p-4 shadow-sm bg-white d-flex flex-column align-items-center justify-content-center" style="min-height: 220px;">
@@ -85,11 +81,11 @@ shuffle($quiz_data);
                                     <div class="d-flex gap-3">
                                         <button class="btn-quiz btn-o" onclick="checkAnswer('O')">
                                             <div class="circle-o">O</div>
-                                            <span>맞다</span>
+                                            <span>留욌떎</span>
                                         </button>
                                         <button class="btn-quiz btn-x" onclick="checkAnswer('X')">
                                             <div class="mark-x">X</div>
-                                            <span>틀리다</span>
+                                            <span>?由щ떎</span>
                                         </button>
                                     </div>
                                 </div>
@@ -97,51 +93,51 @@ shuffle($quiz_data);
                         </div>
                     </div>
 
-                    <!-- 결과 및 해설 화면 (통합) -->
+                    <!-- 寃곌낵 諛??댁꽕 ?붾㈃ (?듯빀) -->
                     <div id="screen-result-item" class="quiz-screen d-none">
-                        <div id="result-label" class="q-a-label mb-2">정답입니다!</div>
+                        <div id="result-label" class="q-a-label f-s-16 mb-2">?뺣떟?낅땲??</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <img id="result-bodmi" src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_correct.png" alt="보드미" class="bodmi-img active">
+                                <img id="result-bodmi" src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_correct.png" alt="蹂대뱶誘? class="bodmi-img active">
                             </div>
                             <div class="bubble-box">
                                 <div class="speech-bubble p-4 shadow-sm bg-white" style="max-width: 400px;">
-                                     <h3 id="result-title" class="fw-700 f-s-20 mb-2">축하합니다!</h3>
+                                     <h3 id="result-title" class="fw-700 f-s-20 mb-2">異뺥븯?⑸땲??</h3>
                                      <hr class="my-3 opacity-10">
                                      <p class="f-s-15 line-h-1-6 q-exp text-dark" style="word-break: keep-all;"></p>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-5">
-                            <button class="btn btn-primary px-5 py-3 fw-700 f-s-18 rounded-pill shadow next-btn" onclick="nextQuestion()">다음 문제</button>
+                            <button class="btn btn-primary px-5 py-3 fw-700 f-s-18 rounded-pill shadow next-btn" onclick="nextQuestion()">?ㅼ쓬 臾몄젣</button>
                         </div>
                     </div>
 
-                    <!-- 최종 점수 화면 -->
+                    <!-- 理쒖쥌 ?먯닔 ?붾㈃ -->
                     <div id="screen-final" class="quiz-screen d-none">
-                        <div class="q-a-label mb-2">최종 결과</div>
+                        <div class="q-a-label f-s-16 mb-2">理쒖쥌 寃곌낵</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_explain.png" alt="보드미" class="bodmi-img active">
+                                <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_correct.png" alt="蹂대뱶誘? class="bodmi-img active">
                             </div>
                             <div class="bubble-box">
                                 <div class="speech-bubble p-5 shadow-sm bg-white">
-                                     <h2 class="fw-900 mb-2" style="color: #4a86e8;"><span id="final-score">0</span>점</h2>
-                                     <p class="f-s-18 mb-4 text-dark">총 10문제 중 <span id="correct-count">0</span>문제를 맞췄습니다!</p>
+                                     <h2 class="fw-900 mb-2" style="color: #4a86e8;"><span id="final-score">0</span>??/h2>
+                                     <p class="f-s-18 mb-4 text-dark">珥?10臾몄젣 以?<span id="correct-count">0</span>臾몄젣瑜?留욎톬?듬땲??</p>
                                      <div class="result-msg f-s-16 fw-600 text-muted"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-5">
-                            <button class="btn btn-secondary px-5 py-3 fw-700 f-s-18 rounded-pill shadow" onclick="location.reload()">다시 도전하기</button>
+                            <button class="btn btn-secondary px-5 py-3 fw-700 f-s-18 rounded-pill shadow" onclick="location.reload()">?ㅼ떆 ?꾩쟾?섍린</button>
                         </div>
                     </div>
 
-                <!-- 배경 장식 삭제됨 -->
-                </div> <!-- quiz-app 끝 -->
-            </div> <!-- modal-body 끝 -->
+                <!-- 諛곌꼍 ?μ떇 ??젣??-->
+                </div> <!-- quiz-app ??-->
+            </div> <!-- modal-body ??-->
 
-            <!-- 퀴즈 진행 프로그래스바 (하단 고정) -->
+            <!-- ?댁쫰 吏꾪뻾 ?꾨줈洹몃옒?ㅻ컮 (?섎떒 怨좎젙) -->
             <div id="quiz-progress-container" class="px-4 py-3 d-none mt-auto" style="background: rgba(255,255,255,0.4); border-top: 1px solid rgba(0,0,0,0.05);">
                 <div class="progress" style="height: 12px; border-radius: 10px; background-color: rgba(0,0,0,0.05);">
                     <div id="quiz-progressbar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -163,7 +159,10 @@ function showScreen(screenId) {
     $('#' + screenId).removeClass('d-none');
 }
 
-/* Bootstrap의 data-bs-toggle 속성으로 자동으로 작동하므로 별도의 JS 제어는 필요하지 않습니다. */
+$(document).on('click', '[data-bs-target="#quizModal"]', function() {
+    var myModal = new bootstrap.Modal(document.getElementById('quizModal'));
+    myModal.show();
+});
 
 function startQuiz() {
     currentIdx = 0;
@@ -194,19 +193,19 @@ function checkAnswer(userAns) {
     if (isCorrect) {
         score += 10;
         correctCount++;
-        $('#result-label').html('<i class="fas fa-check-circle m-r-5"></i>정답입니다!').addClass('text-success').removeClass('text-danger');
-        $('#result-title').text('축하합니다!').addClass('text-success').removeClass('text-danger');
+        $('#result-label').html('<i class="fas fa-check-circle m-r-5"></i>?뺣떟?낅땲??').addClass('text-success').removeClass('text-danger');
+        $('#result-title').text('異뺥븯?⑸땲??').addClass('text-success').removeClass('text-danger');
         $('#result-bodmi').attr('src', themeUrl + '/image/quiz/bodmi_correct.png');
     } else {
-        $('#result-label').html('<i class="fas fa-times-circle m-r-5"></i>틀렸습니다...').addClass('text-danger').removeClass('text-success');
-        $('#result-title').text('아쉬워요!').addClass('text-danger').removeClass('text-success');
+        $('#result-label').html('<i class="fas fa-times-circle m-r-5"></i>??몄뒿?덈떎...').addClass('text-danger').removeClass('text-success');
+        $('#result-title').text('?꾩돩?뚯슂!').addClass('text-danger').removeClass('text-success');
         $('#result-bodmi').attr('src', themeUrl + '/image/quiz/bodmi_wrong.png');
     }
 
     if (currentIdx === 9) {
-        $('.next-btn').text('최종 결과 확인');
+        $('.next-btn').text('理쒖쥌 寃곌낵 ?뺤씤');
     } else {
-        $('.next-btn').text('다음 문제');
+        $('.next-btn').text('?ㅼ쓬 臾몄젣');
     }
 
     showScreen('screen-result-item');
@@ -229,10 +228,10 @@ function showFinalResult() {
     $('#correct-count').text(correctCount);
     
     let msg = "";
-    if (score === 100) msg = "보험 상식 마스터! 완벽합니다!";
-    else if (score >= 80) msg = "보험에 대해 아주 잘 알고 계시네요!";
-    else if (score >= 50) msg = "조금만 더 공부하면 전문가가 될 수 있어요!";
-    else msg = "보드미와 함께 보험 공부를 시작해봐요!";
+    if (score === 100) msg = "蹂댄뿕 ?곸떇 留덉뒪?? ?꾨꼍?⑸땲??";
+    else if (score >= 80) msg = "蹂댄뿕??????꾩＜ ???뚭퀬 怨꾩떆?ㅼ슂!";
+    else if (score >= 50) msg = "議곌툑留???怨듬??섎㈃ ?꾨Ц媛媛 ?????덉뼱??";
+    else msg = "蹂대뱶誘몄? ?④퍡 蹂댄뿕 怨듬?瑜??쒖옉?대킄??";
     
     $('.result-msg').text(msg);
     showScreen('screen-final');
@@ -246,11 +245,10 @@ function showFinalResult() {
     .quiz-layout { flex-direction: column; }
 }
 
-.character-box { flex-shrink: 0; }
-img.bodmi-img.active { width: 285px; max-width: 100%; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+.bodmi-img { width: 220px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
-.q-a-label { font-weight: 800; color: #5d4037; font-size: 28px; }
-.q-progress { font-weight: 700; color: #5d4037; font-size: 28px; }
+.q-a-label { font-weight: 800; color: #4a2b2b; }
+.q-progress { font-weight: 700; color: #4a2b2b; }
 
 .speech-bubble {
     position: relative;
@@ -280,7 +278,7 @@ img.bodmi-img.active { width: 285px; max-width: 100%; height: auto; filter: drop
     border-right: 14px solid white;
 }
 
-/* 버튼 스타일 */
+/* 踰꾪듉 ?ㅽ???*/
 .btn-quiz {
     border: none;
     border-radius: 12px;
@@ -303,13 +301,13 @@ img.bodmi-img.active { width: 285px; max-width: 100%; height: auto; filter: drop
 .fw-700 { font-weight: 700; }
 .fw-900 { font-weight: 900; }
 
-/* 다크모드 대응 */
-.dark-mode #quizModal .modal-content { background: #fdfaf0 !important; border-color: #dcd3bd !important; }
-.dark-mode .q-a-label, .dark-mode .q-progress { color: #5d4037 !important; }
-.dark-mode .speech-bubble { background: #fff !important; border-color: #aec6f5 !important; }
-.dark-mode .speech-bubble::after { border-right-color: #fff !important; }
-.dark-mode .speech-bubble::before { border-right-color: #aec6f5 !important; }
-.dark-mode .text-dark { color: #212529 !important; }
+/* ?ㅽ겕紐⑤뱶 ???*/
+.dark-mode #quizModal .modal-content { background: #1a1a1a !important; }
+.dark-mode .speech-bubble { background: #2a2a2a !important; border-color: #444 !important; }
+.dark-mode .speech-bubble::after { border-right-color: #2a2a2a !important; }
+.dark-mode .speech-bubble::before { border-right-color: #444 !important; }
+.dark-mode .text-dark { color: #eee !important; }
+.dark-mode .q-a-label, .dark-mode .q-progress { color: #bbb !important; }
 </style>
 
 <?php
