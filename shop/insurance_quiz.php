@@ -41,7 +41,7 @@ shuffle($quiz_data);
 <!-- 퀴즈 모달 -->
 <div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #fdfaf0; border: 8px solid #dcd3bd; box-shadow: inset 0 0 50px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.2);">
+        <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #f5f0e6 !important; border: 8px solid #dcd3bd; box-shadow: inset 0 0 50px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.2);">
             
             <!-- 모달 헤더 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #4a86e8; color: white;">
@@ -304,7 +304,7 @@ img.bodmi-img.active { width: 285px; max-width: 100%; height: auto; filter: drop
 .fw-900 { font-weight: 900; }
 
 /* 다크모드 대응 */
-.dark-mode #quizModal .modal-content { background: #fdfaf0 !important; border-color: #dcd3bd !important; }
+.dark-mode #quizModal .modal-content { background: #f5f0e6 !important; border-color: #dcd3bd !important; }
 .dark-mode .q-a-label, .dark-mode .q-progress { color: #5d4037 !important; }
 .dark-mode .speech-bubble { background: #fff !important; border-color: #aec6f5 !important; }
 .dark-mode .speech-bubble::after { border-right-color: #fff !important; }
