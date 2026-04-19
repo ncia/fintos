@@ -30,7 +30,7 @@ shuffle($mbti_quiz_data);
 
     <div class="text-center m-b-40">
         <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
-            <i class="fas fa-magic m-r-10"></i>나의 MBTI별 보험 상품 추천하기
+            <i class="fas fa-magic m-r-10"></i>나의 MBTI별 상품 추천하기
         </button>
     </div>
 
@@ -107,7 +107,7 @@ shuffle($mbti_quiz_data);
         <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #fdfaf0; border: 8px solid #dcd3bd; box-shadow: inset 0 0 50px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.2);">
             
             <!-- 모달 헤더 -->
-            <div class="modal-header border-0 px-4 py-3" style="background: #ffc107; color: white;">
+            <div class="modal-header border-0 px-4 py-3" style="background: #ffc107 !important; color: white;">
                 <h5 class="modal-title fw-700" id="mbtiQuizModalLabel"><i class="fas fa-magic m-r-10"></i>나의 MBTI별 보험 추천 테스트</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -347,20 +347,34 @@ function handleMbtiAnswer(ans) {
     mbtiAnswers.push(ans);
     mbtiCurrentIdx++;
     
-    // 버튼 일시 비활성화
-    $('.mbti-btn-a, .mbti-btn-b').css('pointer-events', 'none');
+    // 버튼 투명도 조절 및 클릭 방지 처리
+    $('.mbti-btn-a, .mbti-btn-b').css({
+        'opacity': '0.5',
+        'pointer-events': 'none'
+    });
 
+    // 300ms 후 질문 텍스트 교체
     setTimeout(() => {
         if (mbtiCurrentIdx < 20) {
             loadMbtiQuestion();
-            $('.mbti-btn-a, .mbti-btn-b').css('pointer-events', 'auto');
-            mbtiIsProcessing = false;
+            
+            // 질문 교체 후 200ms 더 기다린 뒤 버튼 활성화 (총 500ms 차단)
+            setTimeout(() => {
+                $('.mbti-btn-a, .mbti-btn-b').css({
+                    'opacity': '1',
+                    'pointer-events': 'auto'
+                });
+                mbtiIsProcessing = false;
+            }, 200);
         } else {
             const resultMbti = calculateResultMbti();
             $('#mbtiQuizModal').modal('hide');
             selectMBTI(resultMbti);
             mbtiIsProcessing = false;
-            $('.mbti-btn-a, .mbti-btn-b').css('pointer-events', 'auto');
+            $('.mbti-btn-a, .mbti-btn-b').css({
+                'opacity': '1',
+                'pointer-events': 'auto'
+            });
         }
     }, 300);
 }
@@ -470,6 +484,10 @@ function resetSelection() {
 .mbti-btn-b { color: #002752 !important; border-color: #007bff !important; border-width: 2px !important; }
 .mbti-btn-a:hover { background-color: #ffc107 !important; color: #fff !important; }
 .mbti-btn-b:hover { background-color: #007bff !important; color: #fff !important; }
+
+/* 모바일 색상 강제 지정 */
+#mbtiQuizModal .modal-header { background: #ffc107 !important; }
+#mbti-progressbar { background-color: #ffc107 !important; }
 </style>
 
 <?php
