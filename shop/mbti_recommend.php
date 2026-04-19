@@ -83,7 +83,7 @@ shuffle($mbti_quiz_data);
                         <p id="res-desc" class="f-s-16 line-h-1-8 text-dark mb-4"></p>
                         
                         <div class="recommend-box p-4 bg-light rounded-3 border-start border-4 border-primary">
-                            <h5 class="fw-700 text-primary mb-3"><i class="fas fa-shield-alt m-r-10"></i>추천 보험 상품</h5>
+                            <h5 class="fw-700 text-primary mb-3"><i class="fas fa-shield-alt m-r-10"></i>추천 상품</h5>
                             <ul id="res-products" class="list-unstyled mb-0">
                                 <!-- 추천 리스크가 자바스크립트로 삽입됨 -->
                             </ul>
