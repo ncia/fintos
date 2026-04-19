@@ -25,7 +25,7 @@ shuffle($mbti_quiz_data);
 <div class="container m-t-30 m-b-50">
     <div class="main-heading m-b-30">
         <h2 class="f-s-24 fw-600 text-white"><i class="fas fa-user-tag text-warning m-r-10"></i><strong>MBTI별</strong> 상품 추천</h2>
-        <p class="text-white opacity-80 m-t-10 m-b-0">나의 MBTI 유형에 맞는 보험은 무엇일까요? 재미로 보는 성향별 보험 추천 서비스입니다.</p>
+        <p class="text-white opacity-80 m-t-10 m-b-0">나의 MBTI 유형에 맞는 상품은 무엇일까요? 재미로 보는 성향별 상품 추천 서비스입니다.</p>
     </div>
 
     <div class="text-center m-b-40">
@@ -108,7 +108,7 @@ shuffle($mbti_quiz_data);
             
             <!-- 모달 헤더 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #ffc107 !important; color: white;">
-                <h5 class="modal-title fw-700" id="mbtiQuizModalLabel"><i class="fas fa-magic m-r-10"></i>나의 MBTI별 보험 추천 테스트</h5>
+                <h5 class="modal-title fw-700" id="mbtiQuizModalLabel"><i class="fas fa-magic m-r-10"></i>나의 MBTI별 추천 테스트</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -125,7 +125,7 @@ shuffle($mbti_quiz_data);
                             </div>
                             <div class="bubble-box">
                                 <div class="speech-bubble p-4 shadow-sm bg-white">
-                                    <h3 class="fw-700 f-s-20 mb-3 mbti-q-text"><i class="fas fa-brain text-warning m-r-10"></i>나의 MBTI 성향에 딱 맞는<br>보험 상품을 찾아볼까요?</h3>
+                                    <h3 class="fw-700 f-s-20 mb-3 mbti-q-text"><i class="fas fa-brain text-warning m-r-10"></i>나의 MBTI 성향에 딱 맞는<br>상품을 찾아볼까요?</h3>
                                     <div class="f-s-20 fw-700 text-warning">🧐 20개 질문으로 확인!</div>
                                 </div>
                             </div>
