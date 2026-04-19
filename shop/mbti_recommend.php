@@ -32,7 +32,7 @@ shuffle($mbti_quiz_data);
         <div class="m-b-30">
             <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/mbti_intro_visual.png" alt="MBTI 추천 가이드" class="img-fluid rounded-3 shadow-sm border" style="width: 100%; max-width: 800px; height: auto;">
         </div>
-        <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
+        <button id="mbti-start-btn" type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
             <i class="fas fa-magic m-r-10"></i>나의 MBTI별 상품 추천하기
         </button>
     </div>
@@ -292,6 +292,7 @@ function selectMBTI(mbti) {
     const data = mbtiData[mbti];
     if (!data) return;
 
+    $('#mbti-start-btn').addClass('d-none');
     $('#mbti-selection').addClass('d-none');
     
     // 데이터 삽입
@@ -401,6 +402,7 @@ function calculateResultMbti() {
 }
 
 function resetSelection() {
+    $('#mbti-start-btn').removeClass('d-none');
     $('#mbti-result').addClass('d-none');
     $('#mbti-selection').removeClass('d-none');
 }
