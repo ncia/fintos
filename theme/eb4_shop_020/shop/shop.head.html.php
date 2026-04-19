@@ -362,6 +362,9 @@ $is_darkmode = 'yes';
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><i class="fas fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
                                             </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_SHOP_URL ?>/mbti_recommend.php" class="dropdown-item nav-link"><i class="fas fa-user-tag m-r-5 text-warning"></i>MBTI별 상품 추천</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
