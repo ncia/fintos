@@ -24,7 +24,7 @@ shuffle($quiz_data);
 
 <div class="container m-t-30 m-b-50">
     <div class="main-heading m-b-30">
-        <h2 class="f-s-24 fw-600"><i class="fas fa-mortar-board text-primary m-r-10"></i><strong>보험 상식</strong> <span class="text-muted">퀴즈</span></h2>
+        <h2 class="f-s-24 fw-600"><i class="fas fa-lightbulb text-warning m-r-10"></i><strong>보험 상식</strong> <span class="text-muted">퀴즈</span></h2>
     </div>
 
     <div class="text-center m-b-30">
@@ -45,7 +45,7 @@ shuffle($quiz_data);
             
             <!-- 모달 헤더 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #4a86e8; color: white;">
-                <h5 class="modal-title fw-700" id="quizModalLabel"><i class="fas fa-graduation-cap m-r-10"></i>보험 상식 퀴즈</h5>
+                <h5 class="modal-title fw-700" id="quizModalLabel"><i class="fas fa-lightbulb m-r-10"></i>보험 상식 퀴즈</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
