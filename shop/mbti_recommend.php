@@ -30,7 +30,7 @@ shuffle($mbti_quiz_data);
 
     <div class="text-center m-b-40">
         <div class="m-b-30">
-            <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/mbti_intro_visual.jpg" alt="MBTI 추천 가이드" class="img-fluid rounded-3 shadow-sm border" style="max-width: 800px;">
+            <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/mbti_intro_visual.png" alt="MBTI 추천 가이드" class="img-fluid rounded-3 shadow-sm border" style="max-width: 800px;">
         </div>
         <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
             <i class="fas fa-magic m-r-10"></i>나의 MBTI별 상품 추천하기
