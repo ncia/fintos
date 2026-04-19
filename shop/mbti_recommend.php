@@ -107,7 +107,7 @@ shuffle($mbti_quiz_data);
         <div class="modal-content border-0 overflow-hidden" style="border-radius: 25px; background: #fdfaf0; border: 8px solid #dcd3bd; box-shadow: inset 0 0 50px rgba(0,0,0,0.05), 0 20px 40px rgba(0,0,0,0.2);">
             
             <!-- 모달 헤더 -->
-            <div class="modal-header border-0 px-4 py-3" style="background: #ff9800; color: white;">
+            <div class="modal-header border-0 px-4 py-3" style="background: #ffc107; color: white;">
                 <h5 class="modal-title fw-700" id="mbtiQuizModalLabel"><i class="fas fa-magic m-r-10"></i>나의 MBTI별 보험 추천 테스트</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -162,7 +162,7 @@ shuffle($mbti_quiz_data);
             <!-- 퀴즈 진행 프로그래스바 (하단 고정) -->
             <div id="mbti-progress-container" class="px-4 py-3 d-none mt-auto" style="background: rgba(255,255,255,0.4); border-top: 1px solid rgba(0,0,0,0.05);">
                 <div class="progress" style="height: 12px; border-radius: 10px; background-color: rgba(0,0,0,0.05);">
-                    <div id="mbti-progressbar" class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="mbti-progressbar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%; background-color: #ffc107 !important;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
@@ -338,17 +338,31 @@ function loadMbtiQuestion() {
     $('#mbti-progressbar').css('width', percent + '%').attr('aria-valuenow', percent);
 }
 
+let mbtiIsProcessing = false;
+
 function handleMbtiAnswer(ans) {
+    if (mbtiIsProcessing) return;
+    mbtiIsProcessing = true;
+
     mbtiAnswers.push(ans);
     mbtiCurrentIdx++;
     
-    if (mbtiCurrentIdx < 20) {
-        loadMbtiQuestion();
-    } else {
-        const resultMbti = calculateResultMbti();
-        $('#mbtiQuizModal').modal('hide');
-        selectMBTI(resultMbti);
-    }
+    // 버튼 일시 비활성화
+    $('.mbti-btn-a, .mbti-btn-b').css('pointer-events', 'none');
+
+    setTimeout(() => {
+        if (mbtiCurrentIdx < 20) {
+            loadMbtiQuestion();
+            $('.mbti-btn-a, .mbti-btn-b').css('pointer-events', 'auto');
+            mbtiIsProcessing = false;
+        } else {
+            const resultMbti = calculateResultMbti();
+            $('#mbtiQuizModal').modal('hide');
+            selectMBTI(resultMbti);
+            mbtiIsProcessing = false;
+            $('.mbti-btn-a, .mbti-btn-b').css('pointer-events', 'auto');
+        }
+    }, 300);
 }
 
 function calculateResultMbti() {
