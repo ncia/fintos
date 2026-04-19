@@ -72,7 +72,7 @@ shuffle($mbti_quiz_data);
         <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
             <div id="result-header" class="card-header p-4 text-white text-center border-0">
                 <h3 class="mb-1"><span id="res-mbti">INTJ</span> 유형을 위한 추천</h3>
-                <p id="res-nickname" class="f-s-20 text-white fw-500 mb-0"></p>
+                <p id="res-nickname" class="f-s-20 fw-500 mb-0" style="color: #d0d0d0;"></p>
             </div>
             <div class="card-body p-4 p-md-5">
                 <div class="row align-items-center">
