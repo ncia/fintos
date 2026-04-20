@@ -361,6 +361,50 @@ function handleMbtiAnswer(ans) {
     setTimeout(() => {
         if (mbtiCurrentIdx < 20) {
             loadMbtiQuestion();
+
+            // 모바일에서 터치 잔상 방지를 위해 캐릭터 중앙 터치 시뮬레이션
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                setTimeout(() => {
+                    const el = document.querySelector('#mbti-screen-question .bodmi-img.active');
+                    if (el) {
+                        const rect = el.getBoundingClientRect();
+                        const x = rect.left + rect.width / 2;
+                        const y = rect.top + rect.height / 2;
+                        
+                        const touchObj = new Touch({
+                            identifier: Date.now(),
+                            target: el,
+                            clientX: x,
+                            clientY: y,
+                            pageX: x,
+                            pageY: y,
+                            radiusX: 2.5,
+                            radiusY: 2.5,
+                            rotationAngle: 10,
+                            force: 0.5,
+                        });
+
+                        const touchStart = new TouchEvent('touchstart', {
+                            cancelable: true,
+                            bubbles: true,
+                            touches: [touchObj],
+                            targetTouches: [touchObj],
+                            changedTouches: [touchObj],
+                        });
+
+                        const touchEnd = new TouchEvent('touchend', {
+                            cancelable: true,
+                            bubbles: true,
+                            touches: [],
+                            targetTouches: [],
+                            changedTouches: [touchObj],
+                        });
+
+                        el.dispatchEvent(touchStart);
+                        setTimeout(() => el.dispatchEvent(touchEnd), 50);
+                    }
+                }, 50);
+            }
             
             // 질문 교체 후 200ms 더 기다린 뒤 버튼 활성화 (총 500ms 차단)
             setTimeout(() => {
