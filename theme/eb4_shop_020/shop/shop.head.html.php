@@ -468,12 +468,29 @@ $is_darkmode = 'yes';
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="nav-social-btns" style="margin-left: 140px; display: flex; align-items: center; gap: 5px;">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스</a>
+                                    <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_info" class="dropdown-item nav-link"><i class="fas fa-info-circle m-r-5 text-info"></i>VIP 서비스 안내</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=vip_consult" class="dropdown-item nav-link"><i class="fas fa-headset m-r-5 text-success"></i>1:1 전담 상담</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_benefit" class="dropdown-item nav-link"><i class="fas fa-gift m-r-5 text-danger"></i>멤버십 혜택 안내</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-social-btns d-none d-lg-flex" style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
                                     <a href="https://blog.naver.com/YOUR_BLOG_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
-                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="24" height="24" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
                                     <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
-                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="24" height="24" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
                                 </li>
                                 <?php if ($is_darkmode == 'yes') { ?>
