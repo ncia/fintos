@@ -426,11 +426,35 @@ $item_view = 'zoom';
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="nav-social-btns" style="margin-left: 140px; display: flex; align-items: center; gap: 5px;">
-                                    <a href="https://blog.naver.com/YOUR_BLOG_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
+                                <li class="dropdown global-vip-menu">
+                                    <a href="#" class="dropdown-toggle nav-link" id="dropdownVipButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_info" class="dropdown-item nav-link"><i class="fas fa-fw fa-info-circle m-r-5 text-info"></i>VIP 서비스 안내</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=vip_consult" class="dropdown-item nav-link"><i class="fas fa-fw fa-user-md m-r-5 text-success"></i>의료 지원 서비스</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_benefit" class="dropdown-item nav-link"><i class="fas fa-fw fa-gavel m-r-5 text-primary"></i>법률 지원 서비스</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=tax_consult" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-invoice-dollar m-r-5 text-danger"></i>세무 지원 서비스</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=dispute_support" class="dropdown-item nav-link"><i class="fas fa-fw fa-balance-scale m-r-5 text-secondary"></i>분쟁 지원 서비스</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-social-btns" style="display: flex; align-items: center; gap: 5px; padding-left: 5px; margin-right: 15px;">
+                                    <a href="https://blog.naver.com/fintos" target="_blank" style="padding: 0; line-height: 1; display: flex;">
                                         <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
-                                    <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
+                                    <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" style="padding: 0; line-height: 1; display: flex;">
                                         <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
                                 </li>

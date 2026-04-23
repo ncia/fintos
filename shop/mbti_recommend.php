@@ -33,7 +33,7 @@ shuffle($mbti_quiz_data);
             <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/mbti_intro_visual.png" alt="MBTI 추천 가이드" class="img-fluid rounded-3 shadow-sm border" style="width: 100%; max-width: 800px; height: auto;">
         </div>
         <button id="mbti-start-btn" type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
-            <i class="fas fa-magic m-r-10"></i>나의 MBTI별 상품 추천하기
+            <i class="fas fa-magic m-r-10"></i>나의 MBTI별 추천 테스트
         </button>
     </div>
 
@@ -143,14 +143,14 @@ shuffle($mbti_quiz_data);
                         <div class="q-progress mb-2">Q<span id="mbti-q-idx">1</span> / 20</div>
                         <div class="quiz-layout">
                             <div class="character-box">
-                                <video autoplay loop muted playsinline class="bodmi-img active">
+                                <video autoplay loop muted playsinline class="bodmi-img active" tabindex="-1">
                                     <source src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/bodmi_anim.mp4" type="video/mp4">
                                 </video>
                             </div>
                             <div class="bubble-box" style="flex: 1;">
                                 <div class="speech-bubble p-4 shadow-sm bg-white d-flex flex-column align-items-center justify-content-center" style="min-height: 250px;">
                                     <h3 class="fw-800 f-s-18 mb-4 mbti-q-text" style="word-break: keep-all;"></h3>
-                                    <div class="d-grid gap-3 w-100">
+                                    <div class="d-grid gap-3 w-100 mbti-btn-wrap">
                                         <button class="btn btn-outline-warning py-3 fw-600 mbti-btn-a text-start px-4 f-s-15" onclick="handleMbtiAnswer('a')"></button>
                                         <button class="btn btn-outline-primary py-3 fw-600 mbti-btn-b text-start px-4 f-s-15" onclick="handleMbtiAnswer('b')"></button>
                                     </div>
@@ -335,8 +335,12 @@ function loadMbtiQuestion() {
     const q = mbtiQuestions[mbtiCurrentIdx];
     $('#mbti-q-idx').text(mbtiCurrentIdx + 1);
     $('.mbti-q-text').text(q.q);
-    $('.mbti-btn-a').text(q.a);
-    $('.mbti-btn-b').text(q.b);
+    
+    // 버튼 엘리먼트를 새로 생성하여 터치/포커스 상태를 초기화
+    const btnA = $(`<button class="btn btn-outline-warning py-3 fw-600 mbti-btn-a text-start px-4 f-s-15" onclick="handleMbtiAnswer('a')">${q.a}</button>`);
+    const btnB = $(`<button class="btn btn-outline-primary py-3 fw-600 mbti-btn-b text-start px-4 f-s-15" onclick="handleMbtiAnswer('b')">${q.b}</button>`);
+    
+    $('.mbti-btn-wrap').empty().append(btnA).append(btnB);
     
     const percent = Math.round((mbtiCurrentIdx / 20) * 100);
     $('#mbti-progressbar').css('width', percent + '%').attr('aria-valuenow', percent);
@@ -362,58 +366,56 @@ function handleMbtiAnswer(ans) {
         if (mbtiCurrentIdx < 20) {
             loadMbtiQuestion();
 
-            // 모바일에서 터치 잔상 방지를 위해 캐릭터 중앙 터치 시뮬레이션
+            // 모바일에서 터치 잔상 방지를 위해 캐릭터 중앙 터치 시뮬레이션 (포커스 강제 이동)
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 setTimeout(() => {
                     const el = document.querySelector('#mbti-screen-question .bodmi-img.active');
                     if (el) {
-                        const rect = el.getBoundingClientRect();
-                        const x = rect.left + rect.width / 2;
-                        const y = rect.top + rect.height / 2;
-                        
-                        const touchObj = new Touch({
-                            identifier: Date.now(),
-                            target: el,
-                            clientX: x,
-                            clientY: y,
-                            pageX: x,
-                            pageY: y,
-                            radiusX: 2.5,
-                            radiusY: 2.5,
-                            rotationAngle: 10,
-                            force: 0.5,
-                        });
-
-                        const touchStart = new TouchEvent('touchstart', {
-                            cancelable: true,
-                            bubbles: true,
-                            touches: [touchObj],
-                            targetTouches: [touchObj],
-                            changedTouches: [touchObj],
-                        });
-
-                        const touchEnd = new TouchEvent('touchend', {
-                            cancelable: true,
-                            bubbles: true,
-                            touches: [],
-                            targetTouches: [],
-                            changedTouches: [touchObj],
-                        });
-
-                        el.dispatchEvent(touchStart);
-                        setTimeout(() => el.dispatchEvent(touchEnd), 50);
+                        try {
+                            const rect = el.getBoundingClientRect();
+                            const x = rect.left + rect.width / 2;
+                            const y = rect.top + rect.height / 2;
+                            
+                            // 의도적으로 현재 포커스된 요소의 포커스를 해제
+                            if (document.activeElement) {
+                                document.activeElement.blur();
+                            }
+                            
+                            // 1. TouchEvent
+                            const touchObj = new Touch({
+                                identifier: Date.now(),
+                                target: el,
+                                clientX: x, clientY: y,
+                                pageX: x, pageY: y,
+                                radiusX: 5, radiusY: 5,
+                                force: 1,
+                            });
+                            el.dispatchEvent(new TouchEvent('touchstart', { touches: [touchObj], targetTouches: [touchObj], changedTouches: [touchObj], bubbles: true }));
+                            
+                            // 2. PointerEvent (최신 브라우저 대응)
+                            el.dispatchEvent(new PointerEvent('pointerdown', { clientX: x, clientY: y, bubbles: true }));
+                            
+                            // 3. 포커스 강제 이동
+                            el.focus();
+                            
+                            setTimeout(() => {
+                                el.dispatchEvent(new TouchEvent('touchend', { touches: [], targetTouches: [], changedTouches: [touchObj], bubbles: true }));
+                                el.dispatchEvent(new PointerEvent('pointerup', { clientX: x, clientY: y, bubbles: true }));
+                                el.click();
+                            }, 50);
+                        } catch(e) {}
                     }
-                }, 50);
+                }, 100);
             }
             
-            // 질문 교체 후 200ms 더 기다린 뒤 버튼 활성화 (총 500ms 차단)
+            // 질문 교체 후 버튼 활성화
             setTimeout(() => {
                 $('.mbti-btn-a, .mbti-btn-b').css({
                     'opacity': '1',
                     'pointer-events': 'auto'
                 });
                 mbtiIsProcessing = false;
-            }, 200);
+            }, 500); // 넉넉하게 대기
         } else {
             const resultMbti = calculateResultMbti();
             $('#mbtiQuizModal').modal('hide');

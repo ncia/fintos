@@ -468,9 +468,10 @@ $is_darkmode = 'yes';
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스</a>
-                                    <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
+                                <li class="dropdown global-vip-menu">
+                                    <a href="#" class="dropdown-toggle nav-link" id="dropdownVipButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스
+                                    </a>
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
@@ -491,12 +492,12 @@ $is_darkmode = 'yes';
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="nav-social-btns d-none d-lg-flex" style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
-                                    <a href="https://blog.naver.com/YOUR_BLOG_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
-                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="24" height="24" style="border-radius: 4px; vertical-align: middle;">
+                                <li class="nav-social-btns" style="display: flex; align-items: center; gap: 5px; padding-left: 5px; margin-right: 15px;">
+                                    <a href="https://blog.naver.com/fintos" target="_blank" style="padding: 0; line-height: 1; display: flex;">
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
-                                    <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" class="nav-link" style="padding: 10px 5px !important;">
-                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="24" height="24" style="border-radius: 4px; vertical-align: middle;">
+                                    <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" style="padding: 0; line-height: 1; display: flex;">
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
                                     </a>
                                 </li>
                                 <?php if ($is_darkmode == 'yes') { ?>
@@ -510,7 +511,7 @@ $is_darkmode = 'yes';
                                     </a>
                                 </li>
                                 <?php } ?>
-                            </ul>
+                             </ul>
                         </div>
                     </div>
                 </nav>
