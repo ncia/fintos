@@ -44,7 +44,7 @@ if (!defined('_EYOOM_')) exit;
                         top: 28%;
                         left: 33%;
                         transform: translate(-50%, -50%);
-                        font-size: 14px;
+                        font-size: 13.5px;
                         font-weight: 800;
                         color: #555;
                         text-align: center;
@@ -54,13 +54,54 @@ if (!defined('_EYOOM_')) exit;
                         letter-spacing: -0.5px;
                         word-break: keep-all;
                     }
+                    .bodmi-countdown-clock {
+                        position: absolute;
+                        top: 55%;
+                        left: 33%;
+                        transform: translate(-50%, 0);
+                        background-color: #000;
+                        color: #fff;
+                        padding: 4px 10px;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        font-weight: 800;
+                        pointer-events: none;
+                        white-space: nowrap;
+                    }
                     </style>
                     <div class="m-b-10 bodmi-wrapper">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
-                            <div class="bodmi-bubble-text">🚨실손보험 인상</div>
+                            <div class="bodmi-bubble-text">🚨실손보험 인상☑️</div>
+                            <div class="bodmi-countdown-clock" id="bodmi_timer">00일 00시</div>
                         </a>
                     </div>
+
+                    <script>
+                    function updateBodmiCountdown() {
+                        const targetDate = new Date('2026-05-01T00:00:00').getTime();
+                        const now = new Date().getTime();
+                        const diff = targetDate - now;
+
+                        const timerEl = document.getElementById('bodmi_timer');
+                        if (!timerEl) return;
+
+                        if (diff <= 0) {
+                            timerEl.innerHTML = "D-Day";
+                            return;
+                        }
+
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        
+                        const dStr = days.toString().padStart(2, '0');
+                        const hStr = hours.toString().padStart(2, '0');
+
+                        timerEl.innerHTML = `${dStr}일 ${hStr}시`;
+                    }
+                    setInterval(updateBodmiCountdown, 1000 * 60); // 분 단위 업데이트 (시 단위이므로 충분)
+                    updateBodmiCountdown();
+                    </script>
                     <div class="m-b-10">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_pet.png" class="img-fluid" alt="펫 보험 가입 상담하기">
