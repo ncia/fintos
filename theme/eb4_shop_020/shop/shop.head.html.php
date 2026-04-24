@@ -379,6 +379,9 @@ $is_darkmode = 'yes';
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim_review" class="dropdown-item nav-link"><i class="fas fa-comment-dots m-r-5 text-teal"></i>보험금 청구 후기</a>
                                             </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=daily_health" class="dropdown-item nav-link"><i class="fas fa-notes-medical m-r-5 text-success"></i>데일리 건강 정보</a>
+                                            </li>
                                         </ul>
                                     </div>
 
