@@ -356,6 +356,70 @@ $frm_submit .= $frm_eba_submit;
                         <p class="li-p-sq f-s-13r text-gray">이미지높이를 0으로 설정하면 상품이미지를 이미지폭에 비례하여 생성합니다.</p>
                     </div>
                 </div>
+                <div class="adm-form-tr">
+                    <div class="adm-form-td td-l">
+                        <label class="label">보드미 카운트다운 설정</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="d-flex align-items-center flex-wrap">
+                            <section class="m-r-20">
+                                <label class="label">출력 여부</label>
+                                <label class="checkbox width-80px">
+                                    <input type="checkbox" name="de_bodmi_use" id="de_bodmi_use" value="1" <?php echo $default['de_bodmi_use']?"checked":""; ?>>
+                                    <i></i> 출력
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_bodmi_title" class="label">말풍선 제목</label>
+                                <label class="input width-150px">
+                                    <input type="text" name="de_bodmi_title" value="<?php echo get_sanitize_input($default['de_bodmi_title']); ?>" id="de_bodmi_title">
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_bodmi_font_size" class="label">제목 글자 크기</label>
+                                <label class="select width-100px">
+                                    <select name="de_bodmi_font_size" id="de_bodmi_font_size">
+                                        <?php
+                                        $fs_arr = array();
+                                        for ($i=8; $i<=20; $i++) $fs_arr[] = (string)$i;
+                                        $current_fs = str_replace('px', '', $default['de_bodmi_font_size']);
+                                        $is_in_arr = false;
+                                        foreach($fs_arr as $fs) {
+                                            $selected = ($current_fs == $fs) ? 'selected':'';
+                                            if($selected) $is_in_arr = true;
+                                            echo "<option value='{$fs}' {$selected}>{$fs}</option>";
+                                        }
+                                        if (!$is_in_arr && $current_fs) {
+                                            echo "<option value='{$current_fs}' selected>{$current_fs}</option>";
+                                        }
+                                        ?>
+                                        <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_bodmi_font_color" class="label">글자 색상</label>
+                                <label class="input width-60px">
+                                    <input type="color" name="de_bodmi_font_color" value="<?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#000000'; ?>" id="de_bodmi_font_color" style="padding:2px; height:34px;">
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_bodmi_target_date" class="label">설정 날짜</label>
+                                <label class="input width-150px">
+                                    <i class="icon-append far fa-calendar-alt" id="btn_target_date"></i>
+                                    <input type="text" name="de_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_bodmi_target_date']), 0, 10); ?>" id="de_bodmi_target_date" class="datepicker">
+                                </label>
+                            </section>
+                            <section>
+                                <label for="de_bodmi_bg_color" class="label">배경 색상</label>
+                                <label class="input width-60px">
+                                    <input type="color" name="de_bodmi_bg_color" value="<?php echo $default['de_bodmi_bg_color'] ? $default['de_bodmi_bg_color'] : '#000000'; ?>" id="de_bodmi_bg_color" style="padding:2px; height:34px;">
+                                </label>
+                            </section>
+                        </div>
+                        <div class="note"><strong>Note:</strong> 보드미 캐릭터 배너의 말풍선 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php /* 쇼핑몰 초기화면 : 끝 */ ?>
@@ -2098,6 +2162,31 @@ $(function() {
         }
     });
     
+    // 설정날짜 캘린더 아이콘 클릭 시 달력 호출
+    $("#btn_target_date").css("cursor", "pointer").on("click", function() {
+        $("#de_bodmi_target_date").focus();
+    });
+
+    // 보드미 폰트 사이즈 제어
+    $("#de_bodmi_font_size").on("change", function() {
+        var val = $(this).val();
+        if (val == 'direct') {
+            var new_fs = prompt("글글자 크기를 입력하세요 (예: 13.5, 단위 제외)", "");
+            if (new_fs) {
+                // 숫자인지 확인 (간단히)
+                new_fs = parseFloat(new_fs);
+                if (!isNaN(new_fs)) {
+                    $(this).prepend("<option value='"+new_fs+"' selected>"+new_fs+"</option>");
+                } else {
+                    alert("숫자만 입력해주세요.");
+                    $(this).val("13.5");
+                }
+            } else {
+                $(this).val("13.5");
+            }
+        }
+    });
+
     // 현금영수증 발급수단 중 무통장입금은 무조건 체크처리
     document.getElementById("de_taxsave_types_account").checked = true;
     document.getElementById("de_taxsave_types_account").disabled = true;

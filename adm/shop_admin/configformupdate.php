@@ -226,6 +226,12 @@ $check_sanitize_keys = array(
 'de_code_dup_use',              //코드 중복검사
 'de_cart_keep_term',            //장바구니 보관기간
 'de_guest_cart_use',            //비회원 장바구니
+'de_bodmi_use',                 //보드미 캐릭터 출력여부
+'de_bodmi_title',               //말풍선 제목
+'de_bodmi_font_size',           //글자 크기
+'de_bodmi_font_color',          //글자 색상
+'de_bodmi_bg_color',            //날짜 배경 색상
+'de_bodmi_target_date',         //설정날짜
 'de_member_reg_coupon_use',     //신규회원 쿠폰발행 여부
 'de_member_reg_coupon_price',   //신규회원 쿠폰발행 쿠폰할인금액
 'de_member_reg_coupon_minimum', //주문최소금액
@@ -252,6 +258,8 @@ foreach( $check_sanitize_keys as $key ){
         $$key = isset($_POST[$key]) ? clean_xss_tags($_POST[$key], 1, 1) : '';
     }
 }
+
+$de_bodmi_use = isset($_POST['de_bodmi_use']) ? $_POST['de_bodmi_use'] : '0';
 
 $warning_msg = '';
 
@@ -444,7 +452,13 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_member_reg_coupon_use      = '{$de_member_reg_coupon_use}',
                 de_member_reg_coupon_term     = '{$de_member_reg_coupon_term}',
                 de_member_reg_coupon_price    = '{$de_member_reg_coupon_price}',
-                de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}'
+                de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}',
+                de_bodmi_use                  = '{$de_bodmi_use}',
+                de_bodmi_title                = '{$de_bodmi_title}',
+                de_bodmi_font_size            = '{$de_bodmi_font_size}',
+                de_bodmi_font_color           = '{$de_bodmi_font_color}',
+                de_bodmi_bg_color             = '{$de_bodmi_bg_color}',
+                de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "'
                 ";
 if (defined('G5_SHOP_DIRECT_NAVERPAY') && G5_SHOP_DIRECT_NAVERPAY) {
     $sql .= "  ,de_naverpay_mid               = '{$de_naverpay_mid}',

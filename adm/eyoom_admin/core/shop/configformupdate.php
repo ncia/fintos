@@ -199,6 +199,12 @@ $check_sanitize_keys = array(
     'cf_icode_server_ip',           // 아이코드 ip
     'cf_icode_server_port',         // 아이코드 port
     'cf_icode_token_key',           // 아이코드 토큰키 (JSON버전)
+    'de_bodmi_use',                 //보드미 캐릭터 출력여부
+    'de_bodmi_title',               //말풍선 제목
+    'de_bodmi_font_size',           //글자 크기
+    'de_bodmi_font_color',          //글자 색상
+    'de_bodmi_bg_color',            //날짜 배경 색상
+    'de_bodmi_target_date',         //설정날짜
 );
 
 foreach( $check_sanitize_keys as $key ){
@@ -464,7 +470,13 @@ if ($_POST['amode'] == 'ittype') {
                     de_member_reg_coupon_use      = '{$de_member_reg_coupon_use}',
                     de_member_reg_coupon_term     = '{$de_member_reg_coupon_term}',
                     de_member_reg_coupon_price    = '{$de_member_reg_coupon_price}',
-                    de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}'
+                    de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}',
+                    de_bodmi_use                  = '{$de_bodmi_use}',
+                    de_bodmi_title                = '{$de_bodmi_title}',
+                    de_bodmi_font_size            = '{$de_bodmi_font_size}',
+                    de_bodmi_font_color           = '{$de_bodmi_font_color}',
+                    de_bodmi_bg_color             = '{$de_bodmi_bg_color}',
+                    de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "'
                     ";
     if (defined('G5_SHOP_DIRECT_NAVERPAY') && G5_SHOP_DIRECT_NAVERPAY) {
         $sql .= "  ,de_naverpay_mid               = '{$de_naverpay_mid}',
