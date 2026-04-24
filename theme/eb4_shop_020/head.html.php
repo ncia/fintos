@@ -312,16 +312,16 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-spell-check m-r-5 text-info"></i>보험 용어 사전</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-spell-check m-r-5 text-info"></i>보험 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/healthcare_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-file-medical m-r-5 text-primary"></i>의료 용어 사전</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/healthcare_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-medical m-r-5 text-primary"></i>의료 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><i class="fas fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/mbti_recommend.php" class="dropdown-item nav-link"><i class="fas fa-user-tag m-r-5 text-warning"></i>MBTI별 상품 추천</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/mbti_recommend.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-user-tag m-r-5 text-warning"></i>MBTI별 상품 추천</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -332,13 +332,13 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim" class="dropdown-item nav-link"><i class="fas fa-calendar-plus m-r-5 text-blue"></i>보험금 청구 예약</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim" class="dropdown-item nav-link"><i class="fas fa-fw fa-calendar-plus m-r-5 text-blue"></i>보험금 청구 예약</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim_review" class="dropdown-item nav-link"><i class="fas fa-comment-dots m-r-5 text-teal"></i>보험금 청구 후기</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim_review" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-teal"></i>보험금 청구 후기</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=daily_health" class="dropdown-item nav-link"><i class="fas fa-notes-medical m-r-5 text-success"></i>데일리 건강 정보</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=daily_health" class="dropdown-item nav-link"><i class="fas fa-fw fa-notes-medical m-r-5 text-success"></i>데일리 건강 정보</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -350,19 +350,19 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><i class="fas fa-star m-r-5 text-orange"></i>최신 상품</a>
+                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-star m-r-5 text-orange"></i>최신 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(4); ?>" class="dropdown-item nav-link"><i class="fas fa-fire m-r-5 text-red"></i>인기 상품</a>
+                                                <a href="<?php echo shop_type_url(4); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-fire m-r-5 text-red"></i>인기 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(2); ?>" class="dropdown-item nav-link"><i class="fas fa-thumbs-up m-r-5 text-blue"></i>추천 상품</a>
+                                                <a href="<?php echo shop_type_url(2); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-thumbs-up m-r-5 text-blue"></i>추천 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><i class="fas fa-bolt m-r-5 text-warning"></i>히트 상품</a>
+                                                <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-bolt m-r-5 text-warning"></i>히트 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(5); ?>" class="dropdown-item nav-link"><i class="fas fa-percent m-r-5 text-success"></i>할인 상품</a>
+                                                <a href="<?php echo shop_type_url(5); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-percent m-r-5 text-success"></i>할인 상품</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -373,13 +373,13 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=policy_analysis" class="dropdown-item nav-link"><i class="fas fa-chart-line m-r-5 text-primary"></i>보험증권 분석</a>
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=policy_analysis" class="dropdown-item nav-link"><i class="fas fa-fw fa-chart-line m-r-5 text-primary"></i>보험증권 분석</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=remodeling" class="dropdown-item nav-link"><i class="fas fa-tools m-r-5 text-orange"></i>보험 리모델링</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=remodeling_review" class="dropdown-item nav-link"><i class="fas fa-fw fa-tools m-r-5 text-orange"></i>보험 리모델링</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=remodeling_review" class="dropdown-item nav-link"><i class="fas fa-comment-dots m-r-5 text-teal"></i>보험 리모델링 후기</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=remodeling_review" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-teal"></i>보험 리모델링 후기</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -391,26 +391,26 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/pharmacy_info.php" class="dropdown-item nav-link"><i class="fas fa-pills m-r-5 text-pink"></i>약국 정보 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/pharmacy_info.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-pills m-r-5 text-pink"></i>약국 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/hospital_info.php" class="dropdown-item nav-link"><i class="fas fa-hospital m-r-5 text-warning"></i>병원 정보 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/hospital_info.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-hospital m-r-5 text-warning"></i>병원 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/disease_code.php" class="dropdown-item nav-link"><i class="fas fa-search m-r-5 text-primary"></i>상병 코드 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/disease_code.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-search m-r-5 text-primary"></i>상병 코드 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/getPharmacyMdfeeList.php" class="dropdown-item nav-link"><i class="fas fa-file-invoice-dollar m-r-5 text-info"></i>수가 정보 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/getPharmacyMdfeeList.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-invoice-dollar m-r-5 text-info"></i>수가 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/surgery_1_3_1_5_search.php" class="dropdown-item nav-link"><i class="fas fa-search-plus m-r-5 text-success"></i>종 수술명 검색</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/surgery_1_3_1_5_search.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-search-plus m-r-5 text-success"></i>종 수술명 검색</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=myinsurance" class="dropdown-item nav-link"><i class="fas fa-user-shield m-r-5 text-success"></i>보험 통합 조회</a>
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=myinsurance" class="dropdown-item nav-link"><i class="fas fa-fw fa-user-shield m-r-5 text-success"></i>보험 통합 조회</a>
                                             </li>
 
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/NonPaymentItemHospList2.php" class="dropdown-item nav-link"><i class="fas fa-hand-holding-usd m-r-5 text-danger"></i>병원 비급여 항목</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/NonPaymentItemHospList2.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-hand-holding-usd m-r-5 text-danger"></i>병원 비급여 항목</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -421,13 +421,13 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice" class="dropdown-item nav-link"><i class="fas fa-bell m-r-5 text-info"></i>공지사항</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice" class="dropdown-item nav-link"><i class="fas fa-fw fa-bell m-r-5 text-info"></i>공지사항</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/qalist.php" class="dropdown-item nav-link"><i class="fas fa-comment-dots m-r-5 text-success"></i>1:1문의</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/qalist.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-success"></i>1:1문의</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><i class="fas fa-question-circle m-r-5 text-warning"></i>FAQ</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-question-circle m-r-5 text-warning"></i>FAQ</a>
                                             </li>
                                         </ul>
                                     </div>
