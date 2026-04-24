@@ -37,6 +37,30 @@ if (!defined('_EYOOM_')) exit;
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_age.png" class="img-fluid" alt="내 보험 나이 알아보기">
                         </a>
                     </div>
+                    <style>
+                    .bodmi-wrapper { position: relative; }
+                    .bodmi-bubble-text {
+                        position: absolute;
+                        top: 28%;
+                        left: 33%;
+                        transform: translate(-50%, -50%);
+                        font-size: 14px;
+                        font-weight: 800;
+                        color: #555;
+                        text-align: center;
+                        width: 50%;
+                        pointer-events: none;
+                        line-height: 1.2;
+                        letter-spacing: -0.5px;
+                        word-break: keep-all;
+                    }
+                    </style>
+                    <div class="m-b-10 bodmi-wrapper">
+                        <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
+                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
+                            <div class="bodmi-bubble-text">🚨실손보험 인상</div>
+                        </a>
+                    </div>
                     <div class="m-b-10">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_pet.png" class="img-fluid" alt="펫 보험 가입 상담하기">
