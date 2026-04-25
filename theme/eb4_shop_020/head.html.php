@@ -415,23 +415,6 @@ $item_view = 'zoom';
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-life-ring m-r-5 text-secondary"></i>고객지원</a>
-                                    <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
-                                    <div class="dropdown-menu">
-                                        <ul>
-                                            <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice" class="dropdown-item nav-link"><i class="fas fa-fw fa-bell m-r-5 text-info"></i>공지사항</a>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/qalist.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-success"></i>1:1문의</a>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-question-circle m-r-5 text-warning"></i>FAQ</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
                                 <li class="dropdown global-vip-menu">
                                     <a href="#" class="dropdown-toggle nav-link" id="dropdownVipButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스
@@ -452,6 +435,23 @@ $item_view = 'zoom';
                                             </li>
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=dispute_support" class="dropdown-item nav-link"><i class="fas fa-fw fa-balance-scale m-r-5 text-secondary"></i>분쟁 지원 서비스</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-life-ring m-r-5 text-secondary"></i>고객지원</a>
+                                    <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice" class="dropdown-item nav-link"><i class="fas fa-fw fa-bell m-r-5 text-info"></i>공지사항</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/qalist.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-success"></i>1:1문의</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-question-circle m-r-5 text-warning"></i>FAQ</a>
                                             </li>
                                         </ul>
                                     </div>
