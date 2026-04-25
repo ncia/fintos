@@ -52,6 +52,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <input type="hidden" name="mb_nick_default" value="<?php echo $member['mb_nick']; ?>">
     <input type="hidden" name="mb_nick" value="<?php echo $member['mb_nick']; ?>">
     <?php } ?>
+    <input type="hidden" name="product_title" value="<?php echo isset($_GET['it_name']) ? clean_xss_tags($_GET['it_name']) : ''; ?>">
     <div class="register-box">
         <header><h5 class="m-0"><strong>사이트 이용정보 입력</strong></h5></header>
         <fieldset>

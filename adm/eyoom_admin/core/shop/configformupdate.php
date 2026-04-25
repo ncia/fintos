@@ -473,10 +473,18 @@ if ($_POST['amode'] == 'ittype') {
                     de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}',
                     de_bodmi_use                  = '{$de_bodmi_use}',
                     de_bodmi_title                = '{$de_bodmi_title}',
-                    de_bodmi_font_size            = '{$de_bodmi_font_size}',
-                    de_bodmi_font_color           = '{$de_bodmi_font_color}',
-                    de_bodmi_bg_color             = '{$de_bodmi_bg_color}',
-                    de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "'
+                    de_bodmi_font_size            = '{$_POST['de_bodmi_font_size']}',
+                    de_bodmi_font_color           = '{$_POST['de_bodmi_font_color']}',
+                    de_bodmi_bg_color             = '{$_POST['de_bodmi_bg_color']}',
+                    de_bodmi_timer_font_size      = '{$_POST['de_bodmi_timer_font_size']}',
+                    de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "',
+                    de_m_bodmi_use                = '{$_POST['de_m_bodmi_use']}',
+                    de_m_bodmi_title              = '{$_POST['de_m_bodmi_title']}',
+                    de_m_bodmi_font_size          = '{$_POST['de_m_bodmi_font_size']}',
+                    de_m_bodmi_font_color         = '{$_POST['de_m_bodmi_font_color']}',
+                    de_m_bodmi_bg_color           = '{$_POST['de_m_bodmi_bg_color']}',
+                    de_m_bodmi_timer_font_size    = '{$_POST['de_m_bodmi_timer_font_size']}',
+                    de_m_bodmi_target_date        = '" . substr($_POST['de_m_bodmi_target_date'], 0, 10) . "'
                     ";
     if (defined('G5_SHOP_DIRECT_NAVERPAY') && G5_SHOP_DIRECT_NAVERPAY) {
         $sql .= "  ,de_naverpay_mid               = '{$de_naverpay_mid}',

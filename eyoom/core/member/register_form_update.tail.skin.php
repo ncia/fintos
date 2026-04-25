@@ -61,4 +61,37 @@ if ($w == "" && $default['de_sms_use1'] && $receive_number)
 }
 //----------------------------------------------------------
 // SMS 문자전송 끝
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// 구글 스프레드시트 연동 시작
+//----------------------------------------------------------
+$google_script_url = "YOUR_GOOGLE_SCRIPT_URL_HERE"; // 나중에 생성된 URL로 교체해 주세요.
+
+if ($w == "" && $google_script_url != "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+    $post_data = array(
+        "sheet_name"    => "회원가입내역", // 고정 시트명 또는 비워둘 수 있음
+        "mb_id"         => $mb_id,
+        "mb_name"       => $mb_name,
+        "mb_email"      => $mb_email,
+        "mb_hp"         => $mb_hp,
+        "product_title" => isset($_POST['product_title']) ? $_POST['product_title'] : '',
+        "extra_info"    => $_SERVER['REMOTE_ADDR'] // 아이피 등 추가 정보
+    );
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $google_script_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    
+    // 비동기 처럼 느끼게 하기 위해 타임아웃을 짧게 주거나, 결과를 기다리지 않고 실행할 수 있으나 
+    // 여기서는 확실한 기록을 위해 기본 설정을 유지합니다.
+    $response = curl_exec($ch);
+    curl_close($ch);
+}
+//----------------------------------------------------------
+// 구글 스프레드시트 연동 끝
 //----------------------------------------------------------;

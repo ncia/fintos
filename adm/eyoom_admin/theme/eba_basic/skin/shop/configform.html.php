@@ -358,7 +358,7 @@ $frm_submit .= $frm_eba_submit;
                 </div>
                 <div class="adm-form-tr">
                     <div class="adm-form-td td-l">
-                        <label class="label">보드미 카운트다운 설정</label>
+                        <label class="label">PC 카운트다운 설정</label>
                     </div>
                     <div class="adm-form-td td-r">
                         <div class="d-flex align-items-center flex-wrap">
@@ -381,7 +381,7 @@ $frm_submit .= $frm_eba_submit;
                                     <select name="de_bodmi_font_size" id="de_bodmi_font_size">
                                         <?php
                                         $fs_arr = array();
-                                        for ($i=8; $i<=20; $i++) $fs_arr[] = (string)$i;
+                                        for ($i=8; $i<=40; $i++) $fs_arr[] = (string)$i;
                                         $current_fs = str_replace('px', '', $default['de_bodmi_font_size']);
                                         $is_in_arr = false;
                                         foreach($fs_arr as $fs) {
@@ -410,6 +410,29 @@ $frm_submit .= $frm_eba_submit;
                                     <input type="text" name="de_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_bodmi_target_date']), 0, 10); ?>" id="de_bodmi_target_date" class="datepicker">
                                 </label>
                             </section>
+                            <section class="m-r-20">
+                                <label for="de_bodmi_timer_font_size" class="label">배경 글자 크기</label>
+                                <label class="select width-100px">
+                                    <select name="de_bodmi_timer_font_size" id="de_bodmi_timer_font_size">
+                                        <?php
+                                        $tfs_arr = array();
+                                        for ($i=8; $i<=40; $i++) $tfs_arr[] = (string)$i;
+                                        $current_tfs = str_replace('px', '', $default['de_bodmi_timer_font_size']);
+                                        if (!$current_tfs) $current_tfs = '16';
+                                        $is_in_tarr = false;
+                                        foreach($tfs_arr as $tfs) {
+                                            $selected = ($current_tfs == $tfs) ? 'selected':'';
+                                            if($selected) $is_in_tarr = true;
+                                            echo "<option value='{$tfs}' {$selected}>{$tfs}</option>";
+                                        }
+                                        if (!$is_in_tarr && $current_tfs) {
+                                            echo "<option value='{$current_tfs}' selected>{$current_tfs}</option>";
+                                        }
+                                        ?>
+                                        <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </section>
                             <section>
                                 <label for="de_bodmi_bg_color" class="label">배경 색상</label>
                                 <label class="input width-60px">
@@ -418,6 +441,97 @@ $frm_submit .= $frm_eba_submit;
                             </section>
                         </div>
                         <div class="note"><strong>Note:</strong> 보드미 캐릭터 배너의 말풍선 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
+                    </div>
+                </div>
+                <div class="adm-form-tr">
+                    <div class="adm-form-td td-l">
+                        <label class="label">모바일 카운트다운 설정</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="d-flex align-items-center flex-wrap">
+                            <section class="m-r-20">
+                                <label class="label">출력 여부</label>
+                                <label class="checkbox width-80px">
+                                    <input type="checkbox" name="de_m_bodmi_use" id="de_m_bodmi_use" value="1" <?php echo $default['de_m_bodmi_use']?"checked":""; ?>>
+                                    <i></i> 출력
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_m_bodmi_title" class="label">말풍선 제목</label>
+                                <label class="input width-150px">
+                                    <input type="text" name="de_m_bodmi_title" value="<?php echo get_sanitize_input($default['de_m_bodmi_title']); ?>" id="de_m_bodmi_title">
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_m_bodmi_font_size" class="label">제목 글자 크기</label>
+                                <label class="select width-100px">
+                                    <select name="de_m_bodmi_font_size" id="de_m_bodmi_font_size">
+                                        <?php
+                                        $m_fs_arr = array();
+                                        for ($i=8; $i<=40; $i++) $m_fs_arr[] = (string)$i;
+                                        $m_current_fs = str_replace('px', '', $default['de_m_bodmi_font_size']);
+                                        $m_is_in_arr = false;
+                                        foreach($m_fs_arr as $m_fs) {
+                                            $m_selected = ($m_current_fs == $m_fs) ? 'selected':'';
+                                            if($m_selected) $m_is_in_arr = true;
+                                            echo "<option value='{$m_fs}' {$m_selected}>{$m_fs}</option>";
+                                        }
+                                        if (!$m_is_in_arr && $m_current_fs) {
+                                            echo "<option value='{$m_current_fs}' selected>{$m_current_fs}</option>";
+                                        }
+                                        ?>
+                                        <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_m_bodmi_font_color" class="label">글자 색상</label>
+                                <label class="input width-60px">
+                                    <input type="color" name="de_m_bodmi_font_color" value="<?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#000000'; ?>" id="de_m_bodmi_font_color" style="padding:2px; height:34px;">
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_m_bodmi_target_date" class="label">설정 날짜</label>
+                                <label class="input width-150px">
+                                    <i class="icon-append far fa-calendar-alt" id="btn_m_target_date"></i>
+                                    <input type="text" name="de_m_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_m_bodmi_target_date']), 0, 10); ?>" id="de_m_bodmi_target_date" class="datepicker">
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_m_bodmi_timer_font_size" class="label">배경 글자 크기</label>
+                                <label class="select width-100px">
+                                    <select name="de_m_bodmi_timer_font_size" id="de_m_bodmi_timer_font_size">
+                                        <?php
+                                        $mtfs_arr = array();
+                                        for ($i=8; $i<=40; $i++) $mtfs_arr[] = (string)$i;
+                                        $m_current_tfs = str_replace('px', '', $default['de_m_bodmi_timer_font_size']);
+                                        if (!$m_current_tfs) $m_current_tfs = '16';
+                                        $m_is_in_tarr = false;
+                                        foreach($mtfs_arr as $mtfs) {
+                                            $m_selected = ($m_current_tfs == $mtfs) ? 'selected':'';
+                                            if($m_selected) $m_is_in_tarr = true;
+                                            echo "<option value='{$mtfs}' {$m_selected}>{$mtfs}</option>";
+                                        }
+                                        if (!$m_is_in_tarr && $m_current_tfs) {
+                                            echo "<option value='{$m_current_tfs}' selected>{$m_current_tfs}</option>";
+                                        }
+                                        ?>
+                                        <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_m_bodmi_bg_color" class="label">배경 색상</label>
+                                <label class="input width-60px">
+                                    <input type="color" name="de_m_bodmi_bg_color" value="<?php echo $default['de_m_bodmi_bg_color'] ? $default['de_m_bodmi_bg_color'] : '#000000'; ?>" id="de_m_bodmi_bg_color" style="padding:2px; height:34px;">
+                                </label>
+                            </section>
+                            <section>
+                                <label class="label">&nbsp;</label>
+                                <button type="button" class="btn-e btn-e-xs btn-e-dark" onclick="sync_pc_to_mobile();" style="height:34px;">PC설정 가져오기</button>
+                            </section>
+                        </div>
+                        <div class="note"><strong>Note:</strong> 모바일 캐릭터 배너의 설정을 PC와 별도로 관리합니다. 'PC설정 가져오기' 버튼으로 현재 PC 설정을 빠르게 복사할 수 있습니다.</div>
                     </div>
                 </div>
             </div>
@@ -2187,9 +2301,96 @@ $(function() {
         }
     });
 
+    // 보드미 타이머 폰트 사이즈 제어
+    $("#de_bodmi_timer_font_size").on("change", function() {
+        var val = $(this).val();
+        if (val == 'direct') {
+            var new_fs = prompt("배경 글자 크기를 입력하세요 (예: 16, 단위 제외)", "");
+            if (new_fs) {
+                new_fs = parseFloat(new_fs);
+                if (!isNaN(new_fs)) {
+                    $(this).prepend("<option value='"+new_fs+"' selected>"+new_fs+"</option>");
+                } else {
+                    alert("숫자만 입력해주세요.");
+                    $(this).val("16");
+                }
+            } else {
+                $(this).val("16");
+            }
+        }
+    });
+
     // 현금영수증 발급수단 중 무통장입금은 무조건 체크처리
     document.getElementById("de_taxsave_types_account").checked = true;
     document.getElementById("de_taxsave_types_account").disabled = true;
+
+    // 보드미 모바일 폰트 사이즈 제어
+    $("#de_m_bodmi_font_size").on("change", function() {
+        var val = $(this).val();
+        if (val == 'direct') {
+            var new_fs = prompt("모바일 제목 글자 크기를 입력하세요 (예: 13.5, 단위 제외)", "");
+            if (new_fs) {
+                new_fs = parseFloat(new_fs);
+                if (!isNaN(new_fs)) {
+                    $(this).prepend("<option value='"+new_fs+"' selected>"+new_fs+"</option>");
+                } else {
+                    alert("숫자만 입력해주세요.");
+                    $(this).val("13.5");
+                }
+            } else {
+                $(this).val("13.5");
+            }
+        }
+    });
+
+    // 보드미 모바일 타이머 폰트 사이즈 제어
+    $("#de_m_bodmi_timer_font_size").on("change", function() {
+        var val = $(this).val();
+        if (val == 'direct') {
+            var new_fs = prompt("모바일 배경 글자 크기를 입력하세요 (예: 16, 단위 제외)", "");
+            if (new_fs) {
+                new_fs = parseFloat(new_fs);
+                if (!isNaN(new_fs)) {
+                    $(this).prepend("<option value='"+new_fs+"' selected>"+new_fs+"</option>");
+                } else {
+                    alert("숫자만 입력해주세요.");
+                    $(this).val("16");
+                }
+            } else {
+                $(this).val("16");
+            }
+        }
+    });
+
+    // 모바일 설정날짜 캘린더 아이콘 클릭 시 달력 호출
+    $("#btn_m_target_date").css("cursor", "pointer").on("click", function() {
+        $("#de_m_bodmi_target_date").focus();
+    });
+
+    // PC 설정을 모바일 설정으로 동기화 (화면상에서 복사)
+    window.sync_pc_to_mobile = function() {
+        if (!confirm("현재 입력된 PC 설정값들을 모바일 설정으로 복사하시겠습니까?")) return;
+        
+        $("#de_m_bodmi_use").prop("checked", $("#de_bodmi_use").is(":checked"));
+        $("#de_m_bodmi_title").val($("#de_bodmi_title").val());
+        $("#de_m_bodmi_font_color").val($("#de_bodmi_font_color").val());
+        $("#de_m_bodmi_target_date").val($("#de_bodmi_target_date").val());
+        $("#de_m_bodmi_bg_color").val($("#de_bodmi_bg_color").val());
+
+        sync_select_val("#de_bodmi_font_size", "#de_m_bodmi_font_size");
+        sync_select_val("#de_bodmi_timer_font_size", "#de_m_bodmi_timer_font_size");
+
+        alert("PC 설정값이 모바일 입력칸으로 복사되었습니다. '확인' 버튼을 눌러야 최종 저장됩니다.");
+    }
+
+    function sync_select_val(pc_sel, mo_sel) {
+        var val = $(pc_sel).val();
+        if ($(mo_sel + " option[value='" + val + "']").length == 0) {
+            $(mo_sel).prepend("<option value='" + val + "' selected>" + val + "</option>");
+        } else {
+            $(mo_sel).val(val);
+        }
+    }
 });
 </script>
 

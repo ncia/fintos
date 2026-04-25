@@ -32,6 +32,12 @@ if (!defined('_EYOOM_')) exit;
             </div>
             <div class="main-section1-r">
                 <div class="main-section1-r1">
+                    <div class="m-b-10">
+                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#insAgeModal" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
+                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_age.png" c                        </a>
+                    </div>
+
+                    <?php if ($default['de_bodmi_use']) { ?>
                     <style>
                     .bodmi-wrapper { position: relative; }
                     .bodmi-bubble-text {
@@ -39,9 +45,9 @@ if (!defined('_EYOOM_')) exit;
                         top: 28%;
                         left: 33%;
                         transform: translate(-50%, -50%);
-                        font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '13.5'; ?>px;
+                        font-size: <?php echo $default['de_bodmi_font_size'] ? (int)$default['de_bodmi_font_size'] : '14'; ?>px;
                         font-weight: 800;
-                        color: <?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#555'; ?>;
+                        color: <?php echo $default['de_bodmi_font_color'] ? get_sanitize_input($default['de_bodmi_font_color']) : '#555'; ?>;
                         text-align: center;
                         width: 50%;
                         pointer-events: none;
@@ -52,65 +58,31 @@ if (!defined('_EYOOM_')) exit;
                     .bodmi-countdown-clock {
                         position: absolute;
                         top: 55%;
-                        left: 34%;
+                        left: 33%;
                         transform: translate(-50%, 0);
-                        background-color: <?php echo $default['de_bodmi_bg_color'] ? $default['de_bodmi_bg_color'] : '#000'; ?>;
+                        background-color: #000;
                         color: #fff;
                         padding: 4px 10px;
                         border-radius: 5px;
-                        font-size: <?php echo $default['de_bodmi_timer_font_size'] ? str_replace('px', '', $default['de_bodmi_timer_font_size']) : '16'; ?>px;
+                        font-size: 16px;
                         font-weight: 800;
                         pointer-events: none;
                         white-space: nowrap;
                     }
-                    @media (max-width:1024px) {
-                        .bodmi-bubble-text {
-                            font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13.5'; ?>px !important;
-                            color: <?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#555'; ?> !important;
-                        }
-                        .bodmi-countdown-clock {
-                            background-color: <?php echo $default['de_m_bodmi_bg_color'] ? $default['de_m_bodmi_bg_color'] : '#000'; ?> !important;
-                            font-size: <?php echo $default['de_m_bodmi_timer_font_size'] ? str_replace('px', '', $default['de_m_bodmi_timer_font_size']) : '16'; ?>px !important;
-                        }
-                    }
                     </style>
-                    <?php 
-                    $bodmi_use = G5_IS_MOBILE ? $default['de_m_bodmi_use'] : $default['de_bodmi_use'];
-                    if($bodmi_use) { 
-                        $bodmi_title = G5_IS_MOBILE ? $default['de_m_bodmi_title'] : $default['de_bodmi_title'];
-                        if(!$bodmi_title) $bodmi_title = '🚨실손보험 인상☑️';
-                    ?>
                     <div class="m-b-10 bodmi-wrapper">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
-                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
-                            <div class="bodmi-bubble-text"><?php echo $bodmi_title; ?></div>
+                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="<?php echo get_text($default['de_bodmi_title']); ?>">
+                            <div class="bodmi-bubble-text"><?php echo get_text($default['de_bodmi_title']); ?></div>
                             <div class="bodmi-countdown-clock" id="bodmi_timer">00일 00시 00분</div>
                         </a>
                     </div>
-                    <?php } ?>
 
                     <script>
                     let serverTimeOffset = 0;
 
-                    function syncServerTime() {
-                        $.ajax({
-                            url: '<?php echo G5_SHOP_URL; ?>/get_server_time.php',
-                            type: 'GET',
-                            success: function(data) {
-                                const serverTime = parseInt(data) * 1000;
-                                const clientTime = new Date().getTime();
-                                serverTimeOffset = serverTime - clientTime;
-                                updateBodmiCountdown();
-                            }
-                        });
-                    }
-
                     function updateBodmiCountdown() {
-                        const targetDateStr = '<?php 
-                            $target_date = G5_IS_MOBILE ? $default['de_m_bodmi_target_date'] : $default['de_bodmi_target_date'];
-                            echo $target_date ? substr($target_date, 0, 10) : '2026-05-01'; 
-                        ?>';
-                        const targetDate = new Date(targetDateStr.replace(/-/g, '/') + ' 00:00:00').getTime();
+                        const targetDate = new Date('<?php echo $default['de_bodmi_target_date'] ? get_sanitize_input($default['de_bodmi_target_date']) : '2026-05-01'; ?>T00:00:00').getTime();
                         const now = new Date().getTime() + serverTimeOffset;
                         const diff = targetDate - now;
 
@@ -133,19 +105,25 @@ if (!defined('_EYOOM_')) exit;
                         timerEl.innerHTML = `${dStr}일 ${hStr}시 ${mStr}분`;
                     }
 
-                    $(document).ready(function() {
+                    function syncServerTime() {
+                        $.get('<?php echo G5_SHOP_URL; ?>/get_server_time.php', function(data) {
+                            const serverTimestamp = parseInt(data) * 1000;
+                            const localTimestamp = new Date().getTime();
+                            serverTimeOffset = serverTimestamp - localTimestamp;
+                            updateBodmiCountdown();
+                        });
+                    }
+
+                    $(function() {
                         syncServerTime();
-                        setInterval(updateBodmiCountdown, 1000); // 1초마다 화면 업데이트
-                        setInterval(syncServerTime, 1000 * 60); // 1분마다 서버 시간 동기화
+                        setInterval(updateBodmiCountdown, 1000);
+                        setInterval(syncServerTime, 60000);
                     });
                     </script>
-
-                    <div class="m-b-10">
-                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#insAgeModal" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
-                            <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_age.png" class="img-fluid" alt="내 보험 나이 알아보기">
-                        </a>
-                    </div>
-                    
+                    <?php } ?>
+� 서버 시간과 재동기화 (정확도 유지)
+                    });
+                    </script>
                     <div class="m-b-10">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_pet.png" class="img-fluid" alt="펫 보험 가입 상담하기">
