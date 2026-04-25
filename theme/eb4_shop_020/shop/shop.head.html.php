@@ -461,6 +461,7 @@ $is_darkmode = 'yes';
                                     <a href="#" class="dropdown-toggle nav-link" id="dropdownVipButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스
                                     </a>
+                                    <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">

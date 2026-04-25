@@ -33,7 +33,11 @@ if (!defined('_EYOOM_')) exit;
             <div class="main-section1-r">
                 <div class="main-section1-r1">
                     <style>
-                    .bodmi-wrapper { position: relative; }
+                    .bodmi-wrapper { 
+                        position: relative; 
+                        color-scheme: light; /* 다크 모드 반전 방지 */
+                    }
+                    .bodmi-wrapper img { filter: none !important; }
                     .bodmi-bubble-text {
                         position: absolute;
                         top: 28%;
@@ -42,6 +46,7 @@ if (!defined('_EYOOM_')) exit;
                         font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '13.5'; ?>px;
                         font-weight: 800;
                         color: <?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#555'; ?>;
+
                         text-align: center;
                         width: 50%;
                         pointer-events: none;
@@ -73,6 +78,7 @@ if (!defined('_EYOOM_')) exit;
                             font-size: <?php echo $default['de_m_bodmi_timer_font_size'] ? str_replace('px', '', $default['de_m_bodmi_timer_font_size']) : '16'; ?>px !important;
                         }
                     }
+
                     </style>
                     <?php 
                     $bodmi_use = G5_IS_MOBILE ? $default['de_m_bodmi_use'] : $default['de_bodmi_use'];
