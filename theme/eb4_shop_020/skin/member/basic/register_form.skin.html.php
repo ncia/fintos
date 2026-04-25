@@ -11,23 +11,166 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 ?>
 
 <style>
-.register-form .register-box { border: 1px solid #f1f5f9; border-radius: 12px; background: #fff !important; box-shadow: 0 8px 30px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 30px; }
-.register-form .eyoom-form header { padding: 25px 30px; background: #fff !important; border-bottom: 1px solid #f1f5f9 !important; }
-.register-form .eyoom-form header h5 { font-size: 1.15rem; color: #1e293b; font-weight: 800; }
-.register-form .eyoom-form footer { padding: 25px; background: #fff !important; border-top: 1px solid #f1f5f9 !important; text-align: center; }
-.register-form .eyoom-form fieldset { padding: 30px 35px; background: #fff !important; }
-.register-form .eyoom-form .vc-captcha fieldset { padding: 0; background: transparent !important; }
-.register-form .border-top { border-top: 1px solid #f1f5f9 !important; }
-.register-form .label { font-weight: 700; color: #334155; margin-bottom: 10px; font-size: 1rem; }
-.register-form .input input { border-radius: 8px !important; border: 1.5px solid #e2e8f0 !important; background-color: #fff !important; padding: 12px 15px !important; transition: all 0.2s; }
-.register-form .input input:focus { border-color: #3b82f6 !important; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
-.register-form .input i { color: #64748b !important; background: #f8fafc !important; width: 42px; height: 100%; display: flex; align-items: center; justify-content: center; border-right: 1px solid #e2e8f0 !important; border-radius: 8px 0 0 8px !important; top: 0 !important; left: 0 !important; font-size: 1rem; transition: all 0.2s; }
-.register-form .input input { padding-left: 55px !important; }
-.register-form .input input:focus + i { border-right-color: #3b82f6 !important; color: #3b82f6 !important; }
+/* MDBootstrap Material Design Styles */
+.regform-wrapper {
+    background: url('<?php echo EYOOM_THEME_URL; ?>/image/insurance_contract_bg.png') no-repeat center center;
+    background-size: cover;
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mdb-card {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+    border: none;
+}
+.mdb-card-header {
+    background-color: #1266f1;
+    padding: 25px;
+    text-align: center;
+}
+.mdb-card-header .title {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+.mdb-card-body {
+    padding: 40px 50px;
+}
+@media (max-width: 767px) {
+    .mdb-card-body { padding: 30px 20px; }
+    .regform-wrapper { padding: 20px 10px; }
+}
 
-/* 중복체크 등 입력창 버튼 스타일 */
-.register-form .eyoom-form .input-button .button { background: #f8fafc !important; color: #64748b !important; height: 38px; line-height: 38px; padding: 0 20px; border-left: 1px solid #f1f5f9 !important; border-radius: 0 8px 8px 0 !important; font-weight: 700; }
-.register-form .eyoom-form .input-button .button:hover { background: #f1f5f9 !important; color: #334155 !important; }
+/* Material Input Style (Floating Label) */
+.register-form .input { 
+    position: relative; 
+    margin-top: 20px;
+    display: flex !important;
+    align-items: stretch; 
+    border: 1px solid #bdbdbd !important;
+    border-radius: 4px !important;
+    height: 44px !important;
+    background-color: #fff !important;
+    transition: all 0.2s ease;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    overflow: visible !important; /* Critical for floating label visibility */
+    z-index: 1;
+}
+.register-form .input:focus-within {
+    border: 2px solid #1266f1 !important;
+}
+.register-form .label { 
+    position: absolute;
+    top: 11px;
+    left: 12px;
+    padding: 0 6px;
+    background: #fff;
+    color: #757575;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    z-index: 100; /* High z-index to stay above borders */
+    margin-bottom: 0;
+    line-height: 1;
+}
+.register-form .input input { 
+    background-color: transparent !important;
+    border: none !important;
+    height: 100% !important;
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+    transition: all 0.2s ease;
+    width: 100%;
+    outline: none !important;
+    flex: 1;
+}
+.register-form .input input:focus { 
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Floating Label Animation for Outlined Style */
+.register-form .input input:focus ~ .label,
+.register-form .input input:not(:placeholder-shown) ~ .label {
+    top: -11px;
+    left: 10px;
+    font-size: 11px;
+    color: #1266f1;
+    font-weight: 700;
+    z-index: 101;
+}
+
+/* Duplication Check Button Adjustment for Floating Label */
+.register-form .eyoom-form .input-button .button { 
+    background: #f8f9fa !important;
+    color: #4f4f4f !important;
+    height: auto !important; 
+    line-height: 38px !important; /* Slightly smaller for margin */
+    padding: 0 15px;
+    border: none !important;
+    border-left: 1px solid #bdbdbd !important;
+    border-radius: 0 3px 3px 0 !important;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 2px 2px 2px 0 !important; /* Keep inside container borders */
+    position: relative !important;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.register-form .input:focus-within .button {
+    border-left: 2px solid #1266f1 !important;
+    color: #1266f1 !important;
+}
+.register-form .eyoom-form .input-button .button:hover {
+    background: #f0f0f0 !important;
+}
+
+/* Section Headers (Simple Material Style) */
+.register-form .eyoom-form header { 
+    display: block !important;
+    background: transparent !important;
+    padding: 0 0 10px 0 !important;
+    margin-top: 50px !important;
+    margin-bottom: 25px !important;
+    border-bottom: 1px solid #eee !important;
+    border-left: none !important;
+}
+.register-form .eyoom-form header h5 {
+    color: #333 !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+    letter-spacing: -0.5px !important;
+}
+.register-form .register-box > header:first-child {
+    margin-top: 0 !important;
+}
+
+/* Global Adjustments */
+.register-form .eyoom-form fieldset { background: transparent !important; padding: 0 !important; margin-bottom: 25px !important; }
+.register-form .register-box { border: none; box-shadow: none; margin-bottom: 0; background: transparent !important; }
+.register-form .eyoom-form footer { background: transparent !important; border: none !important; padding: 0; margin-top: 20px; }
+.register-form .input i { display: none !important; }
+.register-form .border-top { border-top: none !important; padding-top: 20px; margin-top: 10px; }
+
 
 .register-form .security-display { display: none; margin-top: 15px; padding: 20px; background: #fcfdfe; border-radius: 10px; border: 1px solid #f1f5f9; }
 .register-form .progress-xxs { height: 8px; border-radius: 4px; background: #f1f5f9; margin-top: 10px; }
@@ -39,7 +182,14 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 <script src="<?php echo EYOOM_THEME_URL; ?>/js/zxcvbn.js"></script>
 <script src="<?php echo EYOOM_THEME_URL; ?>/js/jquery.password.strength.js"></script>
 
-<div class="register-form">
+<div class="regform-wrapper">
+    <div class="mdb-card">
+        <div class="mdb-card-header">
+            <h2 class="title"><?php echo $w=='' ? '<i class="fas fa-user-plus m-r-10"></i> 회원가입 정보입력' : '<i class="fas fa-user-edit m-r-10"></i> 회원정보 수정'; ?></h2>
+        </div>
+        <div class="mdb-card-body">
+            <div class="register-form">
+
     <form name="fregisterform" action="<?php echo $register_action_url; ?>" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" class="eyoom-form">
     <input type="hidden" name="w" value="<?php echo $w; ?>">
     <input type="hidden" name="url" value="<?php echo $urlencode; ?>">
@@ -54,22 +204,19 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <?php } ?>
     <input type="hidden" name="product_title" value="<?php echo isset($_GET['it_name']) ? clean_xss_tags($_GET['it_name']) : ''; ?>">
     <div class="register-box">
-        <header><h5 class="m-0"><strong>사이트 이용정보 입력</strong></h5></header>
+        <header><h5 class="m-0"><strong>이용정보 입력</strong></h5></header>
         <fieldset>
             <div class="row">
                 <section class="col-lg-6">
-                    <label for="reg_mb_id" class="label">
-                        아이디<strong class="sound_only"> 필수</strong>
-                    </label>
-                    <label class="input input-button required-mark">
-                        <i class="icon-prepend fas fa-user"></i>
-                        <input type="text" name="mb_id" value="<?php echo $member['mb_id']; ?>" id="reg_mb_id" <?php if ($w!='') { ?>required readonly<?php } ?> minlength="3" maxlength="20">
+                    <div class="input input-button required-mark">
+                        <input type="text" name="mb_id" value="<?php echo $member['mb_id']; ?>" id="reg_mb_id" <?php if ($w!='') { ?>required readonly<?php } ?> minlength="3" maxlength="20" placeholder=" " onfocus="event.stopPropagation();" onclick="event.stopPropagation();">
+                        <label for="reg_mb_id" class="label">아이디<strong class="sound_only"> 필수</strong></label>
                         <?php if ($w=='') { ?>
                         <div class="button" onclick="check_duplication('mb_id');"><input type="button"><i class="fas fa-check text-crimson"></i> 중복체크</div>
                         <?php } ?>
                         <?php if ($w=='') { ?><input type="hidden" name="mb_id_duplicated" id="mb_id_duplicated"><?php } ?>
                         <span id="msg_mb_id"></span>
-                    </label>
+                    </div>
                     <?php if ($w=='') { ?>
                     <div class="note"><strong>Note:</strong> 아이디 입력 후 <span class="text-crimson">중복체크 필수</span></div>
                     <?php } ?>
@@ -77,18 +224,16 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             </div>
             <div class="row">
                 <section class="col-lg-6">
-                    <label for="reg_mb_password" class="label">비밀번호<strong class="sound_only"> 필수</strong></label>
-                    <label class="input required-mark">
-                        <i class="icon-prepend fas fa-lock"></i>
-                        <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20">
-                    </label>
+                    <div class="input required-mark">
+                        <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder=" ">
+                        <label for="reg_mb_password" class="label">비밀번호<strong class="sound_only"> 필수</strong></label>
+                    </div>
                 </section>
                 <section class="col-lg-6">
-                    <label for="reg_mb_password_re" class="label">비밀번호 확인<strong class="sound_only"> 필수</strong></label>
-                    <label class="input required-mark">
-                        <i class="icon-prepend fas fa-lock"></i>
-                        <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20">
-                    </label>
+                    <div class="input required-mark">
+                        <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder=" ">
+                        <label for="reg_mb_password_re" class="label">비밀번호 확인<strong class="sound_only"> 필수</strong></label>
+                    </div>
                 </section>
                 <div class="clearfix"></div>
                 <div id="pass_meter">
@@ -164,29 +309,25 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <?php } ?>
             <div class="row">
                 <section class="col-lg-6">
-                    <label for="reg_mb_name" class="label">이름<strong class="sound_only">필수</strong><?php echo $desc_name ?></label>
-                    <label class="input required-mark">
-                        <i class="icon-prepend fas fa-male"></i>
-                        <input type="text" name="mb_name" id="reg_mb_name"  value="<?php echo $member['mb_name']; ?>" <?php if ($w!='') { ?>required readonly<?php } ?> size="10">
-                    </label>
+                    <div class="input required-mark">
+                        <input type="text" name="mb_name" id="reg_mb_name"  value="<?php echo $member['mb_name']; ?>" <?php if ($w!='') { ?>required readonly<?php } ?> size="10" placeholder=" ">
+                        <label for="reg_mb_name" class="label">이름<strong class="sound_only">필수</strong><?php echo $desc_name ?></label>
+                    </div>
                 </section>
             </div>
             <?php if ($req_nick) { ?>
             <div class="row">
                 <section class="col-lg-6">
-                    <label for="reg_mb_nick" class="label">
-                        닉네임<strong class="sound_only">필수</strong>
-                    </label>
-                    <label class="input input-button required-mark">
-                        <input type="hidden" name="mb_nick_default" value="<?php if (isset($member['mb_nick'])) { ?><?php echo $member['mb_nick']; ?><?php } ?>">
-                        <i class="icon-prepend far fa-smile"></i>
-                        <input type="text" name="mb_nick" value="<?php if (isset($member['mb_nick'])) { ?><?php echo $member['mb_nick']; ?><?php } ?>" id="reg_mb_nick" required size="10" maxlength="100">
+                    <div class="input input-button required-mark">
+                        <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>" id="reg_mb_nick" required size="10" maxlength="100" placeholder=" " autocomplete="off" onfocus="event.stopPropagation();" onclick="event.stopPropagation();">
+                        <label for="reg_mb_nick" class="label">닉네임<strong class="sound_only">필수</strong></label>
+                        <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
                         <?php if ($w=='') { ?>
                         <div class="button" onclick="check_duplication('mb_nick');"><input type="button"><i class="fas fa-check text-crimson"></i> 중복체크</div>
                         <?php } ?>
                         <?php if ($w=='') { ?><input type="hidden" name="mb_nick_duplicated" id="mb_nick_duplicated"><?php } ?>
                         <span id="msg_mb_nick"></span>
-                    </label>
+                    </div>
                     <?php if ($w=='') { ?>
                     <div class="note"><strong>Note:</strong> 닉네임 입력 후 <span class="text-crimson">중복체크 필수</span></div>
                     <?php } ?>
@@ -201,18 +342,15 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <?php } ?>
             <div class="row">
                 <section class="col-lg-6">
-                    <label for="reg_mb_email" class="label">
-                        이메일<strong class="sound_only"> 필수</strong>
-                    </label>
-                    <label class="input input-button required-mark">
-                        <input type="hidden" name="old_email" value="<?php echo $member['mb_email']; ?>">
-                        <i class="icon-prepend far fa-envelope"></i>
-                        <input type="text" name="mb_email" value="<?php if (isset($member['mb_email'])) { ?><?php echo $member['mb_email']; ?><?php } ?>" id="reg_mb_email" required size="70" maxlength="100">
+                    <div class="input input-button required-mark">
+                        <input type="text" name="mb_email" value="<?php echo isset($member['mb_email']) ? trim(get_text($member['mb_email'])) : ''; ?>" id="reg_mb_email" required size="70" maxlength="100" placeholder=" " autocomplete="off" onfocus="event.stopPropagation();" onclick="event.stopPropagation();">
+                        <label for="reg_mb_email" class="label">이메일<strong class="sound_only"> 필수</strong></label>
+                        <input type="hidden" name="old_email" value="<?php echo isset($member['mb_email']) ? trim(get_text($member['mb_email'])) : ''; ?>">
                         <?php if ($w=='') { ?>
                         <div class="button" onclick="check_duplication('mb_email');"><input type="button"><i class="fas fa-check text-crimson"></i> 중복체크</div>
                         <?php } ?>
                         <?php if ($w=='') { ?><input type="hidden" name="mb_email_duplicated" id="mb_email_duplicated"><?php } ?>
-                    </label>
+                    </div>
                     <?php if ($w=='') { ?>
                     <div class="note m-b-15"><strong>Note:</strong> 이메일 입력 후 <span class="text-crimson">중복체크 필수</span></div>
                     <?php } ?>
@@ -228,28 +366,26 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <div class="row">
                 <?php if ($config['cf_use_homepage']) { ?>
                 <section class="col-lg-4">
-                    <label for="reg_mb_homepage" class="label">홈페이지<?php if ($config['cf_req_homepage']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
                     <label class="input <?php if ($config['cf_req_homepage']) { ?>required-mark<?php } ?>">
-                        <i class="icon-prepend fas fa-home"></i>
-                        <input type="text" name="mb_homepage" value="<?php echo $member['mb_homepage']; ?>" id="reg_mb_homepage" <?php if ($config['cf_req_homepage']) { ?>required<?php } ?> size="70" maxlength="255">
+                        <input type="text" name="mb_homepage" value="<?php echo get_text($member['mb_homepage']); ?>" id="reg_mb_homepage" <?php if ($config['cf_req_homepage']) { ?>required<?php } ?> size="70" maxlength="255" placeholder=" ">
+                        <label for="reg_mb_homepage" class="label">홈페이지<?php if ($config['cf_req_homepage']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
                     </label>
                 </section>
                 <?php } ?>
                 <?php if ($config['cf_use_tel']) { ?>
                 <section class="col-lg-4">
-                    <label for="reg_mb_tel" class="label">전화번호<?php if ($config['cf_req_tel']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
                     <label class="input <?php if ($config['cf_req_tel']) { ?>required-mark<?php } ?>">
-                        <i class="icon-prepend fas fa-phone"></i>
-                        <input type="text" name="mb_tel" value="<?php echo $member['mb_tel']; ?>" id="reg_mb_tel" <?php if ($config['cf_req_tel']) { ?>required<?php } ?> maxlength="20">
+                        <input type="text" name="mb_tel" value="<?php echo get_text($member['mb_tel']); ?>" id="reg_mb_tel" <?php if ($config['cf_req_tel']) { ?>required<?php } ?> maxlength="20" placeholder=" ">
+                        <label for="reg_mb_tel" class="label">전화번호<?php if ($config['cf_req_tel']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
                     </label>
                 </section>
                 <?php } ?>
                 <?php if ($config['cf_use_hp'] || ($config['cf_cert_use'] && $config['cf_cert_hp'])) { ?>
                 <section class="col-lg-4">
-                    <label for="reg_mb_hp" class="label">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?><?php echo $desc_phone ?></label>
+                <section class="col-lg-4">
                     <label class="input <?php if ($config['cf_req_hp']) { ?>required-mark<?php } ?>">
-                        <i class="icon-prepend fas fa-mobile-alt"></i>
-                        <input type="text" name="mb_hp" value="<?php echo $member['mb_hp']; ?>" id="reg_mb_hp" <?php if ($config['cf_req_hp']) { ?>required<?php } ?> maxlength="20">
+                        <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']); ?>" id="reg_mb_hp" <?php if ($config['cf_req_hp']) { ?>required<?php } ?> maxlength="20" placeholder=" ">
+                        <label for="reg_mb_hp" class="label">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?><?php echo $desc_phone ?></label>
                         <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
                         <input type="hidden" name="old_mb_hp" value="<?php echo $member['mb_hp']; ?>">
                         <?php } ?>
@@ -260,14 +396,12 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <?php if ($config['cf_use_addr']) { ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <label for="reg_mb_hp" class="label m-l-5">주소<?php if ($config['cf_req_addr']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
+                    <label class="label m-l-5" style="position:static; transform:none; font-size:14px; margin-bottom:5px; color:#1266f1;">주소<?php if ($config['cf_req_addr']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
                 </div>
                 <div class="col-lg-6">
-                    <label for="reg_mb_zip" class="sound_only">우편번호<?php if ($config['cf_req_addr']) { ?><strong class="sound_only"> 필수</strong><?php } ?></label>
                     <label class="input <?php if ($config['cf_req_addr']) { ?>required-mark<?php } ?>">
-                        <i class="icon-append fas fa-question-circle"></i>
-                        <input type="text" name="mb_zip" value="<?php echo $member['mb_zip1']; ?><?php echo $member['mb_zip2']; ?>" id="reg_mb_zip" <?php if ($config['cf_req_addr']) { ?>required<?php } ?> size="5" maxlength="6">
-                        <b class="tooltip tooltip-top-right">우편번호 (주소 검색 버튼을 클릭하여 조회)</b>
+                        <input type="text" name="mb_zip" value="<?php echo $member['mb_zip1']; ?><?php echo $member['mb_zip2']; ?>" id="reg_mb_zip" <?php if ($config['cf_req_addr']) { ?>required<?php } ?> size="5" maxlength="6" placeholder=" ">
+                        <label for="reg_mb_zip" class="label">우편번호</label>
                     </label>
                 </div>
                 <div class="col-lg-6">
@@ -276,22 +410,22 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                 <div class="clearfix m-b-15"></div>
                 <div class="col-lg-12">
                     <label class="input <?php if ($config['cf_req_addr']) { ?>required-mark<?php } ?>">
-                        <input type="text" name="mb_addr1" value="<?php echo $member['mb_addr1']; ?>" id="reg_mb_addr1" <?php if ($config['cf_req_addr']) { ?>required<?php } ?> size="50">
+                        <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']); ?>" id="reg_mb_addr1" <?php if ($config['cf_req_addr']) { ?>required<?php } ?> size="50" placeholder=" ">
+                        <label for="reg_mb_addr1" class="label">기본주소</label>
                     </label>
-                    <div class="note m-b-15"><strong>Note:</strong> 기본주소<?php if ($config['cf_req_addr']) { ?><strong class="sound_only"> 필수</strong><?php } ?></div>
                 </div>
                 <div class="clear"></div>
                 <div class="col-lg-6">
                     <label class="input">
-                        <input type="text" name="mb_addr2" value="<?php echo $member['mb_addr2']; ?>" id="reg_mb_addr2" size="50">
+                        <input type="text" name="mb_addr2" value="<?php echo get_text($member['mb_addr2']); ?>" id="reg_mb_addr2" size="50" placeholder=" ">
+                        <label for="reg_mb_addr2" class="label">상세주소</label>
                     </label>
-                    <div class="note m-b-15"><strong>Note:</strong> 상세주소</div>
                 </div>
                 <div class="col-lg-6">
                     <label class="input">
-                        <input type="text" name="mb_addr3" value="<?php echo $member['mb_addr3']; ?>" id="reg_mb_addr3" size="50" readonly="readonly">
+                        <input type="text" name="mb_addr3" value="<?php echo get_text($member['mb_addr3']); ?>" id="reg_mb_addr3" size="50" readonly="readonly" placeholder=" ">
+                        <label for="reg_mb_addr3" class="label">참고항목</label>
                     </label>
-                    <div class="note m-b-15"><strong>Note:</strong> 참고항목</div>
                 </div>
                 <input type="hidden" name="mb_addr_jibeon" value="<?php echo $member['mb_addr_jibeon']; ?>">
             </div>
@@ -420,7 +554,12 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
         </footer>
     </div>
     </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <script src="<?php echo EYOOM_THEME_URL; ?>/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script>
