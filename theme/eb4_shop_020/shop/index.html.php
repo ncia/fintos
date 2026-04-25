@@ -48,8 +48,6 @@ if (!defined('_EYOOM_')) exit;
                         line-height: 1.2;
                         letter-spacing: -0.5px;
                         word-break: keep-all;
-                        text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* 화이트 색상의 가독성 개선 */
-                        -webkit-font-smoothing: antialiased;
                     }
                     .bodmi-countdown-clock {
                         position: absolute;
@@ -69,7 +67,6 @@ if (!defined('_EYOOM_')) exit;
                         .bodmi-bubble-text {
                             font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13.5'; ?>px !important;
                             color: <?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#555'; ?> !important;
-                            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
                         }
                         .bodmi-countdown-clock {
                             background-color: <?php echo $default['de_m_bodmi_bg_color'] ? $default['de_m_bodmi_bg_color'] : '#000'; ?> !important;
@@ -81,7 +78,7 @@ if (!defined('_EYOOM_')) exit;
                     $bodmi_use = G5_IS_MOBILE ? $default['de_m_bodmi_use'] : $default['de_bodmi_use'];
                     if($bodmi_use) { 
                         $bodmi_title = G5_IS_MOBILE ? $default['de_m_bodmi_title'] : $default['de_bodmi_title'];
-                        if(!$bodmi_title) $bodmi_title = '🚨실손보험 인상✅'; // 체크 아이콘을 더 명확한 것으로 교체 시도
+                        if(!$bodmi_title) $bodmi_title = '🚨실손보험 인상☑️';
                     ?>
                     <div class="m-b-10 bodmi-wrapper">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
