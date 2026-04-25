@@ -78,7 +78,7 @@ if (!defined('_EYOOM_')) exit;
                     $bodmi_use = G5_IS_MOBILE ? $default['de_m_bodmi_use'] : $default['de_bodmi_use'];
                     if($bodmi_use) { 
                         $bodmi_title = G5_IS_MOBILE ? $default['de_m_bodmi_title'] : $default['de_bodmi_title'];
-                        if(!$bodmi_title) $bodmi_title = '🚨실손보험 인상☑️';
+
                     ?>
                     <div class="m-b-10 bodmi-wrapper">
                         <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
