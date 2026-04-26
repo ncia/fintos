@@ -640,6 +640,54 @@ $frm_submit .= $frm_eba_submit;
                         </div>
                     </div>
                 </div>
+                <div class="adm-form-tr-wrap">
+                    <div class="adm-form-tr tr-l">
+                        <div class="adm-form-td td-l">
+                            <label for="cf_googlesheet_use" class="label">구글 스프레드시트 연동</label>
+                        </div>
+                        <div class="adm-form-td td-r">
+                            <label class="checkbox">
+                                <input type="checkbox" name="cf_googlesheet_use" value="1" id="cf_googlesheet_use" <?php echo isset($config['cf_googlesheet_use']) && $config['cf_googlesheet_use'] ? 'checked' : ''; ?>><i></i> 사용
+                            </label>
+                            <div class="note"><strong>Note:</strong> 회원가입 시 입력된 정보를 지정된 구글 스프레드시트로 실시간 전송합니다.</div>
+                        </div>
+                    </div>
+                    <div class="adm-form-tr tr-r">
+                        <div class="adm-form-td td-l">
+                            <label for="cf_googlesheet_url" class="label">구글 웹 앱 URL (GAS)</label>
+                        </div>
+                        <div class="adm-form-td td-r">
+                            <label class="input">
+                                <input type="text" name="cf_googlesheet_url" value="<?php echo isset($config['cf_googlesheet_url']) ? get_sanitize_input($config['cf_googlesheet_url']) : ''; ?>" id="cf_googlesheet_url">
+                            </label>
+                            <div class="note"><strong>Note:</strong> 구글 스프레드시트에서 "웹 앱으로 배포"한 URL 주소를 입력하십시오.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr-wrap">
+                    <div class="adm-form-tr tr-l">
+                        <div class="adm-form-td td-l">
+                            <label for="cf_form_mail_use" class="label">가입정보 메일 알림</label>
+                        </div>
+                        <div class="adm-form-td td-r">
+                            <label class="checkbox">
+                                <input type="checkbox" name="cf_form_mail_use" value="1" id="cf_form_mail_use" <?php echo isset($config['cf_form_mail_use']) && $config['cf_form_mail_use'] ? 'checked' : ''; ?>><i></i> 사용
+                            </label>
+                            <div class="note"><strong>Note:</strong> 회원가입 완료 시 관리자에게 입력 정보를 메일로 즉시 발송합니다.</div>
+                        </div>
+                    </div>
+                    <div class="adm-form-tr tr-r">
+                        <div class="adm-form-td td-l">
+                            <label for="cf_form_mail" class="label">알림 수신 메일 주소</label>
+                        </div>
+                        <div class="adm-form-td td-r">
+                            <label class="input">
+                                <input type="text" name="cf_form_mail" value="<?php echo isset($config['cf_form_mail']) ? get_sanitize_input($config['cf_form_mail']) : ''; ?>" id="cf_form_mail">
+                            </label>
+                            <div class="note"><strong>Note:</strong> 정보를 수신할 이메일 주소를 입력하십시오. 공백일 경우 기본 관리자 메일로 발송됩니다.</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php /* 홈페이지 기본환경 설정 : 끝 */ ?>

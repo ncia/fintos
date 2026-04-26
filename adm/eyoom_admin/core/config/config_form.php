@@ -206,6 +206,17 @@ if (!isset($config['cf_syndi_except'])) {
     );
 }
 
+if (!isset($config['cf_googlesheet_use'])) {
+    sql_query(
+        " ALTER TABLE `{$g5['config_table']}`
+                    ADD `cf_googlesheet_use` TINYINT(4) NOT NULL DEFAULT '0' AFTER `cf_syndi_except`,
+                    ADD `cf_googlesheet_url` TEXT NOT NULL AFTER `cf_googlesheet_use`,
+                    ADD `cf_form_mail_use` TINYINT(4) NOT NULL DEFAULT '0' AFTER `cf_googlesheet_url`,
+                    ADD `cf_form_mail` VARCHAR(255) NOT NULL AFTER `cf_form_mail_use` ",
+        true
+    );
+}
+
 if (!isset($config['cf_sms_use'])) {
     sql_query(
         " ALTER TABLE `{$g5['config_table']}`

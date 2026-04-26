@@ -148,8 +148,8 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     display: block !important;
     background: transparent !important;
     padding: 0 0 10px 0 !important;
-    margin-top: 50px !important;
-    margin-bottom: 25px !important;
+    margin-top: 30px !important;
+    margin-bottom: 20px !important;
     border-bottom: 1px solid #eee !important;
     border-left: none !important;
 }
@@ -165,7 +165,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 }
 
 /* Global Adjustments */
-.register-form .eyoom-form fieldset { background: transparent !important; padding: 0 !important; margin-bottom: 25px !important; }
+.register-form .eyoom-form fieldset { background: transparent !important; padding: 0 !important; margin-bottom: 20px !important; }
 .register-form .register-box { border: none; box-shadow: none; margin-bottom: 0; background: transparent !important; }
 .register-form .eyoom-form footer { background: transparent !important; border: none !important; padding: 0; margin-top: 20px; }
 .register-form .input i { display: none !important; }
