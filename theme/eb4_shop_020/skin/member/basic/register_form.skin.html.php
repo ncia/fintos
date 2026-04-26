@@ -11,7 +11,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 ?>
 
 <style>
-/* MDBootstrap Material Design Styles */
+/* MDBootstrap Material Design Styles - Refined for Image Match */
 .regform-wrapper {
     background: url('<?php echo EYOOM_THEME_URL; ?>/image/insurance_contract_bg.png') no-repeat center center;
     background-size: cover;
@@ -20,27 +20,30 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .mdb-card {
     background: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     width: 100%;
     max-width: 700px;
-    overflow: hidden;
+    overflow: visible;
     border: none;
+    position: relative;
 }
 .mdb-card-header {
-    background-color: #1266f1;
-    padding: 25px;
+    background-color: #007bff;
+    padding: 20px;
     text-align: center;
+    border-radius: 12px 12px 0 0;
 }
 .mdb-card-header .title {
     color: #fff;
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
     margin: 0;
-    letter-spacing: 0.5px;
+    letter-spacing: -0.5px;
 }
 .mdb-card-body {
     padding: 40px 50px;
@@ -50,83 +53,58 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     .regform-wrapper { padding: 20px 10px; }
 }
 
-/* Material Input Style (Floating Label) */
+/* Material Input Style - Outlined with Blue Focus */
 .register-form .input { 
     position: relative; 
-    margin-top: 20px;
+    margin-top: 0;
+    margin-bottom: 25px; /* Increased gap between rows */
     display: flex !important;
-    align-items: stretch; 
-    border: 1px solid #bdbdbd !important;
-    border-radius: 4px !important;
-    height: 44px !important;
+    align-items: center; /* Changed from stretch to center for perfect alignment */
+    border: 1px solid #007bff !important; /* Changed from #bfdbfe to #007bff */
+    border-radius: 8px !important;
+    height: 45px !important; /* Reduced from 48px */
     background-color: #fff !important;
     transition: all 0.2s ease;
     box-sizing: border-box !important;
     padding: 0 !important;
-    overflow: visible !important; /* Critical for floating label visibility */
-    z-index: 1;
 }
 .register-form .input:focus-within {
-    border: 2px solid #1266f1 !important;
+    border: 1px solid #3b82f6 !important; /* Focus blue */
+    box-shadow: 0 0 0 1px #3b82f6;
 }
-.register-form .label { 
+.required-dot {
     position: absolute;
-    top: 11px;
-    left: 12px;
-    padding: 0 6px;
-    background: #fff;
-    color: #757575;
-    font-weight: 500;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    pointer-events: none;
-    z-index: 100; /* High z-index to stay above borders */
-    margin-bottom: 0;
-    line-height: 1;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ffd600; /* Bright yellow dot */
+    border-radius: 50%;
+    z-index: 5;
 }
 .register-form .input input { 
     background-color: transparent !important;
     border: none !important;
     height: 100% !important;
-    padding: 10px 15px !important;
-    font-size: 14px !important;
-    transition: all 0.2s ease;
+    padding: 0 20px !important;
+    font-size: 15px !important;
     width: 100%;
     outline: none !important;
     flex: 1;
-}
-.register-form .input input:focus { 
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
+    color: #1f2937;
 }
 
-/* Floating Label Animation for Outlined Style */
-.register-form .input input:focus ~ .label,
-.register-form .input input:not(:placeholder-shown) ~ .label {
-    top: -11px;
-    left: 10px;
-    font-size: 11px;
-    color: #1266f1;
-    font-weight: 700;
-    z-index: 101;
-}
-
-/* Duplication Check Button Adjustment for Floating Label */
-.register-form .eyoom-form .input-button .button { 
-    background: #f8f9fa !important;
-    color: #4f4f4f !important;
-    height: auto !important; 
-    line-height: 38px !important; /* Slightly smaller for margin */
+/* Duplication Check Button - Blue Style */
+.register-form .input-button .button { 
+    background: #007bff !important;
+    color: #fff !important;
+    height: 35px !important; /* Increased slightly from 33px */
     padding: 0 15px;
     border: none !important;
-    border-left: 1px solid #bdbdbd !important;
-    border-radius: 0 3px 3px 0 !important;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 700;
-    margin: 2px 2px 2px 0 !important; /* Keep inside container borders */
+    border-radius: 6px !important;
+    font-size: 13px;
+    font-weight: 500;
+    margin: -1px 3.9px 0 0 !important; /* Fine-tuned right margin */
     position: relative !important;
     transition: all 0.3s ease;
     white-space: nowrap;
@@ -135,48 +113,218 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     align-items: center;
     justify-content: center;
 }
-.register-form .input:focus-within .button {
-    border-left: 2px solid #1266f1 !important;
-    color: #1266f1 !important;
+.register-form .input-button .button:hover {
+    background: #0069d9 !important;
 }
-.register-form .eyoom-form .input-button .button:hover {
-    background: #f0f0f0 !important;
+.register-form .input-button .button input { display: none; }
+
+/* Gender Buttons Style */
+.gender-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+.gender-selector input[type="radio"] {
+    display: none;
+}
+.gender-label {
+    flex: 1;
+    border: 1px solid #007bff; /* Changed from #bfdbfe to #007bff */
+    border-radius: 8px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #fff;
+    color: #9ca3af;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+.gender-selector input[type="radio"]:checked + .gender-label {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    font-weight: 500;
+}
+.gender-label i { margin-right: 8px; }
+
+/* Section Header */
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin: 20px 0 20px 0; /* Reduced from 25px to 20px */
+    padding-bottom: 8px; /* Reduced from 12px to 8px */
+    border-bottom: 1px solid #dddddd; /* Light gray */
 }
 
-/* Section Headers (Simple Material Style) */
-.register-form .eyoom-form header { 
-    display: block !important;
-    background: transparent !important;
-    padding: 0 0 10px 0 !important;
-    margin-top: 30px !important;
-    margin-bottom: 20px !important;
-    border-bottom: 1px solid #eee !important;
-    border-left: none !important;
-}
-.register-form .eyoom-form header h5 {
-    color: #333 !important;
-    font-size: 17px !important;
-    font-weight: 800 !important;
-    margin: 0 !important;
-    letter-spacing: -0.5px !important;
-}
-.register-form .register-box > header:first-child {
-    margin-top: 0 !important;
+/* Labels above inputs for specific cases */
+.field-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 8px;
+    display: block;
 }
 
-/* Global Adjustments */
-.register-form .eyoom-form fieldset { background: transparent !important; padding: 0 !important; margin-bottom: 20px !important; }
-.register-form .register-box { border: none; box-shadow: none; margin-bottom: 0; background: transparent !important; }
-.register-form .eyoom-form footer { background: transparent !important; border: none !important; padding: 0; margin-top: 20px; }
-.register-form .input i { display: none !important; }
-.register-form .border-top { border-top: none !important; padding-top: 20px; margin-top: 10px; }
+/* Password Visibility Toggle */
+.pass-toggle {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 18px; /* Added mid-size font */
+}
+
+/* Address Search Button */
+.address-search-btn {
+    background: #007bff !important;
+    color: #fff !important;
+    height: 45px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    width: 100%;
+    border: none !important;
+}
+
+/* Bottom Actions */
+.form-footer {
+    margin-top: 0; /* Let previous input's margin-bottom handle the gap */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.submit-btn {
+    background: #007bff !important;
+    color: #fff !important;
+    height: 45px !important; /* Unified with other buttons */
+    border-radius: 8px !important;
+    font-size: 15px !important; /* Unified with other buttons */
+    font-weight: 700 !important;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.field-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #9ca3af; /* Lighter gray for labels */
+    margin-bottom: 8px;
+    display: block;
+}
+.register-box, .eyoom-form fieldset { background: transparent !important; border: none !important; padding: 0 !important; }
+
+/* Checkbox Styles */
+.checkbox-group { margin-bottom: 25px; }
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #4b5563;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+}
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #f3f4f6;
+}
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #007bff;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.field-note {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+/* Captcha Styling */
+.captcha-container { margin-bottom: 25px; }
+#captcha { border: none !important; padding: 0 !important; margin: 0 !important; }
+#captcha legend { display: none; }
+#captcha_img { 
+    height: 45px !important; 
+    border: 1px solid #007bff !important; 
+    border-radius: 8px !important; 
+    margin-right: 8px;
+    vertical-align: top;
+}
+#captcha_key {
+    height: 45px !important;
+    border: 1px solid #007bff !important;
+    border-radius: 8px !important;
+    padding: 0 12px;
+    width: 120px;
+    font-size: 16px;
+    vertical-align: top;
+    outline: none;
+}
+#captcha_mp3, #captcha_reload {
+    height: 45px;
+    width: 45px;
+    background: #1f2937 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-left: 4px;
+    cursor: pointer;
+}
 
 
-.register-form .security-display { display: none; margin-top: 15px; padding: 20px; background: #fcfdfe; border-radius: 10px; border: 1px solid #f1f5f9; }
-.register-form .progress-xxs { height: 8px; border-radius: 4px; background: #f1f5f9; margin-top: 10px; }
-.register-form .alert-warning { background-color: #f8fafc; border: 1px solid #f1f5f9; color: #64748b; border-radius: 10px; padding: 20px; font-size: 0.95rem; }
-.register-form .btn-e-cert { padding: 10px 20px; border-radius: 8px; font-weight: 700; background: #f1f5f9; color: #475569; border: 0; transition: all 0.2s; }
-.register-form .btn-e-cert:hover { background: #e2e8f0; }
+/* Status message colors */
+#msg_mb_id, #msg_mb_nick, #msg_mb_email {
+    display: block;
+    font-size: 12px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+.msg_error { color: #ef4444; }
+.msg_success { color: #10b981; }
 </style>
 
 <script src="<?php echo EYOOM_THEME_URL; ?>/js/zxcvbn.js"></script>
@@ -185,7 +333,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 <div class="regform-wrapper">
     <div class="mdb-card">
         <div class="mdb-card-header">
-            <h2 class="title"><?php echo $w=='' ? '<i class="fas fa-user-plus m-r-10"></i> 회원가입 정보입력' : '<i class="fas fa-user-edit m-r-10"></i> 회원정보 수정'; ?></h2>
+            <h1 class="title"><?php echo $w=='' ? '회원가입 정보입력' : '회원정보 수정'; ?></h1>
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
@@ -197,361 +345,177 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <input type="hidden" name="agree2" value="<?php echo $agree2; ?>">
     <input type="hidden" name="cert_type" value="<?php echo $member['mb_certify']; ?>">
     <input type="hidden" name="cert_no" value="">
-    <?php if (isset($member['mb_sex'])) { ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex']; ?>"><?php } ?>
+    <?php if (isset($member['mb_sex']) && $w != '') { ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex']; ?>"><?php } ?>
     <?php if (isset($member['mb_nick_date']) && $member['mb_nick_date'] > date("Y-m-d", G5_SERVER_TIME - ($config['cf_nick_modify'] * 86400))) { ?>
     <input type="hidden" name="mb_nick_default" value="<?php echo $member['mb_nick']; ?>">
     <input type="hidden" name="mb_nick" value="<?php echo $member['mb_nick']; ?>">
     <?php } ?>
     <input type="hidden" name="product_title" value="<?php echo isset($_GET['it_name']) ? clean_xss_tags($_GET['it_name']) : ''; ?>">
+    <input type="hidden" name="mb_nick" id="reg_mb_nick" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
+    <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
+    <input type="hidden" name="mb_nick_duplicated" id="mb_nick_duplicated" value="y">
     <div class="register-box">
-        <header><h5 class="m-0"><strong>이용정보 입력</strong></h5></header>
-        <fieldset>
+        <div class="section-title" style="margin-top:0;">로그인정보 입력</div>
+            <!-- ID Field (Row 1) -->
             <div class="row">
-                <section class="col-lg-6">
-                    <div class="input input-button required-mark">
-                        <input type="text" name="mb_id" value="<?php echo $member['mb_id']; ?>" id="reg_mb_id" <?php if ($w!='') { ?>required readonly<?php } ?> minlength="3" maxlength="20" placeholder=" " onfocus="event.stopPropagation();" onclick="event.stopPropagation();">
-                        <label for="reg_mb_id" class="label">아이디<strong class="sound_only"> 필수</strong></label>
+                <section class="col-lg-12">
+                    <div class="input input-button">
+                        <input type="text" name="mb_id" value="<?php echo $member['mb_id']; ?>" id="reg_mb_id" <?php if ($w!='') { ?>required readonly<?php } ?> minlength="3" maxlength="20" placeholder="아이디">
+                        <div class="required-dot"></div>
                         <?php if ($w=='') { ?>
-                        <div class="button" onclick="check_duplication('mb_id');"><input type="button"><i class="fas fa-check text-crimson"></i> 중복체크</div>
+                        <div class="button" onclick="check_duplication('mb_id');">중복 확인</div>
                         <?php } ?>
                         <?php if ($w=='') { ?><input type="hidden" name="mb_id_duplicated" id="mb_id_duplicated"><?php } ?>
-                        <span id="msg_mb_id"></span>
                     </div>
-                    <?php if ($w=='') { ?>
-                    <div class="note"><strong>Note:</strong> 아이디 입력 후 <span class="text-crimson">중복체크 필수</span></div>
-                    <?php } ?>
                 </section>
             </div>
+
+            <!-- Email Field (Row 2) -->
             <div class="row">
-                <section class="col-lg-6">
-                    <div class="input required-mark">
-                        <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder=" ">
-                        <label for="reg_mb_password" class="label">비밀번호<strong class="sound_only"> 필수</strong></label>
-                    </div>
-                </section>
-                <section class="col-lg-6">
-                    <div class="input required-mark">
-                        <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder=" ">
-                        <label for="reg_mb_password_re" class="label">비밀번호 확인<strong class="sound_only"> 필수</strong></label>
-                    </div>
-                </section>
-                <div class="clearfix"></div>
-                <div id="pass_meter">
-                    <div class="row">
-                        <section class="col-lg-6">
-                            <div class="security-display">
-                                <p class="security-heading"><span>보안강도체크</span> <span class="float-end text-orange"></span></p>
-                                <div class="clearfix"></div>
-                                <div class="progress progress-e progress-xxs">
-                                    <div class="progress-bar progress-bar-e"></div>
-                                </div>
-                                <div class="note"><strong>Note:</strong> 보안강도는 <span class="text-crimson">보통</span> 이상이어야 합니다.</div>
-                            </div>
-                        </section>
-                        <section class="col-lg-6">
-                            <div>
-                                <div class="security_text text-crimson"></div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <header class="border-top"><h5 class="m-0"><strong>개인정보 입력</strong></h5></header>
-        <fieldset>
-            <?php if ($config['cf_cert_use']) { ?>
-            <div class="row m-b-20">
-                <div class="col-lg-12">
-                    <?php 
-                    $desc_name = '';
-                    $desc_phone = '';
-                    if ($config['cf_cert_use']) {
-                        $desc_name = ' <span class="text-crimson f-w-400">- 본인확인 시 자동입력</span>';
-                        $desc_phone = ' <span class="text-crimson f-w-400">- 본인확인 시 자동입력</span>';
-                    
-                        if (!$config['cf_cert_simple'] && !$config['cf_cert_hp'] && $config['cf_cert_ipin']) {
-                            $desc_phone = '';
-                        }
-                    
-                        if ($config['cf_cert_simple']) {
-                            echo '<button type="button" id="win_sa_kakao_cert" class="btn-e btn-e-dark btn-e-cert win_sa_cert" data-type="">간편인증</button>'.PHP_EOL;
-                        }
-                        if ($config['cf_cert_hp'])
-                            echo '<button type="button" id="win_hp_cert" class="btn-e btn-e-dark btn-e-cert">휴대폰 본인확인</button>'.PHP_EOL;
-                        if ($config['cf_cert_ipin'])
-                            echo '<button type="button" id="win_ipin_cert" class="btn-e btn-e-dark btn-e-cert">아이핀 본인확인</button>'.PHP_EOL;
-                    
-                        echo '<span class="cert_req text-crimson m-l-5">(필수)</span>';
-                        echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>'.PHP_EOL;
-                    }
-                    ?>
-                    <?php
-                    if ($config['cf_cert_use'] && $member['mb_certify']) {
-                        switch  ($member['mb_certify']) {
-                            case "simple": 
-                                $mb_cert = "간편인증";
-                                break;
-                            case "ipin": 
-                                $mb_cert = "아이핀";
-                                break;
-                            case "hp": 
-                                $mb_cert = "휴대폰";
-                                break;
-                        }    
-                    ?>
-                    <div id="msg_certify" class="text-crimson m-t-10">
-                        <strong><?php echo $mb_cert; ?> 본인확인</strong><?php if ($member['mb_adult']) { ?> 및 <strong>성인인증</strong><?php } ?> 완료
-                    </div>
-                    <?php } ?>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <?php } ?>
-            <div class="row">
-                <section class="col-lg-6">
-                    <div class="input required-mark">
-                        <input type="text" name="mb_name" id="reg_mb_name"  value="<?php echo $member['mb_name']; ?>" <?php if ($w!='') { ?>required readonly<?php } ?> size="10" placeholder=" ">
-                        <label for="reg_mb_name" class="label">이름<strong class="sound_only">필수</strong><?php echo $desc_name ?></label>
-                    </div>
-                </section>
-            </div>
-            <?php if ($req_nick) { ?>
-            <div class="row">
-                <section class="col-lg-6">
-                    <div class="input input-button required-mark">
-                        <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>" id="reg_mb_nick" required size="10" maxlength="100" placeholder=" " autocomplete="off" onfocus="event.stopPropagation();" onclick="event.stopPropagation();">
-                        <label for="reg_mb_nick" class="label">닉네임<strong class="sound_only">필수</strong></label>
-                        <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
-                        <?php if ($w=='') { ?>
-                        <div class="button" onclick="check_duplication('mb_nick');"><input type="button"><i class="fas fa-check text-crimson"></i> 중복체크</div>
-                        <?php } ?>
-                        <?php if ($w=='') { ?><input type="hidden" name="mb_nick_duplicated" id="mb_nick_duplicated"><?php } ?>
-                        <span id="msg_mb_nick"></span>
-                    </div>
-                    <?php if ($w=='') { ?>
-                    <div class="note"><strong>Note:</strong> 닉네임 입력 후 <span class="text-crimson">중복체크 필수</span></div>
-                    <?php } ?>
-                </section>
-                <div class="clearfix"></div>
                 <section class="col-lg-12">
-                    <div class="alert alert-warning m-t-15">
-                        <strong>Note:</strong> 공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상) | 닉네임을 바꾸시면 앞으로 <?php echo (int) $config['cf_nick_modify']; ?>일 이내에는 변경 할 수 없습니다.
-                    </div>
-                </section>
-            </div>
-            <?php } ?>
-            <div class="row">
-                <section class="col-lg-6">
-                    <div class="input input-button required-mark">
-                        <input type="text" name="mb_email" value="<?php echo isset($member['mb_email']) ? trim(get_text($member['mb_email'])) : ''; ?>" id="reg_mb_email" required size="70" maxlength="100" placeholder=" " autocomplete="off" onfocus="event.stopPropagation();" onclick="event.stopPropagation();">
-                        <label for="reg_mb_email" class="label">이메일<strong class="sound_only"> 필수</strong></label>
+                    <div class="input input-button">
+                        <input type="text" name="mb_email" value="<?php echo isset($member['mb_email']) ? trim(get_text($member['mb_email'])) : ''; ?>" id="reg_mb_email" required maxlength="100" placeholder="이메일">
+                        <div class="required-dot"></div>
                         <input type="hidden" name="old_email" value="<?php echo isset($member['mb_email']) ? trim(get_text($member['mb_email'])) : ''; ?>">
                         <?php if ($w=='') { ?>
-                        <div class="button" onclick="check_duplication('mb_email');"><input type="button"><i class="fas fa-check text-crimson"></i> 중복체크</div>
+                        <div class="button" onclick="check_duplication('mb_email');">중복 확인</div>
                         <?php } ?>
                         <?php if ($w=='') { ?><input type="hidden" name="mb_email_duplicated" id="mb_email_duplicated"><?php } ?>
                     </div>
-                    <?php if ($w=='') { ?>
-                    <div class="note m-b-15"><strong>Note:</strong> 이메일 입력 후 <span class="text-crimson">중복체크 필수</span></div>
-                    <?php } ?>
-                </section>
-                <?php if ($config['cf_use_email_certify']) { ?>
-                <div class="col-lg-12">
-                    <div class="alert alert-warning m-t-15">
-                        <strong>Note:</strong> <?php if ($w=='') { ?>E-mail 로 발송된 내용을 확인한 후 인증하셔야 회원가입이 완료됩니다.<?php } ?><?php if ($w=='u') { ?>E-mail 주소를 변경하시면 다시 인증하셔야 합니다.<?php } ?>
-                    </div>
-                </div>
-                <?php } ?>
-            </div>
-            <div class="row">
-                <?php if ($config['cf_use_homepage']) { ?>
-                <section class="col-lg-4">
-                    <label class="input <?php if ($config['cf_req_homepage']) { ?>required-mark<?php } ?>">
-                        <input type="text" name="mb_homepage" value="<?php echo get_text($member['mb_homepage']); ?>" id="reg_mb_homepage" <?php if ($config['cf_req_homepage']) { ?>required<?php } ?> size="70" maxlength="255" placeholder=" ">
-                        <label for="reg_mb_homepage" class="label">홈페이지<?php if ($config['cf_req_homepage']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
-                    </label>
-                </section>
-                <?php } ?>
-                <?php if ($config['cf_use_tel']) { ?>
-                <section class="col-lg-4">
-                    <label class="input <?php if ($config['cf_req_tel']) { ?>required-mark<?php } ?>">
-                        <input type="text" name="mb_tel" value="<?php echo get_text($member['mb_tel']); ?>" id="reg_mb_tel" <?php if ($config['cf_req_tel']) { ?>required<?php } ?> maxlength="20" placeholder=" ">
-                        <label for="reg_mb_tel" class="label">전화번호<?php if ($config['cf_req_tel']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
-                    </label>
-                </section>
-                <?php } ?>
-                <?php if ($config['cf_use_hp'] || ($config['cf_cert_use'] && $config['cf_cert_hp'])) { ?>
-                <section class="col-lg-4">
-                <section class="col-lg-4">
-                    <label class="input <?php if ($config['cf_req_hp']) { ?>required-mark<?php } ?>">
-                        <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']); ?>" id="reg_mb_hp" <?php if ($config['cf_req_hp']) { ?>required<?php } ?> maxlength="20" placeholder=" ">
-                        <label for="reg_mb_hp" class="label">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?><?php echo $desc_phone ?></label>
-                        <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
-                        <input type="hidden" name="old_mb_hp" value="<?php echo $member['mb_hp']; ?>">
-                        <?php } ?>
-                    </label>
-                </section>
-                <?php } ?>
-            </div>
-            <?php if ($config['cf_use_addr']) { ?>
-            <div class="row">
-                <div class="col-lg-12">
-                    <label class="label m-l-5" style="position:static; transform:none; font-size:14px; margin-bottom:5px; color:#1266f1;">주소<?php if ($config['cf_req_addr']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
-                </div>
-                <div class="col-lg-6">
-                    <label class="input <?php if ($config['cf_req_addr']) { ?>required-mark<?php } ?>">
-                        <input type="text" name="mb_zip" value="<?php echo $member['mb_zip1']; ?><?php echo $member['mb_zip2']; ?>" id="reg_mb_zip" <?php if ($config['cf_req_addr']) { ?>required<?php } ?> size="5" maxlength="6" placeholder=" ">
-                        <label for="reg_mb_zip" class="label">우편번호</label>
-                    </label>
-                </div>
-                <div class="col-lg-6">
-                    <button type="button" onclick="win_zip('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');" class="btn-e btn-e-lg btn-e-indigo address-search-btn">주소 검색</button>
-                </div>
-                <div class="clearfix m-b-15"></div>
-                <div class="col-lg-12">
-                    <label class="input <?php if ($config['cf_req_addr']) { ?>required-mark<?php } ?>">
-                        <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']); ?>" id="reg_mb_addr1" <?php if ($config['cf_req_addr']) { ?>required<?php } ?> size="50" placeholder=" ">
-                        <label for="reg_mb_addr1" class="label">기본주소</label>
-                    </label>
-                </div>
-                <div class="clear"></div>
-                <div class="col-lg-6">
-                    <label class="input">
-                        <input type="text" name="mb_addr2" value="<?php echo get_text($member['mb_addr2']); ?>" id="reg_mb_addr2" size="50" placeholder=" ">
-                        <label for="reg_mb_addr2" class="label">상세주소</label>
-                    </label>
-                </div>
-                <div class="col-lg-6">
-                    <label class="input">
-                        <input type="text" name="mb_addr3" value="<?php echo get_text($member['mb_addr3']); ?>" id="reg_mb_addr3" size="50" readonly="readonly" placeholder=" ">
-                        <label for="reg_mb_addr3" class="label">참고항목</label>
-                    </label>
-                </div>
-                <input type="hidden" name="mb_addr_jibeon" value="<?php echo $member['mb_addr_jibeon']; ?>">
-            </div>
-            <?php } ?>
-        </fieldset>
-        <header class="border-top"><h5 class="m-0"><strong>기타 개인설정</strong></h5></header>
-        <fieldset>
-            <?php if ($config['cf_use_signature']) { ?>
-            <div class="row">
-                <section class="col-lg-12">
-                    <label for="reg_mb_signature" class="label">서명<?php if ($config['cf_req_signature']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
-                    <label class="textarea textarea-resizable <?php if ($config['cf_req_signature']) { ?>required-mark<?php } ?>">
-                        <textarea name="mb_signature" id="reg_mb_signature" rows="5" <?php if ($config['cf_req_signature']) { ?>required<?php } ?>><?php echo $member['mb_signature']; ?></textarea>
-                    </label>
                 </section>
             </div>
-            <?php } ?>
-            <?php if ($config['cf_use_profile']) { ?>
-            <div class="row">
-                <section class="col-lg-12">
-                    <label for="reg_mb_profile" class="label">자기소개</label>
-                    <label class="textarea textarea-resizable <?php if ($config['cf_req_profile']) { ?>required-mark<?php } ?>">
-                        <textarea name="mb_profile" id="reg_mb_profile" rows="5" <?php if ($config['cf_req_profile']) { ?>required<?php } ?>><?php echo $member['mb_profile']; ?></textarea>
-                    </label>
-                </section>
-            </div>
-            <?php } ?>
-            <?php if ($config['cf_use_member_icon'] && $member['mb_level'] >= $config['cf_icon_level']) {  ?>
-            <div class="row">
-                <section class="col-lg-12">
-                    <label for="reg_mb_icon" class="label">회원아이콘</label>
-                    <div class="input m-b-10">
-                        <input type="file" class="form-control" id="reg_mb_icon" name="mb_icon" value="파일선택">
-                    </div>
-                    <div class="clearfix"></div>
-                    <?php if ($w == 'u' && file_exists($mb_icon_path)) {  ?>
-                    <img src="<?php echo $mb_icon_url ?>" alt="회원아이콘" class="float-start m-r-10">
-                    <label class="checkbox float-start p-l-20"><input type="checkbox" name="del_mb_icon" value="1" id="del_mb_icon"><i></i>삭제</label>
-                    <div class="clearfix"></div>
-                    <?php }  ?>
-                    <div class="note m-b-10"><strong>Note:</strong> 이미지 크기는 가로 <?php echo $config['cf_member_icon_width'] ?>픽셀, 세로 <?php echo $config['cf_member_icon_height'] ?>픽셀 이하로 해주세요.<br>gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_member_icon_size']) ?>바이트 이하만 등록됩니다.</div>
-                </section>
-            </div>
-            <?php } ?>
-            <?php if ($member['mb_level'] >= $config['cf_icon_level'] && $config['cf_member_img_size'] && $config['cf_member_img_width'] && $config['cf_member_img_height']) {  ?>
-            <div class="row">
-                <section class="col-lg-12">
-                    <label for="reg_mb_img" class="label">회원이미지</label>
-                    <div class="input m-b-10">
-                        <input type="file" class="form-control" id="reg_mb_img" name="mb_img" value="파일선택">
-                    </div>
-                    <div class="clearfix"></div>
-                    <?php if ($w == 'u' && file_exists($mb_img_path)) {  ?>
-                    <img src="<?php echo $mb_img_url ?>" alt="회원이미지" class="float-start m-r-10">
-                    <label class="checkbox float-start p-l-20"><input type="checkbox" name="del_mb_img" value="1" id="del_mb_img"><i></i>삭제</label>
-                    <div class="clearfix"></div>
-                    <?php }  ?>
-                    <div class="note m-b-10"><strong>Note:</strong> 이미지 크기는 가로 <?php echo $config['cf_member_img_width'] ?>픽셀, 세로 <?php echo $config['cf_member_img_height'] ?>픽셀 이하로 해주세요.<br>gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_member_img_size']) ?>바이트 이하만 등록됩니다.</div>
-                </section>
-            </div>
-            <div class="margin-hr-15"></div>
-            <?php } ?>
-            <div class="row">
-                <section class="col-lg-6">
-                    <label for="reg_mb_mailling" class="label">메일링서비스</label>
-                    <label class="checkbox">
-                        <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php if ($w=='' || $member['mb_mailling']) { ?>checked<?php } ?>><i></i>정보 메일을 받겠습니다.
-                    </label>
-                </section>
-                <?php if ($config['cf_use_hp']) { ?>
-                <section class="col-lg-6">
-                    <label for="reg_mb_sms" class="label">SMS 수신여부</label>
-                    <label class="checkbox">
-                        <input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php if ($w=='' || $member['mb_sms']) { ?>checked<?php } ?>><i></i>휴대폰 문자메세지를 받겠습니다.
-                    </label>
-                </section>
-                <?php } ?>
-            </div>
-            <div class="row">
-                <?php if (isset($member['mb_open_date']) && $member['mb_open_date'] <= date("Y-m-d", G5_SERVER_TIME - ($config['cf_open_modify'] * 86400)) || empty($member['mb_open_date']) ) { ?>
-                <section class="col-lg-6">
-                    <label for="reg_mb_open" class="label">정보공개</label>
-                    <label class="checkbox">
-                        <input type="checkbox" name="mb_open" value="1" <?php if ($w=='' || $member['mb_open']) { ?>checked<?php } ?> id="reg_mb_open"><i></i>다른분들이 나의 정보를 볼 수 있도록 합니다.
-                        <input type="hidden" name="mb_open_default" value="<?php echo $member['mb_open']; ?>">
-                    </label>
-                    <div class="note m-b-10"><strong>Note:</strong> 정보공개를 바꾸시면 앞으로 <?php echo (int) $config['cf_open_modify']; ?>일 이내에는 변경이 안됩니다.</div>
-                </section>
-                <?php } else { ?>
-                <section class="col-lg-6">
-                    <label for="reg_mb_open" class="label">정보공개</label>
-                    <label class="checkbox">
-                        <input type="hidden" name="mb_open" value="<?php echo $member['mb_open']; ?>">
-                    </label>
-                    <div class="note m-b-10"><strong>Note:</strong> 정보공개는 수정후 <?php (int) $config['cf_open_modify']; ?>일 이내, <?php echo $open_day; ?> 까지는 변경이 안됩니다.<br>이렇게 하는 이유는 잦은 정보공개 수정으로 인하여 쪽지를 보낸 후 받지 않는 경우를 막기 위해서 입니다.</div>
-                </section>
-                <?php } ?>
-                <?php if ($w=='' && $config['cf_use_recommend']) { ?>
-                <section class="col-lg-6">
-                    <label for="reg_mb_recommend" class="label">추천인아이디</label>
-                    <label class="input">
-                        <i class="icon-prepend fas fa-user"></i>
-                        <input type="text" name="mb_recommend" id="reg_mb_recommend">
-                    </label>
-                </section>
-                <?php } ?>
-                <?php if ($w=='u' && function_exists('social_member_provider_manage')) { ?>
-                <ul class="list-unstyle">
-                    <?php echo social_member_provider_manage(); ?>
-                </ul>
-                <?php } ?>
-            </div>
-            <div class="row">
-                <section class="col-lg-12">
-                    <label class="label">자동등록방지</label>
-                    <div class="vc-captcha"><?php echo captcha_html(); ?></div>
-                </section>
-            </div>
-        </fieldset>
 
-        <footer class="text-center">
+            <!-- Password Fields (Row 3) -->
+            <div class="row" style="margin-left:-8px; margin-right:-8px;">
+                <section class="col-6" style="padding-left:8px; padding-right:8px;">
+                    <div class="input">
+                        <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호">
+                        <div class="required-dot"></div>
+                        <div class="pass-toggle" onclick="toggle_pass('reg_mb_password', this)"><i class="far fa-eye"></i></div>
+                    </div>
+                </section>
+                <section class="col-6" style="padding-left:8px; padding-right:8px;">
+                    <div class="input">
+                        <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호 확인">
+                        <div class="required-dot"></div>
+                        <div class="pass-toggle" onclick="toggle_pass('reg_mb_password_re', this)"><i class="far fa-eye"></i></div>
+                    </div>
+                </section>
+                <div class="col-12" id="pass_meter_container" style="display:none; padding-left:8px; padding-right:8px;">
+                    <div id="pass_meter">
+                        <div class="progress progress-e progress-xxs" style="height:4px; margin-top:-10px; margin-bottom:15px; background:#f3f4f6; border-radius:2px;">
+                            <div class="progress-bar progress-bar-e" style="height:100%; width:0%; transition:all 0.3s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="section-title">개인정보 입력</div>
+
+            <!-- Name Field -->
+            <div class="row">
+                <section class="col-lg-12">
+                    <div class="input">
+                        <input type="text" name="mb_name" id="reg_mb_name" value="<?php echo $member['mb_name']; ?>" <?php if ($w!='') { ?>required readonly<?php } ?> placeholder="이름">
+                        <div class="required-dot"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Birth Date Field -->
+            <div class="row">
+                <section class="col-lg-12">
+                    <div class="input">
+                        <input type="text" name="mb_birth" id="reg_mb_birth" value="<?php echo $member['mb_birth']; ?>" maxlength="8" placeholder="생년월일(8자리) 예: 19900101">
+                        <div class="required-dot"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Gender Field -->
+            <div class="gender-selector">
+                <input type="radio" name="mb_sex" id="sex_m" value="M" <?php echo $member['mb_sex']=='M'?'checked':''; ?>>
+                <label for="sex_m" class="gender-label"><i class="fas fa-mars"></i> 남성</label>
+                
+                <input type="radio" name="mb_sex" id="sex_f" value="F" <?php echo $member['mb_sex']=='F'?'checked':''; ?>>
+                <label for="sex_f" class="gender-label" style="position:relative;"><i class="fas fa-venus"></i> 여성<div class="required-dot"></div></label>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="row">
+                <section class="col-lg-12">
+                    <div class="input">
+                        <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']); ?>" id="reg_mb_hp" maxlength="20" placeholder="연락처 숫자만 입력해주세요">
+                        <div class="required-dot"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Address Section -->
+            <div class="row" style="margin-left:-8px; margin-right:-8px;">
+                <div class="col-6" style="padding-left:8px; padding-right:8px;">
+                    <div class="input" style="border: 1px solid #007bff !important;">
+                        <input type="text" name="mb_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="reg_mb_zip" size="5" maxlength="6" placeholder="우편번호">
+                    </div>
+                </div>
+                <div class="col-6" style="padding-left:8px; padding-right:8px; position:relative;">
+                    <button type="button" onclick="win_zip('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');" class="btn-e address-search-btn">주소 검색</button>
+                    <div class="required-dot" style="top:5px; right:12px;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input">
+                        <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']); ?>" id="reg_mb_addr1" placeholder="기본주소">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input">
+                        <input type="text" name="mb_addr2" value="<?php echo get_text($member['mb_addr2']); ?>" id="reg_mb_addr2" placeholder="상세주소">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="mb_addr3" value="<?php echo get_text($member['mb_addr3']); ?>" id="reg_mb_addr3">
+            <input type="hidden" name="mb_addr_jibeon" value="<?php echo $member['mb_addr_jibeon']; ?>">
+
+            <div class="section-title">기타 개인설정</div>
+
+            <!-- Mailing Service -->
+            <div class="field-label" style="margin-left:5px;">메일링서비스</div>
+            <div class="checkbox-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ($w=='' || $member['mb_mailling']) ? 'checked' : ''; ?>>
+                    <span class="checkmark"></span>
+                    정보 메일을 받겠습니다.
+                </label>
+            </div>
+
+            <!-- Info Disclosure -->
+            <div class="field-label" style="margin-left:5px;">정보공개</div>
+            <div class="checkbox-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" name="mb_open" value="1" <?php if ($w=='' || $member['mb_open']) { ?>checked<?php } ?> id="reg_mb_open">
+                    <span class="checkmark"></span>
+                    다른분들이 나의 정보를 볼 수 있도록 합니다.
+                </label>
+                <div class="field-note">Note: 정보공개를 바꾸시면 앞으로 <?php echo (int) $config['cf_open_modify']; ?>일 이내에는 변경이 안됩니다.</div>
+            </div>
+
+            <!-- Captcha Section -->
+            <div class="field-label" style="margin-left:5px;">자동등록방지</div>
+            <div class="captcha-container">
+                <?php echo captcha_html(); ?>
+                <div class="field-note">자동등록방지 숫자를 순서대로 입력하세요.</div>
+            </div>
+
+        <div class="form-footer">
+            <button type="submit" id="btn_submit" class="submit-btn"><?php echo $w=='' ? '회원가입' : '정보수정'; ?></button>
             <?php if ($w=='u') { ?>
-            <button type="button" value="회원탈퇴" id="btn_remove" class="btn-e btn-e-xl btn-e-gray" onclick="member_leave();">회원탈퇴</button>
+            <button type="button" class="btn-e btn-e-lg btn-e-gray" style="width:100%; background:#f3f4f6; border:none; height:50px; border-radius:8px; color:#6b7280; margin-top:10px;" onclick="member_leave();">회원탈퇴</button>
             <?php } ?>
-            <button type="submit" value="<?php if ($w=='') { ?>회원가입<?php } else { ?>정보수정<?php } ?>" id="btn_submit" class="btn-e btn-e-xl btn-e-navy" accesskey="s"><?php if ($w=='') { ?>회원가입<?php } else { ?>정보수정<?php } ?></button>
-        </footer>
+        </div>
     </div>
     </form>
             </div>
@@ -1008,26 +972,44 @@ function member_leave() {  // 회원 탈퇴 tto
 }
 <?php } ?>
 
-// 암호강도체크
+function toggle_pass(id, el) {
+    var input = document.getElementById(id);
+    var icon = el.querySelector('i');
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = "password";
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+
+// 암호강도체크 간소화 연동
 $(function() {
     $("#reg_mb_password").keyup(function() {
-        initializeStrengthMeter();
+        var score = 0;
+        var val = this.value;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        
+        var percent = (score + 1) * 20;
+        var colors = ['#ef4444', '#f59e0b', '#fbbf24', '#10b981', '#059669'];
+        $("#pass_meter_container").show();
+        $("#pass_meter .progress-bar").css({
+            'width': percent + '%',
+            'background-color': colors[score]
+        });
     });
 
-    $("#reg_mb_password_re").keyup(function() {
-        initializeStrengthMeter();
+    $("#reg_mb_name").on('keyup change', function() {
+        $("#reg_mb_nick").val($(this).val());
     });
 });
 
-function initializeStrengthMeter() {
-    $("#pass_meter").PasswordStrengthManager({
-        password: $("#reg_mb_password").val(),
-        confirm_pass : $("#reg_mb_password_re").val(),
-        minChars : $("#reg_mb_password").attr("minlength"),
-        maxChars : $("#reg_mb_password").attr("maxlength"),
-        blackList : []
-    });
-}
 
 <?php
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
