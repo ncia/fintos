@@ -463,10 +463,22 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                     <div class="required-dot" style="top:5px; right:12px;"></div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
+            <div class="row" style="margin-left:-8px; margin-right:-8px;">
+                <div class="col-12" style="position:relative; padding-left:8px; padding-right:8px;">
                     <div class="input">
                         <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']); ?>" id="reg_mb_addr1" placeholder="기본주소">
+                    </div>
+                    <!-- Postcode Layer -->
+                    <div id="postcode_layer" style="display:none;position:absolute;top:0;left:8px;width:calc(100% - 16px);height:500px;z-index:100;background:#fff;border:1px solid #007bff;border-radius:8px;overflow:hidden;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);">
+                        <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;">
+                            <!-- Header for close button to prevent overlapping with Kakao UI -->
+                            <div style="height:35px; background:#f8fafc; border-bottom:1px solid #e2e8f0; display:flex; align-items:center; justify-content:flex-end; padding:0 12px;">
+                                <div style="cursor:pointer; font-size:14px; color:#4b5563; font-weight:500;" onclick="closeDaumPostcode()">
+                                    <i class="fas fa-times" style="margin-right:4px;"></i> 닫기
+                                </div>
+                            </div>
+                            <div id="postcode_embed" style="width:100%; flex:1;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1047,4 +1059,55 @@ $(document).ready(function(){
     }
 });
 <?php } ?>
+</script>
+<script src="https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function closeDaumPostcode() {
+    document.getElementById('postcode_layer').style.display = 'none';
+}
+
+function win_zip(frm_name, zip, addr1, addr2, addr3, jibeon) {
+    var element_layer = document.getElementById('postcode_embed');
+    var layer_parent = document.getElementById('postcode_layer');
+    
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            if (data.userSelectedType === 'R') {
+                fullAddr = data.roadAddress;
+            } else {
+                fullAddr = data.jibunAddress;
+            }
+
+            if(data.userSelectedType === 'R'){
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            var f = document.forms[frm_name];
+            f[zip].value = data.zonecode;
+            f[addr1].value = fullAddr;
+            f[addr3].value = extraAddr;
+            f[jibeon].value = data.jibunAddress;
+
+            // 레이어 닫기
+            closeDaumPostcode();
+            
+            // 상세주소 포커스
+            f[addr2].focus();
+        },
+        width : '100%',
+        height : '100%',
+        maxSuggestItems : 5
+    }).embed(element_layer);
+
+    layer_parent.style.display = 'block';
+}
 </script>
