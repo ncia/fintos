@@ -3,13 +3,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // 12지신 자동 캐릭터 설정 로직
 $mb_icon_auto = isset($_POST['mb_icon_auto']) ? clean_xss_tags(trim($_POST['mb_icon_auto'])) : '';
 
-if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.png$/', $mb_icon_auto)) {
+if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
     $source_path = G5_DATA_PATH . '/member_image/te/' . $mb_icon_auto;
     
     if (file_exists($source_path)) {
         // 아이콘/이미지 저장 경로 설정 (아이디 앞 2자리 폴더 구조)
-        $dest_dir_icon = G5_DATA_PATH . '/member/' . substr($mb_id, 0, 2);
-        $dest_dir_img  = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
+        $mb_dir = substr($mb_id, 0, 2);
+        $dest_dir_icon = G5_DATA_PATH . '/member/' . $mb_dir;
+        $dest_dir_img  = G5_DATA_PATH . '/member_image/' . $mb_dir;
         
         // 폴더 생성
         if (!is_dir($dest_dir_icon)) {
@@ -21,19 +22,45 @@ if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.png$/', $mb_icon_auto)) {
             @chmod($dest_dir_img, G5_DIR_PERMISSION);
         }
         
-        // 파일 확장자 유지 또는 표준 형식 지정
-        // 그누보드 표준 아이콘은 보통 gif이나, 최근 테마들은 png를 지원함
         $icon_ext = pathinfo($source_path, PATHINFO_EXTENSION);
-        $dest_path_icon = $dest_dir_icon . '/' . $mb_id . '.' . $icon_ext;
-        $dest_path_img  = $dest_dir_img . '/' . $mb_id . '.' . $icon_ext;
         
-        // 이미지 복사 (기존 업로드 이미지가 없을 때만 실행하거나 강제 설정)
-        // 여기서는 자동 설정 요청이므로 복사함
-        @copy($source_path, $dest_path_icon);
-        @chmod($dest_path_icon, G5_IMG_PERMISSION);
+        // 그누보드/이윰빌더 호환성을 위해 gif와 png 모두 저장 시도
+        $formats = array('gif', 'png');
         
-        @copy($source_path, $dest_path_img);
-        @chmod($dest_path_img, G5_IMG_PERMISSION);
+        foreach ($formats as $fmt) {
+            $dest_path_icon = $dest_dir_icon . '/' . $mb_id . '.' . $fmt;
+            $dest_path_img  = $dest_dir_img . '/' . $mb_id . '.' . $fmt;
+            
+            if ($icon_ext == $fmt) {
+                @copy($source_path, $dest_path_icon);
+                @copy($source_path, $dest_path_img);
+            } else {
+                // 확장자 변환 (GD 라이브러리 사용)
+                if (function_exists('imagecreatefrompng') && $icon_ext == 'png' && $fmt == 'gif') {
+                    $im = @imagecreatefrompng($source_path);
+                    if ($im) {
+                        @imagegif($im, $dest_path_icon);
+                        @imagegif($im, $dest_path_img);
+                        @imagedestroy($im);
+                    }
+                } else if (function_exists('imagecreatefromgif') && $icon_ext == 'gif' && $fmt == 'png') {
+                    $im = @imagecreatefromgif($source_path);
+                    if ($im) {
+                        @imagepng($im, $dest_path_icon);
+                        @imagepng($im, $dest_path_img);
+                        @imagedestroy($im);
+                    }
+                }
+            }
+            
+            if (file_exists($dest_path_icon)) @chmod($dest_path_icon, G5_IMG_PERMISSION);
+            if (file_exists($dest_path_img)) @chmod($dest_path_img, G5_IMG_PERMISSION);
+        }
+
+        // 이윰빌더용 DB 업데이트 (photo 필드)
+        if (isset($g5['eyoom_member'])) {
+            sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.gif' where mb_id = '{$mb_id}' ");
+        }
     }
 }
 
@@ -84,5 +111,18 @@ if ($config['cf_form_mail_use']) {
 
     include_once(G5_LIB_PATH . '/mailer.lib.php');
     mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $receive_email, $subject, $content, 1);
+}
+
+// 회원 프로필 이미지와 이윰빌더 photo 필드 동기화
+$mb_img_dir = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
+$mb_img_file = $mb_id . '.gif';
+if (file_exists($mb_img_dir . '/' . $mb_img_file)) {
+    sql_query("update {$g5['eyoom_member']} set photo = '{$mb_img_file}' where mb_id = '{$mb_id}' ");
+} else {
+    // png 파일도 체크
+    $mb_img_file_png = $mb_id . '.png';
+    if (file_exists($mb_img_dir . '/' . $mb_img_file_png)) {
+        sql_query("update {$g5['eyoom_member']} set photo = '{$mb_img_file_png}' where mb_id = '{$mb_id}' ");
+    }
 }
 ?>
