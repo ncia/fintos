@@ -285,8 +285,44 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     line-height: 1.5;
 }
 
-/* Captcha Styling - User Custom Absolute Layout */
-.captcha-container { margin-bottom: 25px; }
+/* Zodiac Preview Styling */
+.zodiac-preview-container {
+    display: none;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+.zodiac-image-wrapper {
+    width: 60px;
+    height: 60px;
+    background: #abacb5; /* User image gray circle background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.zodiac-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.zodiac-text {
+    font-size: 14px;
+    color: #1e293b;
+    font-weight: 600;
+}
+.zodiac-text .birth-year {
+    color: #007bff;
+    margin-right: 4px;
+}
 #captcha { position: relative !important; border: none !important; padding: 0 !important; margin: 0 80px 0 0 !important; width: 248px !important; }
 #captcha legend { display: none; }
 #captcha_img { 
@@ -475,6 +511,16 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                     <div class="input">
                         <input type="text" name="mb_birth" id="reg_mb_birth" value="<?php echo $member['mb_birth']; ?>" maxlength="8" placeholder="생년월일(8자리) 예: 19900101">
                         <div class="required-dot"></div>
+                    </div>
+                    <!-- Zodiac Sign Preview -->
+                    <div id="zodiac_preview" class="zodiac-preview-container">
+                        <div class="zodiac-image-wrapper">
+                            <img src="" id="zodiac_img_source" alt="띠 캐릭터">
+                        </div>
+                        <div class="zodiac-text">
+                            <span class="birth-year" id="zodiac_year_text"></span>년생 <span id="zodiac_name_text" style="color:#007bff;"></span> 캐릭터가 자동으로 설정되었습니다!
+                        </div>
+                        <input type="hidden" name="mb_icon_auto" id="mb_icon_auto">
                     </div>
                 </section>
             </div>
@@ -1077,6 +1123,52 @@ $(function() {
     $("#reg_mb_name").on('keyup change', function() {
         $("#reg_mb_nick").val($(this).val());
     });
+
+    // 12지신 매칭 로직
+    const zodiacData = [
+        { name: '쥐띠', file: '0_mouse.png' },
+        { name: '소띠', file: '1_cow.png' },
+        { name: '범띠', file: '2_tiger.png' },
+        { name: '토끼띠', file: '3_rabbit.png' },
+        { name: '용띠', file: '4_dragon.png' },
+        { name: '뱀띠', file: '5_snake.png' },
+        { name: '말띠', file: '6_horse.png' },
+        { name: '양띠', file: '7_sheep.png' },
+        { name: '원숭이띠', file: '8_monkey.png' },
+        { name: '닭띠', file: '9_cock.png' },
+        { name: '개띠', file: '10_dog.png' },
+        { name: '돼지띠', file: '11_pig.png' }
+    ];
+
+    $("#reg_mb_birth").on('input', function() {
+        var birth = $(this).val().replace(/[^0-9]/g, '');
+        $(this).val(birth); // 숫자만 허용
+
+        if (birth.length === 8) {
+            var year = parseInt(birth.substring(0, 4));
+            if (year > 1900 && year < new Date().getFullYear()) {
+                var index = (year - 4) % 12;
+                if (index < 0) index += 12; // 음수 처리
+                
+                var zodiac = zodiacData[index];
+                var imgPath = "<?php echo G5_URL; ?>/data/member_image/te/" + zodiac.file;
+
+                $("#zodiac_year_text").text(year);
+                $("#zodiac_name_text").text(zodiac.name);
+                $("#zodiac_img_source").attr("src", imgPath);
+                $("#mb_icon_auto").val(zodiac.file);
+                $("#zodiac_preview").fadeIn(300).css("display", "flex");
+            }
+        } else {
+            $("#zodiac_preview").fadeOut(100);
+            $("#mb_icon_auto").val("");
+        }
+    });
+
+    // 기존 데이터가 있는 경우 (수정 모드 등) 초기화
+    if ($("#reg_mb_birth").val().length === 8) {
+        $("#reg_mb_birth").trigger('input');
+    }
 });
 
 

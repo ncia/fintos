@@ -7,9 +7,23 @@ if (!defined('_EYOOM_')) exit;
 
 <style>
 .register-result {max-width:500px;margin:0 auto}
-.register-icon-box {font-size:120px;text-align:center;color:#959595;line-height:1;margin:0 0 30px}
 .register-info-box {border:1px solid #757575;background-color:#fafafa;padding:20px;margin-bottom:20px}
 .register-result-box {border:1px solid #d5d5d5;padding:20px;margin-bottom:30px}
+.video-welcome-container {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+    background: #fff;
+}
+.video-welcome-container video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 </style>
 
 <div class="register-result">
@@ -17,8 +31,12 @@ if (!defined('_EYOOM_')) exit;
         <h3 class="m-b-10"><strong>회원가입</strong>이 완료되었습니다.</h3>
         <p class="text-gray f-s-16r"><span class="text-black"><?php echo $mb['mb_name']; ?></span> 님의 회원가입을 진심으로 축하합니다!</p>
     </div>
-    <div class="register-icon-box">
-        <i class="far fa-address-card"></i>
+    
+    <div class="video-welcome-container">
+        <video autoplay loop muted playsinline>
+            <source src="<?php echo EYOOM_THEME_URL; ?>/image/join/bodmi_welcome.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
     <?php if ($config['cf_use_email_certify']) { ?>
     <div class="register-info-box">
