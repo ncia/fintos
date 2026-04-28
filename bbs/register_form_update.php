@@ -76,6 +76,9 @@ $mb_addr_jibeon = preg_match("/^(N|R)$/", $mb_addr_jibeon) ? $mb_addr_jibeon : '
 
 $mb_marketing_agree     = isset($_POST['mb_marketing_agree'])   ? trim($_POST['mb_marketing_agree'])    : "0";
 $mb_thirdparty_agree    = isset($_POST['mb_thirdparty_agree'])  ? trim($_POST['mb_thirdparty_agree'])   : "0";
+$mb_promotion_agree     = isset($_POST['mb_promotion_agree'])   ? trim($_POST['mb_promotion_agree'])    : "0";
+$product_title          = isset($_POST['product_title'])        ? trim($_POST['product_title'])         : "";
+$product_title          = clean_xss_tags($product_title, 1, 1);
 
 run_event('register_form_update_before', $mb_id, $w);
 
@@ -254,7 +257,9 @@ if ($w == '') {
                      mb_9 = '{$mb_9}',
                      mb_10 = '{$mb_10}',
                      mb_marketing_agree = '{$mb_marketing_agree}',
-                     mb_thirdparty_agree = '{$mb_thirdparty_agree}'
+                     mb_thirdparty_agree = '{$mb_thirdparty_agree}',
+                     mb_promotion_agree = '{$mb_promotion_agree}',
+                     product_title = '{$product_title}'
                      {$sql_certify} ";
 
     // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
@@ -284,6 +289,11 @@ if ($w == '') {
     if ($mb_thirdparty_agree == 1) {
         $sql .=  " , mb_thirdparty_date = '".G5_TIME_YMDHIS."' ";
         $agree_items[] = "개인정보 제3자 제공(동의)";
+    }
+
+    // 광고성 정보 수신 동의 (상위)
+    if ($mb_promotion_agree == 1) {
+        $agree_items[] = "광고성 정보 수신 동의(동의)";
     }
 
     // 동의 로그 추가
@@ -446,7 +456,9 @@ if ($w == '') {
                     mb_9 = '{$mb_9}',
                     mb_10 = '{$mb_10}',
                     mb_marketing_agree = '{$mb_marketing_agree}',
-                    mb_thirdparty_agree = '{$mb_thirdparty_agree}'
+                    mb_thirdparty_agree = '{$mb_thirdparty_agree}',
+                    mb_promotion_agree = '{$mb_promotion_agree}',
+                    product_title = '{$product_title}'
                     {$sql_password}
                     {$sql_nick_date}
                     {$sql_open_date}

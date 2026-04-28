@@ -61,10 +61,10 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/sweetal
                     <form name="flogin" action="<?php echo $login_action_url;?>" onsubmit="return flogin_submit(this);" method="post" class="eyoom-form">
                     <input type="hidden" name="url" value='<?php echo $login_url; ?>'>
                     <section>
-                        <label for="mb_id" class="label">아이디</label>
+                        <label for="mb_id" class="label">아이디 또는 이메일</label>
                         <label class="input">
                             <i class="icon-append fas fa-user"></i>
-                            <input type="text" class="form-control" id="mb_id" name="mb_id" placeholder="ID" required class="frm_input required" size="20" maxLength="20">
+                            <input type="text" class="form-control" id="mb_id" name="mb_id" placeholder="ID or Email" required class="frm_input required" size="20" maxLength="20">
                         </label>
                     </section>
                     <div class="login-form-margin-bottom"></div>

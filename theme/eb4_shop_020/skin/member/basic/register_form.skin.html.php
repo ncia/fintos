@@ -147,7 +147,10 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     border-color: #007bff;
     font-weight: 500;
 }
-.gender-label i { margin-right: 8px; }
+.gender-label i { 
+    margin-right: 10px; 
+    font-size: 18px; /* Increased icon size */
+}
 
 /* Section Header */
 .section-title {
@@ -282,16 +285,15 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     line-height: 1.5;
 }
 
-/* Captcha Styling */
+/* Captcha Styling - User Custom Absolute Layout */
 .captcha-container { margin-bottom: 25px; }
-#captcha { border: none !important; padding: 0 !important; margin: 0 !important; }
+#captcha { position: relative !important; border: none !important; padding: 0 !important; margin: 0 80px 0 0 !important; width: 248px !important; }
 #captcha legend { display: none; }
 #captcha_img { 
     height: 45px !important; 
     border: 1px solid #007bff !important; 
     border-radius: 8px !important; 
-    margin-right: 8px;
-    vertical-align: top;
+    margin: 0 !important;
 }
 #captcha_key {
     height: 45px !important;
@@ -300,18 +302,61 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     padding: 0 12px;
     width: 120px;
     font-size: 16px;
-    vertical-align: top;
     outline: none;
+    margin-left: 3px !important;
 }
-#captcha_mp3, #captcha_reload {
-    height: 45px;
+#captcha #captcha_mp3 {
+    position: absolute;
+    top: 0;
+    right: -28px;
     width: 45px;
-    background: #1f2937 !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 8px !important;
-    margin-left: 4px;
-    cursor: pointer;
+    height: 45px;
+    background: #f5f5f5;
+    border: 1px solid #c5c5c5;
+    box-sizing: border-box;
+    background-image: none;
+    font-size: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+#captcha #captcha_mp3:after {
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f130";
+    font-weight: 900;
+    color: #555555;
+    font-size: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-indent: 0;
+}
+#captcha #captcha_reload {
+    position: absolute;
+    top: 0;
+    right: -75px;
+    width: 45px;
+    height: 45px;
+    background: #f5f5f5;
+    border: 1px solid #c5c5c5;
+    box-sizing: border-box;
+    background-image: none;
+    z-index: 2;
+    font-size: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+#captcha #captcha_reload:after {
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f2f9";
+    font-weight: 900;
+    color: #555555;
+    font-size: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-indent: 0;
 }
 
 
@@ -390,24 +435,26 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                 <section class="col-6" style="padding-left:8px; padding-right:8px;">
                     <div class="input">
                         <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호">
-                        <div class="required-dot"></div>
                         <div class="pass-toggle" onclick="toggle_pass('reg_mb_password', this)"><i class="far fa-eye"></i></div>
                     </div>
                 </section>
                 <section class="col-6" style="padding-left:8px; padding-right:8px;">
                     <div class="input">
                         <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호 확인">
-                        <div class="required-dot"></div>
                         <div class="pass-toggle" onclick="toggle_pass('reg_mb_password_re', this)"><i class="far fa-eye"></i></div>
+                        <div class="required-dot"></div>
                     </div>
                 </section>
-                <div class="col-12" id="pass_meter_container" style="display:none; padding-left:8px; padding-right:8px;">
+            <!-- Password Strength Bar -->
+            <div class="row" id="pass_meter_container" style="display:none; margin: 0;">
+                <div class="col-12" style="padding: 0 0 20px 0;">
                     <div id="pass_meter">
-                        <div class="progress progress-e progress-xxs" style="height:4px; margin-top:-10px; margin-bottom:15px; background:#f3f4f6; border-radius:2px;">
-                            <div class="progress-bar progress-bar-e" style="height:100%; width:0%; transition:all 0.3s;"></div>
+                        <div style="height:6px; background:#eee; border-radius:3px; overflow:hidden;">
+                            <div class="progress-bar" style="height:100%; width:0%; transition:all 0.3s; background:#ef4444;"></div>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
         <div class="section-title">개인정보 입력</div>
@@ -701,12 +748,12 @@ function fregisterform_submit(f)
         }
     }
 
-    // 비밀번호 강도체크
+    // 비밀번호 강도체크 (완화: 가장 낮은 단계인 security_0만 차단)
     var pass_strength = $("#pass_meter").attr("class");
-    if (!pass_strength || pass_strength == 'security_0' || pass_strength == 'security_1') {
+    if (pass_strength == 'security_0') {
         Swal.fire({
             title: "중요!",
-            text: "비밀번호의 강도는 '보통' 이상이여야 합니다.",
+            text: "비밀번호가 너무 취약합니다. 보안을 위해 조금 더 복잡하게 설정해주세요.",
             confirmButtonColor: "#ab0000",
             icon: "warning",
             confirmButtonText: "확인"
@@ -1000,9 +1047,15 @@ function toggle_pass(id, el) {
 
 // 암호강도체크 간소화 연동
 $(function() {
-    $("#reg_mb_password").keyup(function() {
-        var score = 0;
+    $("#reg_mb_password").on('input', function() {
         var val = this.value;
+        if (val.length == 0) {
+            $("#pass_meter_container").hide();
+            $("#pass_meter").removeClass().addClass('security_0');
+            return;
+        }
+
+        var score = 0;
         if (val.length >= 8) score++;
         if (/[A-Z]/.test(val)) score++;
         if (/[0-9]/.test(val)) score++;
@@ -1010,11 +1063,15 @@ $(function() {
         
         var percent = (score + 1) * 20;
         var colors = ['#ef4444', '#f59e0b', '#fbbf24', '#10b981', '#059669'];
+        
         $("#pass_meter_container").show();
         $("#pass_meter .progress-bar").css({
             'width': percent + '%',
             'background-color': colors[score]
         });
+        
+        // 검증 로직 연동을 위한 클래스 업데이트
+        $("#pass_meter").removeClass().addClass('security_' + score);
     });
 
     $("#reg_mb_name").on('keyup change', function() {
