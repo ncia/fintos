@@ -4,7 +4,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 $mb_icon_auto = isset($_POST['mb_icon_auto']) ? clean_xss_tags(trim($_POST['mb_icon_auto'])) : '';
 
 if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
-    $source_path = G5_DATA_PATH . '/member_image/te/' . $mb_icon_auto;
+    $source_path = G5_PATH . '/theme/' . $theme . '/image/join/' . $mb_icon_auto;
     
     if (file_exists($source_path)) {
         // 아이콘/이미지 저장 경로 설정 (아이디 앞 2자리 폴더 구조)
@@ -113,16 +113,45 @@ if ($config['cf_form_mail_use']) {
     mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $receive_email, $subject, $content, 1);
 }
 
-// 회원 프로필 이미지와 이윰빌더 photo 필드 동기화
-$mb_img_dir = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
-$mb_img_file = $mb_id . '.gif';
-if (file_exists($mb_img_dir . '/' . $mb_img_file)) {
-    sql_query("update {$g5['eyoom_member']} set photo = '{$mb_img_file}' where mb_id = '{$mb_id}' ");
-} else {
-    // png 파일도 체크
-    $mb_img_file_png = $mb_id . '.png';
-    if (file_exists($mb_img_dir . '/' . $mb_img_file_png)) {
-        sql_query("update {$g5['eyoom_member']} set photo = '{$mb_img_file_png}' where mb_id = '{$mb_id}' ");
+// 회원정보 수정 시 성별 업데이트 (그누보드 코어에서 수정모드 시 mb_sex 업데이트가 누락되는 경우 대응)
+if ($w == 'u' && isset($_POST['mb_sex'])) {
+    $mb_sex = clean_xss_tags(trim($_POST['mb_sex']));
+    sql_query("update {$g5['member_table']} set mb_sex = '{$mb_sex}' where mb_id = '{$mb_id}' ");
+}
+
+// 아이콘/이미지 업로드 시 확장자 보존 및 처리 (gif, png, jpg)
+foreach (array('mb_icon', 'mb_img') as $field) {
+    if (isset($_FILES[$field]) && is_uploaded_file($_FILES[$field]['tmp_name'])) {
+        $ext = strtolower(pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION));
+        if ($ext == 'jpeg') $ext = 'jpg';
+        
+        if (in_array($ext, array('gif', 'png', 'jpg'))) {
+            $mb_dir = ($field == 'mb_icon') ? G5_DATA_PATH . '/member/' . substr($mb_id, 0, 2) : G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
+            
+            // 코어에서 .gif로 강제 저장한 파일을 실제 확장자로 변경
+            $core_file = $mb_dir . '/' . $mb_id . '.gif';
+            $target_file = $mb_dir . '/' . $mb_id . '.' . $ext;
+            
+            if (file_exists($core_file) && $ext != 'gif') {
+                @rename($core_file, $target_file);
+            }
+            
+            // 이윰빌더 photo 필드 업데이트
+            if (isset($g5['eyoom_member'])) {
+                sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.{$ext}' where mb_id = '{$mb_id}' ");
+            }
+        }
+    }
+}
+
+// 회원 프로필 이미지와 이윰빌더 photo 필드 최종 동기화 (기존 파일 존재 여부 체크)
+if (isset($g5['eyoom_member'])) {
+    $mb_img_dir = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
+    foreach (array('gif', 'png', 'jpg') as $ext) {
+        if (file_exists($mb_img_dir . '/' . $mb_id . '.' . $ext)) {
+            sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.{$ext}' where mb_id = '{$mb_id}' ");
+            break;
+        }
     }
 }
 ?>

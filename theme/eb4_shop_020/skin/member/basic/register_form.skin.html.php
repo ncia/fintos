@@ -426,7 +426,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <input type="hidden" name="agree2" value="<?php echo $agree2; ?>">
     <input type="hidden" name="cert_type" value="<?php echo $member['mb_certify']; ?>">
     <input type="hidden" name="cert_no" value="">
-    <?php if (isset($member['mb_sex']) && $w != '') { ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex']; ?>"><?php } ?>
+    <?php if (isset($member['mb_sex']) && $w == '') { ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex']; ?>"><?php } ?>
     <?php if (isset($member['mb_nick_date']) && $member['mb_nick_date'] > date("Y-m-d", G5_SERVER_TIME - ($config['cf_nick_modify'] * 86400))) { ?>
     <input type="hidden" name="mb_nick_default" value="<?php echo $member['mb_nick']; ?>">
     <input type="hidden" name="mb_nick" value="<?php echo $member['mb_nick']; ?>">
@@ -526,13 +526,13 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             </div>
 
             <!-- Member Image/Icon Upload (New) -->
-            <?php if ($config['cf_use_member_icon'] || $config['cf_use_member_img']) { ?>
+            <?php if ($w == 'u' && ($config['cf_use_member_icon'] || $config['cf_use_member_img'])) { ?>
             <div class="section-title">프로필 이미지 설정</div>
             
             <?php if ($config['cf_use_member_icon']) { ?>
             <div class="row">
                 <section class="col-lg-12">
-                    <div class="field-label" style="margin-left:5px;">회원 아이콘 (<?php echo $config['cf_member_icon_width']; ?>x<?php echo $config['cf_member_icon_height']; ?>px, gif만 가능)</div>
+                    <div class="field-label" style="margin-left:5px;">회원 아이콘 (<?php echo $config['cf_member_icon_width']; ?>x<?php echo $config['cf_member_icon_height']; ?>px, gif/png/jpg 가능)</div>
                     <div class="input" style="padding: 5px 10px !important; height: auto !important; min-height: 45px;">
                         <input type="file" name="mb_icon" id="reg_mb_icon" style="padding: 10px 0 !important;">
                     </div>
@@ -559,6 +559,10 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                     <?php 
                     $mb_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.gif';
                     $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.gif';
+                    if (!file_exists($mb_img_path)) {
+                        $mb_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.png';
+                        $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.png';
+                    }
                     if ($w == 'u' && file_exists($mb_img_path)) { ?>
                     <div class="field-note" style="margin-bottom:15px;">
                         <img src="<?php echo $mb_img_url; ?>" alt="기존 이미지" style="width:50px; height:50px; vertical-align:middle; margin-right:10px; border:1px solid #eee; border-radius:50%;">
@@ -575,7 +579,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 
             <!-- Gender Field -->
             <div class="gender-selector">
-                <input type="radio" name="mb_sex" id="sex_m" value="M" <?php echo $member['mb_sex']=='M'?'checked':''; ?>>
+                <input type="radio" name="mb_sex" id="sex_m" value="M" <?php echo ($member['mb_sex']=='M')?'checked':''; ?>>
                 <label for="sex_m" class="gender-label"><i class="fas fa-mars"></i> 남성</label>
                 
                 <input type="radio" name="mb_sex" id="sex_f" value="F" <?php echo $member['mb_sex']=='F'?'checked':''; ?>>
@@ -1199,7 +1203,7 @@ $(function() {
                 if (index < 0) index += 12; // 음수 처리
                 
                 var zodiac = zodiacData[index];
-                var imgPath = "<?php echo G5_URL; ?>/data/member_image/te/" + zodiac.file;
+                var imgPath = "<?php echo EYOOM_THEME_URL; ?>/image/join/" + zodiac.file;
 
                 $("#zodiac_year_text").text(year);
                 $("#zodiac_name_text").text(zodiac.name);
