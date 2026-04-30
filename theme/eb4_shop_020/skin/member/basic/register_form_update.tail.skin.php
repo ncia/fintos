@@ -2,8 +2,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // 12지신 자동 캐릭터 설정 로직
 $mb_icon_auto = isset($_POST['mb_icon_auto']) ? clean_xss_tags(trim($_POST['mb_icon_auto'])) : '';
+$mb_birth     = isset($_POST['mb_birth']) ? clean_xss_tags(trim($_POST['mb_birth'])) : '';
 
-if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
+// 사용자가 직접 파일을 업로드했는지 확인
+$mb_icon_uploaded = (isset($_FILES['mb_icon']['name']) && $_FILES['mb_icon']['name']);
+$mb_img_uploaded  = (isset($_FILES['mb_img']['name']) && $_FILES['mb_img']['name']);
+
+// 신규 가입이거나, 수정 시 생년월일이 변경된 경우에만 자동 캐릭터 설정 (직접 업로드 시 제외)
+if ($mb_icon_auto && ($w == '' || (isset($member['mb_birth']) && $member['mb_birth'] != $mb_birth)) && !$mb_icon_uploaded && !$mb_img_uploaded && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
     $source_path = G5_PATH . '/theme/' . $theme . '/image/join/' . $mb_icon_auto;
     
     if (file_exists($source_path)) {
@@ -24,42 +30,24 @@ if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) 
         
         $icon_ext = pathinfo($source_path, PATHINFO_EXTENSION);
         
-        // 그누보드/이윰빌더 호환성을 위해 gif와 png 모두 저장 시도
-        $formats = array('gif', 'png');
-        
-        foreach ($formats as $fmt) {
-            $dest_path_icon = $dest_dir_icon . '/' . $mb_id . '.' . $fmt;
-            $dest_path_img  = $dest_dir_img . '/' . $mb_id . '.' . $fmt;
-            
-            if ($icon_ext == $fmt) {
-                @copy($source_path, $dest_path_icon);
-                @copy($source_path, $dest_path_img);
-            } else {
-                // 확장자 변환 (GD 라이브러리 사용)
-                if (function_exists('imagecreatefrompng') && $icon_ext == 'png' && $fmt == 'gif') {
-                    $im = @imagecreatefrompng($source_path);
-                    if ($im) {
-                        @imagegif($im, $dest_path_icon);
-                        @imagegif($im, $dest_path_img);
-                        @imagedestroy($im);
-                    }
-                } else if (function_exists('imagecreatefromgif') && $icon_ext == 'gif' && $fmt == 'png') {
-                    $im = @imagecreatefromgif($source_path);
-                    if ($im) {
-                        @imagepng($im, $dest_path_icon);
-                        @imagepng($im, $dest_path_img);
-                        @imagedestroy($im);
-                    }
-                }
-            }
-            
-            if (file_exists($dest_path_icon)) @chmod($dest_path_icon, G5_IMG_PERMISSION);
-            if (file_exists($dest_path_img)) @chmod($dest_path_img, G5_IMG_PERMISSION);
+        // 기존 파일 삭제 (중복 방지)
+        foreach (array('gif', 'png', 'jpg', 'jpeg') as $fmt) {
+            @unlink($dest_dir_icon . '/' . $mb_id . '.' . $fmt);
+            @unlink($dest_dir_img . '/' . $mb_id . '.' . $fmt);
         }
+
+        $dest_path_icon = $dest_dir_icon . '/' . $mb_id . '.' . $icon_ext;
+        $dest_path_img  = $dest_dir_img . '/' . $mb_id . '.' . $icon_ext;
+        
+        @copy($source_path, $dest_path_icon);
+        @copy($source_path, $dest_path_img);
+        
+        if (file_exists($dest_path_icon)) @chmod($dest_path_icon, G5_IMG_PERMISSION);
+        if (file_exists($dest_path_img)) @chmod($dest_path_img, G5_IMG_PERMISSION);
 
         // 이윰빌더용 DB 업데이트 (photo 필드)
         if (isset($g5['eyoom_member'])) {
-            sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.gif' where mb_id = '{$mb_id}' ");
+            sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.{$icon_ext}' where mb_id = '{$mb_id}' ");
         }
     }
 }
@@ -113,26 +101,39 @@ if ($config['cf_form_mail_use']) {
     mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $receive_email, $subject, $content, 1);
 }
 
-// 회원정보 수정 시 성별 업데이트 (그누보드 코어에서 수정모드 시 mb_sex 업데이트가 누락되는 경우 대응)
-if ($w == 'u' && isset($_POST['mb_sex'])) {
-    $mb_sex = clean_xss_tags(trim($_POST['mb_sex']));
-    sql_query("update {$g5['member_table']} set mb_sex = '{$mb_sex}' where mb_id = '{$mb_id}' ");
+// 회원정보 수정/가입 시 생년월일 및 성별 업데이트 (그누보드 코어에서 본인확인이 없는 경우 누락되는 현상 대응)
+$mb_birth = isset($_POST['mb_birth']) ? clean_xss_tags(trim($_POST['mb_birth'])) : '';
+$mb_sex   = isset($_POST['mb_sex'])   ? clean_xss_tags(trim($_POST['mb_sex']))   : '';
+
+$sql_update_common = "";
+if ($mb_birth) $sql_update_common .= " , mb_birth = '{$mb_birth}' ";
+if ($mb_sex)   $sql_update_common .= " , mb_sex = '{$mb_sex}' ";
+
+if ($sql_update_common) {
+    sql_query("update {$g5['member_table']} set mb_id = mb_id {$sql_update_common} where mb_id = '{$mb_id}' ");
 }
 
 // 아이콘/이미지 업로드 시 확장자 보존 및 처리 (gif, png, jpg)
 foreach (array('mb_icon', 'mb_img') as $field) {
-    if (isset($_FILES[$field]) && is_uploaded_file($_FILES[$field]['tmp_name'])) {
+    if (isset($_FILES[$field]['name']) && $_FILES[$field]['name']) {
         $ext = strtolower(pathinfo($_FILES[$field]['name'], PATHINFO_EXTENSION));
         if ($ext == 'jpeg') $ext = 'jpg';
         
         if (in_array($ext, array('gif', 'png', 'jpg'))) {
             $mb_dir = ($field == 'mb_icon') ? G5_DATA_PATH . '/member/' . substr($mb_id, 0, 2) : G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
             
-            // 코어에서 .gif로 강제 저장한 파일을 실제 확장자로 변경
+            // 기존 파일들 삭제 (중복 방지 - 업로드한 파일과 다른 확장자 파일들)
+            foreach (array('gif', 'png', 'jpg', 'jpeg') as $old_ext) {
+                if ($old_ext != $ext) {
+                    @unlink($mb_dir . '/' . $mb_id . '.' . $old_ext);
+                }
+            }
+            
+            // 코어에서 .gif로 강제 저장했을 수도 있는 파일 확인 및 변경
             $core_file = $mb_dir . '/' . $mb_id . '.gif';
             $target_file = $mb_dir . '/' . $mb_id . '.' . $ext;
             
-            if (file_exists($core_file) && $ext != 'gif') {
+            if (file_exists($core_file) && $ext != 'gif' && !file_exists($target_file)) {
                 @rename($core_file, $target_file);
             }
             

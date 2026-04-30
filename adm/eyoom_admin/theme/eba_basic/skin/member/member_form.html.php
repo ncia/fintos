@@ -276,8 +276,8 @@ $frm_submit .= $frm_eba_submit;
                     <label for="mb_icon" class="label">회원아이콘</label>
                 </div>
                 <div class="adm-form-td td-r">
-                    <div class="input">
-                        <input type="file" class="form-control" id="mb_icon" name="mb_icon" value="파일선택">
+                    <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
+                        <input type="file" class="form-control" id="mb_icon" name="mb_icon" value="파일선택" style="padding: 5px 0 !important;">
                     </div>
                     <?php if ($icon_url) { ?>
                     <img src="<?php echo $icon_url.$icon_filemtile; ?>" alt="">
@@ -291,8 +291,8 @@ $frm_submit .= $frm_eba_submit;
                     <label for="mb_img" class="label">회원이미지</label>
                 </div>
                 <div class="adm-form-td td-r">
-                    <div class="input">
-                        <input type="file" class="form-control" id="mb_img" name="mb_img" value="파일선택">
+                    <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
+                        <input type="file" class="form-control" id="mb_img" name="mb_img" value="파일선택" style="padding: 5px 0 !important;">
                     </div>
                     <?php if (file_exists($photo_file)) { ?>
                     <?php echo get_member_profile_img($mb['mb_id']); ?>

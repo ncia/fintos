@@ -328,8 +328,8 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <div class="row">
                 <section class="col-lg-12">
                     <label for="reg_mb_icon" class="label">회원아이콘</label>
-                    <div class="input m-b-10">
-                        <input type="file" class="form-control" id="reg_mb_icon" name="mb_icon" value="파일선택">
+                    <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
+                        <input type="file" name="mb_icon" id="reg_mb_icon" style="padding: 5px 0 !important;">
                     </div>
                     <div class="clearfix"></div>
                     <?php if ($w == 'u' && file_exists($mb_icon_path)) {  ?>
@@ -345,8 +345,8 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <div class="row">
                 <section class="col-lg-12">
                     <label for="reg_mb_img" class="label">회원이미지</label>
-                    <div class="input m-b-10">
-                        <input type="file" class="form-control" id="reg_mb_img" name="mb_img" value="파일선택">
+                    <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
+                        <input type="file" name="mb_img" id="reg_mb_img" style="padding: 5px 0 !important;">
                     </div>
                     <div class="clearfix"></div>
                     <?php if ($w == 'u' && file_exists($mb_img_path)) {  ?>
