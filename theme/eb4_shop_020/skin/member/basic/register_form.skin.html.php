@@ -734,7 +734,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
         <div class="form-footer">
             <button type="submit" id="btn_submit" class="submit-btn"><?php echo $w=='' ? '회원가입' : '정보수정'; ?></button>
             <?php if ($w=='u') { ?>
-            <button type="button" class="btn-e btn-e-lg btn-e-red" style="width:100%; background:#ef4444; border:none; height:45px; border-radius:8px; color:#fff; margin-top:10px; font-weight:700;" onclick="member_leave();">회원탈퇴</button>
+            <button type="button" class="btn-e btn-e-lg btn-e-red" style="width:100%; background:#ef4444; border:none; height:45px; border-radius:8px; color:#fff; margin-top:10px; font-weight:700; display:none;" onclick="member_leave();">회원탈퇴</button>
             <?php } ?>
         </div>
     </div>
