@@ -9,7 +9,9 @@ $mb_icon_uploaded = (isset($_FILES['mb_icon']['name']) && $_FILES['mb_icon']['na
 $mb_img_uploaded  = (isset($_FILES['mb_img']['name']) && $_FILES['mb_img']['name']);
 
 // 신규 가입이거나, 수정 시 생년월일이 변경된 경우에만 자동 캐릭터 설정 (직접 업로드 시 제외)
-if ($mb_icon_auto && ($w == '' || (isset($member['mb_birth']) && $member['mb_birth'] != $mb_birth)) && !$mb_icon_uploaded && !$mb_img_uploaded && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
+$del_mb_icon = isset($_POST['del_mb_icon']) ? 1 : 0;
+$del_mb_img  = isset($_POST['del_mb_img'])  ? 1 : 0;
+if ($mb_icon_auto && ($w == '' || (isset($member['mb_birth']) && $member['mb_birth'] != $mb_birth)) && !$mb_icon_uploaded && !$mb_img_uploaded && !$del_mb_icon && !$del_mb_img && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
     $source_path = G5_PATH . '/theme/' . $theme . '/image/join/' . $mb_icon_auto;
     
     if (file_exists($source_path)) {
@@ -102,10 +104,12 @@ if ($config['cf_form_mail_use']) {
 }
 
 // 회원정보 수정/가입 시 생년월일 및 성별 업데이트 (그누보드 코어에서 본인확인이 없는 경우 누락되는 현상 대응)
+$mb_hp    = isset($_POST['mb_hp'])    ? clean_xss_tags(trim($_POST['mb_hp']))    : '';
 $mb_birth = isset($_POST['mb_birth']) ? clean_xss_tags(trim($_POST['mb_birth'])) : '';
 $mb_sex   = isset($_POST['mb_sex'])   ? clean_xss_tags(trim($_POST['mb_sex']))   : '';
 
 $sql_update_common = "";
+if ($mb_hp)    $sql_update_common .= " , mb_hp = '{$mb_hp}' ";
 if ($mb_birth) $sql_update_common .= " , mb_birth = '{$mb_birth}' ";
 if ($mb_sex)   $sql_update_common .= " , mb_sex = '{$mb_sex}' ";
 

@@ -1,0 +1,84 @@
+2026-05-01 12:54:29 - SQL:  update g5_member
+                set mb_nick = '유영만',
+                    mb_mailling = '1',
+                    mb_sms = '0',
+                    mb_open = '1',
+                    mb_email = 'test2@domain.com',
+                    mb_homepage = '',
+                    mb_tel = '',
+                    mb_zip1 = '181',
+                    mb_zip2 = '50',
+                    mb_addr1 = '경기 오산시 남부대로 411-15 (원동, 오산원동 푸르지오)',
+                    mb_addr2 = '푸르지오',
+                    mb_addr3 = '원동, 오산원동 푸르지오',
+                    mb_addr_jibeon = '',
+                    mb_signature = '',
+                    mb_profile = '',
+                    mb_1 = '',
+                    mb_2 = '',
+                    mb_3 = '',
+                    mb_4 = '',
+                    mb_5 = '',
+                    mb_6 = '',
+                    mb_7 = '',
+                    mb_8 = '',
+                    mb_9 = '',
+                    mb_10 = '',
+                    mb_marketing_agree = '0',
+                    mb_thirdparty_agree = '0',
+                    mb_promotion_agree = '0',
+                    product_title = ''
+                    
+                    
+                    
+                    
+                     , mb_hp = '010-2627-7770'  , mb_certify = ''  , mb_adult = 0  , mb_birth = '19900101'  , mb_sex = 'M' 
+                     , mb_mailling_date = '2026-05-01 12:54:29' 
+                     , mb_sms_date = '2026-05-01 12:54:29' 
+                     , mb_marketing_date = '2026-05-01 12:54:29' 
+                     , mb_thirdparty_date = '2026-05-01 12:54:29' 
+                     , mb_agree_log = CONCAT('[2026-05-01 12:54:29, 회원 정보 수정] 마케팅 목적의 개인정보 수집 및 이용(철회) | 광고성 이메일 수신(동의) | 광고성 SMS/카카오톡 수신(철회) | 개인정보 제3자 제공(철회)
+', IFNULL(mb_agree_log, ''))
+              where mb_id = 'test2' 
+2026-05-01 13:03:09 - SQL:  update g5_member
+                set mb_nick = '유영만',
+                    mb_mailling = '1',
+                    mb_sms = '0',
+                    mb_open = '1',
+                    mb_email = 'test2@domain.com',
+                    mb_homepage = '',
+                    mb_tel = '',
+                    mb_zip1 = '181',
+                    mb_zip2 = '50',
+                    mb_addr1 = '경기 오산시 남부대로 411-15 (원동, 오산원동 푸르지오)',
+                    mb_addr2 = '푸르지오',
+                    mb_addr3 = '원동, 오산원동 푸르지오',
+                    mb_addr_jibeon = '',
+                    mb_signature = '',
+                    mb_profile = '',
+                    mb_1 = '',
+                    mb_2 = '',
+                    mb_3 = '',
+                    mb_4 = '',
+                    mb_5 = '',
+                    mb_6 = '',
+                    mb_7 = '',
+                    mb_8 = '',
+                    mb_9 = '',
+                    mb_10 = '',
+                    mb_marketing_agree = '0',
+                    mb_thirdparty_agree = '0',
+                    mb_promotion_agree = '0',
+                    product_title = ''
+                    
+                    
+                    
+                    
+                     , mb_hp = '010-2627-7770'  , mb_certify = ''  , mb_adult = 0  , mb_birth = '19900101'  , mb_sex = 'M' 
+                     , mb_mailling_date = '2026-05-01 13:03:09' 
+                     , mb_sms_date = '2026-05-01 13:03:09' 
+                     , mb_marketing_date = '2026-05-01 13:03:09' 
+                     , mb_thirdparty_date = '2026-05-01 13:03:09' 
+                     , mb_agree_log = CONCAT('[2026-05-01 13:03:09, 회원 정보 수정] 마케팅 목적의 개인정보 수집 및 이용(철회) | 광고성 이메일 수신(동의) | 광고성 SMS/카카오톡 수신(철회) | 개인정보 제3자 제공(철회)
+', IFNULL(mb_agree_log, ''))
+              where mb_id = 'test2' 

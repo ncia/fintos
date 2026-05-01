@@ -489,10 +489,11 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <?php if (isset($member['mb_nick_date']) && $member['mb_nick_date'] > date("Y-m-d", G5_SERVER_TIME - ($config['cf_nick_modify'] * 86400))) { ?>
     <input type="hidden" name="mb_nick_default" value="<?php echo $member['mb_nick']; ?>">
     <input type="hidden" name="mb_nick" value="<?php echo $member['mb_nick']; ?>">
-    <?php } ?>
-    <input type="hidden" name="product_title" value="<?php echo isset($_GET['it_name']) ? clean_xss_tags($_GET['it_name']) : ''; ?>">
+    <?php } else { ?>
     <input type="hidden" name="mb_nick" id="reg_mb_nick" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
     <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
+    <?php } ?>
+    <input type="hidden" name="product_title" value="<?php echo isset($_GET['it_name']) ? clean_xss_tags($_GET['it_name']) : ''; ?>">
     <input type="hidden" name="mb_nick_duplicated" id="mb_nick_duplicated" value="y">
     <div class="register-box">
         <!-- Member Image/Icon Upload (Redesigned) -->
@@ -583,13 +584,13 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <div class="row" style="margin-left:-8px; margin-right:-8px;">
                 <section class="col-6" style="padding-left:8px; padding-right:8px;">
                     <div class="input">
-                        <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호">
+                        <input type="password" name="mb_password" id="reg_mb_password" <?php if ($w=='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호">
                         <div class="pass-toggle" onclick="toggle_pass('reg_mb_password', this)"><i class="far fa-eye"></i></div>
                     </div>
                 </section>
                 <section class="col-6" style="padding-left:8px; padding-right:8px;">
                     <div class="input">
-                        <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w!='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호 확인">
+                        <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php if ($w=='') { ?>required<?php } ?> minlength="4" maxlength="20" placeholder="비밀번호 확인">
                         <div class="pass-toggle" onclick="toggle_pass('reg_mb_password_re', this)"><i class="far fa-eye"></i></div>
                         <div class="required-dot"></div>
                     </div>
@@ -844,40 +845,22 @@ function fregisterform_submit(f)
     if (f.w.value == "") {
         var msg = reg_mb_id_check();
         if (msg) {
-            Swal.fire({
-                title: "중요!",
-                text: msg,
-                confirmButtonColor: "#ab0000",
-                icon: "error",
-                confirmButtonText: "확인"
-            });
-            f.mb_id.select();
+            alert(msg);
+            if (f.mb_id) f.mb_id.select();
             return false;
         }
     }
     <?php if ($w=='') { ?>
     if (f.mb_id_duplicated.value != 'y') {
-        Swal.fire({
-            title: "중요!",
-            text: "아이디 중복검사를 하셔야 합니다.",
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
-        f.mb_id.select();
+        alert("아이디 중복검사를 하셔야 합니다.");
+        if (f.mb_id) f.mb_id.select();
         return false;
     }
     <?php } ?>
 
     if (f.w.value == "") {
         if (f.mb_password.value.length < 4) {
-            Swal.fire({
-                title: "중요!",
-                text: "비밀번호를 4글자 이상 입력하십시오.",
-                confirmButtonColor: "#ab0000",
-                icon: "warning",
-                confirmButtonText: "확인"
-            });
+            alert("비밀번호를 4글자 이상 입력하십시오.");
             f.mb_password.focus();
             return false;
         }
@@ -888,7 +871,7 @@ function fregisterform_submit(f)
             title: "중요!",
             text: "비밀번호가 같지 않습니다.",
             confirmButtonColor: "#ab0000",
-            type: "error",
+            icon: "error",
             confirmButtonText: "확인"
         });
         f.mb_password_re.focus();
@@ -897,13 +880,7 @@ function fregisterform_submit(f)
 
     if (f.mb_password.value.length > 0) {
         if (f.mb_password_re.value.length < 4) {
-            Swal.fire({
-                title: "중요!",
-                text: "비밀번호를 4글자 이상 입력하십시오.",
-                confirmButtonColor: "#ab0000",
-                icon: "warning",
-                confirmButtonText: "확인"
-            });
+            alert("비밀번호를 4글자 이상 입력하십시오.");
             f.mb_password_re.focus();
             return false;
         }
@@ -912,13 +889,7 @@ function fregisterform_submit(f)
     // 비밀번호 강도체크 (완화: 가장 낮은 단계인 security_0만 차단)
     var pass_strength = $("#pass_meter").attr("class");
     if (pass_strength == 'security_0') {
-        Swal.fire({
-            title: "중요!",
-            text: "비밀번호가 너무 취약합니다. 보안을 위해 조금 더 복잡하게 설정해주세요.",
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
+        alert("비밀번호가 너무 취약합니다. 보안을 위해 조금 더 복잡하게 설정해주세요.");
         f.mb_password.focus();
         return false;
     }
@@ -926,13 +897,7 @@ function fregisterform_submit(f)
     // 이름 검사
     if (f.w.value=="") {
         if (f.mb_name.value.length < 1) {
-            Swal.fire({
-                title: "중요!",
-                text: "이름을 입력하십시오.",
-                confirmButtonColor: "#ab0000",
-                icon: "error",
-                confirmButtonText: "확인"
-            });
+            alert("이름을 입력하십시오.");
             f.mb_name.focus();
             return false;
         }
@@ -956,13 +921,7 @@ function fregisterform_submit(f)
     <?php if ($w=='' && $config['cf_cert_use'] && $config['cf_cert_req']) { ?>
     // 본인확인 체크
     if (f.cert_no.value=="") {
-        Swal.fire({
-            title: "중요!",
-            text: "회원가입을 위해서는 본인확인을 해주셔야 합니다.",
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
+        alert("회원가입을 위해서는 본인확인을 해주셔야 합니다.");
         return false;
     }
     <?php } ?>
@@ -971,27 +930,15 @@ function fregisterform_submit(f)
     if ((f.w.value == "") || (f.w.value == "u" && f.mb_nick.defaultValue != f.mb_nick.value)) {
         var msg = reg_mb_nick_check();
         if (msg) {
-            Swal.fire({
-                title: "중요!",
-                text: msg,
-                confirmButtonColor: "#ab0000",
-                icon: "warning",
-                confirmButtonText: "확인"
-            });
-            f.reg_mb_nick.select();
+            alert(msg);
+            if (f.mb_name) f.mb_name.select();
             return false;
         }
     }
     <?php if ($w=='') { ?>
     if (f.mb_nick_duplicated.value != 'y') {
-        Swal.fire({
-            title: "중요!",
-            text: "닉네임 중복검사를 하셔야 합니다.",
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
-        f.reg_mb_nick.select();
+        alert("닉네임 중복검사를 하셔야 합니다.");
+        if (f.mb_name) f.mb_name.select();
         return false;
     }
     <?php } ?>
@@ -1001,28 +948,16 @@ function fregisterform_submit(f)
     if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
         var msg = reg_mb_email_check();
         if (msg) {
-            Swal.fire({
-                title: "중요!",
-                text: msg,
-                confirmButtonColor: "#ab0000",
-                icon: "error",
-                confirmButtonText: "확인"
-            });
-            f.reg_mb_email.select();
+            alert(msg);
+            if (f.mb_email) f.mb_email.select();
             return false;
         }
     }
 
     <?php if ($w=='') { ?>
     if (f.mb_email_duplicated.value != 'y') {
-        Swal.fire({
-            title: "중요!",
-            text: "이메일 중복검사를 하셔야 합니다.",
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
-        f.reg_mb_email.select();
+        alert("이메일 중복검사를 하셔야 합니다.");
+        if (f.mb_email) f.mb_email.select();
         return false;
     }
     <?php } ?>
@@ -1031,41 +966,23 @@ function fregisterform_submit(f)
     // 휴대폰번호 체크
     var msg = reg_mb_hp_check();
     if (msg) {
-        Swal.fire({
-            title: "중요!",
-            text: msg,
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
-        f.reg_mb_hp.select();
+        alert(msg);
+        if (f.mb_hp) f.mb_hp.select();
         return false;
     }
     <?php } ?>
 
     if (typeof(f.mb_recommend) != "undefined" && f.mb_recommend.value) {
         if (f.mb_id.value == f.mb_recommend.value) {
-            Swal.fire({
-                title: "중요!",
-                text: "본인을 추천할 수 없습니다.",
-                confirmButtonColor: "#ab0000",
-                icon: "error",
-                confirmButtonText: "확인"
-            });
-            f.mb_recommend.focus();
+            alert("본인을 추천할 수 없습니다.");
+            if (f.mb_recommend) f.mb_recommend.focus();
             return false;
         }
 
         var msg = reg_mb_recommend_check();
         if (msg) {
-            Swal.fire({
-                title: "중요!",
-                text: msg,
-                confirmButtonColor: "#ab0000",
-                icon: "warning",
-                confirmButtonText: "확인"
-            });
-            f.mb_recommend.select();
+            alert(msg);
+            if (f.mb_recommend) f.mb_recommend.select();
             return false;
         }
     }

@@ -1,0 +1,185 @@
+﻿
+Warning: Undefined array key "SERVER_PORT" in C:\xampp\htdocs\gnu\common.php on line 47
+
+Warning: Undefined array key "SERVER_PORT" in C:\xampp\htdocs\gnu\common.php on line 47
+
+Warning: Undefined array key "SERVER_PORT" in C:\xampp\htdocs\gnu\common.php on line 47
+
+Warning: Undefined array key "SERVER_NAME" in C:\xampp\htdocs\gnu\common.php on line 50
+
+Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\gnu\common.php on line 224
+
+Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\gnu\common.php on line 225
+
+Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\gnu\common.php on line 226
+
+Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\gnu\common.php on line 227
+
+Warning: session_set_cookie_params(): Session cookie parameters cannot be changed after headers have already been sent in C:\xampp\htdocs\gnu\common.php on line 232
+
+Warning: ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\gnu\common.php on line 235
+
+Warning: Undefined array key "REQUEST_URI" in C:\xampp\htdocs\gnu\common.php on line 518
+
+Warning: Undefined array key "REMOTE_ADDR" in C:\xampp\htdocs\gnu\bbs\visit_insert.inc.php on line 5
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<title>?ㅻ쪟?덈궡 ?섏씠吏 - ??좎뒪 - 蹂댄뿕??紐⑤뱺寃?/title>
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/css/default.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/bootstrap/css/bootstrap.min.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/fontawesome5/css/fontawesome-all.min.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/eyoom-form/css/eyoom-form.min.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/font/Pretendard/Pretendard.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/swiper/swiper-bundle.min.css" type="text/css" media="screen">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/css/common.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/css/shop_style.css?ver=2303229">
+<link rel="stylesheet" id="mode_css" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/css/dark_mode.css?ver=2303229">
+<link rel="stylesheet" href="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/css/custom.css?ver=2303229">
+<!--[if lte IE 8]>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/js/html5.js"></script>
+<![endif]-->
+<script>
+// ?먮컮?ㅽ겕由쏀듃?먯꽌 ?ъ슜?섎뒗 ?꾩뿭蹂???좎뼵
+var g5_url       = "http://:c:/xampp/htdocs/gnu/test_post.php";
+var g5_bbs_url   = "http://:c:/xampp/htdocs/gnu/test_post.php/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+var g5_shop_url  = "http://:c:/xampp/htdocs/gnu/test_post.php/shop";
+</script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/js/jquery-1.12.4.min.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/js/common.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/js/wrest.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/js/placeholders.min.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/popper/popper.min.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/bootstrap/js/bootstrap.min.js?ver=2304171"></script>
+<script src="http://:c:/xampp/htdocs/gnu/test_post.php/theme/eb4_shop_020/plugins/swiper/swiper-bundle.min.js?ver=2304171"></script>
+</head>
+
+<body  class="dark-mode">
+
+<script>
+alert("?먮룞?깅줉諛⑹? ?レ옄媛 ??몄뒿?덈떎.");
+history.back();
+</script>
+
+<noscript>
+<div id="validation_check">
+    <h1>?ㅼ쓬 ??ぉ???ㅻ쪟媛 ?덉뒿?덈떎.</h1>
+    <p class="cbg">
+        ?먮룞?깅줉諛⑹? ?レ옄媛 ??몄뒿?덈떎.    </p>
+        <div class="btn_confirm">
+        <a href="">?뚯븘媛湲?/a>
+    </div>
+    
+</div>
+</noscript>
+
+
+<script>
+$(function(){
+    // ?붾줈??    $("#follow button").click(function(){
+        var action = $(this).attr('value');
+        var target = $(this).attr('name');
+
+        var url = "http://:c:/xampp/htdocs/gnu/test_post.php/eyoom/core/mypage/follow.ajax.php";
+        $.post(url, {'action':action,'user':target}, function(data) {
+            if(data.result == 'yes') {
+                var botton = $(".follow_"+target);
+                if (action == 'follow') {
+                    botton.removeClass('btn-e-indigo');
+                    botton.addClass('btn-e-dark');
+                    botton.attr('title','移쒓뎄愿怨꾨? ?댁젣?⑸땲??');
+                    botton.html('?명뙏濡쒖슦 <i class="fas fa-times text-white"></i>');
+                    botton.attr('value','unfollow');
+                    Swal.fire({
+                        title: "?뚮┝",
+                        text: '?대떦 ?뚯썝???붾줈?고븯??듬땲??',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "?뺤씤"
+                    });
+                }
+                if (action == 'unfollow') {
+                    botton.removeClass('btn-e-dark');
+                    botton.addClass('btn-e-indigo');
+                    botton.attr('title','移쒓뎄愿怨꾨? ?좎껌?⑸땲??');
+                    botton.html('?붾줈??);
+                    botton.attr('value','follow');
+                    Swal.fire({
+                        title: "?뚮┝",
+                        text: '?대떦 ?뚯썝???붾줈???댁젣?섏??듬땲??',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "?뺤씤"
+                    });
+                }
+            } else if (data.result == 'no'){
+                Swal.fire({
+                    title: "?뚮┝",
+                    text: '?뚯뀥湲곕뒫??Off ?쒖폒?볦? ?뚯썝?낅땲??',
+                    confirmButtonColor: "#e53935",
+                    icon: "warning",
+                    confirmButtonText: "?뺤씤"
+                });
+            }
+        },"json");
+    });
+
+    // 援щ룆
+    $("#subscribe button").click(function(){
+        var action = $(this).attr('value');
+        var target = $(this).attr('name');
+
+        var url = "http://:c:/xampp/htdocs/gnu/test_post.php/eyoom/core/mypage/subscribe.ajax.php";
+        $.post(url, {'action':action,'user':target}, function(data) {
+            if(data.result == 'yes') {
+                var botton = $(".subscribe_"+target);
+                if (action == 'subscribe') {
+                    botton.removeClass('btn-e-teal');
+                    botton.addClass('btn-e-dark');
+                    botton.attr('title','援щ룆???댁젣?⑸땲??');
+                    botton.html('援щ룆?댁젣 <i class="fas fa-times text-white"></i>');
+                    botton.attr('value','unsubscribe');
+                    Swal.fire({
+                        title: "?뚮┝",
+                        text: '?대떦 ?뚯썝??湲??援щ룆?좎껌 ?섏??듬땲??',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "?뺤씤"
+                    });
+                }
+                if (action == 'unsubscribe') {
+                    botton.removeClass('btn-e-dark');
+                    botton.addClass('btn-e-teal');
+                    botton.attr('title','援щ룆???좎껌?⑸땲??');
+                    botton.html('援щ룆?섍린');
+                    botton.attr('value','subscribe');
+                    Swal.fire({
+                        title: "?뚮┝",
+                        text: '?대떦 ?뚯썝??湲??援щ룆?댁젣 ?섏??듬땲??',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "?뺤씤"
+                    });
+                }
+            }
+        },"json");
+    });
+
+});
+</script>
+
+
+</body>
+</html>

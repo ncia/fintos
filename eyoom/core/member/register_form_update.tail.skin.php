@@ -7,27 +7,28 @@
 if (!defined('_GNUBOARD_')) exit;
 
 // LOG
-file_put_contents(G5_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - mb_id: '.$mb_id."\n", FILE_APPEND);
- 
+file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - mb_id: '.$mb_id."\n", FILE_APPEND);
 
 //----------------------------------------------------------
-// 회원정보 수정/가입 시 생년월일 및 성별 업데이트 (그누보드 코어에서 본인확인이 없는 경우 누락되는 현상 대응)
+// 회원정보 수정/가입 시 연락처, 생년월일 및 성별 업데이트 (그누보드 코어에서 본인확인이 없는 경우 누락되는 현상 대응)
 //----------------------------------------------------------
+$mb_hp    = isset($_POST['mb_hp'])    ? clean_xss_tags(trim($_POST['mb_hp']))    : '';
 $mb_birth = isset($_POST['mb_birth']) ? clean_xss_tags(trim($_POST['mb_birth'])) : '';
 $mb_sex   = isset($_POST['mb_sex'])   ? clean_xss_tags(trim($_POST['mb_sex']))   : '';
 
 $sql_update_common = "";
+if ($mb_hp)    $sql_update_common .= " , mb_hp = '{$mb_hp}' ";
 if ($mb_birth) $sql_update_common .= " , mb_birth = '{$mb_birth}' ";
 if ($mb_sex)   $sql_update_common .= " , mb_sex = '{$mb_sex}' ";
 
 if ($sql_update_common) {
     $sql = "update {$g5['member_table']} set mb_id = mb_id {$sql_update_common} where mb_id = '{$mb_id}' ";
-    file_put_contents(G5_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - SQL: '.$sql."\n", FILE_APPEND);
+    file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - SQL: '.$sql."\n", FILE_APPEND);
     $res = sql_query($sql);
     if (!$res) {
-        file_put_contents(G5_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - SQL ERROR: '.mysqli_error($g5['connect_db'])."\n", FILE_APPEND);
+        file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - SQL ERROR: '.mysqli_error($g5['connect_db'])."\n", FILE_APPEND);
     } else {
-        file_put_contents(G5_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - SQL SUCCESS'."\n", FILE_APPEND);
+        file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - SQL SUCCESS'."\n", FILE_APPEND);
     }
 }
 
@@ -36,7 +37,12 @@ if ($sql_update_common) {
 //----------------------------------------------------------
 $mb_icon_auto = isset($_POST['mb_icon_auto']) ? clean_xss_tags(trim($_POST['mb_icon_auto'])) : '';
 
-if ($mb_icon_auto && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
+$del_mb_icon = isset($_POST['del_mb_icon']) ? 1 : 0;
+$del_mb_img  = isset($_POST['del_mb_img'])  ? 1 : 0;
+$is_uploading_custom = (!empty($_FILES['mb_icon']['name']) || !empty($_FILES['mb_img']['name']));
+
+// 사용자가 명시적으로 이미지를 삭제했거나 커스텀 이미지를 업로드하는 경우에는 자동 설정을 건너뜁니다.
+if ($mb_icon_auto && !$del_mb_icon && !$del_mb_img && !$is_uploading_custom && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
     $source_path = G5_PATH . '/theme/' . $theme . '/image/join/' . $mb_icon_auto;
     
     if (file_exists($source_path)) {

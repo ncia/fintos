@@ -18,7 +18,42 @@ if ($w == 'u' && $is_admin == 'super') {
 }
 
 if (run_replace('register_member_chk_captcha', !chk_captcha(), $w)) {
-    alert('자동등록방지 숫자가 틀렸습니다.');
+    $url = G5_HTTP_BBS_URL.'/register_form.php' . ($w ? '?w='.$w : '');
+    
+    // 비밀번호 체크 우회를 위해 현재 비밀번호 가져오기
+    $tmp_password = "";
+    if ($w == 'u' && isset($member['mb_id'])) {
+        $row = sql_fetch(" select mb_password from {$g5['member_table']} where mb_id = '{$member['mb_id']}' ");
+        $tmp_password = $row['mb_password'];
+    }
+
+    $post_data = "";
+    foreach($_POST as $key => $value) {
+        if(is_array($value)) continue;
+        // mb_password는 아래에서 따로 처리 (이미 입력된 값이 있을 수 있으므로)
+        if($key == 'mb_password') continue;
+        $post_data .= '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($value).'">';
+    }
+    
+    echo '
+    <!doctype html>
+    <html lang="ko">
+    <head>
+    <meta charset="utf-8">
+    </head>
+    <body>
+    <form name="fcaptcha_fail" method="post" action="'.$url.'">
+    '.$post_data.'
+    <input type="hidden" name="mb_password" value="'.$tmp_password.'">
+    <input type="hidden" name="is_update" value="1">
+    </form>
+    <script>
+    alert("자동등록방지 숫자가 틀렸습니다.");
+    document.fcaptcha_fail.submit();
+    </script>
+    </body>
+    </html>';
+    exit;
 }
 
 if($w == 'u')
@@ -79,6 +114,7 @@ $mb_thirdparty_agree    = isset($_POST['mb_thirdparty_agree'])  ? trim($_POST['m
 $mb_promotion_agree     = isset($_POST['mb_promotion_agree'])   ? trim($_POST['mb_promotion_agree'])    : "0";
 $product_title          = isset($_POST['product_title'])        ? trim($_POST['product_title'])         : "";
 $product_title          = clean_xss_tags($product_title, 1, 1);
+
 
 run_event('register_form_update_before', $mb_id, $w);
 
@@ -149,7 +185,7 @@ if ($w == '' || $w == 'u') {
         }
 
         if (strtolower($mb_id) == strtolower($mb_recommend)) {
-            alert('본인을 추천할 수 없습니다.');
+            file_put_contents(G5_DATA_PATH.'/alert_log.txt', "ALERT: 본인을 추천할 수 없습니다.\n", FILE_APPEND); alert('본인을 추천할 수 없습니다.');
         }
     } else {
         // 자바스크립트로 정보변경이 가능한 버그 수정
@@ -162,8 +198,8 @@ if ($w == '' || $w == 'u') {
 
     run_event('register_form_update_valid', $w, $mb_id, $mb_nick, $mb_email);
 
-    if ($msg = exist_mb_nick($mb_nick, $mb_id))     alert($msg, "", true, true);
-    if ($msg = exist_mb_email($mb_email, $mb_id))   alert($msg, "", true, true);
+    if ($msg = exist_mb_nick($mb_nick, $mb_id))     { file_put_contents(G5_DATA_PATH.'/alert_log.txt', "ALERT: exist_mb_nick: $msg\n", FILE_APPEND); alert($msg, "", true, true); }
+    if ($msg = exist_mb_email($mb_email, $mb_id))   { file_put_contents(G5_DATA_PATH.'/alert_log.txt', "ALERT: exist_mb_email: $msg\n", FILE_APPEND); alert($msg, "", true, true); }
 }
 
 // 사용자 코드 실행
@@ -213,8 +249,10 @@ if ($config['cf_cert_use'] && $cert_type && $md5_cert_no) {
         $sql_certify .= " , mb_hp = '{$mb_hp}' ";
         $sql_certify .= " , mb_certify = '' ";
         $sql_certify .= " , mb_adult = 0 ";
-        $sql_certify .= " , mb_birth = '' ";
-        $sql_certify .= " , mb_sex = '' ";
+        if (!$mb_birth) $sql_certify .= " , mb_birth = '' ";
+        else $sql_certify .= " , mb_birth = '{$mb_birth}' ";
+        if (!$mb_sex) $sql_certify .= " , mb_sex = '' ";
+        else $sql_certify .= " , mb_sex = '{$mb_sex}' ";
     }
 }
 //===============================================================
@@ -260,6 +298,7 @@ if ($w == '') {
                      mb_thirdparty_agree = '{$mb_thirdparty_agree}',
                      mb_promotion_agree = '{$mb_promotion_agree}',
                      product_title = '{$product_title}'
+
                      {$sql_certify} ";
 
     // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
@@ -459,6 +498,7 @@ if ($w == '') {
                     mb_thirdparty_agree = '{$mb_thirdparty_agree}',
                     mb_promotion_agree = '{$mb_promotion_agree}',
                     product_title = '{$product_title}'
+
                     {$sql_password}
                     {$sql_nick_date}
                     {$sql_open_date}
@@ -470,7 +510,7 @@ if ($w == '') {
                     {$sql_thirdparty_date}
                     {$sql_agree_log}
               where mb_id = '$mb_id' ";
-    sql_query($sql);
+    $res = sql_query($sql, false);
 
     if($cert_type == 'ipin' && get_session('ss_cert_hash') == md5($mb_name.$cert_type.get_session('ss_cert_birth').$md5_cert_no)) { // 아이핀일때 hash 값 체크 hp미포함)
         insert_member_cert_history($mb_id, $mb_name, $mb_hp, get_session('ss_cert_birth'), get_session('ss_cert_type') ); // 본인인증 후 정보 수정 시 내역 기록
@@ -702,24 +742,6 @@ if ($w == '') {
         set_session('ss_mb_id', '');
         alert('회원 정보가 수정 되었습니다.\n\nE-mail 주소가 변경되었으므로 다시 인증하셔야 합니다.', G5_URL);
     } else {
-        echo '
-        <!doctype html>
-        <html lang="ko">
-        <head>
-        <meta charset="utf-8">
-        <title>회원정보수정</title>
-        <body>
-        <form name="fregisterupdate" method="post" action="'.G5_HTTP_BBS_URL.'/register_form.php">
-        <input type="hidden" name="w" value="u">
-        <input type="hidden" name="mb_id" value="'.$mb_id.'">
-        <input type="hidden" name="mb_password" value="'.$tmp_password.'">
-        <input type="hidden" name="is_update" value="1">
-        </form>
-        <script>
-        alert("회원 정보가 수정 되었습니다.");
-        document.fregisterupdate.submit();
-        </script>
-        </body>
-        </html>';
+        alert('회원정보 수정이 완료되었습니다.', G5_URL);
     }
 }

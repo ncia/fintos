@@ -1,0 +1,27 @@
+2026-05-01 12:54:29 - mb_id: test2
+2026-05-01 12:54:29 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 12:54:29 - SQL SUCCESS
+2026-05-01 13:03:09 - mb_id: test2
+2026-05-01 13:03:09 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:03:09 - SQL SUCCESS
+2026-05-01 13:03:47 - mb_id: test2
+2026-05-01 13:03:47 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:03:47 - SQL SUCCESS
+2026-05-01 13:04:49 - mb_id: test2
+2026-05-01 13:04:49 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:04:49 - SQL SUCCESS
+2026-05-01 13:05:08 - mb_id: test2
+2026-05-01 13:05:08 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:05:08 - SQL SUCCESS
+2026-05-01 13:35:37 - mb_id: test2
+2026-05-01 13:35:37 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:35:38 - SQL SUCCESS
+2026-05-01 13:35:41 - mb_id: test2
+2026-05-01 13:35:41 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:35:41 - SQL SUCCESS
+2026-05-01 13:36:08 - mb_id: test2
+2026-05-01 13:36:08 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-7770'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:36:08 - SQL SUCCESS
+2026-05-01 13:40:45 - mb_id: test2
+2026-05-01 13:40:45 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 13:40:45 - SQL SUCCESS
