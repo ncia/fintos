@@ -502,26 +502,27 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
         <div class="profile-img-container">
             <?php
             $display_img_url = '';
-            if ($config['cf_use_member_img']) {
-                $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
-                foreach (array('gif', 'png', 'jpg') as $ext) {
-                    if (file_exists($mb_img_path . '.' . $ext)) {
-                        $display_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
-                        break;
-                    }
+            // 우선순위: 프로필 이미지 (member_image)
+            $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
+            foreach (array('gif', 'png', 'jpg') as $ext) {
+                if (file_exists($mb_img_path . '.' . $ext)) {
+                    $display_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext . '?' . G5_SERVER_TIME;
+                    break;
                 }
             }
-            if (!$display_img_url && $config['cf_use_member_icon']) {
+            
+            // 프로필 이미지가 없을 경우: 회원 아이콘 (member)
+            if (!$display_img_url) {
                 $mb_icon_path = G5_DATA_PATH.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
                 foreach (array('gif', 'png', 'jpg') as $ext) {
                     if (file_exists($mb_icon_path . '.' . $ext)) {
-                        $display_img_url = G5_DATA_URL.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
+                        $display_img_url = G5_DATA_URL.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext . '?' . G5_SERVER_TIME;
                         break;
                     }
                 }
             }
             
-            // Default placeholder if no image
+            // 둘 다 없을 경우 기본 이미지
             if (!$display_img_url) {
                 $display_img_url = EYOOM_THEME_URL . '/image/user.jpg';
             }
