@@ -407,6 +407,64 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 }
 .msg_error { color: #ef4444; }
 .msg_success { color: #10b981; }
+
+/* Profile Image Redesign */
+.profile-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 30px;
+    text-align: center;
+}
+.profile-img-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #007bff;
+    margin-bottom: 15px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.profile-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-img-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+.profile-img-btns .btn-profile {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    line-height: 1;
+}
+.btn-change {
+    background: #007bff;
+    color: #fff;
+}
+.btn-change:hover {
+    background: #0069d9;
+}
+.btn-delete {
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+.btn-delete:hover {
+    background: #e5e7eb;
+}
 </style>
 
 <script src="<?php echo EYOOM_THEME_URL; ?>/js/zxcvbn.js"></script>
@@ -437,67 +495,57 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
     <input type="hidden" name="mb_nick_duplicated" id="mb_nick_duplicated" value="y">
     <div class="register-box">
-        <!-- Member Image/Icon Upload (New) -->
+        <!-- Member Image/Icon Upload (Redesigned) -->
         <?php if ($w == 'u' && ($config['cf_use_member_icon'] || $config['cf_use_member_img'])) { ?>
         <div class="section-title" style="margin-top:0;">프로필 이미지 설정</div>
         
-        <?php if ($config['cf_use_member_icon']) { ?>
-        <div class="row">
-            <section class="col-lg-12">
-                <div class="field-label" style="margin-left:5px;">회원 아이콘 (<?php echo $config['cf_member_icon_width']; ?>x<?php echo $config['cf_member_icon_height']; ?>px, gif/png/jpg 가능)</div>
-                <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
-                    <input type="file" name="mb_icon" id="reg_mb_icon" style="padding: 5px 0 !important;">
-                </div>
-                <?php 
-                $mb_icon_url = '';
-                $mb_icon_path = G5_DATA_PATH.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
-                foreach (array('gif', 'png', 'jpg') as $ext) {
-                    if (file_exists($mb_icon_path . '.' . $ext)) {
-                        $mb_icon_url = G5_DATA_URL.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
-                        break;
-                    }
-                }
-                if ($w == 'u' && $mb_icon_url) { ?>
-                <div class="field-note" style="margin-bottom:15px;">
-                    <img src="<?php echo $mb_icon_url; ?>" id="current_mb_icon" alt="기존 아이콘" style="width:22px; height:22px; vertical-align:middle; margin-right:10px; border:1px solid #eee;">
-                    <label class="checkbox-container" style="display:inline-block; margin-bottom:0; font-size:13px;">
-                        <input type="checkbox" name="del_mb_icon" value="1" id="del_mb_icon">
-                        <span class="checkmark" style="top:-2px;"></span> 삭제
-                    </label>
-                </div>
-                <?php } ?>
-            </section>
-        </div>
-        <?php } ?>
-
-        <?php if ($config['cf_use_member_img']) { ?>
-        <div class="row">
-            <section class="col-lg-12">
-                <div class="field-label" style="margin-left:5px;">프로필 이미지 (<?php echo $config['cf_member_img_width']; ?>x<?php echo $config['cf_member_img_height']; ?>px)</div>
-                <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
-                    <input type="file" name="mb_img" id="reg_mb_img" style="padding: 5px 0 !important;">
-                </div>
-                <?php 
-                $mb_img_url = '';
+        <div class="profile-img-container">
+            <?php
+            $display_img_url = '';
+            if ($config['cf_use_member_img']) {
                 $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
                 foreach (array('gif', 'png', 'jpg') as $ext) {
                     if (file_exists($mb_img_path . '.' . $ext)) {
-                        $mb_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
+                        $display_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
                         break;
                     }
                 }
-                if ($w == 'u' && $mb_img_url) { ?>
-                <div class="field-note" style="margin-bottom:15px;">
-                    <img src="<?php echo $mb_img_url; ?>" id="current_mb_img" alt="기존 이미지" style="width:50px; height:50px; vertical-align:middle; margin-right:10px; border:1px solid #eee; border-radius:50%;">
-                    <label class="checkbox-container" style="display:inline-block; margin-bottom:0; font-size:13px;">
-                        <input type="checkbox" name="del_mb_img" value="1" id="del_mb_img">
-                        <span class="checkmark" style="top:-2px;"></span> 삭제
-                    </label>
-                </div>
+            }
+            if (!$display_img_url && $config['cf_use_member_icon']) {
+                $mb_icon_path = G5_DATA_PATH.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
+                foreach (array('gif', 'png', 'jpg') as $ext) {
+                    if (file_exists($mb_icon_path . '.' . $ext)) {
+                        $display_img_url = G5_DATA_URL.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
+                        break;
+                    }
+                }
+            }
+            
+            // Default placeholder if no image
+            if (!$display_img_url) {
+                $display_img_url = EYOOM_THEME_URL . '/image/user.jpg';
+            }
+            ?>
+            <div class="profile-img-wrapper">
+                <img src="<?php echo $display_img_url; ?>" id="profile_preview_img" alt="프로필 이미지">
+            </div>
+            
+            <div class="profile-img-btns">
+                <button type="button" class="btn-profile btn-change" onclick="trigger_file_upload();">이미지 변경</button>
+                <button type="button" class="btn-profile btn-delete" onclick="delete_profile_img();">이미지 삭제</button>
+            </div>
+            
+            <div style="display:none;">
+                <?php if ($config['cf_use_member_icon']) { ?>
+                    <input type="file" name="mb_icon" id="reg_mb_icon" onchange="preview_profile_image(this, 'icon');">
+                    <input type="checkbox" name="del_mb_icon" value="1" id="del_mb_icon">
                 <?php } ?>
-            </section>
+                <?php if ($config['cf_use_member_img']) { ?>
+                    <input type="file" name="mb_img" id="reg_mb_img" onchange="preview_profile_image(this, 'img');">
+                    <input type="checkbox" name="del_mb_img" value="1" id="del_mb_img">
+                <?php } ?>
+            </div>
         </div>
-        <?php } ?>
         <?php } ?>
 
         <div class="section-title" <?php echo $w == 'u' ? '' : 'style="margin-top:0;"'; ?>>로그인정보 입력</div>
@@ -1236,6 +1284,35 @@ $(function() {
         $("#reg_mb_birth").trigger('input');
     }
 });
+
+function trigger_file_upload() {
+    if ($('#reg_mb_img').length > 0) {
+        $('#reg_mb_img').click();
+    } else if ($('#reg_mb_icon').length > 0) {
+        $('#reg_mb_icon').click();
+    }
+}
+
+function delete_profile_img() {
+    if (confirm('프로필 이미지를 삭제하시겠습니까?')) {
+        if ($('#del_mb_img').length > 0) $('#del_mb_img').prop('checked', true);
+        if ($('#del_mb_icon').length > 0) $('#del_mb_icon').prop('checked', true);
+        $('#profile_preview_img').attr('src', '<?php echo EYOOM_THEME_URL; ?>/image/user.jpg');
+        $('#reg_mb_img, #reg_mb_icon').val('');
+    }
+}
+
+function preview_profile_image(input, type) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#profile_preview_img').attr('src', e.target.result);
+            if (type === 'img') $('#del_mb_img').prop('checked', false);
+            if (type === 'icon') $('#del_mb_icon').prop('checked', false);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 
 <?php
