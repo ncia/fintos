@@ -43,3 +43,29 @@
 2026-05-01 22:54:01 - mb_id: test2
 2026-05-01 22:54:01 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
 2026-05-01 22:54:01 - SQL SUCCESS
+2026-05-02 07:23:29 - mb_id: test2
+2026-05-02 07:23:29 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-02 07:23:29 - SQL SUCCESS
+2026-05-02 07:23:29 - [CORE] Deleting mb_icon for: test2
+2026-05-02 07:29:36 - mb_id: test2
+2026-05-02 07:29:36 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-02 07:29:36 - SQL SUCCESS
+2026-05-02 07:29:36 - [CORE] Deleting ALL profile media for: test2
+2026-05-02 07:29:36 - [CORE] Unlinked C:/xampp/htdocs/gnu/data/member_image/te/test2.gif: SUCCESS
+2026-05-02 07:29:36 - [CORE] Unlinked C:/xampp/htdocs/gnu/data/member_image/te/test2.png: SUCCESS
+2026-05-02 07:29:36 - [CORE] Cleared eyoom_member.photo field
+2026-05-02 07:33:32 - mb_id: test2
+2026-05-02 07:33:32 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-02 07:33:32 - SQL SUCCESS
+2026-05-02 07:33:32 - [CORE] Deleting ALL profile media for: test2
+2026-05-02 07:33:32 - [CORE] Unlinked C:/xampp/htdocs/gnu/data/member_image/te/test2.png: SUCCESS
+2026-05-02 07:33:32 - [CORE] Cleared eyoom_member.photo field
+2026-05-02 07:36:14 - mb_id: test2
+2026-05-02 07:36:14 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-02 07:36:14 - SQL SUCCESS
+2026-05-02 07:36:14 - [CORE] Deleting ALL profile media for: test2
+2026-05-02 07:36:14 - [CORE] Unlinked C:/xampp/htdocs/gnu/data/member_image/te/test2.png: SUCCESS
+2026-05-02 07:36:15 - [CORE] Cleared eyoom_member.photo field
+2026-05-02 07:38:14 - mb_id: test3
+2026-05-02 07:38:14 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '01027849523'  , mb_birth = '19820929'  , mb_sex = 'M'  where mb_id = 'test3' 
+2026-05-02 07:38:14 - SQL SUCCESS

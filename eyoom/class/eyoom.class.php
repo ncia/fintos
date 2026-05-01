@@ -654,9 +654,11 @@ class eyoom extends qfile
                     }
                 }
     
+                /*
                 if (!$photo) {
                     $photo = $this->make_mb_default_photo($mb_id);
                 }
+                */
             }
             
             if (!$photo) {

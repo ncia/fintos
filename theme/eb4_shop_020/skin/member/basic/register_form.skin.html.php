@@ -1217,6 +1217,7 @@ function delete_profile_img() {
         if ($('#del_mb_icon').length > 0) $('#del_mb_icon').prop('checked', true);
         $('#profile_preview_img').attr('src', '<?php echo EYOOM_THEME_URL; ?>/image/user.jpg');
         $('#reg_mb_img, #reg_mb_icon').val('');
+        if ($('#mb_icon_auto').length > 0) $('#mb_icon_auto').val('');
     }
 }
 

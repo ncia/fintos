@@ -12,20 +12,34 @@ $mb_img_uploaded  = (isset($_FILES['mb_img']['name']) && $_FILES['mb_img']['name
 $del_mb_icon = isset($_POST['del_mb_icon']) ? 1 : 0;
 $del_mb_img  = isset($_POST['del_mb_img'])  ? 1 : 0;
 
-// 사용자가 명시적으로 이미지 삭제를 요청한 경우 처리
-if ($del_mb_img) {
+// 사용자가 명시적으로 이미지 또는 아이콘 삭제를 요청한 경우 처리 (둘 다 삭제)
+if ($del_mb_img || $del_mb_icon) {
+    file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - Deleting ALL profile media for: '.$mb_id."\n", FILE_APPEND);
+    
+    // member_image 삭제
     $mb_img_dir = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
     foreach (array('gif', 'png', 'jpg', 'jpeg') as $ext) {
-        @unlink($mb_img_dir . '/' . $mb_id . '.' . $ext);
+        $target = $mb_img_dir . '/' . $mb_id . '.' . $ext;
+        if (file_exists($target)) {
+            $res = @unlink($target);
+            file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - Unlinked '.$target.': '.($res?'SUCCESS':'FAILED')."\n", FILE_APPEND);
+        }
     }
-    if (isset($g5['eyoom_member'])) {
-        sql_query("update {$g5['eyoom_member']} set photo = '' where mb_id = '{$mb_id}' ");
-    }
-}
-if ($del_mb_icon) {
+    
+    // member 아이콘 삭제
     $mb_icon_dir = G5_DATA_PATH . '/member/' . substr($mb_id, 0, 2);
     foreach (array('gif', 'png', 'jpg', 'jpeg') as $ext) {
-        @unlink($mb_icon_dir . '/' . $mb_id . '.' . $ext);
+        $target = $mb_icon_dir . '/' . $mb_id . '.' . $ext;
+        if (file_exists($target)) {
+            $res = @unlink($target);
+            file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - Unlinked '.$target.': '.($res?'SUCCESS':'FAILED')."\n", FILE_APPEND);
+        }
+    }
+    
+    // 이윰빌더 photo 필드 비우기
+    if (isset($g5['eyoom_member'])) {
+        sql_query("update {$g5['eyoom_member']} set photo = '' where mb_id = '{$mb_id}' ");
+        file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - Cleared eyoom_member.photo field'."\n", FILE_APPEND);
     }
 }
 
@@ -175,12 +189,14 @@ if (isset($g5['eyoom_member'])) {
         if (file_exists($mb_img_dir . '/' . $mb_id . '.' . $ext)) {
             sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.{$ext}' where mb_id = '{$mb_id}' ");
             $found_photo = true;
+            file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - Final Sync: Found '.$mb_id.'.'.$ext."\n", FILE_APPEND);
             break;
         }
     }
     // 물리적 파일이 없으면 photo 필드 비우기
     if (!$found_photo) {
         sql_query("update {$g5['eyoom_member']} set photo = '' where mb_id = '{$mb_id}' ");
+        file_put_contents(G5_DATA_PATH.'/tail_log.txt', date('Y-m-d H:i:s').' - Final Sync: No image found, cleared photo field'."\n", FILE_APPEND);
     }
 }
 ?>
