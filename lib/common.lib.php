@@ -4041,12 +4041,17 @@ function get_member_profile_img($mb_id='', $width='', $height='', $alt='profile_
         if( isset($member_cache[$mb_id]) ){
             $src = $member_cache[$mb_id];
         } else {
-            $member_img = G5_DATA_PATH.'/member_image/'.substr($mb_id,0,2).'/'.get_mb_icon_name($mb_id).'.gif';
-            if (is_file($member_img)) {
-                if(defined('G5_USE_MEMBER_IMAGE_FILETIME') && G5_USE_MEMBER_IMAGE_FILETIME) {
-                    $member_img .= '?'.filemtime($member_img);
+            $mb_icon_name = get_mb_icon_name($mb_id);
+            $extensions = array('gif', 'png', 'jpg', 'jpeg');
+            foreach($extensions as $ext) {
+                $member_img = G5_DATA_PATH.'/member_image/'.substr($mb_id,0,2).'/'.$mb_icon_name.'.'.$ext;
+                if (is_file($member_img)) {
+                    if(defined('G5_USE_MEMBER_IMAGE_FILETIME') && G5_USE_MEMBER_IMAGE_FILETIME) {
+                        $member_img .= '?'.filemtime($member_img);
+                    }
+                    $member_cache[$mb_id] = $src = str_replace(G5_DATA_PATH, G5_DATA_URL, $member_img);
+                    break;
                 }
-                $member_cache[$mb_id] = $src = str_replace(G5_DATA_PATH, G5_DATA_URL, $member_img);
             }
         }
     }

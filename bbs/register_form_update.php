@@ -485,7 +485,10 @@ $mb_dir = G5_DATA_PATH.'/member/'.substr($mb_id,0,2);
 
 // 아이콘 삭제
 if (isset($_POST['del_mb_icon'])) {
-    @unlink($mb_dir.'/'.get_mb_icon_name($mb_id).'.gif');
+    $mb_icon_name = get_mb_icon_name($mb_id);
+    foreach(array('gif', 'png', 'jpg', 'jpeg') as $ext) {
+        @unlink($mb_dir.'/'.$mb_icon_name.'.'.$ext);
+    }
 }
 
 $msg = "";
@@ -493,7 +496,9 @@ $msg = "";
 // 아이콘 업로드
 $mb_icon = '';
 $image_regex = "/(\.(gif|jpe?g|png))$/i";
-$mb_icon_img = get_mb_icon_name($mb_id).'.gif';
+$mb_icon_ext = strtolower(pathinfo($_FILES['mb_icon']['name'], PATHINFO_EXTENSION));
+if ($mb_icon_ext == 'jpeg') $mb_icon_ext = 'jpg';
+$mb_icon_img = get_mb_icon_name($mb_id).'.'.$mb_icon_ext;
 
 if (isset($_FILES['mb_icon']) && is_uploaded_file($_FILES['mb_icon']['tmp_name'])) {
     if (preg_match($image_regex, $_FILES['mb_icon']['name'])) {
@@ -550,7 +555,10 @@ if( $config['cf_member_img_size'] && $config['cf_member_img_width'] && $config['
 
     // 아이콘 삭제
     if (isset($_POST['del_mb_img'])) {
-        @unlink($mb_dir.'/'.$mb_icon_img);
+        $mb_icon_name = get_mb_icon_name($mb_id);
+        foreach(array('gif', 'png', 'jpg', 'jpeg') as $ext) {
+            @unlink($mb_dir.'/'.$mb_icon_name.'.'.$ext);
+        }
     }
 
     // 회원 프로필 이미지 업로드
@@ -564,7 +572,10 @@ if( $config['cf_member_img_size'] && $config['cf_member_img_width'] && $config['
             if ($_FILES['mb_img']['size'] <= $config['cf_member_img_size']) {
                 @mkdir($mb_dir, G5_DIR_PERMISSION);
                 @chmod($mb_dir, G5_DIR_PERMISSION);
-                $dest_path = $mb_dir.'/'.$mb_icon_img;
+                $mb_img_ext = strtolower(pathinfo($_FILES['mb_img']['name'], PATHINFO_EXTENSION));
+                if ($mb_img_ext == 'jpeg') $mb_img_ext = 'jpg';
+                $mb_img_name = get_mb_icon_name($mb_id).'.'.$mb_img_ext;
+                $dest_path = $mb_dir.'/'.$mb_img_name;
                 move_uploaded_file($_FILES['mb_img']['tmp_name'], $dest_path);
                 chmod($dest_path, G5_FILE_PERMISSION);
                 if (file_exists($dest_path)) {
@@ -575,7 +586,7 @@ if( $config['cf_member_img_size'] && $config['cf_member_img_width'] && $config['
                         $thumb = null;
                         if($size[2] === 2 || $size[2] === 3) {
                             //jpg 또는 png 파일 적용
-                            $thumb = thumbnail($mb_icon_img, $mb_dir, $mb_dir, $config['cf_member_img_width'], $config['cf_member_img_height'], true, true);
+                            $thumb = thumbnail($mb_img_name, $mb_dir, $mb_dir, $config['cf_member_img_width'], $config['cf_member_img_height'], true, true);
                             if($thumb) {
                                 @unlink($dest_path);
                                 rename($mb_dir.'/'.$thumb, $dest_path);

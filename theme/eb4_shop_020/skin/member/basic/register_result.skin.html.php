@@ -6,12 +6,12 @@ if (!defined('_EYOOM_')) exit;
 ?>
 
 <style>
-.register-result {max-width:500px;margin:0 auto}
+.register-result {max-width:640px;margin:0 auto;padding:0 15px}
 .register-info-box {border:1px solid #757575;background-color:#fafafa;padding:20px;margin-bottom:20px}
 .register-result-box {border:1px solid #d5d5d5;padding:20px;margin-bottom:30px}
 .video-welcome-container {
     width: 100%;
-    max-width: 320px;
+    max-width: 640px;
     margin: 0 auto 30px;
     border-radius: 20px;
     overflow: hidden;

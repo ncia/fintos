@@ -75,7 +75,9 @@ $check_keys = array(
     'mb_sms',
     'mb_open',
     'mb_profile',
-    'mb_level'
+    'mb_level',
+    'mb_birth',
+    'mb_sex'
 );
 
 for ($i = 1; $i <= 10; $i++) {
@@ -98,6 +100,8 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_hp = '{$mb_hp}',
                  mb_certify = '{$mb_certify}',
                  mb_adult = '{$mb_adult}',
+                 mb_birth = '{$posts['mb_birth']}',
+                 mb_sex = '{$posts['mb_sex']}',
                  mb_zip1 = '$mb_zip1',
                  mb_zip2 = '$mb_zip2',
                  mb_addr1 = '{$posts['mb_addr1']}',
@@ -288,7 +292,10 @@ if ($w == '' || $w == 'u') {
 
     // 회원 아이콘 삭제
     if (isset($del_mb_icon) && $del_mb_icon) {
-        @unlink(G5_DATA_PATH . '/member/' . $mb_dir . '/' . $mb_icon_img);
+        $mb_icon_name = get_mb_icon_name($mb_id);
+        foreach(array('gif', 'png', 'jpg', 'jpeg') as $ext) {
+            @unlink(G5_DATA_PATH . '/member/' . $mb_dir . '/' . $mb_icon_name . '.' . $ext);
+        }
     }
 
     $image_regex = "/(\.(gif|jpe?g|png))$/i";
@@ -304,7 +311,10 @@ if ($w == '' || $w == 'u') {
             @mkdir($mb_icon_dir, G5_DIR_PERMISSION);
             @chmod($mb_icon_dir, G5_DIR_PERMISSION);
 
-            $dest_path = $mb_icon_dir . '/' . $mb_icon_img;
+            $mb_icon_ext = strtolower(pathinfo($_FILES['mb_icon']['name'], PATHINFO_EXTENSION));
+            if ($mb_icon_ext == 'jpeg') $mb_icon_ext = 'jpg';
+            $mb_icon_img_name = get_mb_icon_name($mb_id) . '.' . $mb_icon_ext;
+            $dest_path = $mb_icon_dir . '/' . $mb_icon_img_name;
 
             move_uploaded_file($_FILES['mb_icon']['tmp_name'], $dest_path);
             chmod($dest_path, G5_FILE_PERMISSION);
@@ -316,7 +326,7 @@ if ($w == '' || $w == 'u') {
                         $thumb = null;
                         if ($size[2] === 2 || $size[2] === 3) {
                             //jpg 또는 png 파일 적용
-                            $thumb = thumbnail($mb_icon_img, $mb_icon_dir, $mb_icon_dir, $config['cf_member_icon_width'], $config['cf_member_icon_height'], true, true);
+                            $thumb = thumbnail($mb_icon_img_name, $mb_icon_dir, $mb_icon_dir, $config['cf_member_icon_width'], $config['cf_member_icon_height'], true, true);
                             if ($thumb) {
                                 @unlink($dest_path);
                                 rename($mb_icon_dir . '/' . $thumb, $dest_path);
@@ -341,7 +351,10 @@ if ($w == '' || $w == 'u') {
 
     // 회원 이미지 삭제
     if (isset($del_mb_img) && $del_mb_img) {
-        @unlink($mb_img_dir . '/' . $mb_icon_img);
+        $mb_icon_name = get_mb_icon_name($mb_id);
+        foreach(array('gif', 'png', 'jpg', 'jpeg') as $ext) {
+            @unlink($mb_img_dir . '/' . $mb_icon_name . '.' . $ext);
+        }
     }
 
     // 아이콘 업로드
@@ -354,7 +367,10 @@ if ($w == '' || $w == 'u') {
             @mkdir($mb_img_dir, G5_DIR_PERMISSION);
             @chmod($mb_img_dir, G5_DIR_PERMISSION);
 
-            $dest_path = $mb_img_dir . '/' . $mb_icon_img;
+            $mb_img_ext = strtolower(pathinfo($_FILES['mb_img']['name'], PATHINFO_EXTENSION));
+            if ($mb_img_ext == 'jpeg') $mb_img_ext = 'jpg';
+            $mb_img_img_name = get_mb_icon_name($mb_id) . '.' . $mb_img_ext;
+            $dest_path = $mb_img_dir . '/' . $mb_img_img_name;
 
             move_uploaded_file($_FILES['mb_img']['tmp_name'], $dest_path);
             chmod($dest_path, G5_FILE_PERMISSION);
@@ -366,7 +382,7 @@ if ($w == '' || $w == 'u') {
                         $thumb = null;
                         if ($size[2] === 2 || $size[2] === 3) {
                             //jpg 또는 png 파일 적용
-                            $thumb = thumbnail($mb_icon_img, $mb_img_dir, $mb_img_dir, $config['cf_member_img_width'], $config['cf_member_img_height'], true, true);
+                            $thumb = thumbnail($mb_img_img_name, $mb_img_dir, $mb_img_dir, $config['cf_member_img_width'], $config['cf_member_img_height'], true, true);
                             if ($thumb) {
                                 @unlink($dest_path);
                                 rename($mb_img_dir . '/' . $thumb, $dest_path);

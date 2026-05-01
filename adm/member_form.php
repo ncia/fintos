@@ -290,6 +290,17 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <td><input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" class="frm_input" size="15" maxlength="20"></td>
                 </tr>
                 <tr>
+                    <th scope="row"><label for="mb_birth">생년월일</label></th>
+                    <td><input type="text" name="mb_birth" value="<?php echo $mb['mb_birth'] ?>" id="mb_birth" class="frm_input" size="15" maxlength="8"> (예: 19900101)</td>
+                    <th scope="row">성별</th>
+                    <td>
+                        <input type="radio" name="mb_sex" value="M" id="mb_sex_m" <?php echo $mb['mb_sex']=='M'?'checked':''; ?>>
+                        <label for="mb_sex_m">남</label>
+                        <input type="radio" name="mb_sex" value="F" id="mb_sex_f" <?php echo $mb['mb_sex']=='F'?'checked':''; ?>>
+                        <label for="mb_sex_f">여</label>
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row">본인확인방법</th>
                     <td colspan="3">
                         <input type="radio" name="mb_certify_case" value="simple" id="mb_certify_sa" <?php if ($mb['mb_certify'] == 'simple') { echo 'checked="checked"'; } ?>>

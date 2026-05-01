@@ -437,7 +437,70 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick']) ? trim(get_text($member['mb_nick'])) : ''; ?>">
     <input type="hidden" name="mb_nick_duplicated" id="mb_nick_duplicated" value="y">
     <div class="register-box">
-        <div class="section-title" style="margin-top:0;">로그인정보 입력</div>
+        <!-- Member Image/Icon Upload (New) -->
+        <?php if ($w == 'u' && ($config['cf_use_member_icon'] || $config['cf_use_member_img'])) { ?>
+        <div class="section-title" style="margin-top:0;">프로필 이미지 설정</div>
+        
+        <?php if ($config['cf_use_member_icon']) { ?>
+        <div class="row">
+            <section class="col-lg-12">
+                <div class="field-label" style="margin-left:5px;">회원 아이콘 (<?php echo $config['cf_member_icon_width']; ?>x<?php echo $config['cf_member_icon_height']; ?>px, gif/png/jpg 가능)</div>
+                <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
+                    <input type="file" name="mb_icon" id="reg_mb_icon" style="padding: 5px 0 !important;">
+                </div>
+                <?php 
+                $mb_icon_url = '';
+                $mb_icon_path = G5_DATA_PATH.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
+                foreach (array('gif', 'png', 'jpg') as $ext) {
+                    if (file_exists($mb_icon_path . '.' . $ext)) {
+                        $mb_icon_url = G5_DATA_URL.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
+                        break;
+                    }
+                }
+                if ($w == 'u' && $mb_icon_url) { ?>
+                <div class="field-note" style="margin-bottom:15px;">
+                    <img src="<?php echo $mb_icon_url; ?>" id="current_mb_icon" alt="기존 아이콘" style="width:22px; height:22px; vertical-align:middle; margin-right:10px; border:1px solid #eee;">
+                    <label class="checkbox-container" style="display:inline-block; margin-bottom:0; font-size:13px;">
+                        <input type="checkbox" name="del_mb_icon" value="1" id="del_mb_icon">
+                        <span class="checkmark" style="top:-2px;"></span> 삭제
+                    </label>
+                </div>
+                <?php } ?>
+            </section>
+        </div>
+        <?php } ?>
+
+        <?php if ($config['cf_use_member_img']) { ?>
+        <div class="row">
+            <section class="col-lg-12">
+                <div class="field-label" style="margin-left:5px;">프로필 이미지 (<?php echo $config['cf_member_img_width']; ?>x<?php echo $config['cf_member_img_height']; ?>px)</div>
+                <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
+                    <input type="file" name="mb_img" id="reg_mb_img" style="padding: 5px 0 !important;">
+                </div>
+                <?php 
+                $mb_img_url = '';
+                $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
+                foreach (array('gif', 'png', 'jpg') as $ext) {
+                    if (file_exists($mb_img_path . '.' . $ext)) {
+                        $mb_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
+                        break;
+                    }
+                }
+                if ($w == 'u' && $mb_img_url) { ?>
+                <div class="field-note" style="margin-bottom:15px;">
+                    <img src="<?php echo $mb_img_url; ?>" id="current_mb_img" alt="기존 이미지" style="width:50px; height:50px; vertical-align:middle; margin-right:10px; border:1px solid #eee; border-radius:50%;">
+                    <label class="checkbox-container" style="display:inline-block; margin-bottom:0; font-size:13px;">
+                        <input type="checkbox" name="del_mb_img" value="1" id="del_mb_img">
+                        <span class="checkmark" style="top:-2px;"></span> 삭제
+                    </label>
+                </div>
+                <?php } ?>
+            </section>
+        </div>
+        <?php } ?>
+        <?php } ?>
+
+        <div class="section-title" <?php echo $w == 'u' ? '' : 'style="margin-top:0;"'; ?>>로그인정보 입력</div>
             <!-- ID Field (Row 1) -->
             <div class="row">
                 <section class="col-lg-12">
@@ -526,68 +589,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                 </section>
             </div>
 
-            <!-- Member Image/Icon Upload (New) -->
-            <?php if ($w == 'u' && ($config['cf_use_member_icon'] || $config['cf_use_member_img'])) { ?>
-            <div class="section-title">프로필 이미지 설정</div>
-            
-            <?php if ($config['cf_use_member_icon']) { ?>
-            <div class="row">
-                <section class="col-lg-12">
-                    <div class="field-label" style="margin-left:5px;">회원 아이콘 (<?php echo $config['cf_member_icon_width']; ?>x<?php echo $config['cf_member_icon_height']; ?>px, gif/png/jpg 가능)</div>
-                    <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
-                        <input type="file" name="mb_icon" id="reg_mb_icon" style="padding: 5px 0 !important;">
-                    </div>
-                    <?php 
-                    $mb_icon_url = '';
-                    $mb_icon_path = G5_DATA_PATH.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
-                    foreach (array('gif', 'png', 'jpg') as $ext) {
-                        if (file_exists($mb_icon_path . '.' . $ext)) {
-                            $mb_icon_url = G5_DATA_URL.'/member/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
-                            break;
-                        }
-                    }
-                    if ($w == 'u' && $mb_icon_url) { ?>
-                    <div class="field-note" style="margin-bottom:15px;">
-                        <img src="<?php echo $mb_icon_url; ?>" id="current_mb_icon" alt="기존 아이콘" style="width:22px; height:22px; vertical-align:middle; margin-right:10px; border:1px solid #eee;">
-                        <label class="checkbox-container" style="display:inline-block; margin-bottom:0; font-size:13px;">
-                            <input type="checkbox" name="del_mb_icon" value="1" id="del_mb_icon">
-                            <span class="checkmark" style="top:-2px;"></span> 삭제
-                        </label>
-                    </div>
-                    <?php } ?>
-                </section>
-            </div>
-            <?php } ?>
 
-            <?php if ($config['cf_use_member_img']) { ?>
-            <div class="row">
-                <section class="col-lg-12">
-                    <div class="field-label" style="margin-left:5px;">프로필 이미지 (<?php echo $config['cf_member_img_width']; ?>x<?php echo $config['cf_member_img_height']; ?>px)</div>
-                    <div class="input" style="padding: 1px 5px !important; height: auto !important; min-height: 45px;">
-                        <input type="file" name="mb_img" id="reg_mb_img" style="padding: 5px 0 !important;">
-                    </div>
-                    <?php 
-                    $mb_img_url = '';
-                    $mb_img_path = G5_DATA_PATH.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'];
-                    foreach (array('gif', 'png', 'jpg') as $ext) {
-                        if (file_exists($mb_img_path . '.' . $ext)) {
-                            $mb_img_url = G5_DATA_URL.'/member_image/'.substr($member['mb_id'],0,2).'/'.$member['mb_id'].'.'.$ext;
-                            break;
-                        }
-                    }
-                    if ($w == 'u' && $mb_img_url) { ?>
-                    <div class="field-note" style="margin-bottom:15px;">
-                        <img src="<?php echo $mb_img_url; ?>" id="current_mb_img" alt="기존 이미지" style="width:50px; height:50px; vertical-align:middle; margin-right:10px; border:1px solid #eee; border-radius:50%;">
-                        <label class="checkbox-container" style="display:inline-block; margin-bottom:0; font-size:13px;">
-                            <input type="checkbox" name="del_mb_img" value="1" id="del_mb_img">
-                            <span class="checkmark" style="top:-2px;"></span> 삭제
-                        </label>
-                    </div>
-                    <?php } ?>
-                </section>
-            </div>
-            <?php } ?>
-            <?php } ?>
 
             <!-- Gender Field -->
             <div class="gender-selector">

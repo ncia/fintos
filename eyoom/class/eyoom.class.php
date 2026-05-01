@@ -615,14 +615,20 @@ class eyoom extends qfile
                 @mkdir($mb_icon_dir, G5_DIR_PERMISSION);
                 @chmod($mb_icon_dir, G5_DIR_PERMISSION);
             }
-            $icon_file = $mb_icon_dir.'/'.get_mb_icon_name($mb_id).'.gif';
-            if (file_exists($icon_file)) {
-                $icon_filemtile = (defined('G5_USE_MEMBER_IMAGE_FILETIME') && G5_USE_MEMBER_IMAGE_FILETIME) ? '?'.filemtime($icon_file) : '';
-                $width = $config['cf_member_icon_width'];
-                $height = $config['cf_member_icon_height'];
-                $icon_file_url = G5_DATA_URL.'/member/'.$mb_dir.'/'.get_mb_icon_name($mb_id).'.gif'.$icon_filemtile;
-                $photo = '<img src="'.$icon_file_url.'" width="'.$width.'" height="'.$height.'">';
-            } else {
+            $mb_icon_name = get_mb_icon_name($mb_id);
+            $extensions = array('gif', 'png', 'jpg', 'jpeg');
+            foreach($extensions as $ext) {
+                $icon_file = $mb_icon_dir.'/'.$mb_icon_name.'.'.$ext;
+                if (file_exists($icon_file)) {
+                    $icon_filemtile = (defined('G5_USE_MEMBER_IMAGE_FILETIME') && G5_USE_MEMBER_IMAGE_FILETIME) ? '?'.filemtime($icon_file) : '';
+                    $width = $config['cf_member_icon_width'];
+                    $height = $config['cf_member_icon_height'];
+                    $icon_file_url = G5_DATA_URL.'/member/'.$mb_dir.'/'.$mb_icon_name.'.'.$ext.$icon_filemtile;
+                    $photo = '<img src="'.$icon_file_url.'" width="'.$width.'" height="'.$height.'">';
+                    break;
+                }
+            }
+            if (!$photo) {
                 $photo = '<i class="fa fa-user"></i>';
             }
         } else if ($type == 'img') {
@@ -701,7 +707,10 @@ class eyoom extends qfile
         $src_path = $src_photo['path'];
         $src_name = $src_photo['name'];
         $image_regex = "/(\.(gif|jpe?g|png))$/i";
-        $mb_photo_img = get_mb_icon_name($mb_id).'.gif';
+        
+        $ext = strtolower(pathinfo($src_name, PATHINFO_EXTENSION));
+        if ($ext == 'jpeg') $ext = 'jpg';
+        $mb_photo_img = get_mb_icon_name($mb_id).'.'.$ext;
 
         if( $config['cf_member_img_width'] && $config['cf_member_img_height'] ) {
             $mb_img_tmp_dir = G5_DATA_PATH.'/member_image/';
