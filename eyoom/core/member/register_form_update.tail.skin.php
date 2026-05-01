@@ -41,6 +41,23 @@ $del_mb_icon = isset($_POST['del_mb_icon']) ? 1 : 0;
 $del_mb_img  = isset($_POST['del_mb_img'])  ? 1 : 0;
 $is_uploading_custom = (!empty($_FILES['mb_icon']['name']) || !empty($_FILES['mb_img']['name']));
 
+// 사용자가 명시적으로 이미지 삭제를 요청한 경우 처리
+if ($del_mb_img) {
+    $mb_img_dir = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
+    foreach (array('gif', 'png', 'jpg', 'jpeg') as $ext) {
+        @unlink($mb_img_dir . '/' . $mb_id . '.' . $ext);
+    }
+    if (isset($g5['eyoom_member'])) {
+        sql_query("update {$g5['eyoom_member']} set photo = '' where mb_id = '{$mb_id}' ");
+    }
+}
+if ($del_mb_icon) {
+    $mb_icon_dir = G5_DATA_PATH . '/member/' . substr($mb_id, 0, 2);
+    foreach (array('gif', 'png', 'jpg', 'jpeg') as $ext) {
+        @unlink($mb_icon_dir . '/' . $mb_id . '.' . $ext);
+    }
+}
+
 // 사용자가 명시적으로 이미지를 삭제했거나 커스텀 이미지를 업로드하는 경우에는 자동 설정을 건너뜁니다.
 if ($mb_icon_auto && !$del_mb_icon && !$del_mb_img && !$is_uploading_custom && preg_match('/^[0-9]+_[a-z]+\.(png|gif)$/', $mb_icon_auto)) {
     $source_path = G5_PATH . '/theme/' . $theme . '/image/join/' . $mb_icon_auto;
@@ -79,8 +96,8 @@ if ($mb_icon_auto && !$del_mb_icon && !$del_mb_img && !$is_uploading_custom && p
                     }
                 }
             }
-            if (file_exists($dest_path_icon)) @chmod($dest_path_icon, G5_IMG_PERMISSION);
-            if (file_exists($dest_path_img)) @chmod($dest_path_img, G5_IMG_PERMISSION);
+            if (file_exists($dest_path_icon)) @chmod($dest_path_icon, G5_FILE_PERMISSION);
+            if (file_exists($dest_path_img)) @chmod($dest_path_img, G5_FILE_PERMISSION);
         }
 
         if (isset($g5['eyoom_member'])) {
@@ -154,5 +171,22 @@ if ($config['cf_googlesheet_use'] && $config['cf_googlesheet_url']) {
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_exec($ch);
     curl_close($ch);
+}
+
+// 회원 프로필 이미지와 이윰빌더 photo 필드 최종 동기화 (기존 파일 존재 여부 체크)
+if (isset($g5['eyoom_member'])) {
+    $mb_img_dir = G5_DATA_PATH . '/member_image/' . substr($mb_id, 0, 2);
+    $found_photo = false;
+    foreach (array('gif', 'png', 'jpg') as $ext) {
+        if (file_exists($mb_img_dir . '/' . $mb_id . '.' . $ext)) {
+            sql_query("update {$g5['eyoom_member']} set photo = '{$mb_id}.{$ext}' where mb_id = '{$mb_id}' ");
+            $found_photo = true;
+            break;
+        }
+    }
+    // 물리적 파일이 없으면 photo 필드 비우기
+    if (!$found_photo) {
+        sql_query("update {$g5['eyoom_member']} set photo = '' where mb_id = '{$mb_id}' ");
+    }
 }
 ?>

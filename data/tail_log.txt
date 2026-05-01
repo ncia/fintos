@@ -25,3 +25,21 @@
 2026-05-01 13:40:45 - mb_id: test2
 2026-05-01 13:40:45 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
 2026-05-01 13:40:45 - SQL SUCCESS
+2026-05-01 18:27:06 - mb_id: test2
+2026-05-01 18:27:06 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6670'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 18:27:06 - SQL SUCCESS
+2026-05-01 18:27:32 - mb_id: test2
+2026-05-01 18:27:32 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 18:27:32 - SQL SUCCESS
+2026-05-01 18:28:23 - mb_id: test2
+2026-05-01 18:28:23 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6670'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 18:28:23 - SQL SUCCESS
+2026-05-01 18:31:35 - mb_id: test2
+2026-05-01 18:31:35 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 18:31:35 - SQL SUCCESS
+2026-05-01 20:11:51 - mb_id: test2
+2026-05-01 20:11:51 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 20:11:51 - SQL SUCCESS
+2026-05-01 22:54:01 - mb_id: test2
+2026-05-01 22:54:01 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '010-2627-6684'  , mb_birth = '19900101'  , mb_sex = 'M'  where mb_id = 'test2' 
+2026-05-01 22:54:01 - SQL SUCCESS
