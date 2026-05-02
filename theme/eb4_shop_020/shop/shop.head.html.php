@@ -415,10 +415,10 @@ $is_darkmode = 'yes';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=policy_analysis" class="dropdown-item nav-link"><i class="fas fa-fw fa-chart-line m-r-5 text-primary"></i>보험증권 분석</a>
+                                                <a href="<?php echo G5_URL; ?>/insurance_analysis.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-search-plus m-r-5 text-primary"></i>보험증권 분석</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=remodeling_review" class="dropdown-item nav-link"><i class="fas fa-fw fa-tools m-r-5 text-orange"></i>보험 리모델링</a>
+                                                <a href="<?php echo G5_URL; ?>/insurance_remodeling.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-tools m-r-5 text-orange"></i>보험 리모델링</a>
                                             </li>
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=remodeling_review" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-teal"></i>보험 리모델링 후기</a>

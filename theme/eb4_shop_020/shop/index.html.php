@@ -153,7 +153,7 @@ if (!defined('_EYOOM_')) exit;
                     </div>
                     
                     <div class="m-b-10">
-                        <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
+                        <a href="<?php echo G5_URL; ?>/pet_insurance.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/banner_ins_pet.png" class="img-fluid" alt="펫 보험 가입 상담하기">
                         </a>
                     </div>
@@ -636,7 +636,7 @@ if (!defined('_EYOOM_')) exit;
                     
                     <div class="text-start m-b-20 f-s-15r text-dark" id="res_msg3" style="line-height:1.6; color: #4b5563;"></div>
                     
-                    <button type="button" onclick="location.href='insurance_age.php';" class="btn-mdb-primary">보험 가입 상담</button>
+                    <button type="button" onclick="location.href='<?php echo G5_URL; ?>/insurance_age.php';" class="btn-mdb-primary">보험 가입 상담</button>
                     <div class="text-center m-t-15">
                         <a href="javascript:void(0);" onclick="resetInsAge();" class="text-gray f-s-13r underline f-w-700">다시 계산하기</a>
                     </div>

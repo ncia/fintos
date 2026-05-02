@@ -287,7 +287,7 @@ if (!defined('_GNUBOARD_')) exit;
                         <label class="checkbox-container">
                             <input type="checkbox" name="c_kakaotalk" value="1" id="c_kakaotalk" checked>
                             <span class="checkmark"></span>
-                            (선택) 카카오톡 핀토스 보험 채널 추가 동의
+                            (선택) 카카오톡 핀토스 보험 채널 수신 동의
                         </label>
                         <label class="checkbox-container">
                             <input type="checkbox" name="c_mailling" value="1" id="c_mailling" checked>
