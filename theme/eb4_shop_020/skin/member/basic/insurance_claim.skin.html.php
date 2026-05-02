@@ -185,7 +185,7 @@ if (!defined('_GNUBOARD_')) exit;
 <div class="regform-wrapper">
     <div class="mdb-card">
         <div class="mdb-card-header">
-            <h1 class="title"><i class="fas fa-hand-holding-medical m-r-10"></i>보험금 청구 예약</h1>
+            <h1 class="title"><i class="fas fa-calendar-plus m-r-10"></i>보험금 청구 예약</h1>
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
