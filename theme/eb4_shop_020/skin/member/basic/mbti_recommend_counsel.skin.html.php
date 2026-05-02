@@ -185,7 +185,7 @@ if (!defined('_GNUBOARD_')) exit;
 <div class="regform-wrapper">
     <div class="mdb-card">
         <div class="mdb-card-header">
-            <h1 class="title"><i class="fas fa-user-tag m-r-10"></i>MBTI 추천 상품 상담하기</h1>
+            <h1 class="title"><i class="fas fa-user-tag m-r-10"></i>MBTI 추천 보험 상담하기</h1>
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
@@ -193,7 +193,7 @@ if (!defined('_GNUBOARD_')) exit;
                     
                     <?php if ($mbti && $mbti_nickname) { ?>
                     <div style="color: #007bff; font-weight: 700; margin-bottom: 15px; font-size: 16px; text-align: center; background: rgba(0,123,255,0.05); padding: 12px; border-radius: 8px;">
-                        <i class="fas fa-heart m-r-5"></i> <?php echo $mbti; ?> 유형 : <?php echo $mbti_nickname; ?>를 위한 추천 상품
+                        <i class="fas <?php echo $mbti_icon; ?> m-r-5"></i> <?php echo $mbti; ?> 유형 : <?php echo $mbti_nickname; ?>를 위한 추천 보험
                     </div>
                     <?php } ?>
 
@@ -267,7 +267,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </label>
                     </div>
 
-                    <button type="submit" class="submit-btn">MBTI 추천 상품 상담 신청하기</button>
+                    <button type="submit" class="submit-btn">MBTI 추천 보험 상담 신청하기</button>
                 </form>
             </div>
         </div>

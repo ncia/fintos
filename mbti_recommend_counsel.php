@@ -3,7 +3,7 @@ include_once('./_common.php');
 
 if (!defined('_EYOOM_')) define('_EYOOM_', true);
 
-$g5['title'] = 'MBTI 추천 상품 상담하기';
+$g5['title'] = 'MBTI 추천 보험 상담하기';
 
 // MBTI 정보 매핑
 $mbti = isset($_GET['mbti']) ? clean_xss_tags($_GET['mbti']) : '';
@@ -28,8 +28,28 @@ $mbti_data = array(
     'ESFP' => '자유로운 영혼의 연예인'
 );
 
+$mbti_icons = array(
+    'INTJ' => 'fa-chess-knight',
+    'INTP' => 'fa-microscope',
+    'ENTJ' => 'fa-crown',
+    'ENTP' => 'fa-lightbulb',
+    'INFJ' => 'fa-feather-alt',
+    'INFP' => 'fa-heart',
+    'ENFJ' => 'fa-users-cog',
+    'ENFP' => 'fa-star',
+    'ISTJ' => 'fa-clipboard-check',
+    'ISFJ' => 'fa-user-shield',
+    'ESTJ' => 'fa-gavel',
+    'ESFJ' => 'fa-hand-holding-heart',
+    'ISTP' => 'fa-tools',
+    'ISFP' => 'fa-paint-brush',
+    'ESTP' => 'fa-motorcycle',
+    'ESFP' => 'fa-music'
+);
+
 if ($mbti && isset($mbti_data[$mbti])) {
     $mbti_nickname = $mbti_data[$mbti];
+    $mbti_icon = isset($mbti_icons[$mbti]) ? $mbti_icons[$mbti] : 'fa-heart';
 }
 
 include_once(G5_PATH.'/head.php');

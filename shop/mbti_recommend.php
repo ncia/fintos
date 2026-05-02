@@ -33,7 +33,7 @@ shuffle($mbti_quiz_data);
             <img src="<?php echo EYOOM_THEME_URL; ?>/image/quiz/mbti_intro_visual.png" alt="MBTI 추천 가이드" class="img-fluid rounded-3 shadow-sm border" style="width: 100%; max-width: 800px; height: auto;">
         </div>
         <button id="mbti-start-btn" type="button" class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow animate__animated animate__pulse animate__infinite" data-bs-toggle="modal" data-bs-target="#mbtiQuizModal">
-            <i class="fas fa-magic m-r-10"></i>나의 MBTI별 추천 테스트
+            <i class="fas fa-magic m-r-10"></i>MBTI별 추천 보험 테스트
         </button>
     </div>
 
@@ -97,7 +97,7 @@ shuffle($mbti_quiz_data);
                 <div class="text-center m-t-40">
                     <div class="m-b-15">
                         <button type="button" id="mbti-counsel-btn" class="btn btn-primary px-5 shadow-sm" style="border-radius: 8px !important; height: 50px !important; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;" onclick="goToMbtiCounsel()">
-                            MBTI 추천 상품 상담하기
+                            MBTI 추천 보험 상담하기
                         </button>
                     </div>
                     <button type="button" class="btn btn-secondary px-4 py-2" style="border-radius: 8px !important;" onclick="resetSelection()">
@@ -116,7 +116,7 @@ shuffle($mbti_quiz_data);
             
             <!-- 모달 헤더 -->
             <div class="modal-header border-0 px-4 py-3" style="background: #ffc107 !important; color: white;">
-                <h5 class="modal-title fw-700" id="mbtiQuizModalLabel"><i class="fas fa-magic m-r-10"></i>나의 MBTI별 추천 테스트</h5>
+                <h5 class="modal-title fw-700" id="mbtiQuizModalLabel"><i class="fas fa-magic m-r-10"></i>MBTI별 추천 보험 테스트</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
