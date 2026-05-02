@@ -87,7 +87,7 @@ if (!defined('_EYOOM_')) exit;
 
                     ?>
                     <div class="m-b-10 bodmi-wrapper">
-                        <a href="javascript:void(0);" onclick="counsel_modal();" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
+                        <a href="<?php echo G5_URL; ?>/countdown_form.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
                             <div class="bodmi-bubble-text"><?php echo $bodmi_title; ?></div>
                             <div class="bodmi-countdown-clock" id="bodmi_timer">00일 00시 00분</div>
@@ -564,7 +564,7 @@ if (!defined('_EYOOM_')) exit;
                         
                         <div class="text-start m-b-20 f-s-15r text-dark" id="res_msg3" style="line-height:1.5;"></div>
                         
-                        <button type="button" onclick="counsel_modal();" class="btn-e btn-e-xl btn-e-indigo btn-e-block f-w-600" style="height:50px; border-radius:10px; font-size:1.1rem; box-shadow:0 10px 15px -3px rgba(63, 81, 181, 0.3);">보험 가입 상담</button>
+                        <button type="button" onclick="location.href='insurance_age.php';" class="btn-e btn-e-xl btn-e-indigo btn-e-block f-w-600" style="height:50px; border-radius:10px; font-size:1.1rem; box-shadow:0 10px 15px -3px rgba(63, 81, 181, 0.3);">보험 가입 상담</button>
                         <div class="text-center m-t-15">
                             <a href="javascript:void(0);" onclick="resetInsAge();" class="text-gray f-s-13r underline f-w-700">다시 계산하기</a>
                         </div>
