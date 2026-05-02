@@ -295,9 +295,9 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     <th scope="row">성별</th>
                     <td>
                         <input type="radio" name="mb_sex" value="M" id="mb_sex_m" <?php echo $mb['mb_sex']=='M'?'checked':''; ?>>
-                        <label for="mb_sex_m">남</label>
+                        <label for="mb_sex_m">남성</label>
                         <input type="radio" name="mb_sex" value="F" id="mb_sex_f" <?php echo $mb['mb_sex']=='F'?'checked':''; ?>>
-                        <label for="mb_sex_f">여</label>
+                        <label for="mb_sex_f">여성</label>
                     </td>
                 </tr>
                 <tr>

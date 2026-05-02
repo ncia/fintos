@@ -473,7 +473,13 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 <div class="regform-wrapper">
     <div class="mdb-card">
         <div class="mdb-card-header">
-            <h1 class="title"><?php echo $w=='' ? '회원가입 정보입력' : '회원정보 수정'; ?></h1>
+            <h1 class="title">
+                <?php if($w=='') { ?>
+                    <i class="fas fa-user-plus"></i> 회원가입 정보입력
+                <?php } else { ?>
+                    <i class="fas fa-user-edit"></i> 회원정보 수정
+                <?php } ?>
+            </h1>
         </div>
         <div class="mdb-card-body">
             <div class="register-form">

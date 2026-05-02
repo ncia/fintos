@@ -173,7 +173,7 @@ $values = [
     $mb_email, // D열: 이메일
     $mb_name, // E열: 이름
     $mb_birth, // F열: 생년월일
-    ($mb_sex == 'M' ? '남' : ($mb_sex == 'F' ? '여' : $mb_sex)), // G열: 성별
+    ($mb_sex == 'M' ? '남성' : ($mb_sex == 'F' ? '여성' : $mb_sex)), // G열: 성별
     $mb_hp, // H열: 연락처
     '[' . $mb_zip . '] ' . $mb_addr1 . ' ' . $mb_addr2, // I열: 주소
     ($mb_kakaotalk ? 'YES' : 'NO'), // J열: 카카오 채널
