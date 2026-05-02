@@ -95,7 +95,12 @@ shuffle($mbti_quiz_data);
                 </div>
                 
                 <div class="text-center m-t-40">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4" onclick="resetSelection()">
+                    <div class="m-b-15">
+                        <button type="button" id="mbti-counsel-btn" class="btn btn-primary px-5 shadow-sm" style="border-radius: 8px !important; height: 50px !important; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;" onclick="goToMbtiCounsel()">
+                            MBTI 추천 상품 상담하기
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-secondary px-4 py-2" style="border-radius: 8px !important;" onclick="resetSelection()">
                         <i class="fas fa-redo m-r-10"></i>다른 MBTI 확인하기
                     </button>
                 </div>
@@ -451,6 +456,14 @@ function resetSelection() {
     $('#mbti-start-btn').removeClass('d-none');
     $('#mbti-result').addClass('d-none');
     $('#mbti-selection').removeClass('d-none');
+}
+function goToMbtiCounsel() {
+    const mbti = $('#res-mbti').text();
+    if (mbti) {
+        location.href = '<?php echo G5_URL; ?>/mbti_recommend_counsel.php?mbti=' + mbti;
+    } else {
+        location.href = '<?php echo G5_URL; ?>/mbti_recommend_counsel.php';
+    }
 }
 </script>
 
