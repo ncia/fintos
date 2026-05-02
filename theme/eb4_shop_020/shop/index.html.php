@@ -523,52 +523,124 @@ if (!defined('_EYOOM_')) exit;
 <!-- 보험 나이 계산기 모달 시작 -->
 <div class="modal fade" id="insAgeModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 overflow-hidden" style="border-radius:15px;">
-            <div class="modal-header bg-dark text-white p-4">
-                <h5 class="modal-title f-s-20r"><i class="fas fa-calculator m-r-10"></i><strong>보험 나이 계산기</strong></h5>
+        <div class="modal-content border-0 overflow-hidden" style="border-radius:12px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);">
+            <div class="modal-header text-white p-4" style="background-color: #007bff; border-radius: 12px 12px 0 0;">
+                <h5 class="modal-title f-s-20r f-w-700"><i class="fas fa-calculator m-r-10"></i>보험 나이 계산기</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-4 bg-light">
-                <form id="insAgeForm" class="eyoom-form">
+            <div class="modal-body p-4 bg-white">
+                <style>
+                    /* Modal Specific MDB Styles */
+                    #insAgeForm .label-title { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 10px; display: block; }
+                    #insAgeForm .input-group-custom { 
+                        position: relative; 
+                        margin-bottom: 20px;
+                        display: flex;
+                        align-items: center;
+                        border: 1px solid #007bff;
+                        border-radius: 8px;
+                        height: 48px;
+                        background-color: #fff;
+                    }
+                    #insAgeForm .input-group-custom input { 
+                        border: none !important;
+                        height: 100%;
+                        padding: 0 15px 0 45px;
+                        font-size: 15px;
+                        width: 100%;
+                        outline: none;
+                        background: transparent;
+                        color: #1f2937;
+                    }
+                    #insAgeForm .input-group-custom i {
+                        position: absolute;
+                        left: 15px;
+                        color: #007bff;
+                        font-size: 18px;
+                    }
+                    #insAgeForm .gender-selector-modal { display: flex; gap: 10px; margin-bottom: 25px; }
+                    #insAgeForm .gender-selector-modal input { display: none; }
+                    #insAgeForm .gender-label-modal {
+                        flex: 1;
+                        border: 1px solid #007bff;
+                        border-radius: 8px;
+                        height: 48px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        background: #fff;
+                        color: #9ca3af;
+                        font-size: 15px;
+                        transition: all 0.2s;
+                    }
+                    #insAgeForm .gender-selector-modal input:checked + .gender-label-modal {
+                        background: #007bff;
+                        color: #fff;
+                    }
+                    #insAgeForm .gender-label-modal i { margin-right: 8px; font-size: 16px; }
+                    .btn-mdb-primary {
+                        background: #007bff !important;
+                        color: #fff !important;
+                        height: 50px;
+                        border-radius: 8px;
+                        font-size: 16px;
+                        font-weight: 700;
+                        width: 100%;
+                        border: none;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        transition: all 0.2s;
+                    }
+                    .btn-mdb-primary:hover { background: #0069d9 !important; transform: translateY(-1px); }
+                </style>
+
+                <form id="insAgeForm">
                     <div class="m-b-20">
-                        <label class="label f-w-600 m-b-10">이름</label>
-                        <label class="input">
-                            <i class="icon-append fas fa-user text-gray"></i>
-                            <input type="text" name="name" id="ins_name" value="<?php echo $is_member ? $member['mb_nick'] : ''; ?>" placeholder="이름을 입력하세요" style="height:45px; border-radius:8px;">
-                        </label>
+                        <label class="label-title">이름</label>
+                        <div class="input-group-custom">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="name" id="ins_name" value="<?php echo $is_member ? $member['mb_nick'] : ''; ?>" placeholder="이름을 입력하세요">
+                        </div>
                     </div>
                     <div class="m-b-20" id="gender_group">
-                        <label class="label f-w-600 m-b-10">성별</label>
-                        <div class="inline-group">
-                            <label class="radio"><input type="radio" name="gender" value="M"><i></i>남성</label>
-                            <label class="radio"><input type="radio" name="gender" value="F"><i></i>여성</label>
+                        <label class="label-title">성별</label>
+                        <div class="gender-selector-modal">
+                            <input type="radio" name="gender" id="modal_sex_m" value="M">
+                            <label for="modal_sex_m" class="gender-label-modal"><i class="fas fa-mars"></i> 남성</label>
+                            
+                            <input type="radio" name="gender" id="modal_sex_f" value="F">
+                            <label for="modal_sex_f" class="gender-label-modal"><i class="fas fa-venus"></i> 여성</label>
                         </div>
                     </div>
                     <div class="m-b-25">
-                        <label class="label f-w-600 m-b-10">생년월일 (8자리)</label>
-                        <label class="input">
-                            <i class="icon-append far fa-calendar-alt text-gray"></i>
-                            <input type="text" name="birth" id="ins_birth" placeholder="예: 19810125" maxlength="8" style="height:45px; border-radius:8px;">
-                        </label>
+                        <label class="label-title">생년월일 (8자리)</label>
+                        <div class="input-group-custom">
+                            <i class="far fa-calendar-alt"></i>
+                            <input type="text" name="birth" id="ins_birth" placeholder="예: 19810125" maxlength="8">
+                        </div>
                     </div>
-                    <button type="button" onclick="calculateInsAge()" class="btn-e btn-e-xl btn-e-indigo btn-e-block f-w-600" style="height:50px; border-radius:10px; font-size:1.1rem; box-shadow:0 10px 15px -3px rgba(63, 81, 181, 0.3);">보험 나이 조회</button>
+                    <button type="button" onclick="calculateInsAge()" class="btn-mdb-primary">보험 나이 조회</button>
                 </form>
                 
-                    <div id="ins_result" class="m-t-5 p-4 border-radius-10 bg-white" style="display:none; border:1px solid #e0e6ed; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
-                        <p class="f-s-16r m-b-10 text-dark text-start" id="res_msg1"></p>
-                        <p class="f-s-16r m-b-20 text-dark text-start" id="res_msg2"></p>
-                        
-                        <div class="text-center m-b-20">
-                            <img src="<?php echo G5_URL; ?>/img/cat_helper.png" class="img-fluid" style="width:220px;">
-                        </div>
-                        
-                        <div class="text-start m-b-20 f-s-15r text-dark" id="res_msg3" style="line-height:1.5;"></div>
-                        
-                        <button type="button" onclick="location.href='insurance_age.php';" class="btn-e btn-e-xl btn-e-indigo btn-e-block f-w-600" style="height:50px; border-radius:10px; font-size:1.1rem; box-shadow:0 10px 15px -3px rgba(63, 81, 181, 0.3);">보험 가입 상담</button>
-                        <div class="text-center m-t-15">
-                            <a href="javascript:void(0);" onclick="resetInsAge();" class="text-gray f-s-13r underline f-w-700">다시 계산하기</a>
-                        </div>
+                <div id="ins_result" class="m-t-20 p-4 border-radius-10 bg-white" style="display:none; border:1px solid #e0e6ed; box-shadow:0 10px 15px -3px rgba(0,0,0,0.05); position: relative;">
+                    <div class="text-start">
+                        <p class="f-s-16r m-b-10 text-dark f-w-700" id="res_msg1" style="color: #007bff !important;"></p>
+                        <p class="f-s-16r m-b-20 text-dark" id="res_msg2"></p>
                     </div>
+                    
+                    <div class="text-center m-b-20">
+                        <video autoplay loop muted playsinline style="width: 220px; height: 220px; object-fit: cover; border-radius: 15px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+                            <source src="<?php echo EYOOM_THEME_URL; ?>/image/calculate/bodmi_calculate.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="text-start m-b-20 f-s-15r text-dark" id="res_msg3" style="line-height:1.6; color: #4b5563;"></div>
+                    
+                    <button type="button" onclick="location.href='insurance_age.php';" class="btn-mdb-primary">보험 가입 상담</button>
+                    <div class="text-center m-t-15">
+                        <a href="javascript:void(0);" onclick="resetInsAge();" class="text-gray f-s-13r underline f-w-700">다시 계산하기</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
