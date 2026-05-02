@@ -85,15 +85,15 @@ if ($adt) {
 $mail = isset($_GET['mail']) ? (int) $_GET['mail']: '';
 if ($mail) {
     $mail_val = $mail-1 == 1 ? 1:'';
-    $sql_search .= " and mb_mailling = '{$mail_val}' ";
+    $sql_search .= " and mb_kakaotalk = '{$mail_val}' ";
     $qstr .= "&amp;mail={$mail}";
     if ($mail == '1') {
-        $mb_mailling_no = 'checked';
+        $mb_kakaotalk_no = 'checked';
     } else if ($mail == '2') {
-        $mb_mailling_yes = 'checked';
+        $mb_kakaotalk_yes = 'checked';
     }
 } else {
-    $mb_mailling_all = 'checked';
+    $mb_kakaotalk_all = 'checked';
 }
 
 // 문자 수신 여부

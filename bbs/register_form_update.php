@@ -19,40 +19,17 @@ if ($w == 'u' && $is_admin == 'super') {
 
 if (run_replace('register_member_chk_captcha', !chk_captcha(), $w)) {
     $url = G5_HTTP_BBS_URL.'/register_form.php' . ($w ? '?w='.$w : '');
-    
-    // 비밀번호 체크 우회를 위해 현재 비밀번호 가져오기
-    $tmp_password = "";
-    if ($w == 'u' && isset($member['mb_id'])) {
-        $row = sql_fetch(" select mb_password from {$g5['member_table']} where mb_id = '{$member['mb_id']}' ");
-        $tmp_password = $row['mb_password'];
-    }
 
-    $post_data = "";
+    // 자동등록방지 틀렸을 때 입력값 유지를 위해 세션에 저장
+    $register_post = array();
     foreach($_POST as $key => $value) {
         if(is_array($value)) continue;
-        // mb_password는 아래에서 따로 처리 (이미 입력된 값이 있을 수 있으므로)
-        if($key == 'mb_password') continue;
-        $post_data .= '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($value).'">';
+        if($key == 'mb_password' || $key == 'mb_password_re') continue;
+        $register_post[$key] = $value;
     }
-    
-    echo '
-    <!doctype html>
-    <html lang="ko">
-    <head>
-    <meta charset="utf-8">
-    </head>
-    <body>
-    <form name="fcaptcha_fail" method="post" action="'.$url.'">
-    '.$post_data.'
-    <input type="hidden" name="mb_password" value="'.$tmp_password.'">
-    <input type="hidden" name="is_update" value="1">
-    </form>
-    <script>
-    alert("자동등록방지 숫자가 틀렸습니다.");
-    document.fcaptcha_fail.submit();
-    </script>
-    </body>
-    </html>';
+    set_session('ss_register_post', serialize($register_post));
+
+    alert("자동등록방지 숫자가 틀렸습니다.", $url);
     exit;
 }
 
@@ -69,7 +46,8 @@ if(!$mb_id)
 $mb_password    = isset($_POST['mb_password']) ? trim($_POST['mb_password']) : '';
 $mb_password_re = isset($_POST['mb_password_re']) ? trim($_POST['mb_password_re']) : '';
 $mb_name        = isset($_POST['mb_name']) ? trim($_POST['mb_name']) : '';
-$mb_nick        = isset($_POST['mb_nick']) ? trim($_POST['mb_nick']) : '';
+$mb_nick        = isset($_POST['mb_nick']) ? trim($_POST['mb_nick']) : $mb_name;
+if (!$mb_nick) $mb_nick = $mb_name;
 $mb_email       = isset($_POST['mb_email']) ? trim($_POST['mb_email']) : '';
 $mb_sex         = isset($_POST['mb_sex'])           ? trim($_POST['mb_sex'])         : "";
 $mb_birth       = isset($_POST['mb_birth'])         ? trim($_POST['mb_birth'])       : "";
@@ -85,6 +63,7 @@ $mb_addr_jibeon = isset($_POST['mb_addr_jibeon'])   ? trim($_POST['mb_addr_jibeo
 $mb_signature   = isset($_POST['mb_signature'])     ? trim($_POST['mb_signature'])   : "";
 $mb_profile     = isset($_POST['mb_profile'])       ? trim($_POST['mb_profile'])     : "";
 $mb_recommend   = isset($_POST['mb_recommend'])     ? trim($_POST['mb_recommend'])   : "";
+$mb_kakaotalk    = isset($_POST['mb_kakaotalk'])   ? trim($_POST['mb_kakaotalk']) : "0";
 $mb_mailling    = isset($_POST['mb_mailling'])      ? trim($_POST['mb_mailling'])    : "0";
 $mb_sms         = isset($_POST['mb_sms'])           ? trim($_POST['mb_sms'])         : "0";
 $mb_open        = isset($_POST['mb_open'])          ? trim($_POST['mb_open'])        : "0";
@@ -280,6 +259,7 @@ if ($w == '') {
                      mb_level = '{$config['cf_register_level']}',
                      mb_recommend = '{$mb_recommend}',
                      mb_login_ip = '{$_SERVER['REMOTE_ADDR']}',
+                     mb_kakaotalk = '{$mb_kakaotalk}',
                      mb_mailling = '{$mb_mailling}',
                      mb_sms = '{$mb_sms}',
                      mb_open = '{$mb_open}',
@@ -312,10 +292,16 @@ if ($w == '') {
         $agree_items[] = "마케팅 목적의 개인정보 수집 및 이용(동의)";
     }
 
-    // 광고성 이메일 수신
+    // 카카오톡 수신 동의
+    if ($mb_kakaotalk == 1) {
+        $sql .=  " , mb_kakaotalk_date = '".G5_TIME_YMDHIS."' ";
+        $agree_items[] = "카카오톡 핀토스 보험 채널 추가 동의(동의)";
+    }
+
+    // 이메일, 문자메시지 수신 동의
     if ($mb_mailling == 1) {
         $sql .=  " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "광고성 이메일 수신(동의)";
+        $agree_items[] = "이메일, 문자메시지 핀토스 수신 동의(동의)";
     }
 
     // 광고성 SMS/카카오톡 수신
@@ -440,11 +426,18 @@ if ($w == '') {
         $agree_items[] = "마케팅 목적의 개인정보 수집 및 이용(" . ($mb_marketing_agree == 1 ? "동의" : "철회") . ")";
     }
 
-    // 광고성 이메일 수신
+    // 카카오톡 수신 동의
+    $sql_kakaotalk_date = "";
+    if ($mb_kakaotalk_default !== $mb_kakaotalk) {
+        $sql_kakaotalk_date .= " , mb_kakaotalk_date = '".G5_TIME_YMDHIS."' ";
+        $agree_items[] = "카카오톡 핀토스 보험 채널 추가 동의(" . ($mb_kakaotalk == 1 ? "동의" : "철회") . ")";
+    }
+
+    // 이메일, 문자메시지 수신 동의
     $sql_mailling_date = "";
     if ($mb_mailling_default !== $mb_mailling) {
         $sql_mailling_date .= " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "광고성 이메일 수신(" . ($mb_mailling == 1 ? "동의" : "철회") . ")";
+        $agree_items[] = "이메일, 문자메시지 핀토스 수신 동의(" . ($mb_mailling == 1 ? "동의" : "철회") . ")";
     }
     
     // 광고성 SMS/카카오톡 수신
@@ -470,6 +463,7 @@ if ($w == '') {
 
     $sql = " update {$g5['member_table']}
                 set mb_nick = '{$mb_nick}',
+                    mb_kakaotalk = '{$mb_kakaotalk}',
                     mb_mailling = '{$mb_mailling}',
                     mb_sms = '{$mb_sms}',
                     mb_open = '{$mb_open}',
@@ -536,7 +530,7 @@ $msg = "";
 // 아이콘 업로드
 $mb_icon = '';
 $image_regex = "/(\.(gif|jpe?g|png))$/i";
-$mb_icon_ext = strtolower(pathinfo($_FILES['mb_icon']['name'], PATHINFO_EXTENSION));
+$mb_icon_ext = isset($_FILES['mb_icon']['name']) ? strtolower(pathinfo($_FILES['mb_icon']['name'], PATHINFO_EXTENSION)) : '';
 if ($mb_icon_ext == 'jpeg') $mb_icon_ext = 'jpg';
 $mb_icon_img = get_mb_icon_name($mb_id).'.'.$mb_icon_ext;
 

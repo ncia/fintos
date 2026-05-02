@@ -444,12 +444,12 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo $member['mb_mailling'] ? 'checked' : ''; ?> class="child-promo">
+                                        <input type="checkbox" name="mb_kakaotalk" value="1" id="reg_mb_kakaotalk" <?php echo $member['mb_kakaotalk'] ? 'checked' : ''; ?> class="child-promo">
                                         <i></i>광고성 이메일 수신
                                     </label>
-                                    <input type="hidden" name="mb_mailling_default" value="<?php echo $member['mb_mailling']; ?>">
-                                    <?php if ($w == 'u' && $member['mb_mailling'] == 1 && $member['mb_mailling_date'] != "0000-00-00 00:00:00") { ?>
-                                    <div class="note text-muted">(동의일자: <?php echo $member['mb_mailling_date']; ?>)</div>
+                                    <input type="hidden" name="mb_kakaotalk_default" value="<?php echo $member['mb_kakaotalk']; ?>">
+                                    <?php if ($w == 'u' && $member['mb_kakaotalk'] == 1 && $member['mb_kakaotalk_date'] != "0000-00-00 00:00:00") { ?>
+                                    <div class="note text-muted">(동의일자: <?php echo $member['mb_kakaotalk_date']; ?>)</div>
                                     <?php } ?>
                                 </div>
                                 

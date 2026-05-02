@@ -100,7 +100,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	                <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $name_readonly; ?> class="frm_input full_input <?php echo $required ?> <?php echo $name_readonly ?>" size="10" placeholder="이름">
 	            </li>
 	            <?php if ($req_nick) {  ?>
-	            <li>
+	            <li style="display:none;">
 	                <label for="reg_mb_nick">
 	                	닉네임 (필수)
 	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
@@ -108,7 +108,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	                </label>
 	                
                     <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>">
-                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input required nospace full_input" size="10" maxlength="20" placeholder="닉네임">
+                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" class="frm_input nospace full_input" size="10" maxlength="20" placeholder="닉네임">
                     <span id="msg_mb_nick"></span>	                
 	            </li>
 	            <?php }  ?>
@@ -311,11 +311,11 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 				<!-- 하위 채널(이메일/SMS) -->
 				<ul class="sub-consents">
 					<li class="chk_box is-inline">
-						<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo $member['mb_mailling'] ? 'checked' : ''; ?> class="selec_chk child-promo">
-						<label for="reg_mb_mailling"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
+						<input type="checkbox" name="mb_kakaotalk" value="1" id="reg_mb_kakaotalk" <?php echo $member['mb_kakaotalk'] ? 'checked' : ''; ?> class="selec_chk child-promo">
+						<label for="reg_mb_kakaotalk"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
 						<span class="chk_li">광고성 이메일 수신 동의</span>
-						<input type="hidden" name="mb_mailling_default" value="<?php echo $member['mb_mailling']; ?>">
-						<div class="consent-date"><?php if ($w == 'u' && $member['mb_mailling'] == 1 && $member['mb_mailling_date'] != "0000-00-00 00:00:00") echo "(동의일자: ".$member['mb_mailling_date'].")"; ?></div>
+						<input type="hidden" name="mb_kakaotalk_default" value="<?php echo $member['mb_kakaotalk']; ?>">
+						<div class="consent-date"><?php if ($w == 'u' && $member['mb_kakaotalk'] == 1 && $member['mb_kakaotalk_date'] != "0000-00-00 00:00:00") echo "(동의일자: ".$member['mb_kakaotalk_date'].")"; ?></div>
 					</li>
 
 					<!-- 휴대폰번호 입력 보이기 or 필수입력일 경우에만 -->
@@ -518,15 +518,17 @@ function fregisterform_submit(f)
     }
     <?php } ?>
 
-    // 닉네임 검사
-    if ((f.w.value == "") || (f.w.value == "u" && f.mb_nick.defaultValue != f.mb_nick.value)) {
-        var msg = reg_mb_nick_check();
-        if (msg) {
-            alert(msg);
-            f.reg_mb_nick.select();
-            return false;
-        }
-    }
+    /*
+521:     // 닉네임 검사
+522:     if ((f.w.value == "") || (f.w.value == "u" && f.mb_nick.defaultValue != f.mb_nick.value)) {
+523:         var msg = reg_mb_nick_check();
+524:         if (msg) {
+525:             alert(msg);
+526:             f.reg_mb_nick.select();
+527:             return false;
+528:         }
+529:     }
+    */
 
     // E-mail 검사
     if ((f.w.value == "") || (f.w.value == "u" && f.mb_email.defaultValue != f.mb_email.value)) {
@@ -623,6 +625,12 @@ document.addEventListener('DOMContentLoaded', function () {
   childPromo.forEach(cb => cb.addEventListener('change', syncParentFromChildren));
 });
 
+
+$(function() {
+    $('#reg_mb_name').on('keyup change', function() {
+        $('#reg_mb_nick').val($(this).val());
+    });
+});
 </script>
 
 <!-- } 회원정보 입력/수정 끝 -->

@@ -51,7 +51,7 @@ if ($w == '') {
     $required_mb_password = 'required';
     $sound_only = '<strong class="sound_only">필수</strong>';
 
-    $mb['mb_mailling'] = 1;
+    $mb['mb_kakaotalk'] = 1;
     $mb['mb_sms'] = 1;
     $mb['mb_open'] = 1;
     $mb['mb_level'] = $config['cf_register_level'];
@@ -131,8 +131,8 @@ $mb_adult_yes       =  $mb['mb_adult']      ? 'checked="checked"' : '';
 $mb_adult_no        = !$mb['mb_adult']      ? 'checked="checked"' : '';
 
 //메일수신
-$mb_mailling_yes    =  $mb['mb_mailling']   ? 'checked="checked"' : '';
-$mb_mailling_no     = !$mb['mb_mailling']   ? 'checked="checked"' : '';
+$mb_kakaotalk_yes    =  $mb['mb_kakaotalk']   ? 'checked="checked"' : '';
+$mb_kakaotalk_no     = !$mb['mb_kakaotalk']   ? 'checked="checked"' : '';
 
 // SMS 수신
 $mb_sms_yes         =  $mb['mb_sms']        ? 'checked="checked"' : '';
@@ -378,13 +378,13 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                 <tr>
                     <th scope="row">광고성 이메일 수신</th>
                     <td>
-                        <input type="radio" name="mb_mailling" value="1" id="mb_mailling_yes" <?php echo $mb_mailling_yes; ?>>
-                        <label for="mb_mailling_yes">예</label>
-                        <input type="radio" name="mb_mailling" value="0" id="mb_mailling_no" <?php echo $mb_mailling_no; ?>>
-                        <label for="mb_mailling_no">아니오</label>
+                        <input type="radio" name="mb_kakaotalk" value="1" id="mb_kakaotalk_yes" <?php echo $mb_kakaotalk_yes; ?>>
+                        <label for="mb_kakaotalk_yes">예</label>
+                        <input type="radio" name="mb_kakaotalk" value="0" id="mb_kakaotalk_no" <?php echo $mb_kakaotalk_no; ?>>
+                        <label for="mb_kakaotalk_no">아니오</label>
                         
-                        <?php if($w == "u" && $mb['mb_mailling_date'] != "0000-00-00 00:00:00"){
-                                echo $mb['mb_mailling'] == 1 ? "<br>(동의 일자: ".$mb['mb_mailling_date'].")" : '';
+                        <?php if($w == "u" && $mb['mb_kakaotalk_date'] != "0000-00-00 00:00:00"){
+                                echo $mb['mb_kakaotalk'] == 1 ? "<br>(동의 일자: ".$mb['mb_kakaotalk_date'].")" : '';
                         } ?>
                     </td>
                     <th scope="row"><label for="mb_sms_yes">광고성 SMS/카카오톡 수신</label></th>

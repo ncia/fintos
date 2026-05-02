@@ -74,11 +74,11 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
             </div>
             <div class="adm-form-tr tr-r">
                 <div class="adm-form-td td-l">
-                    <label for="mb_mailling" class="label">메일링 수신여부</label>
+                    <label for="mb_kakaotalk" class="label">메일링 수신여부</label>
                 </div>
                 <div class="adm-form-td td-r">
                     <label class="select max-width-250px">
-                        <select name="mb_mailling" id="mb_mailling">
+                        <select name="mb_kakaotalk" id="mb_kakaotalk">
                             <option value="1">수신동의한 회원만</option>
                             <option value="">전체</option>
                         </select><i></i>

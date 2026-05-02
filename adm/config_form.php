@@ -440,7 +440,7 @@ if (!isset($member['mb_marketing_agree'])) {
                 ADD `mb_thirdparty_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER  `mb_marketing_date`,
                 ADD `mb_thirdparty_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_thirdparty_agree`,
                 ADD `mb_agree_log` TEXT NOT NULL AFTER `mb_thirdparty_date`,
-                ADD `mb_mailling_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_mailling`,
+                ADD `mb_kakaotalk_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_kakaotalk`,
                 ADD `mb_sms_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_sms` ",
         true
     );

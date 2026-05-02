@@ -127,7 +127,7 @@ $colspan = 16;
                     <th scope="col" rowspan="2" id="mb_list_cert"><?php echo subject_sort_link('mb_certify', '', 'desc') ?>본인확인</a></th>
                     <th scope="col" id="mb_list_mailc"><?php echo subject_sort_link('mb_email_certify', '', 'desc') ?>메일인증</a></th>
                     <th scope="col" id="mb_list_open"><?php echo subject_sort_link('mb_open', '', 'desc') ?>정보공개</a></th>
-                    <th scope="col" id="mb_list_mailr"><?php echo subject_sort_link('mb_mailling', '', 'desc') ?>광고성이메일</a></th>
+                    <th scope="col" id="mb_list_mailr"><?php echo subject_sort_link('mb_kakaotalk', '', 'desc') ?>광고성이메일</a></th>
                     <th scope="col" id="mb_list_auth">상태</th>
                     <th scope="col" id="mb_list_mobile">휴대폰</th>
                     <th scope="col" id="mb_list_lastcall"><?php echo subject_sort_link('mb_today_login', '', 'desc') ?>최종접속</a></th>
@@ -258,9 +258,9 @@ $colspan = 16;
                             <input type="checkbox" name="mb_open[<?php echo $i; ?>]" <?php echo $row['mb_open'] ? 'checked' : ''; ?> value="1" id="mb_open_<?php echo $i; ?>">
                         </td>
                         <td headers="mb_list_mailr" class="td_consent">
-                            <label for="mb_mailling_<?php echo $i; ?>" class="sound_only">광고성이메일수신</label>
-                            <input type="checkbox" name="mb_mailling[<?php echo $i; ?>]" <?php echo $row['mb_mailling'] ? 'checked' : ''; ?> value="1" id="mb_mailling_<?php echo $i; ?>">
-                            <input type="hidden" name="mb_mailling_default[<?php echo $i; ?>]" value="<?php echo isset($row['mb_mailling']) ? $row['mb_mailling'] : '0'; ?> " id="mb_mailling_default_<?php echo $i; ?>">
+                            <label for="mb_kakaotalk_<?php echo $i; ?>" class="sound_only">광고성이메일수신</label>
+                            <input type="checkbox" name="mb_kakaotalk[<?php echo $i; ?>]" <?php echo $row['mb_kakaotalk'] ? 'checked' : ''; ?> value="1" id="mb_kakaotalk_<?php echo $i; ?>">
+                            <input type="hidden" name="mb_kakaotalk_default[<?php echo $i; ?>]" value="<?php echo isset($row['mb_kakaotalk']) ? $row['mb_kakaotalk'] : '0'; ?> " id="mb_kakaotalk_default_<?php echo $i; ?>">
                         </td>
                         <td headers="mb_list_auth" class="td_mbstat">
                             <?php

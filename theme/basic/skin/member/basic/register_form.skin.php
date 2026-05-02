@@ -311,11 +311,11 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 				<!-- 하위 채널(이메일/SMS) -->
 				<ul class="sub-consents">
 					<li class="chk_box is-inline">
-						<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo $member['mb_mailling'] ? 'checked' : ''; ?> class="selec_chk child-promo">
-						<label for="reg_mb_mailling"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
+						<input type="checkbox" name="mb_kakaotalk" value="1" id="reg_mb_kakaotalk" <?php echo $member['mb_kakaotalk'] ? 'checked' : ''; ?> class="selec_chk child-promo">
+						<label for="reg_mb_kakaotalk"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
 						<span class="chk_li">광고성 이메일 수신 동의</span>
-						<input type="hidden" name="mb_mailling_default" value="<?php echo $member['mb_mailling']; ?>">
-						<div class="consent-date"><?php if ($w == 'u' && $member['mb_mailling'] == 1 && $member['mb_mailling_date'] != "0000-00-00 00:00:00") echo " (동의일자: ".$member['mb_mailling_date'].")"; ?></div>
+						<input type="hidden" name="mb_kakaotalk_default" value="<?php echo $member['mb_kakaotalk']; ?>">
+						<div class="consent-date"><?php if ($w == 'u' && $member['mb_kakaotalk'] == 1 && $member['mb_kakaotalk_date'] != "0000-00-00 00:00:00") echo " (동의일자: ".$member['mb_kakaotalk_date'].")"; ?></div>
 					</li>
 
 					<!-- 휴대폰번호 입력 보이기 or 필수입력일 경우에만 -->

@@ -21,7 +21,7 @@ $mb_id1         = isset($_POST['mb_id1'])       ? (int) $_POST['mb_id1'] : 1;
 $mb_id1_from    = isset($_POST['mb_id1_from'])  ? clean_xss_tags($_POST['mb_id1_from'], 1, 1, 30) : '';
 $mb_id1_to      = isset($_POST['mb_id1_to'])    ? clean_xss_tags($_POST['mb_id1_to'], 1, 1, 30) : '';
 $mb_email       = isset($_POST['mb_email'])     ? clean_xss_tags($_POST['mb_email'], 1, 1, 100) : '';
-$mb_mailling    = isset($_POST['mb_mailling'])  ? clean_xss_tags($_POST['mb_mailling'], 1, 1, 100) : '';
+$mb_kakaotalk    = isset($_POST['mb_kakaotalk'])  ? clean_xss_tags($_POST['mb_kakaotalk'], 1, 1, 100) : '';
 $mb_level_from  = isset($_POST['mb_level_from'])? (int) $_POST['mb_level_from'] : 1;
 $mb_level_to    = isset($_POST['mb_level_to'])  ? (int) $_POST['mb_level_to'] : 10;
 
@@ -36,8 +36,8 @@ if ($mb_email != "") {
 }
 
 // 메일링
-if ($mb_mailling != "") {
-    $sql_where .= " and mb_mailling = '{$mb_mailling}' ";
+if ($mb_kakaotalk != "") {
+    $sql_where .= " and mb_kakaotalk = '{$mb_kakaotalk}' ";
 }
 
 // 권한
@@ -76,7 +76,7 @@ $ma_last_option .= "mb_id1={$mb_id1}";
 $ma_last_option .= "||mb_id1_from={$mb_id1_from}";
 $ma_last_option .= "||mb_id1_to={$mb_id1_to}";
 $ma_last_option .= "||mb_email={$mb_email}";
-$ma_last_option .= "||mb_mailling={$mb_mailling}";
+$ma_last_option .= "||mb_kakaotalk={$mb_kakaotalk}";
 $ma_last_option .= "||mb_level_from={$mb_level_from}";
 $ma_last_option .= "||mb_level_to={$mb_level_to}";
 $ma_last_option .= "||gr_id={$gr_id}";

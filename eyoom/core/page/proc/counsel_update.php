@@ -98,6 +98,7 @@ $chars_array = array_merge(range(0,9), range('a','z'), range('A','Z'));
 
 // 가변 파일 업로드
 $upload = array();
+$sql_file = "";
 
 if(isset($_FILES['cs_file']['name']) && is_array($_FILES['cs_file']['name'])) {
     for ($i=0; $i<count($_FILES['cs_file']['name']); $i++) {
@@ -110,6 +111,7 @@ if(isset($_FILES['cs_file']['name']) && is_array($_FILES['cs_file']['name'])) {
         $upload['image'][2] = 0;
         $upload['fileurl'] = '';
         $upload['thumburl'] = '';
+        $upload['storage'] = '';
         $upload['storage'] = '';
 
         $tmp_file  = $_FILES['cs_file']['tmp_name'][$i];
@@ -163,6 +165,31 @@ sql_query($sql);
 
 $cs_id = sql_insert_id();
 
+//----------------------------------------------------------
+// 구글 스프레드시트 연동 시작 (Google Sheets API)
+//----------------------------------------------------------
+include_once(G5_LIB_PATH.'/google_sheet.lib.php');
+
+$sheet_id = '1t3OElFyO6HlUm7qtf8ASE5PTEk5qAq6IzALsaV4XSA0';
+$range = '회원가입!A:K';
+
+$values = [
+    G5_TIME_YMDHIS, // A열: 날짜
+    '보험상담 - ' . $cs_part, // B열: 출처
+    ($member['mb_id'] ? $member['mb_id'] : ''), // C열: 아이디 (로그인시)
+    $cs_email, // D열: 이메일
+    $cs_name, // E열: 이름
+    '', // F열: 생년월일
+    '', // G열: 성별
+    $cs_tel, // H열: 연락처
+    $cs_company, // I열: 주소
+    '', // J열: 카카오 채널
+    ''  // K열: 문자 이메일
+];
+
+update_google_sheet($sheet_id, $range, $values);
+
+
 /**
  * 이메일 발송
  */
@@ -196,3 +223,4 @@ if (!$wmode) {
     </script>
     ";
 }
+?>

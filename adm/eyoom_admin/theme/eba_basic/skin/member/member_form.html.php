@@ -305,12 +305,12 @@ $frm_submit .= $frm_eba_submit;
         <div class="adm-form-tr-wrap">
             <div class="adm-form-tr tr-l">
                 <div class="adm-form-td td-l">
-                    <label for="mb_mailling" class="label">메일 수신</label>
+                    <label for="mb_kakaotalk" class="label">메일 수신</label>
                 </div>
                 <div class="adm-form-td td-r">
                     <div class="inline-group">
-                        <label for="mb_mailling_yes" class="radio"><input type="radio" name="mb_mailling" id="mb_mailling_yes" value="1" <?php echo $mb_mailling_yes; ?>><i></i> 예</label>
-                        <label for="mb_mailling_no" class="radio"><input type="radio" name="mb_mailling" id="mb_mailling_no" value="0" <?php echo $mb_mailling_no; ?>><i></i> 아니오</label>
+                        <label for="mb_kakaotalk_yes" class="radio"><input type="radio" name="mb_kakaotalk" id="mb_kakaotalk_yes" value="1" <?php echo $mb_kakaotalk_yes; ?>><i></i> 예</label>
+                        <label for="mb_kakaotalk_no" class="radio"><input type="radio" name="mb_kakaotalk" id="mb_kakaotalk_no" value="0" <?php echo $mb_kakaotalk_no; ?>><i></i> 아니오</label>
                     </div>
                 </div>
             </div>

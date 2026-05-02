@@ -284,7 +284,7 @@ if ($g5_install || $is_install === false) {
                      mb_nick = '$admin_name',
                      mb_email = '$admin_email',
                      mb_level = '10',
-                     mb_mailling = '1',
+                     mb_kakaotalk = '1',
                      mb_open = '1',
                      mb_nick_date = '".G5_TIME_YMDHIS."',
                      mb_email_certify = '".G5_TIME_YMDHIS."',

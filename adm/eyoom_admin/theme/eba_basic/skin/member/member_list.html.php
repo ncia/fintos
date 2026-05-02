@@ -129,9 +129,9 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                     </div>
                     <div class="adm-form-td td-r">
                         <div class="inline-group">
-                            <label for="mb_mailling_all" class="radio"><input type="radio" name="mail" id="mb_mailling_all" value="0" <?php echo $mb_mailling_all; ?>><i></i> 전체</label>
-                            <label for="mb_mailling_yes" class="radio"><input type="radio" name="mail" id="mb_mailling_yes" value="2" <?php echo $mb_mailling_yes; ?>><i></i> 예</label>
-                            <label for="mb_mailling_no" class="radio"><input type="radio" name="mail" id="mb_mailling_no" value="1" <?php echo $mb_mailling_no; ?>><i></i> 아니오</label>
+                            <label for="mb_kakaotalk_all" class="radio"><input type="radio" name="mail" id="mb_kakaotalk_all" value="0" <?php echo $mb_kakaotalk_all; ?>><i></i> 전체</label>
+                            <label for="mb_kakaotalk_yes" class="radio"><input type="radio" name="mail" id="mb_kakaotalk_yes" value="2" <?php echo $mb_kakaotalk_yes; ?>><i></i> 예</label>
+                            <label for="mb_kakaotalk_no" class="radio"><input type="radio" name="mail" id="mb_kakaotalk_no" value="1" <?php echo $mb_kakaotalk_no; ?>><i></i> 아니오</label>
                         </div>
                     </div>
                 </div>
@@ -214,8 +214,8 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                     <option value="mb_email_certify|desc" <?php if ($sst=='mb_email_certify' && $sod=='desc') { ?>selected<?php } ?>>메일인증 역방향 (↑)</option>
                     <option value="mb_open|asc" <?php if ($sst=='mb_open' && $sod=='asc') { ?>selected<?php } ?>>정보공개 정방향 (↓)</option>
                     <option value="mb_open|desc" <?php if ($sst=='mb_open' && $sod=='desc') { ?>selected<?php } ?>>정보공개 역방향 (↑)</option>
-                    <option value="mb_mailling|asc" <?php if ($sst=='mb_mailling' && $sod=='asc') { ?>selected<?php } ?>>메일수신 정방향 (↓)</option>
-                    <option value="mb_mailling|desc" <?php if ($sst=='mb_mailling' && $sod=='desc') { ?>selected<?php } ?>>메일수신 역방향 (↑)</option>
+                    <option value="mb_kakaotalk|asc" <?php if ($sst=='mb_kakaotalk' && $sod=='asc') { ?>selected<?php } ?>>메일수신 정방향 (↓)</option>
+                    <option value="mb_kakaotalk|desc" <?php if ($sst=='mb_kakaotalk' && $sod=='desc') { ?>selected<?php } ?>>메일수신 역방향 (↑)</option>
                     <option value="mb_sms|asc" <?php if ($sst=='mb_sms' && $sod=='asc') { ?>selected<?php } ?>>SMS수신 정방향 (↓)</option>
                     <option value="mb_sms|desc" <?php if ($sst=='mb_sms' && $sod=='desc') { ?>selected<?php } ?>>SMS수신 역방향 (↑)</option>
                     <option value="mb_level|asc" <?php if ($sst=='mb_level' && $sod=='asc') { ?>selected<?php } ?>>권한 정방향 (↓)</option>
@@ -344,7 +344,7 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                             <label class="checkbox adm-table-check"><input type="checkbox" name="mb_open[<?php echo $i; ?>]" <?php if ($list[$i]['mb_open']) { ?>checked<?php } ?> value="1"><i></i></label>
                         </td>
                         <td>
-                            <label class="checkbox adm-table-check"><input type="checkbox" name="mb_mailling[<?php echo $i; ?>]" <?php if ($list[$i]['mb_mailling']) { ?>checked<?php } ?> value="1"><i></i></label>
+                            <label class="checkbox adm-table-check"><input type="checkbox" name="mb_kakaotalk[<?php echo $i; ?>]" <?php if ($list[$i]['mb_kakaotalk']) { ?>checked<?php } ?> value="1"><i></i></label>
                         </td>
                         <td>
                             <label class="checkbox adm-table-check"><input type="checkbox" name="mb_sms[<?php echo $i; ?>]" <?php if ($list[$i]['mb_sms']) { ?>checked<?php } ?> value="1"><i></i></label>

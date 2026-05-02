@@ -220,10 +220,10 @@ function member_export_build_where($params)
 
         if ($range === 'all') {        
             // 마케팅 동의 + (이메일 OR SMS 동의)
-            $conditions[] = "({$base_marketing} AND (mb_mailling = 1 OR mb_sms = 1))";        
+            $conditions[] = "({$base_marketing} AND (mb_kakaotalk = 1 OR mb_sms = 1))";        
         } elseif ($range === 'mailling_only') {        
             // 마케팅 동의 + 이메일 동의
-            $conditions[] = "({$base_marketing} AND mb_mailling = 1)";
+            $conditions[] = "({$base_marketing} AND mb_kakaotalk = 1)";
         } elseif ($range === 'sms_only') {        
             // 마케팅 동의 + SMS/카카오톡 동의
             $conditions[] = "({$base_marketing} AND mb_sms = 1)";
@@ -236,7 +236,7 @@ function member_export_build_where($params)
                 // 23개월 전 그 달
                 $start = date('Y-m-01 00:00:00', strtotime('-23 months'));
                 $end   = date('Y-m-t 23:59:59', strtotime('-23 months'));
-                $emailDateCond = "mb_mailling_date BETWEEN '{$start}' AND '{$end}'";
+                $emailDateCond = "mb_kakaotalk_date BETWEEN '{$start}' AND '{$end}'";
                 $smsDateCond   = "mb_sms_date BETWEEN '{$start}' AND '{$end}'";
         
             } else {
@@ -245,16 +245,16 @@ function member_export_build_where($params)
                 $date_end   = isset($params['agree_date_end']) ? $params['agree_date_end'] : '';
 
                 if ($date_start && $date_end) {
-                    $emailDateCond = "mb_mailling_date BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
+                    $emailDateCond = "mb_kakaotalk_date BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
                     $smsDateCond   = "mb_sms_date BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
                 } elseif ($date_start) {
-                    $emailDateCond = "mb_mailling_date >= '{$date_start} 00:00:00'";
+                    $emailDateCond = "mb_kakaotalk_date >= '{$date_start} 00:00:00'";
                     $smsDateCond   = "mb_sms_date >= '{$date_start} 00:00:00'";
                 } elseif ($date_end) {
-                    $emailDateCond = "mb_mailling_date <= '{$date_end} 23:59:59'";
+                    $emailDateCond = "mb_kakaotalk_date <= '{$date_end} 23:59:59'";
                     $smsDateCond   = "mb_sms_date <= '{$date_end} 23:59:59'";
                 } else {
-                    $emailDateCond = "mb_mailling_date <> '0000-00-00 00:00:00'";
+                    $emailDateCond = "mb_kakaotalk_date <> '0000-00-00 00:00:00'";
                     $smsDateCond   = "mb_sms_date <> '0000-00-00 00:00:00'";
                 }
             }
@@ -264,7 +264,7 @@ function member_export_build_where($params)
             } else {
                 // 조건 조립
                 $parts = [];
-                if ($useEmail) $parts[] = "(mb_mailling = 1 AND {$emailDateCond})";
+                if ($useEmail) $parts[] = "(mb_kakaotalk = 1 AND {$emailDateCond})";
                 if ($useSms)   $parts[] = "(mb_sms = 1 AND {$smsDateCond})";
             
                 $conditions[] = !empty($parts) ? '(' . implode(' OR ', $parts) . ')' : '';

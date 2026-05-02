@@ -76,7 +76,7 @@ $check_keys = array(
     'mb_signature',
     'mb_leave_date',
     'mb_intercept_date',
-    'mb_mailling',
+    'mb_kakaotalk',
     'mb_sms',
     'mb_open',
     'mb_profile',
@@ -113,7 +113,7 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_leave_date = '{$posts['mb_leave_date']}',
                  mb_intercept_date='{$posts['mb_intercept_date']}',
                  mb_memo = '{$mb_memo}',
-                 mb_mailling = '{$posts['mb_mailling']}',
+                 mb_kakaotalk = '{$posts['mb_kakaotalk']}',
                  mb_sms = '{$posts['mb_sms']}',
                  mb_open = '{$posts['mb_open']}',
                  mb_open_date = '".G5_TIME_YMDHIS."',
@@ -160,8 +160,8 @@ if ($w == '') {
     }
 
     // 광고성 이메일 수신
-    if ($mb_mailling == 1) {
-        $sql_common .=  " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
+    if ($mb_kakaotalk == 1) {
+        $sql_common .=  " , mb_kakaotalk_date = '".G5_TIME_YMDHIS."' ";
         $agree_items[] = "광고성 이메일 수신(동의)";
     }
 
@@ -247,9 +247,9 @@ if ($w == '') {
 
     // 광고성 이메일 수신
     $sql_mailling_date = "";
-    if ($row['mb_mailling'] !== $mb_mailling) {
-        $sql_mailling_date .= " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "광고성 이메일 수신(" . ($mb_mailling == 1 ? "동의" : "철회") . ")";
+    if ($row['mb_kakaotalk'] !== $mb_kakaotalk) {
+        $sql_mailling_date .= " , mb_kakaotalk_date = '".G5_TIME_YMDHIS."' ";
+        $agree_items[] = "광고성 이메일 수신(" . ($mb_kakaotalk == 1 ? "동의" : "철회") . ")";
     }
     
     // 광고성 SMS/카카오톡 수신

@@ -184,10 +184,10 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
                     <!-- 하위 채널(이메일/SMS) -->
                     <ul class="sub-consents">
                         <li class="chk_box is-inline">
-                            <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo $member['mb_mailling'] ? 'checked' : ''; ?> class="selec_chk child-promo">
-                            <label for="reg_mb_mailling"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
+                            <input type="checkbox" name="mb_kakaotalk" value="1" id="reg_mb_kakaotalk" <?php echo $member['mb_kakaotalk'] ? 'checked' : ''; ?> class="selec_chk child-promo">
+                            <label for="reg_mb_kakaotalk"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
                             <span class="chk_li">광고성 이메일 수신 동의</span>
-                            <input type="hidden" name="mb_mailling_default" value="<?php echo $member['mb_mailling']; ?>">
+                            <input type="hidden" name="mb_kakaotalk_default" value="<?php echo $member['mb_kakaotalk']; ?>">
                         </li>
 
                         <!-- 휴대폰번호 입력 보이기 or 필수입력일 경우에만 -->

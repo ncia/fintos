@@ -127,6 +127,32 @@ if ($w == "") {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }
 
+// 자동등록방지 틀렸을 때 입력값 유지를 위해 세션값 세팅
+if ($ss_register_post = get_session('ss_register_post')) {
+    set_session('ss_register_post', ''); // 세션 삭제 (새로고침 시 사라지게 함)
+    $register_post = unserialize($ss_register_post);
+
+    // 체크박스 필드들은 미리 초기화
+    $member['mb_open'] = 0;
+    $member['mb_kakaotalk'] = 0;
+    $member['mb_mailling'] = 0;
+    $member['mb_sms'] = 0;
+    $member['mb_marketing_agree'] = 0;
+    $member['mb_thirdparty_agree'] = 0;
+    $member['mb_promotion_agree'] = 0;
+
+    foreach($register_post as $key => $value) {
+        if(is_array($value)) continue;
+        $member[$key] = get_text($value);
+    }
+    
+    // 주소 split
+    if (isset($register_post['mb_zip'])) {
+        $member['mb_zip1'] = substr($register_post['mb_zip'], 0, 3);
+        $member['mb_zip2'] = substr($register_post['mb_zip'], 3);
+    }
+}
+
 include_once('./_head.php');
 
 // 회원아이콘 경로

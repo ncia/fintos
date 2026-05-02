@@ -45,8 +45,8 @@ if (!isset($mb_level_from)) {
 if (!isset($mb_level_to)) {
     $mb_level_to = 10;
 }
-if (!isset($mb_mailling)) {
-    $mb_mailling = 1;
+if (!isset($mb_kakaotalk)) {
+    $mb_kakaotalk = 1;
 }
 
 $mb_id1_from = isset($mb_id1_from) ? clean_xss_tags($mb_id1_from, 1, 1, 30) : '';
@@ -85,9 +85,9 @@ require_once './admin.head.php';
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="mb_mailling">메일링</label></th>
+                    <th scope="row"><label for="mb_kakaotalk">메일링</label></th>
                     <td>
-                        <select name="mb_mailling" id="mb_mailling">
+                        <select name="mb_kakaotalk" id="mb_kakaotalk">
                             <option value="1">수신동의한 회원만
                             <option value="">전체
                         </select>

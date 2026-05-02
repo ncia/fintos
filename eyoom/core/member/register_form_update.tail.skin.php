@@ -159,33 +159,29 @@ if ($w == "" && $default['de_sms_use1'] && $receive_number) {
 }
 
 //----------------------------------------------------------
-// 구글 스프레드시트 연동 시작
+// 구글 스프레드시트 연동 시작 (Google Sheets API)
 //----------------------------------------------------------
-// 테마 스킨의 설정을 우선 참조하거나 직접 설정
-if ($config['cf_googlesheet_use'] && $config['cf_googlesheet_url']) {
-    $post_data = array(
-        'mb_id'       => $mb_id,
-        'mb_name'     => $mb_name,
-        'mb_nick'     => $mb_nick,
-        'mb_email'    => $mb_email,
-        'mb_hp'       => $mb_hp,
-        'mb_datetime' => G5_TIME_YMDHIS,
-        'mb_ip'       => $_SERVER['REMOTE_ADDR'],
-        'mb_addr'     => '[' . $mb_zip . '] ' . $mb_addr1 . ' ' . $mb_addr2 . ' (' . $mb_addr_jibeon . ')',
-        'referer'     => $_SESSION['ss_referer'] ?? '',
-        'user_agent'  => $_SERVER['HTTP_USER_AGENT']
-    );
+include_once(G5_LIB_PATH.'/google_sheet.lib.php');
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $config['cf_googlesheet_url']);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_exec($ch);
-    curl_close($ch);
-}
+$sheet_id = '1t3OElFyO6HlUm7qtf8ASE5PTEk5qAq6IzALsaV4XSA0';
+$range = '회원가입!A:K';
+
+$values = [
+    G5_TIME_YMDHIS, // A열: 날짜
+    '회원가입', // B열: 출처
+    $mb_id, // C열: 아이디
+    $mb_email, // D열: 이메일
+    $mb_name, // E열: 이름
+    $mb_birth, // F열: 생년월일
+    ($mb_sex == 'M' ? '남' : ($mb_sex == 'F' ? '여' : $mb_sex)), // G열: 성별
+    $mb_hp, // H열: 연락처
+    '[' . $mb_zip . '] ' . $mb_addr1 . ' ' . $mb_addr2, // I열: 주소
+    ($mb_kakaotalk ? 'YES' : 'NO'), // J열: 카카오 채널
+    ($mb_mailling ? 'YES' : 'NO')    // K열: 이메일, 문자메시지 수신 동의
+];
+
+update_google_sheet($sheet_id, $range, $values);
+
 
 // 회원 프로필 이미지와 이윰빌더 photo 필드 최종 동기화 (기존 파일 존재 여부 체크)
 if (isset($g5['eyoom_member'])) {

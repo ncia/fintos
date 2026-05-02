@@ -51,8 +51,8 @@ if (!isset($mb_level_from)) {
 if (!isset($mb_level_to)) {
     $mb_level_to = 10;
 }
-if (!isset($mb_mailling)) {
-    $mb_mailling = 1;
+if (!isset($mb_kakaotalk)) {
+    $mb_kakaotalk = 1;
 }
 
 $mb_id1_from = isset($mb_id1_from) ? clean_xss_tags($mb_id1_from, 1, 1, 30) : '';

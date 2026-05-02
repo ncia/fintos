@@ -147,14 +147,14 @@ if ($w == '' && (isset($_POST['cp_sms_send']) || isset($_POST['cp_email_send']))
     $sms_messages = array();
 
     if($_POST['chk_all_mb']) {
-        $sql = " select mb_id, mb_name, mb_hp, mb_email, mb_mailling, mb_sms
+        $sql = " select mb_id, mb_name, mb_hp, mb_email, mb_kakaotalk, mb_sms
                     from {$g5['member_table']}
                     where mb_leave_date = ''
                       and mb_intercept_date = ''
-                      and ( mb_mailling = '1' or mb_sms = '1' )
+                      and ( mb_kakaotalk = '1' or mb_sms = '1' )
                       and mb_id <> '{$config['cf_admin']}' ";
     } else {
-        $sql = " select mb_id, mb_name, mb_hp, mb_email, mb_mailling, mb_sms
+        $sql = " select mb_id, mb_name, mb_hp, mb_email, mb_kakaotalk, mb_sms
                     from {$g5['member_table']}
                     where mb_id = '$mb_id' ";
     }
@@ -185,7 +185,7 @@ if ($w == '' && (isset($_POST['cp_sms_send']) || isset($_POST['cp_email_send']))
         }
 
         // E-MAIL
-        if($config['cf_email_use'] && $_POST['cp_email_send'] && $arr_send_list[$i]['mb_email'] && $arr_send_list[$i]['mb_mailling']) {
+        if($config['cf_email_use'] && $_POST['cp_email_send'] && $arr_send_list[$i]['mb_email'] && $arr_send_list[$i]['mb_kakaotalk']) {
             $mb_name = get_text($arr_send_list[$i]['mb_name']);
             switch($cp_method) {
                 case 2:

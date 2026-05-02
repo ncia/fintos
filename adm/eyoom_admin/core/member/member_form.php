@@ -57,7 +57,7 @@ if ($w == '') {
     $required_mb_password = 'required';
     $sound_only = '<strong class="sound_only">필수</strong>';
 
-    $mb['mb_mailling'] = 1;
+    $mb['mb_kakaotalk'] = 1;
     $mb['mb_open'] = 1;
     $mb['mb_level'] = $config['cf_register_level'];
     $html_title = '추가';
@@ -134,8 +134,8 @@ $mb_adult_yes       =  $mb['mb_adult']      ? 'checked="checked"' : '';
 $mb_adult_no        = !$mb['mb_adult']      ? 'checked="checked"' : '';
 
 //메일수신
-$mb_mailling_yes    =  $mb['mb_mailling']   ? 'checked="checked"' : '';
-$mb_mailling_no     = !$mb['mb_mailling']   ? 'checked="checked"' : '';
+$mb_kakaotalk_yes    =  $mb['mb_kakaotalk']   ? 'checked="checked"' : '';
+$mb_kakaotalk_no     = !$mb['mb_kakaotalk']   ? 'checked="checked"' : '';
 
 // SMS 수신
 $mb_sms_yes         =  $mb['mb_sms']        ? 'checked="checked"' : '';

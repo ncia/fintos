@@ -23,7 +23,7 @@ if ($_POST['act_button'] == "선택수정") {
         $post_mb_certify = (isset($_POST['mb_certify'][$k]) && $_POST['mb_certify'][$k]) ? clean_xss_tags($_POST['mb_certify'][$k], 1, 1, 20) : '';
         $post_mb_level = isset($_POST['mb_level'][$k]) ? (int) $_POST['mb_level'][$k] : 0;
         $post_mb_intercept_date = (isset($_POST['mb_intercept_date'][$k]) && $_POST['mb_intercept_date'][$k]) ? clean_xss_tags($_POST['mb_intercept_date'][$k], 1, 1, 8) : '';
-        $post_mb_mailling = isset($_POST['mb_mailling'][$k]) ? (int) $_POST['mb_mailling'][$k] : 0;
+        $post_mb_kakaotalk = isset($_POST['mb_kakaotalk'][$k]) ? (int) $_POST['mb_kakaotalk'][$k] : 0;
         $post_mb_sms = isset($_POST['mb_sms'][$k]) ? (int) $_POST['mb_sms'][$k] : 0;
         $post_mb_open = isset($_POST['mb_open'][$k]) ? (int) $_POST['mb_open'][$k] : 0;
 
@@ -45,7 +45,7 @@ if ($_POST['act_button'] == "선택수정") {
             $sql = " update {$g5['member_table']}
                         set mb_level = '" . $post_mb_level . "',
                             mb_intercept_date = '" . sql_real_escape_string($post_mb_intercept_date) . "',
-                            mb_mailling = '" . $post_mb_mailling . "',
+                            mb_kakaotalk = '" . $post_mb_kakaotalk . "',
                             mb_sms = '" . $post_mb_sms . "',
                             mb_open = '" . $post_mb_open . "',
                             mb_certify = '" . sql_real_escape_string($post_mb_certify) . "',
