@@ -448,7 +448,7 @@ $is_darkmode = 'yes';
                                                 <a href="<?php echo G5_SHOP_URL; ?>/surgery_1_3_1_5_search.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-search-plus m-r-5 text-success"></i>종 수술명 검색</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/insurance_check.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-user-shield m-r-5 text-success"></i>보험 통합 조회</a>
+                                                <a href="<?php echo G5_URL; ?>/insurance_check.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-clipboard-list m-r-5 text-success"></i>보험 통합 조회</a>
                                             </li>
 
                                             <li class="dropdown-submenu">

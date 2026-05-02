@@ -318,8 +318,12 @@ function selectMBTI(mbti) {
 
     $('#mbti-result').removeClass('d-none');
     
-    // 상단으로 스크롤
-    $('html, body').animate({ scrollTop: $(".main-heading").offset().top - 100 }, 500);
+    // 결과 헤더 영역으로 부드러운 자동 스크롤
+    setTimeout(function() {
+        $('html, body').animate({
+            scrollTop: $("#result-header").offset().top - 0
+        }, 600);
+    }, 150);
 }
 
 const mbtiQuestions = <?php echo json_encode($mbti_quiz_data); ?>;
