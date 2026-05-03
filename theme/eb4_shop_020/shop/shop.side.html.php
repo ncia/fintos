@@ -65,14 +65,14 @@ if (!defined('_EYOOM_')) exit;
 					</div>
 					<div class="panel">
 						<div class="panel-heading">
-							<h2 class="panel-title collapsed" id="heading_rside3" data-bs-toggle="collapse" data-bs-target="#collapse_rside3" aria-expanded="false" aria-controls="#collapse_rside3">
+							<h2 class="panel-title collapsed" id="heading_rside3" data-bs-toggle="collapse" data-bs-target="#collapse_rside3" aria-expanded="false" aria-controls="collapse_rside3">
 								<span class="count-num"><?php echo get_wishlist_datas_count(); ?></span>
-                                <strong>위시리스트</strong>
+                                <strong>관심상품</strong>
 							</h2>
 						</div>
 						<div id="collapse_rside3" class="collapse" aria-labelledby="heading_rside3" data-bs-parent="#accordion_rside">
 							<div class="panel-body">
-								<?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxwish.skin.html.php'); // 위시리스트 ?>
+								<?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxwish.skin.html.php'); // 관심상품 ?>
 							</div>
 						</div>
 					</div>

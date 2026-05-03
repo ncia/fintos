@@ -110,7 +110,7 @@ if (!defined('_EYOOM_')) exit;
     <?php /* 최근 위시리스트 시작 */ ?>
     <div class="mypage-wishlist-wrap">
         <div class="headline-short">
-            <h4><strong>최근 위시리스트</strong></h4>
+            <h4><strong>최근 관심상품</strong></h4>
             <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php" class="headline-btn btn-e btn-e-brd btn-e-dark"><i class="fas fa-plus"></i> 더보기</a>
         </div>
         <div class="mypage-wishlist-container">

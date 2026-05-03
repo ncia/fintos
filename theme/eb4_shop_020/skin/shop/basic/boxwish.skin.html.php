@@ -6,7 +6,7 @@ if (!defined('_EYOOM_')) exit;
 ?>
 
 <aside id="sbsk" class="op-area">
-    <h2>위시리스트</h2>
+    <h2>관심상품</h2>
     <ul class="list-unstyled">
         <?php if (is_array($wish_list)) { ?>
         <?php foreach ($wish_list as $k => $info) { ?>
@@ -22,5 +22,5 @@ if (!defined('_EYOOM_')) exit;
         <?php } ?>
     </ul>
 
-    <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php" class="btn-e btn-e-lg btn-e-block btn-e-dark btn-e-brd">위시리스트 바로가기<i class="far fa-arrow-alt-circle-right m-l-5"></i></a>
+    <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php" class="btn-e btn-e-lg btn-e-block btn-e-dark btn-e-brd">관심상품 바로가기<i class="far fa-arrow-alt-circle-right m-l-5"></i></a>
 </aside>

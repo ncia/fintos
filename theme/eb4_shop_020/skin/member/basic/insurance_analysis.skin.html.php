@@ -191,7 +191,7 @@ if (!defined('_GNUBOARD_')) exit;
             <div class="register-form">
                 <form name="fanalysis" action="./counsel_update.php" method="post" class="eyoom-form">
                     
-                    <div class="section-title">정보 입력</div>
+                    <div class="section-title">개인 정보 입력</div>
                     
                     <div class="input">
                         <input type="text" name="c_name" placeholder="이름" required>
@@ -215,6 +215,8 @@ if (!defined('_GNUBOARD_')) exit;
                         <input type="radio" name="c_gender" id="gender_f" value="여성">
                         <label for="gender_f" class="gender-label" style="position:relative;">여성<div class="required-dot"></div></label>
                     </div>
+
+                    <div class="section-title">상담 가능 시간</div>
 
                     <div class="row" style="margin-left:-5px; margin-right:-5px;">
                         <div class="col-6" style="padding:0 5px;">

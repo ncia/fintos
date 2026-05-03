@@ -358,7 +358,7 @@ if (!defined('_GNUBOARD_')) exit;
                         <label for="pet_sex_f" class="gender-label" style="position:relative;"><i class="fas fa-venus"></i> 여아<div class="required-dot"></div></label>
                     </div>
 
-                    <div class="section-title">상담 시간 설정</div>
+                    <div class="section-title">상담 가능 시간</div>
 
                     <div class="row" style="margin-left:-5px; margin-right:-5px;">
                         <div class="col-6" style="padding:0 5px;">

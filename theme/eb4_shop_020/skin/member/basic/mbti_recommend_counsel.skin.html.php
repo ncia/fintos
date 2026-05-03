@@ -192,12 +192,12 @@ if (!defined('_GNUBOARD_')) exit;
                 <form name="fmbti_counsel" action="./counsel_update.php" method="post" class="eyoom-form">
                     
                     <?php if ($mbti && $mbti_nickname) { ?>
-                    <div style="color: #007bff; font-weight: 700; margin-bottom: 15px; font-size: 16px; text-align: center; background: rgba(0,123,255,0.05); padding: 12px; border-radius: 8px;">
+                    <div style="color: #007bff; font-weight: 600; margin-bottom: 15px; font-size: 16px; text-align: center; background: rgba(0,123,255,0.05); padding: 12px; border-radius: 8px;">
                         <i class="fas <?php echo $mbti_icon; ?> m-r-5"></i> <?php echo $mbti; ?> 유형 : <?php echo $mbti_nickname; ?>를 위한 추천 보험
                     </div>
                     <?php } ?>
 
-                    <div class="section-title">정보 입력</div>
+                    <div class="section-title">개인 정보 입력</div>
                     
                     <div class="input">
                         <input type="text" name="c_name" placeholder="이름" required>
@@ -221,6 +221,8 @@ if (!defined('_GNUBOARD_')) exit;
                         <input type="radio" name="c_gender" id="gender_f" value="여성">
                         <label for="gender_f" class="gender-label" style="position:relative;">여성<div class="required-dot"></div></label>
                     </div>
+
+                    <div class="section-title">상담 가능 시간</div>
 
                     <div class="row" style="margin-left:-5px; margin-right:-5px;">
                         <div class="col-6" style="padding:0 5px;">
@@ -267,7 +269,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </label>
                     </div>
 
-                    <button type="submit" class="submit-btn">MBTI 추천 보험 상담 신청하기</button>
+                    <button type="submit" class="submit-btn">MBTI 추천 보험 상담하기</button>
                 </form>
             </div>
         </div>

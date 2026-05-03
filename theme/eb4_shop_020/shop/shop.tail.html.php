@@ -176,8 +176,8 @@ if (!defined('_EYOOM_')) exit;
                 <?php include(EYOOM_THEME_SHOP_SKIN_PATH.'/boxtodayview.skin.html.php'); // 오늘 본 상품 ?>
                 <div class="shop-member-box-title">장바구니<span class="badge badge-crimson rounded"><?php echo get_boxcart_datas_count(); ?></span></div>
                 <?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxcart.skin.html.php'); // 장바구니 ?>
-                <div class="shop-member-box-title">위시리스트<span class="badge badge-crimson rounded"><?php echo get_wishlist_datas_count(); ?></span></div>
-                <?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxwish.skin.html.php'); // 위시리스트 ?>
+                <div class="shop-member-box-title">관심상품<span class="badge badge-crimson rounded"><?php echo get_wishlist_datas_count(); ?></span></div>
+                <?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxwish.skin.html.php'); // 관심상품 ?>
             </div>
 
             <?php /* 투표 시작 */ ?>

@@ -78,7 +78,7 @@ $item_view = 'zoom';
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                     <a href="<?php echo G5_SHOP_URL; ?>/cart.php" class="d-block d-lg-none">장바구니</a>
-                                    <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php" class="d-block d-lg-none">위시리스트</a>
+                                    <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php" class="d-block d-lg-none">관심상품</a>
                                     <a href="<?php echo G5_SHOP_URL; ?>/orderinquiry.php">주문/배송조회</a>
                                     <a href="<?php echo G5_SHOP_URL; ?>/personalpay.php">개인결제</a>
                                     <a href="<?php echo G5_SHOP_URL; ?>/itemuselist.php">사용후기</a>
@@ -166,7 +166,7 @@ $item_view = 'zoom';
                         <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php">
                             <span class="badge badge-gray rounded"><?php echo get_wishlist_datas_count(); ?></span>
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/heart.svg" alt="image">
-                            <h6>위시리스트</h6>
+                            <h6>관심상품</h6>
                         </a>
                     </div>
                     <div class="header-title-btn">
@@ -210,7 +210,7 @@ $item_view = 'zoom';
                                     </a>
                                     <a href="<?php echo G5_SHOP_URL; ?>/wishlist.php" class="sidebar-member-btn-box">
                                         <div class="sidebar-member-btn float-end">
-                                            위시리스트
+                                            관심상품
                                         </div>
                                     </a>
                                     <div class="clearfix"></div>

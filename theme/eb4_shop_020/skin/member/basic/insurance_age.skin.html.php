@@ -232,24 +232,24 @@ if (!defined('_GNUBOARD_')) exit;
                     </div>
 
                     <div class="input">
-                        <input type="text" name="c_hp" placeholder="연락처 (숫자만 입력)" required>
+                        <input type="text" name="c_hp" placeholder="연락처" required>
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="input">
-                        <input type="text" name="c_birth" placeholder="생년월일 (8자리) 예: 19900101" maxlength="8">
+                        <input type="text" name="c_birth" placeholder="생년월일 (예: 19900101)" required maxlength="8">
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="gender-selector">
-                        <input type="radio" name="c_sex" id="sex_m" value="M">
-                        <label for="sex_m" class="gender-label"><i class="fas fa-mars"></i> 남성</label>
+                        <input type="radio" name="c_gender" id="gender_m" value="남성" required>
+                        <label for="gender_m" class="gender-label">남성</label>
                         
-                        <input type="radio" name="c_sex" id="sex_f" value="F">
-                        <label for="sex_f" class="gender-label" style="position:relative;"><i class="fas fa-venus"></i> 여성<div class="required-dot"></div></label>
+                        <input type="radio" name="c_gender" id="gender_f" value="여성">
+                        <label for="gender_f" class="gender-label" style="position:relative;">여성<div class="required-dot"></div></label>
                     </div>
 
-                    <div class="section-title">상담 시간 설정</div>
+                    <div class="section-title">상담 가능 시간</div>
 
                     <div class="row" style="margin-left:-5px; margin-right:-5px;">
                         <div class="col-6" style="padding:0 5px;">
