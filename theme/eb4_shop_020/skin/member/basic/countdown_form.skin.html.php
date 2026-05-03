@@ -22,10 +22,12 @@ if (!defined('_GNUBOARD_')) exit;
     border-radius: 12px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     overflow: visible;
     border: none;
     position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 .mdb-card-header {
     background-color: #007bff;
@@ -72,6 +74,9 @@ if (!defined('_GNUBOARD_')) exit;
     outline: none !important;
     flex: 1;
     color: #1f2937;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 11;
 }
 
 /* Gender Buttons Style */
@@ -223,6 +228,7 @@ if (!defined('_GNUBOARD_')) exit;
         <div class="mdb-card-body">
             <div class="register-form">
                 <form name="fcounsel" action="./counsel_update.php" method="post" class="eyoom-form">
+                    <input type="hidden" name="source" value="카운트다운">
                     
                     <div class="section-title">개인 정보 입력</div>
                     
@@ -252,17 +258,18 @@ if (!defined('_GNUBOARD_')) exit;
                     <div class="section-title">상담 가능 시간</div>
 
                     <div class="row" style="margin-left:-5px; margin-right:-5px;">
-                        <div class="col-6" style="padding:0 5px;">
+                        <div class="col-12 ampm-col" style="padding:0 5px;">
                             <div class="input">
-                                <select name="c_ampm" required>
+                                <select name="c_ampm" required onchange="toggle_time_hour(this);">
                                     <option value="">상담시간구분(오전/오후)</option>
+                                    <option value="종일">종일</option>
                                     <option value="오전">오전</option>
                                     <option value="오후">오후</option>
                                 </select>
                                 <div class="required-dot"></div>
                             </div>
                         </div>
-                        <div class="col-6" style="padding:0 5px;">
+                        <div class="col-6 counsel-hour-col" style="padding:0 5px; display:none;">
                             <div class="input">
                                 <select name="c_time" required>
                                     <option value="">상담시간선택</option>
@@ -294,11 +301,24 @@ if (!defined('_GNUBOARD_')) exit;
                             <span class="checkmark"></span>
                             (선택) 이메일, 문자메시지 핀토스 수신 동의
                         </label>
-                    </div>
-
                     <button type="submit" class="submit-btn">상담 신청하기</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+function toggle_time_hour(el) {
+    var $row = $(el).closest('.row, .time-row');
+    var $ampmCol = $row.find('.ampm-col');
+    var $hourCol = $row.find('.counsel-hour-col');
+    if (el.value === '오전' || el.value === '오후') {
+        $ampmCol.removeClass('col-12').addClass('col-6');
+        $hourCol.show();
+    } else {
+        $ampmCol.removeClass('col-6').addClass('col-12');
+        $hourCol.hide();
+    }
+}
+</script>

@@ -27,7 +27,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     border-radius: 12px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     width: 100%;
-    max-width: 700px;
+    max-width: 800px;
     overflow: visible;
     border: none;
     position: relative;

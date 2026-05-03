@@ -105,3 +105,6 @@
 2026-05-02 17:25:29 - mb_id: test14
 2026-05-02 17:25:29 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '01088429042'  , mb_birth = '19790925'  , mb_sex = 'F'  where mb_id = 'test14' 
 2026-05-02 17:25:29 - SQL SUCCESS
+2026-05-03 12:46:03 - mb_id: test15
+2026-05-03 12:46:03 - SQL: update g5_member set mb_id = mb_id  , mb_hp = '01026899833'  , mb_birth = '19880612'  , mb_sex = 'M'  where mb_id = 'test15' 
+2026-05-03 12:46:03 - SQL SUCCESS

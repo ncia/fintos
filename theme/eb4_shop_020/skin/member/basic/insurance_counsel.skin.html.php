@@ -17,7 +17,7 @@
     border-radius: 12px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     overflow: hidden;
     border: none;
 }
@@ -212,17 +212,18 @@
                     <div class="section-title">상담 가능 시간</div>
 
                     <div class="time-row">
-                        <div class="time-col">
+                        <div class="time-col ampm-col">
                             <div class="input">
-                                <select name="counsel_time_type">
+                                <select name="counsel_time_type" onchange="toggle_time_hour(this);">
                                     <option value="">상담시간구분(오전/오후)</option>
+                                    <option value="종일">종일</option>
                                     <option value="오전">오전</option>
                                     <option value="오후">오후</option>
                                 </select>
                                 <div class="required-dot"></div>
                             </div>
                         </div>
-                        <div class="time-col">
+                        <div class="time-col counsel-hour-col" style="display:none;">
                             <div class="input">
                                 <select name="counsel_time_hour">
                                     <option value="">상담시간선택</option>
@@ -263,6 +264,19 @@
         </div>
     </div>
 </div>
+
+<script>
+function toggle_time_hour(el) {
+    var $row = $(el).closest('.row, .time-row');
+    var $ampmCol = $row.find('.ampm-col');
+    var $hourCol = $row.find('.counsel-hour-col');
+    if (el.value === '오전' || el.value === '오후') {
+        $hourCol.show();
+    } else {
+        $hourCol.hide();
+    }
+}
+</script>
 
 <script>
 function fsubmit(f) {
