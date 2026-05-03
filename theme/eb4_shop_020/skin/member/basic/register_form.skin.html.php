@@ -1208,10 +1208,21 @@ $(function() {
         }
     });
 
-    // 기존 데이터가 있는 경우 (수정 모드 등) 초기화
-    if ($("#reg_mb_birth").val().length === 8) {
-        $("#reg_mb_birth").trigger('input');
-    }
+    // 아이디 입력창에서 엔터 키 입력 시 중복확인 실행
+    $("#reg_mb_id").on("keydown", function(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            check_duplication('mb_id');
+        }
+    });
+
+    // 이메일 입력창에서 엔터 키 입력 시 중복확인 실행
+    $("#reg_mb_email").on("keydown", function(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            check_duplication('mb_email');
+        }
+    });
 });
 
 function trigger_file_upload() {
