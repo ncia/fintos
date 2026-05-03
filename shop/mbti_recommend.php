@@ -464,9 +464,9 @@ function resetSelection() {
 function goToMbtiCounsel() {
     const mbti = $('#res-mbti').text();
     if (mbti) {
-        location.href = '<?php echo G5_URL; ?>/mbti_recommend_counsel.php?mbti=' + mbti;
+        location.href = '<?php echo G5_URL; ?>/mbti_insurance_counsel.php?mbti=' + mbti;
     } else {
-        location.href = '<?php echo G5_URL; ?>/mbti_recommend_counsel.php';
+        location.href = '<?php echo G5_URL; ?>/mbti_insurance_counsel.php';
     }
 }
 </script>

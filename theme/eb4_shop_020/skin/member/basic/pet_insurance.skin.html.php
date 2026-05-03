@@ -26,6 +26,8 @@ if (!defined('_GNUBOARD_')) exit;
     overflow: visible;
     border: none;
     position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 .mdb-card-header {
     background-color: #007bff;
@@ -72,6 +74,9 @@ if (!defined('_GNUBOARD_')) exit;
     outline: none !important;
     flex: 1;
     color: #1f2937;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 11;
 }
 
 /* Custom File Input */
@@ -173,6 +178,9 @@ if (!defined('_GNUBOARD_')) exit;
     cursor: pointer;
     margin-top: 20px !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 12;
+    position: relative;
+    pointer-events: auto !important;
 }
 .submit-btn:hover { background: #0069d9 !important; }
 
@@ -276,7 +284,7 @@ if (!defined('_GNUBOARD_')) exit;
         <div class="mdb-card-body">
             <div class="register-form">
                 <form name="fpet" action="./counsel_update.php" method="post" enctype="multipart/form-data" onsubmit="return fsubmit(this);" class="eyoom-form">
-                    <input type="hidden" name="source" value="반려동물보험">
+                    <input type="hidden" name="source" value="pet_insurance">
                     
                     <div class="section-title">보호자 정보</div>
                     
@@ -375,7 +383,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </div>
                         <div class="col-6 counsel-hour-col" style="padding:0 5px; display:none;">
                             <div class="input">
-                                <select name="c_time" required>
+                                <select name="c_time">
                                     <option value="">상담시간선택</option>
                                     <?php for($i=1; $i<=12; $i++) { 
                                         $t = sprintf("%02d", $i);
@@ -413,6 +421,19 @@ if (!defined('_GNUBOARD_')) exit;
         </div>
     </div>
 </div>
+
+<script>
+function fsubmit(f) {
+    if (f.c_ampm.value == '오전' || f.c_ampm.value == '오후') {
+        if (f.c_time.value == '') {
+            alert('상담 시간을 선택해 주세요.');
+            f.c_time.focus();
+            return false;
+        }
+    }
+    return true;
+}
+</script>
 
 <script>
 function previewPetImage(input) {

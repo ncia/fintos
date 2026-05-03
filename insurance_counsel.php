@@ -13,6 +13,16 @@ if ($it_id) {
     $it = sql_fetch("select it_name, it_brand from {$g5['g5_shop_item_table']} where it_id = '$it_id'");
     $it_name = $it['it_name'];
     $it_brand = $it['it_brand'];
+
+    // DB에 브랜드가 없더라도 상품명에 특정 키워드가 있으면 브랜드를 강제로 지정 (디비 외의 방법)
+    if (!$it_brand) {
+        if (strpos($it_name, '삼성 밸런스') !== false || strpos($it_name, '다사랑') !== false) {
+            $it_brand = '삼성생명';
+        } else if (strpos($it_name, 'KB') !== false) {
+            $it_brand = 'KB라이프';
+        }
+        // 필요에 따라 추가 키워드 매핑 가능
+    }
 }
 
 include_once(G5_PATH.'/head.php');

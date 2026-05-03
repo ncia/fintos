@@ -135,7 +135,7 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
 $(function() {
     $('.category-list').slick({
         infinite: true,
-        slidesToShow: 8,
+        slidesToShow: 9,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
@@ -148,7 +148,7 @@ $(function() {
             {
                 breakpoint: 1200,
                 settings: {
-                    slidesToShow: 7,
+                    slidesToShow: 8,
                     slidesToScroll: 1
                 }
             },

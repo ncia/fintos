@@ -1,12 +1,12 @@
 <?php
 /**
- * skin file : /theme/THEME_NAME/skin/member/basic/insurance_analysis.skin.html.php
+ * skin file : /theme/THEME_NAME/skin/member/basic/counsel_form.skin.html.php
  */
 if (!defined('_GNUBOARD_')) exit;
 ?>
 
 <style>
-/* MDBootstrap Material Design Styles */
+/* MDBootstrap Material Design Styles - Refined for Image Match */
 .regform-wrapper {
     background: url('<?php echo EYOOM_THEME_URL; ?>/image/insurance_contract_bg.png') no-repeat center center;
     background-size: cover;
@@ -50,15 +50,15 @@ if (!defined('_GNUBOARD_')) exit;
     .regform-wrapper { padding: 20px 10px; }
 }
 
-/* Material Input Style */
+/* Material Input Style - Outlined with Blue Focus */
 .register-form .input { 
     position: relative; 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex !important;
     align-items: center;
     border: 1px solid #007bff !important;
     border-radius: 8px !important;
-    height: 48px !important;
+    height: 45px !important;
     background-color: #fff !important;
     transition: all 0.2s ease;
     box-sizing: border-box !important;
@@ -68,7 +68,7 @@ if (!defined('_GNUBOARD_')) exit;
     background-color: transparent !important;
     border: none !important;
     height: 100% !important;
-    padding: 0 15px !important;
+    padding: 0 20px !important;
     font-size: 15px !important;
     width: 100%;
     outline: none !important;
@@ -79,32 +79,11 @@ if (!defined('_GNUBOARD_')) exit;
     z-index: 11;
 }
 
-/* Section Header */
-.section-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #333;
-    margin: 20px 0 15px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
-}
-
-.required-dot {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 8px;
-    height: 8px;
-    background-color: #ffd600;
-    border-radius: 50%;
-    z-index: 5;
-}
-
-/* Gender Selector Buttons */
+/* Gender Buttons Style */
 .gender-selector {
     display: flex;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 .gender-selector input[type="radio"] {
     display: none;
@@ -113,7 +92,7 @@ if (!defined('_GNUBOARD_')) exit;
     flex: 1;
     border: 1px solid #007bff;
     border-radius: 8px;
-    height: 48px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,6 +108,41 @@ if (!defined('_GNUBOARD_')) exit;
     border-color: #007bff;
     font-weight: 500;
 }
+.gender-label i { 
+    margin-right: 10px; 
+    font-size: 18px;
+}
+.required-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ffd600;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+
+/* Section Header */
+.section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    margin: 10px 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Labels above inputs for specific cases */
+.field-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #9ca3af;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: 5px;
+}
 
 /* Checkbox Styles */
 .checkbox-group { margin-bottom: 25px; }
@@ -138,44 +152,62 @@ if (!defined('_GNUBOARD_')) exit;
     padding-left: 30px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     color: #4b5563;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
-.checkbox-container input { position: absolute; opacity: 0; cursor: pointer; }
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
 .checkmark {
     position: absolute;
-    top: 0;
+    top: 2px;
     left: 0;
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     background-color: #fff;
     border: 2px solid #007bff;
     border-radius: 4px;
 }
-.checkbox-container input:checked ~ .checkmark { background-color: #007bff; }
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #f3f4f6;
+}
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #007bff;
+}
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
-.checkbox-container input:checked ~ .checkmark:after { display: block; }
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
 .checkbox-container .checkmark:after {
-    left: 5px;
-    top: 1px;
-    width: 4px;
-    height: 8px;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
     border: solid white;
     border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
 .submit-btn {
     background: #007bff !important;
     color: #fff !important;
-    height: 50px !important;
+    height: 45px !important;
     border-radius: 8px !important;
-    font-size: 17px !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
     width: 100%;
     border: none;
@@ -186,19 +218,20 @@ if (!defined('_GNUBOARD_')) exit;
     position: relative;
     pointer-events: auto !important;
 }
-.submit-btn:hover { background: #0069d9 !important; }
-
+.submit-btn:hover {
+    background: #0069d9 !important;
+}
 </style>
 
 <div class="regform-wrapper">
     <div class="mdb-card">
         <div class="mdb-card-header">
-            <h1 class="title"><i class="fas fa-search-plus m-r-10"></i>보험증권 분석</h1>
+            <h1 class="title"><i class="fas fa-stopwatch"></i> 카운트다운 상담 신청</h1>
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
-                <form name="fanalysis" action="./counsel_update.php" method="post" onsubmit="return fsubmit(this);" class="eyoom-form">
-                    <input type="hidden" name="source" value="insurance_analysis">
+                <form name="fcounsel" action="./counsel_update.php" method="post" onsubmit="return fsubmit(this);" class="eyoom-form">
+                    <input type="hidden" name="source" value="countdown_counsel">
                     
                     <div class="section-title">개인 정보 입력</div>
                     
@@ -208,21 +241,21 @@ if (!defined('_GNUBOARD_')) exit;
                     </div>
 
                     <div class="input">
-                        <input type="text" name="c_hp" placeholder="연락처" required>
+                        <input type="text" name="c_hp" placeholder="연락처 (숫자만 입력)" required>
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="input">
-                        <input type="text" name="c_birth" placeholder="생년월일 (예: 19900101)" required maxlength="8">
+                        <input type="text" name="c_birth" placeholder="생년월일 (8자리) 예: 19900101" maxlength="8">
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="gender-selector">
-                        <input type="radio" name="c_sex" id="gender_m" value="M" required>
-                        <label for="gender_m" class="gender-label">남성</label>
+                        <input type="radio" name="c_sex" id="sex_m" value="M">
+                        <label for="sex_m" class="gender-label"><i class="fas fa-mars"></i> 남성</label>
                         
-                        <input type="radio" name="c_sex" id="gender_f" value="F">
-                        <label for="gender_f" class="gender-label" style="position:relative;">여성<div class="required-dot"></div></label>
+                        <input type="radio" name="c_sex" id="sex_f" value="F">
+                        <label for="sex_f" class="gender-label" style="position:relative;"><i class="fas fa-venus"></i> 여성<div class="required-dot"></div></label>
                     </div>
 
                     <div class="section-title">상담 가능 시간</div>
@@ -254,7 +287,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </div>
                     </div>
 
-                    <div class="section-title" style="margin-top:10px; font-size:14px; color:#9ca3af;">정보 수신 동의</div>
+                    <div class="field-label">정보 수신 동의</div>
                     <div class="checkbox-group">
                         <label class="checkbox-container">
                             <input type="checkbox" name="c_agree" value="1" id="c_agree" required checked>
@@ -273,7 +306,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </label>
                     </div>
 
-                    <button type="submit" class="submit-btn">보험증권 분석 신청하기</button>
+                    <button type="submit" class="submit-btn">상담 신청하기</button>
                 </form>
             </div>
         </div>
@@ -291,7 +324,9 @@ function fsubmit(f) {
     }
     return true;
 }
+</script>
 
+<script>
 function toggle_time_hour(el) {
     var $row = $(el).closest('.row, .time-row');
     var $ampmCol = $row.find('.ampm-col');

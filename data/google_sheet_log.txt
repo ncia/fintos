@@ -1,0 +1,105 @@
+2026-05-03 16:39:03 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: 카운트다운!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: 카운트다운!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+2026-05-03 17:45:29 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: 보험나이알기!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: 보험나이알기!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+2026-05-03 17:58:10 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: 보험나이알기!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: 보험나이알기!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+2026-05-03 19:01:01 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: 보험통합조회!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: 보험통합조회!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+2026-05-03 19:07:46 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: '보험통합조회'!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: '보험통합조회'!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+2026-05-03 19:09:16 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: '보험통합조회'!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: '보험통합조회'!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+
+2026-05-03 19:24:27 - Google API Error: {
+  "error": {
+    "code": 400,
+    "message": "Unable to parse range: 보험리모델링!A:I",
+    "errors": [
+      {
+        "message": "Unable to parse range: 보험리모델링!A:I",
+        "domain": "global",
+        "reason": "badRequest"
+      }
+    ],
+    "status": "INVALID_ARGUMENT"
+  }
+}
+

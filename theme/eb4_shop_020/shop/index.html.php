@@ -87,7 +87,7 @@ if (!defined('_EYOOM_')) exit;
 
                     ?>
                     <div class="m-b-10 bodmi-wrapper">
-                        <a href="<?php echo G5_URL; ?>/countdown_form.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
+                        <a href="<?php echo G5_URL; ?>/countdown_counsel.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
                             <div class="bodmi-bubble-text"><?php echo $bodmi_title; ?></div>
                             <div class="bodmi-countdown-clock" id="bodmi_timer">00일 00시 00분</div>
@@ -522,7 +522,7 @@ if (!defined('_EYOOM_')) exit;
 
 <!-- 보험 나이 계산기 모달 시작 -->
 <div class="modal fade" id="insAgeModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
         <div class="modal-content border-0 overflow-hidden" style="border-radius:12px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);">
             <div class="modal-header text-white p-4" style="background-color: #007bff; border-radius: 12px 12px 0 0;">
                 <h5 class="modal-title f-s-20r f-w-700"><i class="fas fa-calculator m-r-10"></i>보험 나이 계산기</h5>

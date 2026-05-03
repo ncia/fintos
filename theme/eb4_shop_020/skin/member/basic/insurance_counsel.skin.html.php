@@ -175,37 +175,38 @@
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
-                <form name="fcounsel" id="fcounsel" action="<?php echo G5_URL; ?>/counsel_update.php" method="post" onsubmit="return fsubmit(this);">
+                <form name="fcounsel" action="./counsel_update.php" method="post" onsubmit="return fsubmit(this);" class="eyoom-form">
+                    <input type="hidden" name="source" value="insurance_counsel">
                     <input type="hidden" name="it_id" value="<?php echo $it_id; ?>">
-                    <input type="hidden" name="subject" value="[상품상담] <?php echo $it_name; ?>">
+                    <input type="hidden" name="subject" value="[상품상담] <?php echo ($it_brand ? $it_brand . ' ' : '') . $it_name; ?>">
 
                     <?php if ($it_name) { ?>
                     <div class="item-badge">
-                        <strong><?php echo $it_brand; ?> <?php echo $it_name; ?></strong>
+                        <strong><?php echo ($it_brand ? $it_brand . ' ' : '') . $it_name; ?></strong>
                     </div>
                     <?php } ?>
 
                     <div class="section-title">개인 정보 입력</div>
 
                     <div class="input">
-                        <input type="text" name="mb_name" placeholder="이름" required>
+                        <input type="text" name="c_name" placeholder="이름" required>
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="input">
-                        <input type="tel" name="mb_hp" placeholder="연락처 (숫자만 입력)" required>
+                        <input type="tel" name="c_hp" placeholder="연락처 (숫자만 입력)" required>
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="input">
-                        <input type="text" name="mb_birth" placeholder="생년월일 (8자리) 예: 19900101" required>
+                        <input type="text" name="c_birth" placeholder="생년월일 (8자리) 예: 19900101" required>
                         <div class="required-dot"></div>
                     </div>
 
                     <div class="gender-selector">
-                        <input type="radio" name="mb_sex" id="male" value="M">
+                        <input type="radio" name="c_sex" id="male" value="M">
                         <label for="male" class="gender-label"><i class="fas fa-mars"></i> 남성</label>
-                        <input type="radio" name="mb_sex" id="female" value="W">
+                        <input type="radio" name="c_sex" id="female" value="F">
                         <label for="female" class="gender-label" style="position:relative;"><i class="fas fa-venus"></i> 여성<div class="required-dot"></div></label>
                     </div>
 
@@ -214,7 +215,7 @@
                     <div class="time-row">
                         <div class="time-col ampm-col">
                             <div class="input">
-                                <select name="counsel_time_type" onchange="toggle_time_hour(this);">
+                                <select name="c_ampm" onchange="toggle_time_hour(this);">
                                     <option value="">상담시간구분(오전/오후)</option>
                                     <option value="종일">종일</option>
                                     <option value="오전">오전</option>
@@ -225,7 +226,7 @@
                         </div>
                         <div class="time-col counsel-hour-col" style="display:none;">
                             <div class="input">
-                                <select name="counsel_time_hour">
+                                <select name="c_time">
                                     <option value="">상담시간선택</option>
                                     <?php for($i=1; $i<=12; $i++) { $h = sprintf("%02d", $i); ?>
                                     <option value="<?php echo $h; ?>시"><?php echo $h; ?>시</option>
@@ -241,19 +242,19 @@
                         
                         <label class="checkbox-container">
                             (필수) 개인정보 수집 및 활용 동의
-                            <input type="checkbox" id="agree_priv" name="agree_priv" value="1" checked required>
+                            <input type="checkbox" id="c_agree" name="c_agree" value="1" checked required>
                             <span class="checkmark"></span>
                         </label>
 
                         <label class="checkbox-container">
                             (선택) 카카오톡 핀토스 보험 채널 추가 동의
-                            <input type="checkbox" id="agree_kakao" name="agree_kakao" value="1" checked>
+                            <input type="checkbox" id="c_kakaotalk" name="c_kakaotalk" value="1" checked>
                             <span class="checkmark"></span>
                         </label>
 
                         <label class="checkbox-container">
                             (선택) 이메일, 문자메시지 핀토스 수신 동의
-                            <input type="checkbox" id="agree_marketing" name="agree_marketing" value="1" checked>
+                            <input type="checkbox" id="c_mailling" name="c_mailling" value="1" checked>
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -266,6 +267,17 @@
 </div>
 
 <script>
+function fsubmit(f) {
+    if (f.c_ampm.value == '오전' || f.c_ampm.value == '오후') {
+        if (f.c_time.value == '') {
+            alert('상담 시간을 선택해 주세요.');
+            f.c_time.focus();
+            return false;
+        }
+    }
+    return true;
+}
+
 function toggle_time_hour(el) {
     var $row = $(el).closest('.row, .time-row');
     var $ampmCol = $row.find('.ampm-col');

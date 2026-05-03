@@ -1,6 +1,6 @@
 <?php
 /**
- * skin file : /theme/THEME_NAME/skin/member/basic/insurance_analysis.skin.html.php
+ * skin file : /theme/THEME_NAME/skin/member/basic/mbti_insurance_counsel.skin.html.php
  */
 if (!defined('_GNUBOARD_')) exit;
 ?>
@@ -193,13 +193,20 @@ if (!defined('_GNUBOARD_')) exit;
 <div class="regform-wrapper">
     <div class="mdb-card">
         <div class="mdb-card-header">
-            <h1 class="title"><i class="fas fa-search-plus m-r-10"></i>보험증권 분석</h1>
+            <h1 class="title"><i class="fas fa-user-tag m-r-10"></i>MBTI 추천 보험 상담하기</h1>
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
-                <form name="fanalysis" action="./counsel_update.php" method="post" onsubmit="return fsubmit(this);" class="eyoom-form">
-                    <input type="hidden" name="source" value="insurance_analysis">
+                <form name="fmbti" action="./counsel_update.php" method="post" onsubmit="return fsubmit(this);" class="eyoom-form">
+                    <input type="hidden" name="source" value="mbti_insurance_counsel">
+                    <input type="hidden" name="c_mbti" value="<?php echo $mbti; ?>">
                     
+                    <?php if ($mbti && $mbti_nickname) { ?>
+                    <div style="color: #007bff; font-weight: 600; margin-bottom: 15px; font-size: 16px; text-align: center; background: rgba(0,123,255,0.05); padding: 12px; border-radius: 8px;">
+                        <i class="fas <?php echo $mbti_icon; ?> m-r-5"></i> <?php echo $mbti; ?> 유형 : <?php echo $mbti_nickname; ?>를 위한 추천 보험
+                    </div>
+                    <?php } ?>
+
                     <div class="section-title">개인 정보 입력</div>
                     
                     <div class="input">
@@ -273,7 +280,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </label>
                     </div>
 
-                    <button type="submit" class="submit-btn">보험증권 분석 신청하기</button>
+                    <button type="submit" class="submit-btn">MBTI 추천 보험 상담하기</button>
                 </form>
             </div>
         </div>

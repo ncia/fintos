@@ -26,6 +26,8 @@ if (!defined('_GNUBOARD_')) exit;
     overflow: visible;
     border: none;
     position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 .mdb-card-header {
     background-color: #007bff;
@@ -72,6 +74,9 @@ if (!defined('_GNUBOARD_')) exit;
     outline: none !important;
     flex: 1;
     color: #1f2937;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 11;
 }
 
 /* Section Header */
@@ -177,6 +182,9 @@ if (!defined('_GNUBOARD_')) exit;
     cursor: pointer;
     margin-top: 20px !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 12;
+    position: relative;
+    pointer-events: auto !important;
 }
 .submit-btn:hover { background: #0069d9 !important; }
 
@@ -189,7 +197,8 @@ if (!defined('_GNUBOARD_')) exit;
         </div>
         <div class="mdb-card-body">
             <div class="register-form">
-                <form name="fclaim" action="./counsel_update.php" method="post" class="eyoom-form">
+                <form name="fclaim" action="./counsel_update.php" method="post" onsubmit="return fsubmit(this);" class="eyoom-form">
+                    <input type="hidden" name="source" value="insurance_claim">
                     
                     <div class="section-title">개인 정보 입력</div>
                     
@@ -209,10 +218,10 @@ if (!defined('_GNUBOARD_')) exit;
                     </div>
 
                     <div class="gender-selector">
-                        <input type="radio" name="c_gender" id="gender_m" value="남성" required>
+                        <input type="radio" name="c_sex" id="gender_m" value="M" required>
                         <label for="gender_m" class="gender-label">남성</label>
                         
-                        <input type="radio" name="c_gender" id="gender_f" value="여성">
+                        <input type="radio" name="c_sex" id="gender_f" value="F">
                         <label for="gender_f" class="gender-label" style="position:relative;">여성<div class="required-dot"></div></label>
                     </div>
 
@@ -232,7 +241,7 @@ if (!defined('_GNUBOARD_')) exit;
                         </div>
                         <div class="col-6 counsel-hour-col" style="padding:0 5px; display:none;">
                             <div class="input">
-                                <select name="c_time" required>
+                                <select name="c_time">
                                     <option value="">상담시간선택</option>
                                     <?php for($i=1; $i<=12; $i++) { 
                                         $t = sprintf("%02d", $i);
@@ -272,6 +281,17 @@ if (!defined('_GNUBOARD_')) exit;
 </div>
 
 <script>
+function fsubmit(f) {
+    if (f.c_ampm.value == '오전' || f.c_ampm.value == '오후') {
+        if (f.c_time.value == '') {
+            alert('상담 시간을 선택해 주세요.');
+            f.c_time.focus();
+            return false;
+        }
+    }
+    return true;
+}
+
 function toggle_time_hour(el) {
     var $row = $(el).closest('.row, .time-row');
     var $ampmCol = $row.find('.ampm-col');
