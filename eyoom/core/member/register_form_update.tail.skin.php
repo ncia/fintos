@@ -164,11 +164,14 @@ if ($w == "" && $default['de_sms_use1'] && $receive_number) {
 include_once(G5_LIB_PATH.'/google_sheet.lib.php');
 
 $sheet_id = '1t3OElFyO6HlUm7qtf8ASE5PTEk5qAq6IzALsaV4XSA0';
+$site_address = preg_replace('#^https?://#', '', G5_URL); // http://, https:// 제거
+$site_address = rtrim($site_address, '/'); // 끝에 붙은 / 제거
 $range = '회원가입!A:K';
+
 
 $values = [
     G5_TIME_YMDHIS, // A열: 날짜
-    '회원가입', // B열: 출처
+    $site_address, // B열: 출처 (사이트 주소)
     $mb_id, // C열: 아이디
     $mb_email, // D열: 이메일
     $mb_name, // E열: 이름

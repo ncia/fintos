@@ -99,6 +99,9 @@ if ($c_time && $c_ampm != '종일') {
 include_once(G5_LIB_PATH.'/google_sheet.lib.php');
 
 $sheet_id = '1t3OElFyO6HlUm7qtf8ASE5PTEk5qAq6IzALsaV4XSA0';
+$site_address = preg_replace('#^https?://#', '', G5_URL); // http://, https:// 제거
+$site_address = rtrim($site_address, '/'); // 끝에 붙은 / 제거
+
 
 // 구글 시트에 기록할 경로명 (한글로 복구)
 $source_ko = $source;
@@ -116,7 +119,7 @@ if ($source == 'countdown_counsel') {
     $range = "카운트다운!A:I";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로 (한글로 기록)
+        $site_address,         // B열: 경로 (사이트 주소)
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -126,10 +129,10 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // I열: 문자이메일
     ];
 } else if ($source == 'mbti_insurance_counsel') {
-    $range = "MBTI상품추천!A:J";
+    $range = "MBTI보험추천!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_mbti,        // C열: MBTI유형
         $c_name,        // D열: 이름
         $c_hp,          // E열: 연락처
@@ -143,7 +146,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험나이알기!A:I";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -156,7 +159,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험통합조회!A:I";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -169,7 +172,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험증권분석!A:I";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -182,7 +185,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험리모델링!A:I";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -195,7 +198,7 @@ if ($source == 'countdown_counsel') {
     $range = "펫보험상담!A:L";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_name,        // C열: 보호자이름
         $c_hp,          // D열: 보호자연락처
         $c_pet_type,    // E열: 반려동물구분
@@ -211,7 +214,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험금청구예약!A:I";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -231,7 +234,7 @@ if ($source == 'countdown_counsel') {
     $item_value = '=HYPERLINK("' . $item_url . '", "' . $full_item_name . '")';
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $source_ko,     // B열: 경로
+        $site_address,         // B열: 경로
         $item_value,    // C열: 상품 (가공된 상품명 + 하이퍼링크)
         $c_name,        // D열: 이름
         $c_hp,          // E열: 연락처
@@ -246,7 +249,7 @@ if ($source == 'countdown_counsel') {
     $range = "회원가입!A:K";
     $values = [
         G5_TIME_YMDHIS, 
-        '상담신청 - ' . $source_ko,
+        $site_address,
         ($member['mb_id'] ? $member['mb_id'] : ''),
         '', // 이메일
         $c_name,

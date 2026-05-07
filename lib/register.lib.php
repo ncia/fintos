@@ -75,12 +75,7 @@ function count_mb_nick($reg_mb_nick)
 
 function exist_mb_nick($reg_mb_nick, $reg_mb_id)
 {
-    global $g5;
-    $row = sql_fetch(" select count(*) as cnt from {$g5['member_table']} where mb_nick = '$reg_mb_nick' and mb_id <> '$reg_mb_id' ");
-    if ($row['cnt'])
-        return "이미 존재하는 닉네임입니다.";
-    else
-        return "";
+    return "";
 }
 
 function reserve_mb_nick($reg_mb_nick)
