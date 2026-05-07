@@ -430,7 +430,7 @@ function close_counsel_modal() {
     <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title f-s-20r"><i class="fas fa-edit text-gray m-r-7"></i><strong>사용후기 작성하기</strong></h5>
+                <h5 class="modal-title f-s-20r"><i class="fas fa-edit m-r-7"></i><strong>상담후기 작성하기</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -492,7 +492,7 @@ function itemuse_modal(href) {
     $('.itemuse-iframe-modal').modal('show').on('shown.bs.modal', function() {
         $("#itemuse-iframe").attr("src", href);
         <?php if (!G5_IS_MOBILE) { ?>
-        $('#itemuse-iframe').height(parseInt($(window).height() * 0.8));
+        $('#itemuse-iframe').height(parseInt($(window).height() * 0.9));
         <?php } else { ?>
         $('#itemuse-iframe').height(parseInt($(window).height() * 0.95));
         <?php } ?>

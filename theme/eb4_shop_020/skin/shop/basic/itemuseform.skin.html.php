@@ -7,95 +7,192 @@ if ($config['cf_editor'] == 'tuieditor') echo tuieditor_resource();
 ?>
 
 <style>
-.shop-product-use-write {position:relative;overflow:hidden;padding:0}
-.shop-product-use-write .win-title {position:relative;margin:0 0 20px;font-size:1.0625rem}
-.shop-product-use-write .radio {width:100px}
-.shop-product-use-write .write-edit-wrap #is_content {display:block;box-sizing:border-box;-moz-box-sizing:border-box;width:100%;min-height:200px;padding:6px 10px;outline:none;border-width:1px;border-style:solid;border-radius:0;background:#FFF;color:#353535;appearance:normal;-moz-appearance:none;-webkit-appearance:none;resize:vertical}
-/* Smart Editor */
-.cke_sc {margin-bottom:10px !important}
-.btn_cke_sc {padding:0 10px}
-.cke_sc_def {padding:10px;margin-bottom:10px;margin-top:10px;background:#fbfbfb}
-.cke_sc_def button {padding:3px 15px;background:#555555;color:#fff;border:none}
+<style>
+/* 카운트다운 상담신청 스타일 적용 */
+body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; }
+.shop-product-use-write { background: #fff; }
+.mdb-card-body { padding: 40px 50px; }
+@media (max-width: 767px) {
+    .mdb-card-body { padding: 30px 20px; }
+}
+
+/* Material Input Style - Outlined with Blue Focus */
+.eyoom-form .input { 
+    position: relative; 
+    margin-bottom: 25px;
+    display: flex !important;
+    align-items: center;
+    border: 1px solid #007bff !important;
+    border-radius: 8px !important;
+    height: 45px !important;
+    background-color: #fff !important;
+    transition: all 0.2s ease;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+}
+.eyoom-form .input input { 
+    background-color: transparent !important;
+    border: none !important;
+    height: 100% !important;
+    padding: 0 20px !important;
+    font-size: 15px !important;
+    width: 100%;
+    outline: none !important;
+    flex: 1;
+    color: #1f2937;
+}
+
+/* Score Selector Style (Gender Selector Style in Countdown) */
+.score-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+.score-selector input[type="radio"] {
+    display: none;
+}
+.score-label {
+    flex: 1;
+    min-width: 120px;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #fff;
+    color: #9ca3af;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+.score-selector input[type="radio"]:checked + .score-label {
+    background: #007bff;
+    color: #fff;
+    font-weight: 500;
+}
+.score-label img {
+    height: 14px;
+    margin-left: 8px;
+    filter: grayscale(1) brightness(0.8);
+}
+.score-selector input[type="radio"]:checked + .score-label img {
+    filter: brightness(0) invert(1);
+}
+
+.required-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ffd600;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    margin: 10px 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.write-edit-wrap {
+    border: 1px solid #007bff;
+    border-radius: 0px; /* 직각 모서리로 수정 */
+    overflow: visible;
+    margin-bottom: 25px;
+    background: #fff;
+}
+
+/* Summernote dropdown clipping fix */
+.note-editor .note-dropdown-menu {
+    z-index: 1050 !important;
+}
+.note-editor .note-editing-area {
+    border-radius: 0px;
+}
+.note-editor.note-frame {
+    border: none !important;
+    border-radius: 0px !important;
+}
+.note-toolbar {
+    background: #f8f9fa !important;
+    border-bottom: 1px solid #eee !important;
+    border-radius: 0px !important; /* 직각 모서리로 수정 */
+}
+
+.submit-btn {
+    background: #007bff !important;
+    color: #fff !important;
+    height: 45px !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.submit-btn:hover {
+    background: #0069d9 !important;
+}
+
+.product-use-write {
+    padding-bottom: 150px; /* 색상 선택창 등 드롭다운을 위한 여유 공간 */
+}
 </style>
 
-<?php /* ---------- 사용후기 쓰기 시작 ---------- */ ?>
+<?php /* ---------- 상담후기 쓰기 시작 ---------- */ ?>
 <div class="shop-product-use-write">
-    <form name="fitemuse" method="post" action="<?php echo G5_SHOP_URL; ?>/itemuseformupdate.php" onsubmit="return fitemuse_submit(this);" autocomplete="off" class="eyoom-form">
-    <input type="hidden" name="w" value="<?php echo $w; ?>">
-    <input type="hidden" name="it_id" value="<?php echo $it_id; ?>">
-    <input type="hidden" name="is_id" value="<?php echo $is_id; ?>">
+    <div class="mdb-card-body">
+        <form name="fitemuse" method="post" action="<?php echo G5_SHOP_URL; ?>/itemuseformupdate.php" onsubmit="return fitemuse_submit(this);" autocomplete="off" class="eyoom-form">
+        <input type="hidden" name="w" value="<?php echo $w; ?>">
+        <input type="hidden" name="it_id" value="<?php echo $it_id; ?>">
+        <input type="hidden" name="is_id" value="<?php echo $is_id; ?>">
 
-    <div class="product-use-write">
-        <div class="margin-bottom-20">
-            <label for="is_subject" class="sound_only">제목<strong> 필수</strong></label>
-            <label class="input required-mark">
-                <input type="text" name="is_subject" value="<?php echo get_text($use['is_subject']); ?>" id="is_subject" required maxlength="250" placeholder="제목">
-            </label>
-        </div>
-        <div>
-            <strong class="sound_only">내용</strong>
+        <div class="product-use-write">
+            <div class="section-title">후기 제목</div>
+            <div class="input">
+                <input type="text" name="is_subject" value="<?php echo get_text($use['is_subject']); ?>" id="is_subject" required maxlength="250" placeholder="제목을 입력해주세요.">
+                <div class="required-dot"></div>
+            </div>
+
+            <div class="section-title">상세 내용</div>
             <div class="write-edit-wrap">
                 <?php echo $editor_html; ?>
             </div>
-        </div>
-        <div class="margin-hr-20"></div>
-        <div>
-            <span class="sound_only">평점</span>
-            <ul class="list-unstyled">
-                <li>
-                    <div class="inline-group">
-                        <label class="radio">
-                            <input type="radio" name="is_score" value="5" id="is_score5" <?php echo ($is_score==5)?'checked="checked"':''; ?>><i></i>매우만족
-                        </label>
-                        <img src="<?php echo G5_URL; ?>/shop/img/s_star5.png" alt="매우만족" width="100">
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-                <li>
-                    <div class="inline-group">
-                        <label class="radio">
-                            <input type="radio" name="is_score" value="4" id="is_score4" <?php echo ($is_score==4)?'checked="checked"':''; ?>><i></i>만족
-                        </label>
-                        <img src="<?php echo G5_URL; ?>/shop/img/s_star4.png" alt="만족" width="100">
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-                <li>
-                    <div class="inline-group">
-                        <label class="radio">
-                            <input type="radio" name="is_score" value="3" id="is_score3" <?php echo ($is_score==3)?'checked="checked"':''; ?>><i></i>보통
-                        </label>
-                        <img src="<?php echo G5_URL; ?>/shop/img/s_star3.png" alt="보통" width="100">
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-                <li>
-                    <div class="inline-group">
-                        <label class="radio">
-                            <input type="radio" name="is_score" value="2" id="is_score2" <?php echo ($is_score==2)?'checked="checked"':''; ?>><i></i>불만
-                        </label>
-                        <img src="<?php echo G5_URL; ?>/shop/img/s_star2.png" alt="불만" width="100">
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-                <li>
-                    <div class="inline-group">
-                        <label class="radio">
-                            <input type="radio" name="is_score" value="1" id="is_score1" <?php echo ($is_score==1)?'checked="checked"':''; ?>><i></i>매우불만
-                        </label>
-                        <img src="<?php echo G5_URL; ?>/shop/img/s_star1.png" alt="매우불만" width="100">
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-            </ul>
-        </div>
-        <div class="margin-hr-20"></div>
-        <div class="text-center">
-            <input type="submit" value="작성완료" class="btn-e btn-e-xlg btn-e-navy">
-        </div>
-    </div>
 
-    </form>
+            <div class="section-title">평점 선택</div>
+            <div class="score-selector">
+                <input type="radio" name="is_score" value="5" id="is_score5" <?php echo ($is_score==5)?'checked="checked"':''; ?>>
+                <label for="is_score5" class="score-label">매우만족 <img src="<?php echo G5_URL; ?>/shop/img/s_star5.png" alt="5"></label>
+
+                <input type="radio" name="is_score" value="4" id="is_score4" <?php echo ($is_score==4)?'checked="checked"':''; ?>>
+                <label for="is_score4" class="score-label">만족 <img src="<?php echo G5_URL; ?>/shop/img/s_star4.png" alt="4"></label>
+
+                <input type="radio" name="is_score" value="3" id="is_score3" <?php echo ($is_score==3)?'checked="checked"':''; ?>>
+                <label for="is_score3" class="score-label">보통 <img src="<?php echo G5_URL; ?>/shop/img/s_star3.png" alt="3"></label>
+
+                <input type="radio" name="is_score" value="2" id="is_score2" <?php echo ($is_score==2)?'checked="checked"':''; ?>>
+                <label for="is_score2" class="score-label">불만 <img src="<?php echo G5_URL; ?>/shop/img/s_star2.png" alt="2"></label>
+
+                <input type="radio" name="is_score" value="1" id="is_score1" <?php echo ($is_score==1)?'checked="checked"':''; ?>>
+                <label for="is_score1" class="score-label">매우불만 <img src="<?php echo G5_URL; ?>/shop/img/s_star1.png" alt="1"></label>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="작성완료" class="submit-btn">
+            </div>
+        </div>
+
+        </form>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -153,17 +250,13 @@ if (currentMode == "dark") {
 		e.editor.document.getBody().setStyle('color', '#858585');
 	});
 	<?php } ?>
-    <?php if($editor_html && preg_match('/smarteditor2/i', $config['cf_editor'])) { ?>
+    <?php if($editor_html && preg_match('/summernote/i', $config['cf_editor'])) { ?>
 	$(document).ready(function() {
-		$('.smarteditor2').next().attr('class', 'se2_iframe');
-		$(".se2_iframe").on("load", function() {
-			var iframeHead = $('.se2_iframe').contents().find('head');
-			iframeHead.find('#se2_eyoom_css').attr('href', 'css/smart_editor2_eyoom_dark.css');
-			iframeHead.find('#se2_eyoom_css').attr('class', 'se2_eyoom_dark_css');
-		});
+		// Summernote dark mode logic can be added here if needed
 	});
 	<?php } ?>
 }
+
 <?php /* 다크모드 JS 끝 */ ?>
 </script>
-<?php /* ---------- 사용후기 쓰기 끝 ---------- */ ?>
+<?php /* ---------- 상담후기 쓰기 끝 ---------- */ ?>
