@@ -84,23 +84,27 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
         <li id="sit_dex">
             <h2>가입예시/가입안내정보</h2>
             
-            <?php if ($default['de_baesong_content']) { // 가입예시 내용이 있다면 ?>
-            <!-- 배송 시작 { -->
+            <!-- 가입예시 시작 { -->
             <div id="sit_dvr">
                 <h3>가입예시</h3>
-                <?php echo conv_content($default['de_baesong_content'], 1); ?>
+                <?php
+                if (G5_IS_MOBILE && $it['it_mobile_explan_example']) echo conv_content($it['it_mobile_explan_example'], 1);
+                else if ($it['it_explan_example']) echo conv_content($it['it_explan_example'], 1);
+                else echo conv_content($default['de_baesong_content'], 1);
+                ?>
             </div>
-            <!-- } 배송 끝 -->
-            <?php } ?>
+            <!-- } 가입예시 끝 -->
 
-            <?php if ($default['de_change_content']) { // 가입안내 내용이 있다면 ?>
             <!-- 가입안내 시작 { -->
             <div id="sit_ex" >
                 <h3>가입안내</h3>
-                <?php echo conv_content($default['de_change_content'], 1); ?>
+                <?php
+                if (G5_IS_MOBILE && $it['it_mobile_explan_guide']) echo conv_content($it['it_mobile_explan_guide'], 1);
+                else if ($it['it_explan_guide']) echo conv_content($it['it_explan_guide'], 1);
+                else echo conv_content($default['de_change_content'], 1);
+                ?>
             </div>
             <!-- } 가입안내 끝 -->
-            <?php } ?>
             
         </li>
         <!-- } 가입예시/가입안내  끝 -->
@@ -108,6 +112,10 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	        <!-- 추천대상 시작 { -->
 	        <li id="sit_qa">
 	            <h2>추천대상</h2>
+                <?php
+                if (G5_IS_MOBILE && $it['it_mobile_explan_recommend']) echo conv_content($it['it_mobile_explan_recommend'], 1);
+                else if ($it['it_explan_recommend']) echo conv_content($it['it_explan_recommend'], 1);
+                ?>
 	            <div id="itemqa"><?php include_once(G5_SHOP_PATH.'/itemqa.php'); ?></div>
 	        </li>
 	        <!-- } 추천대상 끝 -->

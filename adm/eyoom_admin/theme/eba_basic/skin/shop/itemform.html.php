@@ -491,6 +491,66 @@ $frm_submit .= $frm_eba_submit;
                 </div>
                 <div class="adm-form-tr adm-sm-100">
                     <div class="adm-form-td td-l">
+                        <label for="it_explan_example" class="label">가입예시</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="textarea">
+                            <?php echo editor_html('it_explan_example', get_text(html_purifier($it['it_explan_example']), 0)); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_mobile_explan_example" class="label">모바일 가입예시</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="textarea">
+                            <?php echo editor_html('it_mobile_explan_example', get_text(html_purifier($it['it_mobile_explan_example']), 0)); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_explan_recommend" class="label">추천대상</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="textarea">
+                            <?php echo editor_html('it_explan_recommend', get_text(html_purifier($it['it_explan_recommend']), 0)); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_mobile_explan_recommend" class="label">모바일 추천대상</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="textarea">
+                            <?php echo editor_html('it_mobile_explan_recommend', get_text(html_purifier($it['it_mobile_explan_recommend']), 0)); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_explan_guide" class="label">가입안내</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="textarea">
+                            <?php echo editor_html('it_explan_guide', get_text(html_purifier($it['it_explan_guide']), 0)); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_mobile_explan_guide" class="label">모바일 가입안내</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="textarea">
+                            <?php echo editor_html('it_mobile_explan_guide', get_text(html_purifier($it['it_mobile_explan_guide']), 0)); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
                         <label for="it_sell_email" class="label">판매자 e-mail</label>
                     </div>
                     <div class="adm-form-td td-r td-rs">
@@ -1991,6 +2051,12 @@ function fitemformcheck(f)
 
     <?php echo get_editor_js('it_explan'); ?>
     <?php echo get_editor_js('it_mobile_explan'); ?>
+    <?php echo get_editor_js('it_explan_example'); ?>
+    <?php echo get_editor_js('it_mobile_explan_example'); ?>
+    <?php echo get_editor_js('it_explan_recommend'); ?>
+    <?php echo get_editor_js('it_mobile_explan_recommend'); ?>
+    <?php echo get_editor_js('it_explan_guide'); ?>
+    <?php echo get_editor_js('it_mobile_explan_guide'); ?>
     <?php echo get_editor_js('it_head_html'); ?>
     <?php echo get_editor_js('it_tail_html'); ?>
     <?php echo get_editor_js('it_mobile_head_html'); ?>

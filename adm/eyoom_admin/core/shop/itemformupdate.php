@@ -22,6 +22,8 @@ check_admin_token();
 // input vars 체크
 check_input_vars();
 
+
+
 $ca_id = isset($_POST['ca_id']) ? preg_replace('/[^0-9a-z]/i', '', $_POST['ca_id']) : '';
 $ca_id2 = isset($_POST['ca_id2']) ? preg_replace('/[^0-9a-z]/i', '', $_POST['ca_id2']) : '';
 $ca_id3 = isset($_POST['ca_id3']) ? preg_replace('/[^0-9a-z]/i', '', $_POST['ca_id3']) : '';
@@ -366,6 +368,12 @@ foreach( $check_sanitize_keys as $key ){
 
 $it_basic = preg_replace('#<script(.*?)>(.*?)<\/script>#is', '', $it_basic);
 $it_explan = isset($_POST['it_explan']) ? $_POST['it_explan'] : '';
+$it_explan_example = isset($_POST['it_explan_example']) ? $_POST['it_explan_example'] : '';
+$it_mobile_explan_example = isset($_POST['it_mobile_explan_example']) ? $_POST['it_mobile_explan_example'] : '';
+$it_explan_recommend = isset($_POST['it_explan_recommend']) ? $_POST['it_explan_recommend'] : '';
+$it_mobile_explan_recommend = isset($_POST['it_mobile_explan_recommend']) ? $_POST['it_mobile_explan_recommend'] : '';
+$it_explan_guide = isset($_POST['it_explan_guide']) ? $_POST['it_explan_guide'] : '';
+$it_mobile_explan_guide = isset($_POST['it_mobile_explan_guide']) ? $_POST['it_mobile_explan_guide'] : '';
 
 if ($it_name == "")
     alert("상품명을 입력해 주십시오.");
@@ -391,6 +399,12 @@ $sql_common = " ca_id               = '$ca_id',
                 it_explan           = '$it_explan',
                 it_explan2          = '".strip_tags(trim(clean_xss_attributes($it_explan)))."',
                 it_mobile_explan    = '$it_mobile_explan',
+                it_explan_example           = '$it_explan_example',
+                it_mobile_explan_example    = '$it_mobile_explan_example',
+                it_explan_recommend         = '$it_explan_recommend',
+                it_mobile_explan_recommend  = '$it_mobile_explan_recommend',
+                it_explan_guide             = '$it_explan_guide',
+                it_mobile_explan_guide      = '$it_mobile_explan_guide',
                 it_cust_price       = '$it_cust_price',
                 it_price            = '$it_price',
                 it_point            = '$it_point',

@@ -52,8 +52,6 @@ if (!defined('_EYOOM_')) exit;
         </div>
         <?php } ?>
     </div>
-    <?php } else { ?>
-    <p class="text-center text-gray m-t-20 m-b-40"><i class="fas fa-exclamation-circle"></i> 상품문의가 없습니다.</p>
     <?php } ?>
 </section>
 

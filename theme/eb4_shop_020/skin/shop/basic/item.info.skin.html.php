@@ -62,13 +62,17 @@ if (!defined('_EYOOM_')) exit;
 </section>
 <?php /* ---------- 상품 정보 끝 ---------- */ ?>
 
-<?php if ($default['de_baesong_content']) { // 가입예시 내용이 있다면 ?>
+<?php if ($it['it_explan_example'] || (G5_IS_MOBILE && $it['it_mobile_explan_example']) || $default['de_baesong_content']) { ?>
 <?php /* ---------- 가입예시 시작 ---------- */ ?>
 <section id="sit_dvr">
     <h2 class="h-hidden">가입예시</h2>
     <?php echo $shop->pg_anchor('sit_dvr'); ?>
 
-    <?php echo conv_content($default['de_baesong_content'], 1); ?>
+    <?php
+    if (G5_IS_MOBILE && $it['it_mobile_explan_example']) echo conv_content($it['it_mobile_explan_example'], 1);
+    else if ($it['it_explan_example']) echo conv_content($it['it_explan_example'], 1);
+    else echo conv_content($default['de_baesong_content'], 1);
+    ?>
 </section>
 <?php /* ---------- 가입예시 끝 ---------- */ ?>
 <?php } ?>
@@ -78,17 +82,27 @@ if (!defined('_EYOOM_')) exit;
     <h2 class="h-hidden">추천대상</h2>
     <?php echo $shop->pg_anchor('sit_qa'); ?>
 
+
+    <?php
+    if (G5_IS_MOBILE && $it['it_mobile_explan_recommend']) echo conv_content($it['it_mobile_explan_recommend'], 1);
+    else if ($it['it_explan_recommend']) echo conv_content($it['it_explan_recommend'], 1);
+    ?>
+
     <div id="itemqa"><?php include_once($skin_dir.'/itemqa.php'); ?></div>
 </section>
 <?php /* ---------- 추천대상 끝 ---------- */ ?>
 
-<?php if ($default['de_change_content']) { // 가입안내 내용이 있다면 ?>
+<?php if ($it['it_explan_guide'] || (G5_IS_MOBILE && $it['it_mobile_explan_guide']) || $default['de_change_content']) { ?>
 <?php /* ---------- 가입안내 시작 ---------- */ ?>
 <section id="sit_ex">
     <h2 class="h-hidden">가입안내</h2>
     <?php echo $shop->pg_anchor('sit_ex'); ?>
 
-    <?php echo conv_content($default['de_change_content'], 1); ?>
+    <?php
+    if (G5_IS_MOBILE && $it['it_mobile_explan_guide']) echo conv_content($it['it_mobile_explan_guide'], 1);
+    else if ($it['it_explan_guide']) echo conv_content($it['it_explan_guide'], 1);
+    else echo conv_content($default['de_change_content'], 1);
+    ?>
 </section>
 <?php /* ---------- 가입안내 끝 ---------- */ ?>
 <?php } ?>
