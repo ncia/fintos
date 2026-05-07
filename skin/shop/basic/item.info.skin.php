@@ -29,9 +29,9 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	<div id="sit_tab">
 	    <ul class="tab_tit">
 	        <li><button type="button" id="btn_sit_inf" rel="#sit_inf" class="selected">상품정보</button></li>
+	        <li><button type="button" id="btn_sit_dvex" rel="#sit_dex">가입예시/가입안내</button></li>
+	        <li><button type="button" id="btn_sit_qa" rel="#sit_qa">추천대상</button></li>
 	        <li><button type="button" id="btn_sit_use" rel="#sit_use">사용후기 <span class="item_use_count"><?php echo $item_use_count; ?></span></button></li>
-	        <li><button type="button" id="btn_sit_qa" rel="#sit_qa">상품문의  <span class="item_qa_count"><?php echo $item_qa_count; ?></span></button></li>
-	        <li><button type="button" id="btn_sit_dvex" rel="#sit_dex">배송/교환</button></li>
 	    </ul>
 	    <ul class="tab_con">
 	
@@ -79,44 +79,46 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	            ?>
 	
 	        </li>
+
+        <!-- 가입예시/가입안내 시작 { -->
+        <li id="sit_dex">
+            <h2>가입예시/가입안내정보</h2>
+            
+            <?php if ($default['de_baesong_content']) { // 가입예시 내용이 있다면 ?>
+            <!-- 배송 시작 { -->
+            <div id="sit_dvr">
+                <h3>가입예시</h3>
+                <?php echo conv_content($default['de_baesong_content'], 1); ?>
+            </div>
+            <!-- } 배송 끝 -->
+            <?php } ?>
+
+            <?php if ($default['de_change_content']) { // 가입안내 내용이 있다면 ?>
+            <!-- 가입안내 시작 { -->
+            <div id="sit_ex" >
+                <h3>가입안내</h3>
+                <?php echo conv_content($default['de_change_content'], 1); ?>
+            </div>
+            <!-- } 가입안내 끝 -->
+            <?php } ?>
+            
+        </li>
+        <!-- } 가입예시/가입안내  끝 -->
+
+	        <!-- 추천대상 시작 { -->
+	        <li id="sit_qa">
+	            <h2>추천대상</h2>
+	            <div id="itemqa"><?php include_once(G5_SHOP_PATH.'/itemqa.php'); ?></div>
+	        </li>
+	        <!-- } 추천대상 끝 -->
+
 	        <!-- 사용후기 시작 { -->
 	        <li id="sit_use">
 	            <h2>사용후기</h2>
 	            <div id="itemuse"><?php include_once(G5_SHOP_PATH.'/itemuse.php'); ?></div>
 	        </li>
 	        <!-- } 사용후기 끝 -->
-	
-	        <!-- 상품문의 시작 { -->
-	        <li id="sit_qa">
-	            <h2>상품문의</h2>
-	            <div id="itemqa"><?php include_once(G5_SHOP_PATH.'/itemqa.php'); ?></div>
-	        </li>
-	        <!-- } 상품문의 끝 -->
-	        
-	        <!-- 배송/교환 시작 { -->
-	        <li id="sit_dex">
-	            <h2>배송/교환정보</h2>
-	            
-	            <?php if ($default['de_baesong_content']) { // 배송정보 내용이 있다면 ?>
-	            <!-- 배송 시작 { -->
-	            <div id="sit_dvr">
-	                <h3>배송</h3>
-	                <?php echo conv_content($default['de_baesong_content'], 1); ?>
-	            </div>
-	            <!-- } 배송 끝 -->
-	            <?php } ?>
-	
-	            <?php if ($default['de_change_content']) { // 교환/반품 내용이 있다면 ?>
-	            <!-- 교환 시작 { -->
-	            <div id="sit_ex" >
-	                <h3>교환</h3>
-	                <?php echo conv_content($default['de_change_content'], 1); ?>
-	            </div>
-	            <!-- } 교환 끝 -->
-	            <?php } ?>
-	            
-	        </li>
-	        <!-- } 배송/교환  끝 -->
+
 	    </ul>
 	</div>
 	<script>
@@ -315,7 +317,7 @@ jQuery(function($){
              this_index = $("input[name^="+change_name+"]").index(this);
 
          $("input[name^=ct_qty]").eq(this_index).val(val).trigger("keyup");
-    });
+     });
 
     $(".sit_order_btn").on("click", "button", function(e){
         e.preventDefault();

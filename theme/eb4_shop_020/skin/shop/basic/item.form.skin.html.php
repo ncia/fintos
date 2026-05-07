@@ -11,6 +11,8 @@ if (!defined('_EYOOM_')) exit;
 <style>
 .shop-list-nav { border: none !important; }
 #sit_btn_cart, #sit_btn_cart i { color: #fff !important; }
+.buy-op-btn { background: #007bff !important; color: #fff !important; border: none !important; padding: 0 30px !important; border-radius: 50px !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 10px !important; width: 260px !important; margin: 0 auto !important; }
+.buy-op-btn i { position: static !important; background: transparent !important; width: auto !important; line-height: inherit !important; color: #fff !important; margin: 0 !important; font-size: 1.1rem !important; }
 </style>
 <?php
 
@@ -213,7 +215,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
             <div class="sit-ov-height">
                 <div id="sit_ov" class="shop-product-form 2017_renewal_itemform">
                     <div id="btn_buy_back"></div>
-                    <div class="buy-btn-wr"><button type="button" class="buy-op-btn">구매하기 <i class="fas fa-credit-card"></i></button></div>
+                    <div class="buy-btn-wr"><button type="button" class="buy-op-btn"><i class="fas fa-user-tie"></i> 상담하기</button></div>
                     <div class="scroll-no">
 
                         <?php if ($is_orderable) { ?>

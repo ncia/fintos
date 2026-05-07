@@ -62,6 +62,37 @@ if (!defined('_EYOOM_')) exit;
 </section>
 <?php /* ---------- 상품 정보 끝 ---------- */ ?>
 
+<?php if ($default['de_baesong_content']) { // 가입예시 내용이 있다면 ?>
+<?php /* ---------- 가입예시 시작 ---------- */ ?>
+<section id="sit_dvr">
+    <h2 class="h-hidden">가입예시</h2>
+    <?php echo $shop->pg_anchor('sit_dvr'); ?>
+
+    <?php echo conv_content($default['de_baesong_content'], 1); ?>
+</section>
+<?php /* ---------- 가입예시 끝 ---------- */ ?>
+<?php } ?>
+
+<?php /* ---------- 추천대상 시작 ---------- */ ?>
+<section id="sit_qa">
+    <h2 class="h-hidden">추천대상</h2>
+    <?php echo $shop->pg_anchor('sit_qa'); ?>
+
+    <div id="itemqa"><?php include_once($skin_dir.'/itemqa.php'); ?></div>
+</section>
+<?php /* ---------- 추천대상 끝 ---------- */ ?>
+
+<?php if ($default['de_change_content']) { // 가입안내 내용이 있다면 ?>
+<?php /* ---------- 가입안내 시작 ---------- */ ?>
+<section id="sit_ex">
+    <h2 class="h-hidden">가입안내</h2>
+    <?php echo $shop->pg_anchor('sit_ex'); ?>
+
+    <?php echo conv_content($default['de_change_content'], 1); ?>
+</section>
+<?php /* ---------- 가입안내 끝 ---------- */ ?>
+<?php } ?>
+
 <?php /* ---------- 사용후기 시작 ---------- */ ?>
 <section id="sit_use">
     <h2 class="h-hidden">사용후기</h2>
@@ -70,37 +101,6 @@ if (!defined('_EYOOM_')) exit;
     <div id="itemuse"><?php include_once($skin_dir.'/itemuse.php'); ?></div>
 </section>
 <?php /* ---------- 사용후기 끝 ---------- */ ?>
-
-<?php /* ---------- 상품문의 시작 ---------- */ ?>
-<section id="sit_qa">
-    <h2 class="h-hidden">상품문의</h2>
-    <?php echo $shop->pg_anchor('sit_qa'); ?>
-
-    <div id="itemqa"><?php include_once($skin_dir.'/itemqa.php'); ?></div>
-</section>
-<?php /* ---------- 상품문의 끝 ---------- */ ?>
-
-<?php if ($default['de_baesong_content']) { // 배송정보 내용이 있다면 ?>
-<?php /* ---------- 배송정보 시작 ---------- */ ?>
-<section id="sit_dvr">
-    <h2 class="h-hidden">배송정보</h2>
-    <?php echo $shop->pg_anchor('sit_dvr'); ?>
-
-    <?php echo conv_content($default['de_baesong_content'], 1); ?>
-</section>
-<?php /* ---------- 배송정보 끝 ---------- */ ?>
-<?php } ?>
-
-<?php if ($default['de_change_content']) { // 교환/반품 내용이 있다면 ?>
-<?php /* ---------- 교환/반품 시작 ---------- */ ?>
-<section id="sit_ex">
-    <h2 class="h-hidden">교환/반품</h2>
-    <?php echo $shop->pg_anchor('sit_ex'); ?>
-
-    <?php echo conv_content($default['de_change_content'], 1); ?>
-</section>
-<?php /* ---------- 교환/반품 끝 ---------- */ ?>
-<?php } ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 <script>

@@ -439,9 +439,7 @@ class shop extends eyoom
             if ($id == 'sit_use') {
                 $ii_count_info = ' <span class="item_use_count">' . $item_use_count . '</span>';
             }
-            if ($id == 'sit_qa') {
-                $ii_count_info = ' <span class="item_qa_count">' . $item_qa_count . '</span>';
-            }
+
 
             if ($id == $anc_id) $active = "class=\"active\"";
             $li .= "<li ".$active."><a href=\"#".$id."\">".$title.$ii_count_info."</a></li>\n";

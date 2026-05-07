@@ -219,10 +219,10 @@ if($is_orderable) {
  */
 $pg_anchor = array(
     'sit_inf'   => '상품정보',
-    'sit_use'   => '사용후기',
-    'sit_qa'    => '상품문의',
-    'sit_dvr'   => '배송정보',
-    'sit_ex'    => '교환정보'
+    'sit_dvr'   => '가입예시',
+    'sit_qa'    => '추천대상',
+    'sit_ex'    => '가입안내',
+    'sit_use'   => '사용후기'
 );
 
 /**
