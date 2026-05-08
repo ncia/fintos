@@ -84,7 +84,7 @@ if (!defined('_EYOOM_')) exit;
 
 
     <?php if ($it['it_mobile_explan_recommend'] || $it['it_explan_recommend']) { ?>
-    <div class="pinto-recommend-container">
+    <div class="fintos-recommend-container">
         <?php
         if (G5_IS_MOBILE && $it['it_mobile_explan_recommend']) echo conv_content($it['it_mobile_explan_recommend'], 1);
         else if ($it['it_explan_recommend']) echo conv_content($it['it_explan_recommend'], 1);
@@ -104,11 +104,16 @@ if (!defined('_EYOOM_')) exit;
     <h2 class="h-hidden">가입안내</h2>
     <?php echo $shop->pg_anchor('sit_ex'); ?>
 
-    <?php
-    if (G5_IS_MOBILE && $it['it_mobile_explan_guide']) echo conv_content($it['it_mobile_explan_guide'], 1);
-    else if ($it['it_explan_guide']) echo conv_content($it['it_explan_guide'], 1);
-    else echo '<p>가입안내 입력전입니다.</p>';
-    ?>
+    <?php if ($it['it_mobile_explan_guide'] || $it['it_explan_guide']) { ?>
+    <div class="fintos-guide-container">
+        <?php
+        if (G5_IS_MOBILE && $it['it_mobile_explan_guide']) echo conv_content($it['it_mobile_explan_guide'], 1);
+        else echo conv_content($it['it_explan_guide'], 1);
+        ?>
+    </div>
+    <?php } else { ?>
+    <p class="m-t-20">가입안내 입력전입니다.</p>
+    <?php } ?>
 </section>
 <?php /* ---------- 가입안내 끝 ---------- */ ?>
 <?php } ?>

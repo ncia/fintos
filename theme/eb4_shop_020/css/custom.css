@@ -33,7 +33,7 @@
 }
 
 /* 핀토스 상품 추천대상 스타일 */
-.pinto-recommend-container { background: #fff; padding: 40px 30px; border: 1px solid #eee; border-radius: 0px; margin-bottom: 20px; }
+.fintos-recommend-container { background: #fff; padding: 40px 40px; border: 1px solid #eee; border-radius: 0px; margin-bottom: 20px; }
 .pinto-recommend-section { padding: 0px 0; line-height: 1.6; }
 .pinto-recommend-section h3, .pinto-recommend-section h4, .pinto-recommend-section .recommend-title { color: #000 !important; }
 .recommend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
@@ -47,6 +47,16 @@
 .check-list { text-align: left; margin-top: 15px; padding-left: 0; list-style: none; }
 .check-list li { margin-bottom: 8px; font-size: 0.95rem; display: flex; align-items: flex-start; }
 .check-list li::before { content: '✅'; margin-right: 8px; font-size: 0.8rem; margin-top: 2px; }
+
+/* 핀토스 가입안내 레이아웃 최적화 */
+.fintos-guide-container { padding: 15px 15px; background: #fff; border: 1px solid #eee; margin-bottom: 20px; }
+@media (min-width: 992px) {
+    .fintos-guide-container .guide-grid { 
+        display: grid !important; 
+        grid-template-columns: repeat(4, 1fr) !important; 
+        gap: 20px !important; 
+    }
+}
 
 /* 핀토스 가입안내 카드 스타일 */
 .fintos-guide-section { background: #fff; padding: 40px 30px; border: 1px solid #eee; line-height: 1.6; }
