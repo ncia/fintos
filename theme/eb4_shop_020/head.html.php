@@ -318,6 +318,9 @@ $item_view = 'zoom';
                                                 <a href="<?php echo G5_SHOP_URL ?>/healthcare_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-medical m-r-5 text-primary"></i>의료 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_SHOP_URL ?>/economy_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-chart-line m-r-5 text-success"></i>경제 용어 사전</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
                                             </li>
                                             <li class="dropdown-submenu">

@@ -5,19 +5,19 @@
 if (!defined('_EYOOM_')) exit;
 ?>
 
-<?php /* ---------- 상품 사용후기 시작 ---------- */ ?>
+<?php /* ---------- 상품 상담후기 시작 ---------- */ ?>
 <section class="shop-product-use">
-    <h3 class="h-hidden">등록된 사용후기</h3>
+    <h3 class="h-hidden">등록된 상담후기</h3>
 
     <div class="product-use-top">
         <?php if ($star_score) { ?>
         <h4>전체 평점</h4>
         <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="image" width="100">
         <span class="li-divider"></span>
-        총 <strong><?php echo $total_count; ?></strong> 건 사용후기
+        총 <strong><?php echo $total_count; ?></strong> 건 상담후기
         <?php } ?>
         <div class="product-use-btn">
-            <a href="<?php echo $itemuse_form; ?>" onclick="itemuse_modal(this.href); return false;" class="btn-e btn-e-md btn-e-navy">사용후기 쓰기</a>
+            <a href="<?php echo $itemuse_form; ?>" onclick="itemuse_modal(this.href); return false;" class="btn-e btn-e-md btn-e-navy">상담후기 쓰기</a>
             <a href="<?php echo $itemuse_list; ?>" class="btn-e btn-e-md btn-e-dark">더보기</a>
         </div>
         <div class="clearfix"></div>
@@ -44,7 +44,7 @@ if (!defined('_EYOOM_')) exit;
 
             <div id="sit_use_con_<?php echo $k; ?>" class="product-use-cont">
                 <div class="product-use-p">
-                    <?php echo $info['is_content']; // 사용후기 내용 ?>
+                    <?php echo $info['is_content']; // 상담후기 내용 ?>
                 </div>
 
                 <?php if ($is_admin || $info['mb_id'] == $member['mb_id']) { ?>
@@ -54,7 +54,7 @@ if (!defined('_EYOOM_')) exit;
                 </div>
                 <?php } ?>
 
-                <?php if( $info['is_reply_subject'] ){  //  사용후기 답변 내용이 있다면 ?>
+                <?php if( $info['is_reply_subject'] ){  //  상담후기 답변 내용이 있다면 ?>
                 <div class="product-use-reply">
                     <div class="product-use-reply-icon">답변</div>
                     <div class="product-use-reply-title">
@@ -73,7 +73,7 @@ if (!defined('_EYOOM_')) exit;
         <?php } ?>
     </div>
     <?php } else { ?>
-    <p class="text-center text-gray m-t-20 m-b-40"><i class="fas fa-exclamation-circle"></i> 사용후기가 없습니다.</p>
+    <p class="text-center text-gray m-t-20 m-b-40"><i class="fas fa-exclamation-circle"></i> 상담후기가 없습니다.</p>
     <?php } ?>
 </section>
 
@@ -111,4 +111,4 @@ $(function(){
     });
 });
 </script>
-<?php /* ---------- 상품 사용후기 끝 ---------- */ ?>
+<?php /* ---------- 상품 상담후기 끝 ---------- */ ?>

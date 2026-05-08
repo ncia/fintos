@@ -71,7 +71,7 @@ if (!defined('_EYOOM_')) exit;
     <?php
     if (G5_IS_MOBILE && $it['it_mobile_explan_example']) echo conv_content($it['it_mobile_explan_example'], 1);
     else if ($it['it_explan_example']) echo conv_content($it['it_explan_example'], 1);
-    else echo conv_content($default['de_baesong_content'], 1);
+    else echo '<p>가입예시 입력전입니다.</p>';
     ?>
 </section>
 <?php /* ---------- 가입예시 끝 ---------- */ ?>
@@ -83,10 +83,16 @@ if (!defined('_EYOOM_')) exit;
     <?php echo $shop->pg_anchor('sit_qa'); ?>
 
 
-    <?php
-    if (G5_IS_MOBILE && $it['it_mobile_explan_recommend']) echo conv_content($it['it_mobile_explan_recommend'], 1);
-    else if ($it['it_explan_recommend']) echo conv_content($it['it_explan_recommend'], 1);
-    ?>
+    <?php if ($it['it_mobile_explan_recommend'] || $it['it_explan_recommend']) { ?>
+    <div class="pinto-recommend-container">
+        <?php
+        if (G5_IS_MOBILE && $it['it_mobile_explan_recommend']) echo conv_content($it['it_mobile_explan_recommend'], 1);
+        else if ($it['it_explan_recommend']) echo conv_content($it['it_explan_recommend'], 1);
+        ?>
+    </div>
+    <?php } else { ?>
+    <p class="m-t-20">추천대상 입력전입니다.</p>
+    <?php } ?>
 
     <div id="itemqa"><?php include_once($skin_dir.'/itemqa.php'); ?></div>
 </section>
@@ -101,20 +107,20 @@ if (!defined('_EYOOM_')) exit;
     <?php
     if (G5_IS_MOBILE && $it['it_mobile_explan_guide']) echo conv_content($it['it_mobile_explan_guide'], 1);
     else if ($it['it_explan_guide']) echo conv_content($it['it_explan_guide'], 1);
-    else echo conv_content($default['de_change_content'], 1);
+    else echo '<p>가입안내 입력전입니다.</p>';
     ?>
 </section>
 <?php /* ---------- 가입안내 끝 ---------- */ ?>
 <?php } ?>
 
-<?php /* ---------- 사용후기 시작 ---------- */ ?>
+<?php /* ---------- 상담후기 시작 ---------- */ ?>
 <section id="sit_use">
-    <h2 class="h-hidden">사용후기</h2>
+    <h2 class="h-hidden">상담후기</h2>
     <?php echo $shop->pg_anchor('sit_use'); ?>
 
     <div id="itemuse"><?php include_once($skin_dir.'/itemuse.php'); ?></div>
 </section>
-<?php /* ---------- 사용후기 끝 ---------- */ ?>
+<?php /* ---------- 상담후기 끝 ---------- */ ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 <script>

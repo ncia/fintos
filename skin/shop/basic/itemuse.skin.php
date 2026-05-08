@@ -7,9 +7,9 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
-<!-- 상품 사용후기 시작 { -->
+<!-- 상품 상담후기 시작 { -->
 <section id="sit_use_list">
-    <h3>등록된 사용후기</h3>
+    <h3>등록된 상담후기</h3>
 
     <div class="sit_use_top">
         <?php if ($star_score) { ?>
@@ -17,7 +17,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
         <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="" class="sit_star">
         <?php } ?>
         <div id="sit_use_wbtn">
-            <a href="<?php echo $itemuse_form; ?>" class="btn02 itemuse_form">사용후기 쓰기<span class="sound_only"> 새 창</span></a>
+            <a href="<?php echo $itemuse_form; ?>" class="btn02 itemuse_form">상담후기 쓰기<span class="sound_only"> 새 창</span></a>
             <a href="<?php echo $itemuse_list; ?>" class="btn01 itemuse_list">더보기</a>
         </div>
     </div>
@@ -56,7 +56,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 
             <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con">
                 <div class="sit_use_p">
-                    <?php echo $is_content; // 사용후기 내용 ?> 
+                    <?php echo $is_content; // 상담후기 내용 ?> 
                 </div>
 
                 <?php if ($is_admin || $row['mb_id'] == $member['mb_id']) { ?>
@@ -66,7 +66,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
                 </div>
                 <?php } ?>
 
-                <?php if( $is_reply_subject ){  //  사용후기 답변 내용이 있다면 ?>
+                <?php if( $is_reply_subject ){  //  상담후기 답변 내용이 있다면 ?>
                 <div class="sit_use_reply">
                     <div class="use_reply_icon">답변</div>
                     <div class="use_reply_tit">
@@ -87,7 +87,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 
     if ($i > 0) echo '</ol>';
 
-    if (!$i) echo '<p class="sit_empty">사용후기가 없습니다.</p>';
+    if (!$i) echo '<p class="sit_empty">상담후기가 없습니다.</p>';
     ?>
 </section>
 
@@ -131,4 +131,4 @@ $(function(){
     });
 });
 </script>
-<!-- } 상품 사용후기 끝 -->
+<!-- } 상품 상담후기 끝 -->

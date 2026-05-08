@@ -33,10 +33,12 @@
 }
 
 /* 핀토스 상품 추천대상 스타일 */
-.pinto-recommend-section { padding: 20px 0; line-height: 1.6; }
+.pinto-recommend-container { background: #fff; padding: 40px 30px; border: 1px solid #eee; border-radius: 0px; margin-bottom: 20px; }
+.pinto-recommend-section { padding: 0px 0; line-height: 1.6; }
+.pinto-recommend-section h3, .pinto-recommend-section h4, .pinto-recommend-section .recommend-title { color: #000 !important; }
 .recommend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 .recommend-card { 
-    background: #f8fafc; border: 1px solid #edf2f7; border-radius: 0px; padding: 25px; 
+    background: #f1f5f9; border: 1px solid #edf2f7; border-radius: 0px; padding: 25px; 
     text-align: center;
 }
 .card-icon { font-size: 40px; margin-bottom: 15px; display: block; }
@@ -47,7 +49,7 @@
 .check-list li::before { content: '✅'; margin-right: 8px; font-size: 0.8rem; margin-top: 2px; }
 
 /* 핀토스 가입안내 카드 스타일 */
-.pinto-guide-section { padding: 20px 0; line-height: 1.6; }
+.fintos-guide-section { background: #fff; padding: 40px 30px; border: 1px solid #eee; line-height: 1.6; }
 .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 .guide-card { 
     background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0px; padding: 30px; 
@@ -75,7 +77,7 @@
 }
 .guide-value { color: #4a5568; font-size: 0.95rem; line-height: 1.5; flex: 1; }
 
-.guide-card.accent { background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%); border-left: 4px solid #3182ce; }
+.guide-card { background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%); }
 
 /* 상담후기 모달 프리미엄 스타일 (보험나이 스타일 적용) */
 .itemuse-iframe-modal .modal-dialog {

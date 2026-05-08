@@ -106,14 +106,14 @@ if (!defined('_EYOOM_')) exit;
 <?php /* ---------- 가입안내 끝 ---------- */ ?>
 <?php } ?>
 
-<?php /* ---------- 사용후기 시작 ---------- */ ?>
+<?php /* ---------- 상담후기 시작 ---------- */ ?>
 <section id="sit_use">
-    <h2 class="h-hidden">사용후기</h2>
+    <h2 class="h-hidden">상담후기</h2>
     <?php echo $shop->pg_anchor('sit_use'); ?>
 
     <div id="itemuse"><?php include_once($skin_dir.'/itemuse.php'); ?></div>
 </section>
-<?php /* ---------- 사용후기 끝 ---------- */ ?>
+<?php /* ---------- 상담후기 끝 ---------- */ ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 <script>

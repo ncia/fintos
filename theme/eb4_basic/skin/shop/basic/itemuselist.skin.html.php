@@ -32,7 +32,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/magnifi
 }
 </style>
 
-<?php /* ---------- 전체 상품 사용후기 목록 시작 ---------- */ ?>
+<?php /* ---------- 전체 상품 상담후기 목록 시작 ---------- */ ?>
 <div class="shop-product-use-list">
     <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" class="eyoom-form">
     <div class="uselist-search-box">
@@ -107,9 +107,9 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/magnifi
             <div id="review_<?php echo $i ?>" class="panel-collapse collapse" data-bs-parent="#porduct-review">
                 <div class="panel-body">
                     <div class="panel-use-cont">
-                        <?php echo $list[$i]['is_content']; // 사용후기 내용 ?>
+                        <?php echo $list[$i]['is_content']; // 상담후기 내용 ?>
                     </div>
-                    <?php if( !empty($list[$i]['is_reply_subject']) ) { // 사용후기 답변이 있다면 ?>
+                    <?php if( !empty($list[$i]['is_reply_subject']) ) { // 상담후기 답변이 있다면 ?>
                     <div class="panel-use-reply">
                         <div class="use-reply-icon">답변</div>
                         <h5 class="use-reply-subj"><?php echo get_text($list[$i]['is_reply_subject']); ?></h5>
@@ -117,7 +117,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/magnifi
                             <?php echo $list[$i]['is_reply_name']; ?>
                         </div>
                         <div class="use-reply-cont">
-                            <?php echo $list[$i]['is_reply_content']; // 사용후기 답변 내용 ?>
+                            <?php echo $list[$i]['is_reply_content']; // 상담후기 답변 내용 ?>
                         </div>
                     </div>
                     <?php } ?>
@@ -134,7 +134,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/magnifi
 
 <?php /* 페이지 */ ?>
 <?php echo eb_paging($eyoom['paging_skin']);?>
-<?php /* ---------- 전체 상품 사용후기 목록 끝 ---------- */ ?>
+<?php /* ---------- 전체 상품 상담후기 목록 끝 ---------- */ ?>
 
 <script src="<?php echo EYOOM_THEME_URL; ?>/plugins/magnific-popup/magnific-popup.min.js"></script>
 <script>

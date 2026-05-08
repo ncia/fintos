@@ -24,8 +24,15 @@ function editor_html($id, $content, $is_dhtml_editor=true)
     if ($is_dhtml_editor && $js) {
         // Summernote CDN
         $html .= "\n".'<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">';
-        // 부트스트랩과 충돌하여 화살표가 두 개 생기는 현상 수정
-        $html .= "\n".'<style>.note-editor .dropdown-toggle::after { display: none !important; }</style>';
+        // 부트스트랩 및 테마 충돌 수정
+        $html .= "\n".'<style>
+            .note-editor .dropdown-toggle::after { display: none !important; }
+            .note-editor .note-editable { pointer-events: auto !important; background-color: #fff !important; }
+            .note-editor.note-frame { position: relative; z-index: 1; }
+            /* 이윰 테마 .textarea 클래스 내부의 에디터 보정 */
+            .textarea .note-editor { margin-bottom: 0; border: none; }
+            .textarea:after, .textarea:before { display: none !important; } /* 가상 레이어 제거 */
+        </style>';
         $html .= "\n".'<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>';
         $html .= "\n".'<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.min.js"></script>';
         $js = false;

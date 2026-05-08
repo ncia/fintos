@@ -144,7 +144,7 @@ body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', san
 }
 
 .product-use-write {
-    padding-bottom: 150px; /* 색상 선택창 등 드롭다운을 위한 여유 공간 */
+    padding-bottom: 0px; /* 여유 공간 제거 */
 }
 </style>
 
@@ -169,22 +169,100 @@ body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', san
             </div>
 
             <div class="section-title">평점 선택</div>
-            <div class="score-selector">
-                <input type="radio" name="is_score" value="5" id="is_score5" <?php echo ($is_score==5)?'checked="checked"':''; ?>>
-                <label for="is_score5" class="score-label">매우만족 <img src="<?php echo G5_URL; ?>/shop/img/s_star5.png" alt="5"></label>
-
-                <input type="radio" name="is_score" value="4" id="is_score4" <?php echo ($is_score==4)?'checked="checked"':''; ?>>
-                <label for="is_score4" class="score-label">만족 <img src="<?php echo G5_URL; ?>/shop/img/s_star4.png" alt="4"></label>
-
-                <input type="radio" name="is_score" value="3" id="is_score3" <?php echo ($is_score==3)?'checked="checked"':''; ?>>
-                <label for="is_score3" class="score-label">보통 <img src="<?php echo G5_URL; ?>/shop/img/s_star3.png" alt="3"></label>
-
-                <input type="radio" name="is_score" value="2" id="is_score2" <?php echo ($is_score==2)?'checked="checked"':''; ?>>
-                <label for="is_score2" class="score-label">불만 <img src="<?php echo G5_URL; ?>/shop/img/s_star2.png" alt="2"></label>
-
-                <input type="radio" name="is_score" value="1" id="is_score1" <?php echo ($is_score==1)?'checked="checked"':''; ?>>
-                <label for="is_score1" class="score-label">매우불만 <img src="<?php echo G5_URL; ?>/shop/img/s_star1.png" alt="1"></label>
+            <div class="star-rating-wrapper">
+                <div class="star-rating">
+                    <i class="far fa-star star" data-value="1"></i>
+                    <i class="far fa-star star" data-value="2"></i>
+                    <i class="far fa-star star" data-value="3"></i>
+                    <i class="far fa-star star" data-value="4"></i>
+                    <i class="far fa-star star" data-value="5"></i>
+                </div>
+                <div class="rating-guide-box">
+                    <p class="rating-guide">⭐ 5점과 함께 정성스러운 후기를 작성해 주세요.<br>남겨주신 후기는 소중한 피드백으로 더 만족스러운 경험을 약속드립니다.</p>
+                </div>
+                <input type="hidden" name="is_score" id="is_score" value="<?php echo $is_score ? $is_score : ''; ?>" required>
             </div>
+
+            <style>
+            .star-rating-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                margin-bottom: 30px;
+                background: #fdfdfd;
+                padding: 25px;
+                border: 1px solid #eee;
+                border-radius: 8px;
+            }
+            .star-rating {
+                display: flex;
+                gap: 8px;
+                cursor: pointer;
+            }
+            .star-rating .star {
+                font-size: 36px;
+                color: #ddd;
+                transition: transform 0.2s ease, color 0.2s ease;
+            }
+            .star-rating .star:hover {
+                transform: scale(1.1);
+            }
+            .star-rating .star.hover,
+            .star-rating .star.active {
+                color: #ffc107;
+            }
+            .rating-guide-box {
+                margin-top: 5px;
+            }
+            .rating-guide {
+                font-size: 15px;
+                color: #333;
+                font-weight: 500;
+                line-height: 1.5;
+                margin: 0;
+            }
+            </style>
+
+            <script>
+            $(document).ready(function() {
+                const $stars = $('.star-rating .star');
+                const $scoreInput = $('#is_score');
+                let currentScore = $scoreInput.val();
+
+                function updateStars(score, type) {
+                    $stars.each(function() {
+                        const val = $(this).data('value');
+                        if (type === 'hover') {
+                            $(this).toggleClass('hover', val <= score);
+                        } else {
+                            $(this).toggleClass('active', val <= score);
+                            if (val <= score) {
+                                $(this).removeClass('far').addClass('fas');
+                            } else {
+                                $(this).removeClass('fas').addClass('far');
+                            }
+                        }
+                    });
+                }
+
+                // 초기화
+                if (currentScore) {
+                    updateStars(currentScore, 'active');
+                }
+
+                $stars.on('mouseenter', function() {
+                    const val = $(this).data('value');
+                    updateStars(val, 'hover');
+                }).on('mouseleave', function() {
+                    $stars.removeClass('hover');
+                }).on('click', function() {
+                    currentScore = $(this).data('value');
+                    $scoreInput.val(currentScore);
+                    updateStars(currentScore, 'active');
+                });
+            });
+            </script>
 
             <div class="text-center">
                 <input type="submit" value="작성완료" class="submit-btn">

@@ -2,7 +2,7 @@
 include_once('./_common.php');
 
 if (!$is_member) {
-    alert_close("사용후기는 회원만 작성이 가능합니다.");
+    alert_close("상담후기는 회원만 작성이 가능합니다.");
 }
 
 $it_id       = isset($_REQUEST['it_id']) ? safe_replace_regex($_REQUEST['it_id'], 'it_id') : '';
@@ -17,7 +17,7 @@ $get_editor_img_mode = $config['cf_editor'] ? false : true;
 $is_id       = isset($_REQUEST['is_id']) ? (int) $_REQUEST['is_id'] : 0;
 $is_mobile_shop = isset($_REQUEST['is_mobile_shop']) ? (int) $_REQUEST['is_mobile_shop'] : 0;
 
-// 사용후기 작성 설정에 따른 체크
+// 상담후기 작성 설정에 따른 체크
 check_itemuse_write($it_id, $member['mb_id']);
 
 if ($w == "" || $w == "u") {
@@ -65,7 +65,7 @@ if ($w == "")
     if ($default['de_item_use_use']) {
         $alert_msg = "평가하신 글은 관리자가 확인한 후에 출력됩니다.";
     }  else {
-        $alert_msg = "사용후기가 등록 되었습니다.";
+        $alert_msg = "상담후기가 등록 되었습니다.";
     }
 }
 else if ($w == "u")
@@ -84,7 +84,7 @@ else if ($w == "u")
     sql_query($sql);
     run_event('shop_item_use_updated', $is_id, $it_id);
 
-    $alert_msg = "사용후기가 수정 되었습니다.";
+    $alert_msg = "상담후기가 수정 되었습니다.";
 }
 else if ($w == "d")
 {
@@ -93,7 +93,7 @@ else if ($w == "d")
         $sql = " select count(*) as cnt from {$g5['g5_shop_item_use_table']} where mb_id = '{$member['mb_id']}' and is_id = '$is_id' ";
         $row = sql_fetch($sql);
         if (!$row['cnt'])
-            alert("자신의 사용후기만 삭제하실 수 있습니다.");
+            alert("자신의 상담후기만 삭제하실 수 있습니다.");
     }
 
     // 에디터로 첨부된 썸네일 이미지 삭제
@@ -125,10 +125,10 @@ else if ($w == "d")
     sql_query($sql);
     run_event('shop_item_use_deleted', $is_id, $it_id);
 
-    $alert_msg = "사용후기를 삭제 하였습니다.";
+    $alert_msg = "상담후기를 삭제 하였습니다.";
 }
 
-//쇼핑몰 설정에서 사용후기가 즉시 출력일 경우
+//쇼핑몰 설정에서 상담후기가 즉시 출력일 경우
 if( ! $default['de_item_use_use'] ){
     update_use_cnt($it_id);
     update_use_avg($it_id);

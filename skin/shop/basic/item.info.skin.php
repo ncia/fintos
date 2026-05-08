@@ -31,7 +31,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	        <li><button type="button" id="btn_sit_inf" rel="#sit_inf" class="selected">상품정보</button></li>
 	        <li><button type="button" id="btn_sit_dvex" rel="#sit_dex">가입예시/가입안내</button></li>
 	        <li><button type="button" id="btn_sit_qa" rel="#sit_qa">추천대상</button></li>
-	        <li><button type="button" id="btn_sit_use" rel="#sit_use">사용후기 <span class="item_use_count"><?php echo $item_use_count; ?></span></button></li>
+	        <li><button type="button" id="btn_sit_use" rel="#sit_use">상담후기 <span class="item_use_count"><?php echo $item_use_count; ?></span></button></li>
 	    </ul>
 	    <ul class="tab_con">
 	
@@ -120,12 +120,12 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	        </li>
 	        <!-- } 추천대상 끝 -->
 
-	        <!-- 사용후기 시작 { -->
+	        <!-- 상담후기 시작 { -->
 	        <li id="sit_use">
-	            <h2>사용후기</h2>
+	            <h2>상담후기</h2>
 	            <div id="itemuse"><?php include_once(G5_SHOP_PATH.'/itemuse.php'); ?></div>
 	        </li>
-	        <!-- } 사용후기 끝 -->
+	        <!-- } 상담후기 끝 -->
 
 	    </ul>
 	</div>

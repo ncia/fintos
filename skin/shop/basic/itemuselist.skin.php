@@ -7,7 +7,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
-<!-- 전체 상품 사용후기 목록 시작 { -->
+<!-- 전체 상품 상담후기 목록 시작 { -->
 <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <div id="sps_sch">
 	<label for="sfl" class="sound_only">검색항목 필수</label>
@@ -30,7 +30,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 </form>
 
 <div id="sps">
-    <!-- <p><?php echo $config['cf_title']; ?> 전체 사용후기 목록입니다.</p> -->
+    <!-- <p><?php echo $config['cf_title']; ?> 전체 상담후기 목록입니다.</p> -->
     <?php
     $thumbnail_width = 500;
 
@@ -75,10 +75,10 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 	            
 	        	<button class="sps_con_<?php echo $i; ?> review_detail">내용보기</button>
 	        	
-	        	<!-- 사용후기 자세히 시작 -->
+	        	<!-- 상담후기 자세히 시작 -->
 	            <div class="review_detail_cnt">
 	            	<div class="review_detail_in">
-	            		<h3>사용후기</h3>
+	            		<h3>상담후기</h3>
 	            		<div class="review_cnt">
 	            			<div class="review_tp_cnt">
 	            				<span><?php echo get_text($row['is_subject']); ?></span>
@@ -96,9 +96,9 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 	            			</div>
 	            			
 	            			<div id="sps_con_<?php echo $i; ?>" class="review_bt_cnt">
-				                <?php echo $is_content; // 사용후기 내용 ?>
+				                <?php echo $is_content; // 상담후기 내용 ?>
 				                <?php
-				                if( !empty($row['is_reply_subject']) ){     //사용후기 답변이 있다면
+				                if( !empty($row['is_reply_subject']) ){     //상담후기 답변이 있다면
 				                    $is_reply_content = get_view_thumbnail(conv_content($row['is_reply_content'], 1), $thumbnail_width);
 				                ?>
 				                <div class="sps_reply">
@@ -108,7 +108,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 				                            <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $row['is_reply_name']; ?>
 				                        </div>
 				                        <div id="sps_con_<?php echo $i; ?>_reply">
-				                            <?php echo $is_reply_content; // 사용후기 답변 내용 ?>
+				                            <?php echo $is_reply_content; // 상담후기 답변 내용 ?>
 				                        </div>
 				                    </section>
 				                </div>
@@ -118,7 +118,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 	            		<button class="rd_cls"><span class="sound_only">후기 상세보기 팝업 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
 	            	</div>
 	            </div>
-	            <!-- 사용후기 자세히 끝 -->
+	            <!-- 상담후기 자세히 끝 -->
 	        </div>
         </div>
     </li>
@@ -132,12 +132,12 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 
 
 <script>
 jQuery(function($){
-    // 사용후기 열기
+    // 상담후기 열기
     $(".review_detail").on("click", function(){
         $(this).parent("div").children(".review_detail_cnt").show();
     });
 		
-    // 사용후기 닫기
+    // 상담후기 닫기
     $(document).mouseup(function (e){
         var container = $(".review_detail_cnt");
         if( container.has(e.target).length === 0)
@@ -162,4 +162,4 @@ jQuery(function($){
 });
 				
 </script>
-<!-- } 전체 상품 사용후기 목록 끝 -->
+<!-- } 전체 상품 상담후기 목록 끝 -->

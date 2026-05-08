@@ -222,7 +222,7 @@ $pg_anchor = array(
     'sit_dvr'   => '가입예시',
     'sit_qa'    => '추천대상',
     'sit_ex'    => '가입안내',
-    'sit_use'   => '사용후기'
+    'sit_use'   => '상담후기'
 );
 
 /**
