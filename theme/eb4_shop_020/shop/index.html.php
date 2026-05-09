@@ -64,7 +64,7 @@ if (!defined('_EYOOM_')) exit;
                         color: #fff;
                         padding: 2px 10px;
                         border-radius: 50px;
-                        font-size: 11px;
+                        font-size: 14px;
                         font-weight: 600;
                         margin-bottom: 4px;
                     }
@@ -107,7 +107,7 @@ if (!defined('_EYOOM_')) exit;
                         color: #fff;
                     }
                     .fintos-poll-label {
-                        font-size: 13px;
+                        font-size: 14px;
                         font-weight: 700;
                         color: #4169e1;
                         margin-right: 10px;
@@ -152,18 +152,18 @@ if (!defined('_EYOOM_')) exit;
 
                     <div class="fintos-poll-container">
                         <div class="fintos-poll-header">
-                            <span class="fintos-poll-badge">보험 밸런스 게임</span>
+                            <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임</span>
                             <div class="fintos-poll-question">
                                 Q. <?php echo htmlspecialchars($random_poll['question']); ?>
                             </div>
                         </div>
                         <div class="fintos-poll-options" id="fintos-poll-options">
                             <div class="fintos-poll-option" onclick="handlePoll(this, 'A')">
-                                <span class="fintos-poll-label">선택 A</span>
+                                <span class="fintos-poll-label">👉 선택 A</span>
                                 <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_a']); ?></span>
                             </div>
                             <div class="fintos-poll-option" onclick="handlePoll(this, 'B')">
-                                <span class="fintos-poll-label">선택 B</span>
+                                <span class="fintos-poll-label">👉 선택 B</span>
                                 <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_b']); ?></span>
                             </div>
                         </div>
