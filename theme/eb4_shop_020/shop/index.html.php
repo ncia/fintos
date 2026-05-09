@@ -20,12 +20,182 @@ if (!defined('_EYOOM_')) exit;
             </div>
             <div class="main-section1-c">
                 <div class="main-section1-c-in">
+                    <?php /* ---------- 보험 투표 콘텐츠 시작 ---------- */ ?>
+                    <?php
+                    $poll_data_json = file_get_contents(G5_PATH . '/insurance_poll_data.json');
+                    $poll_items = json_decode($poll_data_json, true);
+                    $random_poll = $poll_items[array_rand($poll_items)];
+                    ?>
+                    <style>
+                    .fintos-poll-container {
+                        background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+                        border: 1px solid #e1e4f3;
+                        border-radius: 0;
+                        padding: 15px 25px;
+                        margin-bottom: 30px;
+                        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+                        font-family: 'Pretendard', sans-serif;
+                        position: relative;
+                        overflow: hidden;
+                        max-width: 776px;
+                        height: 150px;
+                        margin: 0 auto 30px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                    }
+                    .fintos-poll-container::before {
+                        content: 'POLL';
+                        position: absolute;
+                        top: -5px;
+                        right: -5px;
+                        font-size: 50px;
+                        font-weight: 900;
+                        color: rgba(65, 105, 225, 0.03);
+                        pointer-events: none;
+                    }
+                    .fintos-poll-header {
+                        margin-bottom: 0;
+                        text-align: center;
+                    }
+                    .fintos-poll-badge {
+                        display: inline-block;
+                        background: #4169e1;
+                        color: #fff;
+                        padding: 2px 10px;
+                        border-radius: 50px;
+                        font-size: 11px;
+                        font-weight: 600;
+                        margin-bottom: 4px;
+                    }
+                    .fintos-poll-question {
+                        font-size: 18px;
+                        font-weight: 700;
+                        color: #2d3436;
+                        line-height: 1.2;
+                        word-break: keep-all;
+                    }
+                    .fintos-poll-options {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 12px;
+                    }
+                    .fintos-poll-option {
+                        position: relative;
+                        background: #fff;
+                        border: 1px solid #e1e4f3;
+                        padding: 10px 15px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 48px;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+                    }
+                    .fintos-poll-option:hover {
+                        border-color: #4169e1;
+                        background: #f8faff;
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 10px rgba(65, 105, 225, 0.08);
+                    }
+                    .fintos-poll-option.selected {
+                        background: #4169e1;
+                        border-color: #4169e1;
+                        color: #fff;
+                    }
+                    .fintos-poll-label {
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: #4169e1;
+                        margin-right: 10px;
+                        white-space: nowrap;
+                    }
+                    .fintos-poll-option.selected .fintos-poll-label {
+                        color: rgba(255,255,255,0.9);
+                    }
+                    .fintos-poll-text {
+                        font-size: 15px;
+                        font-weight: 700;
+                        word-break: keep-all;
+                        line-height: 1.1;
+                    }
+                    .fintos-poll-result {
+                        display: none;
+                        margin-top: 5px;
+                        text-align: center;
+                        animation: fadeIn 0.4s ease;
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(5px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    .fintos-poll-thanks {
+                        font-weight: 600;
+                        color: #4169e1;
+                        background: #f0f3ff;
+                        padding: 6px 20px;
+                        border-radius: 8px;
+                        display: inline-block;
+                        font-size: 13px;
+                    }
+
+                    @media (max-width: 768px) {
+                        .fintos-poll-container {
+                            height: auto;
+                            min-height: 150px;
+                        }
+                    }
+                    </style>
+
+                    <div class="fintos-poll-container">
+                        <div class="fintos-poll-header">
+                            <span class="fintos-poll-badge">보험 밸런스 게임</span>
+                            <div class="fintos-poll-question">
+                                Q. <?php echo htmlspecialchars($random_poll['question']); ?>
+                            </div>
+                        </div>
+                        <div class="fintos-poll-options" id="fintos-poll-options">
+                            <div class="fintos-poll-option" onclick="handlePoll(this, 'A')">
+                                <span class="fintos-poll-label">선택 A</span>
+                                <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_a']); ?></span>
+                            </div>
+                            <div class="fintos-poll-option" onclick="handlePoll(this, 'B')">
+                                <span class="fintos-poll-label">선택 B</span>
+                                <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_b']); ?></span>
+                            </div>
+                        </div>
+                        <div class="fintos-poll-result" id="fintos-poll-result">
+                            <div class="fintos-poll-thanks">
+                                <i class="fas fa-check-circle m-r-5"></i> 투표 완료! 소중한 의견 감사합니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                    function handlePoll(el, type) {
+                        if (document.getElementById('fintos-poll-result').style.display === 'block') return;
+                        const options = document.querySelectorAll('.fintos-poll-option');
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        el.classList.add('selected');
+                        setTimeout(() => {
+                            document.getElementById('fintos-poll-options').style.opacity = '0.5';
+                            document.getElementById('fintos-poll-options').style.pointerEvents = 'none';
+                            document.getElementById('fintos-poll-result').style.display = 'block';
+                        }, 300);
+                    }
+                    </script>
+                    <?php /* ---------- 보험 투표 콘텐츠 끝 ---------- */ ?>
+
                     <?php /* EB슬라이더 - shop020_main_1 */ ?>
                     <?php echo eb_slider('1650608679'); ?>
                     
                     <?php /* EB슬라이더 - shop020_main_3 */ ?>
                     <?php echo eb_slider('1652336831'); ?>
                     
+
                     <?php /* EB슬라이더 - shop020_main_4 */ ?>
                     <?php echo eb_slider('1652165942'); ?>
                 </div>
