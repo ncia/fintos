@@ -131,14 +131,7 @@ if (!defined('_EYOOM_')) exit;
                                     </a>
                                 </h4>
 
-                                <div class="goods-price">
-                                    <?php if ($eb_goods['gi_view_it_price'] == 'y') { ?>
-                                    <span class="title-price">₩ <?php echo preg_replace('/원/','',display_price(get_price($data), $data['it_tel_inq'])); ?></span>
-                                    <?php } ?>
-                                    <?php if ($eb_goods['gi_view_it_cust_price'] == 'y' && $data['it_cust_price']) { ?>
-                                    <span class="title-price line-through">₩ <?php echo number_format($data['it_cust_price']); ?></span>
-                                    <?php } ?>
-                                </div>
+                                <?php /* 가격 정보 숨김 */ ?>
 
                                 <?php if ($eb_goods['gi_view_it_id'] == 'y') { ?>
                                 <span class="goods-id"><?php echo stripslashes($data['it_id']); ?></span>

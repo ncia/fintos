@@ -39,7 +39,7 @@ if (!defined('_EYOOM_')) exit;
 .ebg-shop020-m .goods-img-in:before {content:"";display:block;padding-top:100%;background:#fff}
 .ebg-shop020-m .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-m .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
-.ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.0625rem;font-weight:700;line-height:1.4;height:47px}
+.ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.0rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
 .ebg-shop020-m .goods-description .goods-name a {color:#000}
 .ebg-shop020-m .goods-description .goods-name a:hover {text-decoration:underline}
 .ebg-shop020-m .goods-description .title-price {font-size:1.0625rem;font-weight:700;color:#ab0000;margin-right:7px}
@@ -127,14 +127,7 @@ if (!defined('_EYOOM_')) exit;
                                     </a>
                                 </h4>
 
-                                <div class="goods-price">
-                                    <?php if ($eb_goods['gi_view_it_price'] == 'y') { ?>
-                                    <span class="title-price">₩ <?php echo preg_replace('/원/','',display_price(get_price($data), $data['it_tel_inq'])); ?></span>
-                                    <?php } ?>
-                                    <?php if ($eb_goods['gi_view_it_cust_price'] == 'y' && $data['it_cust_price']) { ?>
-                                    <span class="title-price line-through">₩ <?php echo number_format($data['it_cust_price']); ?></span>
-                                    <?php } ?>
-                                </div>
+                                <?php /* 가격 정보 숨김 */ ?>
 
                                 <?php if ($eb_goods['gi_view_it_id'] == 'y') { ?>
                                 <span class="goods-id"><?php echo stripslashes($data['it_id']); ?></span>

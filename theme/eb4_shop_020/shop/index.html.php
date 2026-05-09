@@ -22,29 +22,51 @@ if (!defined('_EYOOM_')) exit;
                 <div class="main-section1-c-in">
                     <?php /* ---------- 보험 투표 콘텐츠 시작 ---------- */ ?>
                     <?php
-                    $poll_data_json = file_get_contents(G5_PATH . '/insurance_poll_data.json');
-                    $poll_items = json_decode($poll_data_json, true);
-                    $random_poll = $poll_items[array_rand($poll_items)];
+                    // 사용자의 현재 IP 가져오기
+                    $user_ip = $_SERVER['REMOTE_ADDR'];
+                    
+                    // 아직 이 IP로 참여하지 않은 질문 중에서 랜덤으로 하나 가져오기
+                    $sql_unvoted = " SELECT * FROM g5_fintos_poll 
+                                     WHERE poll_ip NOT LIKE '%,{$user_ip},%' 
+                                     OR poll_ip IS NULL 
+                                     ORDER BY rand() LIMIT 1 ";
+                    $random_poll = sql_fetch($sql_unvoted);
+                    
+                    // 만약 모든 질문에 참여했다면, 그냥 아무거나 하나 보여줌 (결과 보기 위주)
+                    if (!$random_poll['id']) {
+                        $random_poll = sql_fetch("SELECT * FROM g5_fintos_poll ORDER BY rand() LIMIT 1");
+                        $all_voted = true;
+                    } else {
+                        $all_voted = false;
+                    }
                     ?>
                     <style>
                     .fintos-poll-container {
-                        background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-                        border: 1px solid #e1e4f3;
-                        border-radius: 0;
-                        padding: 15px 25px;
+                        background: #f1f3f9;
+                        padding: 10px;
+                        border-radius: 16px;
                         margin-bottom: 30px;
-                        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+                        max-width: 800px;
+                        margin: 0 auto 30px;
+                    }
+                    .fintos-poll-box {
+                        background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+                        border-radius: 12px;
+                        padding: 7px 30px;
+                        box-shadow: 0 10px 30px rgba(65, 105, 225, 0.15);
                         font-family: 'Pretendard', sans-serif;
                         position: relative;
                         overflow: hidden;
                         max-width: 776px;
-                        height: 150px;
-                        margin: 0 auto 30px;
+                        min-height: 150px;
+                        height: auto;
+                        margin: 0;
                         display: flex;
                         flex-direction: column;
-                        justify-content: space-around;
+                        justify-content: flex-start;
+                        transition: all 0.4s ease;
                     }
-                    .fintos-poll-container::before {
+                    .fintos-poll-box::before {
                         content: 'POLL';
                         position: absolute;
                         top: -5px;
@@ -58,21 +80,24 @@ if (!defined('_EYOOM_')) exit;
                         margin-bottom: 0;
                         text-align: center;
                     }
+                    .fintos-poll-header {
+                        margin-bottom: 8px;
+                    }
                     .fintos-poll-badge {
                         display: inline-block;
                         background: #4169e1;
                         color: #fff;
-                        padding: 2px 10px;
+                        padding: 6px 15px;
                         border-radius: 50px;
-                        font-size: 14px;
+                        font-size: 16px;
                         font-weight: 600;
-                        margin-bottom: 4px;
+                        margin-bottom: 6px;
                     }
                     .fintos-poll-question {
                         font-size: 18px;
-                        font-weight: 700;
+                        font-weight: 800;
                         color: #2d3436;
-                        line-height: 1.2;
+                        letter-spacing: -0.5px;
                         word-break: keep-all;
                     }
                     .fintos-poll-options {
@@ -107,7 +132,7 @@ if (!defined('_EYOOM_')) exit;
                         color: #fff;
                     }
                     .fintos-poll-label {
-                        font-size: 14px;
+                        font-size: 14.8px;
                         font-weight: 700;
                         color: #4169e1;
                         margin-right: 10px;
@@ -117,7 +142,7 @@ if (!defined('_EYOOM_')) exit;
                         color: rgba(255,255,255,0.9);
                     }
                     .fintos-poll-text {
-                        font-size: 15px;
+                        font-size: 14.8px;
                         font-weight: 700;
                         word-break: keep-all;
                         line-height: 1.1;
@@ -141,9 +166,88 @@ if (!defined('_EYOOM_')) exit;
                         display: inline-block;
                         font-size: 13px;
                     }
+                    .fintos-poll-result {
+                        display: none;
+                        text-align: center;
+                        animation: fadeIn 0.5s ease;
+                    }
+                    .fintos-poll-thanks {
+                        color: #4169e1;
+                        font-weight: 700;
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                    }
+                    .fintos-poll-result-btn {
+                        background: #4169e1;
+                        color: #fff;
+                        border: none;
+                        padding: 4px 10px;
+                        border-radius: 4px;
+                        font-size: 11px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.2s;
+                        display: inline-block;
+                    }
+                    .fintos-poll-result-btn:hover {
+                        background: #3152b1;
+                        transform: translateY(-1px);
+                    }
+                    /* Toast Style */
+                    .fintos-poll-toast {
+                        visibility: hidden;
+                        min-width: 280px;
+                        margin-left: -140px;
+                        background-color: rgba(33, 33, 33, 0.95);
+                        color: #fff;
+                        border-radius: 12px;
+                        padding: 20px;
+                        position: fixed;
+                        z-index: 10000;
+                        left: 50%;
+                        bottom: 50px;
+                        font-size: 14px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+                        backdrop-filter: blur(5px);
+                    }
+                    .toast-title {
+                        font-weight: 700;
+                        margin-bottom: 15px;
+                        text-align: center;
+                        font-size: 15px;
+                        color: #fff;
+                    }
+                    .toast-item {
+                        margin-bottom: 12px;
+                    }
+                    .toast-label {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 5px;
+                        font-size: 13px;
+                    }
+                    .toast-bar-wrap {
+                        background: rgba(255,255,255,0.1);
+                        height: 10px;
+                        border-radius: 5px;
+                        overflow: hidden;
+                    }
+                    .toast-bar {
+                        background: linear-gradient(90deg, #4169e1, #6c5ce7);
+                        height: 100%;
+                        border-radius: 5px;
+                        transition: width 1s ease-in-out;
+                    }
+                    .fintos-poll-toast.show {
+                        visibility: visible;
+                        animation: fadein_toast 0.5s, fadeout_toast 0.5s 3.5s;
+                    }
+                    @keyframes fadein_toast { from {bottom: 0; opacity: 0;} to {bottom: 50px; opacity: 1;} }
+                    @keyframes fadeout_toast { from {bottom: 50px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+                    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
                     @media (max-width: 768px) {
-                        .fintos-poll-container {
+                        .fintos-poll-box {
                             height: auto;
                             min-height: 150px;
                         }
@@ -151,25 +255,32 @@ if (!defined('_EYOOM_')) exit;
                     </style>
 
                     <div class="fintos-poll-container">
-                        <div class="fintos-poll-header">
-                            <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임</span>
-                            <div class="fintos-poll-question">
-                                Q. <?php echo htmlspecialchars($random_poll['question']); ?>
+                        <div class="fintos-poll-box">
+                            <div class="fintos-poll-header">
+                                <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임에 참여하세요!</span>
+                                <div class="fintos-poll-question">
+                                    Q. <?php echo htmlspecialchars($random_poll['question']); ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="fintos-poll-options" id="fintos-poll-options">
-                            <div class="fintos-poll-option" onclick="handlePoll(this, 'A')">
-                                <span class="fintos-poll-label">👉 선택 A</span>
-                                <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_a']); ?></span>
+                            <div class="fintos-poll-options" id="fintos-poll-options" <?php echo $all_voted ? 'style="opacity:0.5; pointer-events:none;"' : ''; ?>>
+                                <div class="fintos-poll-option" onclick="handlePoll(this, 'A')">
+                                    <span class="fintos-poll-label">🅰️ 선택</span>
+                                    <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_a']); ?></span>
+                                </div>
+                                <div class="fintos-poll-option" onclick="handlePoll(this, 'B')">
+                                    <span class="fintos-poll-label">🅱️ 선택</span>
+                                    <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_b']); ?></span>
+                                </div>
                             </div>
-                            <div class="fintos-poll-option" onclick="handlePoll(this, 'B')">
-                                <span class="fintos-poll-label">👉 선택 B</span>
-                                <span class="fintos-poll-text"><?php echo htmlspecialchars($random_poll['option_b']); ?></span>
-                            </div>
-                        </div>
-                        <div class="fintos-poll-result" id="fintos-poll-result">
-                            <div class="fintos-poll-thanks">
-                                <i class="fas fa-check-circle m-r-5"></i> 투표 완료! 소중한 의견 감사합니다.
+                            <div class="fintos-poll-result" id="fintos-poll-result" <?php echo $all_voted ? 'style="display:block;"' : ''; ?>>
+                                <div class="fintos-poll-thanks">
+                                    <?php if ($all_voted) { ?>
+                                        <i class="fas fa-info-circle m-r-5"></i> 이미 모든 질문에 참여하셨습니다!
+                                    <?php } else { ?>
+                                        <i class="fas fa-check-circle m-r-5"></i> 투표 완료! 소중한 의견 감사합니다.
+                                    <?php } ?>
+                                </div>
+                                <button type="button" class="fintos-poll-result-btn" onclick="showPollResults()">실시간 투표 결과 보기</button>
                             </div>
                         </div>
                     </div>
@@ -177,14 +288,79 @@ if (!defined('_EYOOM_')) exit;
                     <script>
                     function handlePoll(el, type) {
                         if (document.getElementById('fintos-poll-result').style.display === 'block') return;
+                        
+                        const pollId = '<?php echo $random_poll['id']; ?>';
                         const options = document.querySelectorAll('.fintos-poll-option');
                         options.forEach(opt => opt.classList.remove('selected'));
                         el.classList.add('selected');
-                        setTimeout(() => {
-                            document.getElementById('fintos-poll-options').style.opacity = '0.5';
-                            document.getElementById('fintos-poll-options').style.pointerEvents = 'none';
-                            document.getElementById('fintos-poll-result').style.display = 'block';
-                        }, 300);
+
+                        // DB에 투표 결과 반영
+                        $.post('<?php echo G5_URL; ?>/poll_ajax.php', {
+                            mode: 'vote',
+                            id: pollId,
+                            type: type
+                        }, function(data) {
+                            if(data.success) {
+                                setTimeout(() => {
+                                    document.getElementById('fintos-poll-options').style.opacity = '0.5';
+                                    document.getElementById('fintos-poll-options').style.pointerEvents = 'none';
+                                    document.getElementById('fintos-poll-result').style.display = 'block';
+                                }, 300);
+                            } else if (data.error === 'already_voted') {
+                                alert('이미 이 질문에 투표하셨습니다!');
+                                location.reload();
+                            }
+                        }, 'json');
+                    }
+
+                    function showPollResults() {
+                        const pollId = '<?php echo $random_poll['id']; ?>';
+                        
+                        $.post('<?php echo G5_URL; ?>/poll_ajax.php', {
+                            mode: 'results',
+                            id: pollId
+                        }, function(res) {
+                            if(res.error) return;
+
+                            const aCount = parseInt(res.count_a);
+                            const bCount = parseInt(res.count_b);
+                            const total = aCount + bCount;
+                            const perA = Math.round((aCount / total) * 100);
+                            const perB = 100 - perA;
+
+                            const content = `
+                                <div class="toast-title">📊 실시간 투표 현황</div>
+                                <div class="toast-item">
+                                    <div class="toast-label">
+                                        <span>🅰️ 선택</span>
+                                        <span>${aCount.toLocaleString()}명 (${perA}%)</span>
+                                    </div>
+                                    <div class="toast-bar-wrap">
+                                        <div class="toast-bar" style="width: ${perA}%"></div>
+                                    </div>
+                                </div>
+                                <div class="toast-item">
+                                    <div class="toast-label">
+                                        <span>🅱️ 선택</span>
+                                        <span>${bCount.toLocaleString()}명 (${perB}%)</span>
+                                    </div>
+                                    <div class="toast-bar-wrap">
+                                        <div class="toast-bar" style="width: ${perB}%"></div>
+                                    </div>
+                                </div>
+                                <div style="text-align:center; font-size:11px; margin-top:10px; color:rgba(255,255,255,0.5);">현재까지 총 ${total.toLocaleString()}명이 참여했습니다.</div>
+                            `;
+
+                            let toast = document.getElementById('fintos-poll-toast');
+                            if (!toast) {
+                                toast = document.createElement('div');
+                                toast.id = 'fintos-poll-toast';
+                                document.body.appendChild(toast);
+                            }
+                            toast.innerHTML = content;
+                            toast.className = 'fintos-poll-toast show';
+                            setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 4000);
+                        }, 'json');
                     }
                     </script>
                     <?php /* ---------- 보험 투표 콘텐츠 끝 ---------- */ ?>
