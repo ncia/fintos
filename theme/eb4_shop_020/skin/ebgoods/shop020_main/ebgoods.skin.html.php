@@ -45,7 +45,7 @@ if (!defined('_EYOOM_')) exit;
 .ebg-shop020-m .goods-description .title-price {font-size:1.0625rem;font-weight:700;color:#ab0000;margin-right:7px}
 .ebg-shop020-m .goods-description .line-through {font-size:.875rem;color:#959595;text-decoration:line-through;font-weight:400;white-space:nowrap}
 .ebg-shop020-m .goods-description .goods-id {color:#757575;display:block;font-size:.8125rem;margin-top:10px}
-.ebg-shop020-m .goods-description .goods-info {position:relative;overflow:hidden;height:38px;color:#959595;font-size:14px;margin-top:10px}
+.ebg-shop020-m .goods-description .goods-info {position:relative;overflow:hidden;min-height:38px;color:#959595;font-size:14px;margin-top:10px;text-align:center}
 .ebg-shop020-m .goods-description .goods-sns {position:relative;height:30px;margin-top:10px}
 .ebg-shop020-m .goods-description .goods-sns ul {position:absolute;top:0;right:0;margin:0;padding:0;list-style:none}
 .ebg-shop020-m .goods-description .goods-sns ul:after {content:"";display:block;clear:both}
@@ -135,6 +135,24 @@ if (!defined('_EYOOM_')) exit;
 
                                 <?php if ($eb_goods['gi_view_it_basic'] == 'y') { ?>
                                 <div class="goods-info"><?php echo $data['it_basic']?></div>
+                                <?php } ?>
+
+                                <?php if ($data['it_id'] == '1776008318') { ?>
+                                <div class="goods-rating" style="display:flex; justify-content:center; align-items:center; gap:1px; margin-top:8px; line-height:1;">
+                                    <div style="color:#ffc107; font-size:14px; display:flex; align-items:center; gap:1px;">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <div style="position:relative; display:inline-block; width:14px; height:14px; font-size:14px;">
+                                            <i class="far fa-star" style="color:rgba(255,255,255,0.2); position:absolute; left:0; top:0;"></i>
+                                            <div style="width:75%; overflow:hidden; position:absolute; left:0; top:0; white-space:nowrap;">
+                                                <i class="fas fa-star" style="color:#ffc107;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
+                                </div>
                                 <?php } ?>
 
                                 <?php if ($eb_goods['gi_view_sns'] == 'y') { ?>
