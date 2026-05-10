@@ -27,7 +27,7 @@ if ($w == "" || $w == "u") {
     $is_name     = addslashes(strip_tags($member['mb_name']));
     $is_password = $member['mb_password'];
 
-    if (!$is_subject) alert("제목을 입력하여 주십시오.");
+    // if (!$is_subject) alert("제목을 입력하여 주십시오.");
     if (!$is_content) alert("내용을 입력하여 주십시오.");
 }
 
@@ -55,7 +55,7 @@ if ($w == "")
                    is_score = '$is_score',
                    is_name = '$is_name',
                    is_password = '$is_password',
-                   is_subject = '$is_subject',
+                   is_subject = '".addslashes(cut_str(str_replace('&nbsp;', ' ', strip_tags(stripslashes($is_content))), 100))."',
                    is_content = '$is_content',
                    is_time = '".G5_TIME_YMDHIS."',
                    is_ip = '{$_SERVER['REMOTE_ADDR']}' ";
@@ -65,11 +65,7 @@ if ($w == "")
     $is_id = sql_insert_id();
     run_event('shop_item_use_created', $is_id, $it_id);
 
-    if ($default['de_item_use_use']) {
-        $alert_msg = "평가하신 글은 관리자가 확인한 후에 출력됩니다.";
-    }  else {
-        $alert_msg = "사용후기가 등록 되었습니다.";
-    }
+    $alert_msg = "상담후기가 등록 되었습니다.";
 }
 else if ($w == "u")
 {
@@ -80,7 +76,7 @@ else if ($w == "u")
         alert("비밀번호가 틀리므로 수정하실 수 없습니다.");
 
     $sql = " update {$g5['g5_shop_item_use_table']}
-                set is_subject = '$is_subject',
+                set is_subject = '".addslashes(cut_str(strip_tags($is_content), 100))."',
                     is_content = '$is_content',
                     is_score = '$is_score'
               where is_id = '$is_id' ";
@@ -140,5 +136,5 @@ if( ! $default['de_item_use_use'] ){
 if($w == 'd')
     alert($alert_msg, $url);
 else {
-    echo "<script>alert('".$alert_msg."'); window.parent.close_modal_and_reload();</script>";
+    alert($alert_msg, $url);
 }

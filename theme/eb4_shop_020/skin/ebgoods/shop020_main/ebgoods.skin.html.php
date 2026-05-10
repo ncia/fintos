@@ -39,7 +39,7 @@ if (!defined('_EYOOM_')) exit;
 .ebg-shop020-m .goods-img-in:before {content:"";display:block;padding-top:100%;background:#fff}
 .ebg-shop020-m .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-m .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
-.ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.0rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
+.ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.10rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
 .ebg-shop020-m .goods-description .goods-name a {color:#000}
 .ebg-shop020-m .goods-description .goods-name a:hover {text-decoration:underline}
 .ebg-shop020-m .goods-description .title-price {font-size:1.0625rem;font-weight:700;color:#ab0000;margin-right:7px}
