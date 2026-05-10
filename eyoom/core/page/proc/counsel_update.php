@@ -58,8 +58,13 @@ if (!$cs_email) {
     }
 }
 
+/* 제목 필수 체크 해제
 if (!$cs_subject) {
     alert("제목을 입력해 주세요.");
+}
+*/
+if (!$cs_subject) {
+    $cs_subject = cut_str(strip_tags(stripslashes($cs_content)), 100);
 }
 
 if (!$cs_content) {

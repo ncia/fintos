@@ -3,112 +3,123 @@
  * skin file : /theme/THEME_NAME/skin/shop/basic/itemuse.skin.html.php
  */
 if (!defined('_EYOOM_')) exit;
+
+// 에디터 라이브러리 로드 확인 및 에디터 생성 (폼이 안 보일 때를 대비한 강제 생성)
+include_once(G5_EDITOR_LIB);
+if ($config['cf_editor']) {
+    $is_dhtml_editor = true;
+    $editor_html = editor_html('is_content', '', $is_dhtml_editor);
+    $editor_js = '';
+    $editor_js .= get_editor_js('is_content', $is_dhtml_editor);
+    $editor_js .= chk_editor_js('is_content', $is_dhtml_editor);
+}
 ?>
 
-<?php /* ---------- 상품 상담후기 시작 ---------- */ ?>
-<section class="shop-product-use">
-    <h3 class="h-hidden">등록된 상담후기</h3>
+<style>
+/* 프리미엄 카드 레이아웃 */
+.product-use-card {
+    background: #fff;
+    border: 1px solid #f1f3f5;
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    margin-bottom: 20px; /* 개별 카드 간격 */
+}
 
-    <div class="product-use-top">
-        <?php if ($star_score) { ?>
-        <h4>전체 평점</h4>
-        <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="" width="100">
-        <span class="li-divider"></span>
-        총 <strong><?php echo $total_count; ?></strong> 건 상담후기
-        <?php } ?>
-        <div class="product-use-btn">
-            <a href="<?php echo $itemuse_form; ?>" onclick="itemuse_modal(this.href); return false;" class="btn-e btn-e-md btn-e-blue">상담후기 쓰기</a>
-            <a href="<?php echo $itemuse_list; ?>" class="btn-e btn-e-md btn-e-dark">더보기</a>
-        </div>
-        <div class="clearfix"></div>
-    </div>
+.card-star-row { margin-bottom: 12px; }
 
-    <?php if ($use_cnt > 0) { ?>
-    <div class="product-use-wrap">
-        <?php foreach ($item_use as $k => $info) { ?>
-        <div class="product-use-list">
-            <?php if ($info['is_thumb']) { ?>
-            <div class="product-use-thumbnail"><?php echo $info['is_thumb']; ?></div>
-            <?php } ?>
-            <div class="product-use-title"><?php echo $info['is_subject']; ?></div>
-            <button type="button" class="product-use-more">내용보기<i class="fas fa-caret-down m-l-5"></i></button>
-            <div class="clearfix"></div> 
-            <dl class="product-use-dl">
-                <dt>평점<dt>
-                <dd class="product-use-star"><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $info['is_star']; ?>.png" alt="별<?php echo $info['is_star']; ?>개" width="75"></dd>
-                <dt>작성자</dt>
-                <dd><i class="far fa-user-circle" aria-hidden="true"></i><?php echo $info['is_name']; ?></dd>
-                <dt>작성일</dt>
-                <dd><i class="far fa-clock" aria-hidden="true"></i><?php echo $info['is_time']; ?></dd>
-            </dl>
+.card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f1f3f5;
+    font-size: 13px;
+    color: #868e96;
+}
 
-            <div id="sit_use_con_<?php echo $k; ?>" class="product-use-cont">
-                <div class="product-use-p">
-                    <?php echo $info['is_content']; // 상담후기 내용 ?>
+.card-more-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card-content-detail {
+    display: none;
+    padding: 15px;
+    background: #fdfdfd;
+    border-top: 1px dashed #dee2e6;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* 다크모드 대응 */
+.dark-mode .product-use-card {
+    background: #1e1e1e;
+    border-color: #333;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+</style>
+
+<div class="product-use-wrap-main">
+    <div>
+        <?php if ($use_cnt > 0) { ?>
+            <?php foreach ($item_use as $k => $info) { ?>
+            <div class="product-use-card">
+                <div class="card-star-row">
+                    <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $info['is_star']; ?>.png" alt="별<?php echo $info['is_star']; ?>개" width="80">
                 </div>
 
-                <?php if ($is_admin || $info['mb_id'] == $member['mb_id']) { ?>
-                <div class="product-use-cmd">
-                    <a href="<?php echo $info['link_edit']; ?>" class="btn-e btn-e-blue" onclick="itemuse_modal(this.href); return false;">수정</a>
-                    <a href="<?php echo $info['link_del']; ?>" class="itemuse_delete btn-e btn-e-dark">삭제</a>
+                <div class="card-meta">
+                    <div class="card-user"><i class="far fa-user-circle"></i> <?php echo $info['is_name']; ?></div>
+                    <div class="card-date"><i class="far fa-clock m-r-5"></i><?php echo substr($info['is_time'], 0, 10); ?></div>
                 </div>
-                <?php } ?>
 
-                <?php if( $info['is_reply_subject'] ){  //  상담후기 답변 내용이 있다면 ?>
-                <div class="product-use-reply">
-                    <div class="product-use-reply-icon">답변</div>
-                    <div class="product-use-reply-title">
-                        <?php echo $info['is_reply_subject']; // 답변 제목 ?>
-                    </div>
-                    <div class="product-use-reply-name">
-                        <?php echo $info['is_reply_name']; // 답변자 이름 ?>
-                    </div>
-                    <div class="product-use-reply-p">
-                        <?php echo $info['is_reply_content']; // 답변 내용 ?>
-                    </div>
+                <button type="button" class="card-more-btn product-use-more">후기 내용 보기 <i class="fas fa-chevron-down m-l-5"></i></button>
+
+                <div id="sit_use_con_<?php echo $k; ?>" class="card-content-detail product-use-cont">
+                    <?php echo $info['is_content']; ?>
                 </div>
-                <?php } //end if ?>
             </div>
-        </div>
+            <?php } ?>
         <?php } ?>
     </div>
-    <?php } else { ?>
-    <p class="text-center text-gray m-t-20 m-b-40"><i class="fas fa-exclamation-circle"></i> 상담후기가 없습니다.</p>
-    <?php } ?>
-</section>
 
-<?php echo $paging_itemuse; ?>
+    <?php echo $use_pages; ?>
 
-<script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
+    <?php 
+    // 작성 폼 강제 로드
+    $item_use_form_skin = dirname(__FILE__).'/itemuseform.skin.html.php';
+    if (is_file($item_use_form_skin)) {
+        include_once($item_use_form_skin);
+    }
+
+    // 후기가 없을 경우 폼 아래에 안내 문구 출력
+    if ($use_cnt == 0) {
+        echo '<div style="text-align:center; padding:30px 0 0 0; color:#888; font-size:16px; font-weight:600;">';
+        echo '<i class="fas fa-info-circle m-r-5"></i> 등록된 상담후기가 없습니다.';
+        echo '</div>';
+    }
+    ?>
+</div>
+
 <script>
 $(function(){
-    $(".itemuse_delete").click(function(){
-        if (confirm("정말 삭제 하시겠습니까?\n\n삭제후에는 되돌릴수 없습니다.")) {
-            return true;
-        } else {
-            return false;
-        }
-    });
-
-    $(".product-use-more").click(function(){
-        var $con = $(this).siblings(".product-use-cont");
-        if($con.is(":visible")) {
-            $con.slideUp();
-        } else {
-            $(".product-use-cont:visible").hide();
-            $con.slideDown(
-                function() {
-                    // 이미지 리사이즈
-                    $con.viewimageresize2();
-                }
-            );
-        }
-    });
-
-    $(".pg_page").click(function(){
-        $("#itemuse").load($(this).attr("href"));
-        return false;
+    $(".product-use-more").off('click').on('click', function(){
+        var $con = $(this).next(".product-use-cont");
+        $con.slideToggle();
+        $(this).find("i").toggleClass("fa-chevron-down fa-chevron-up");
     });
 });
 </script>
-<?php /* ---------- 상품 상담후기 끝 ---------- */ ?>

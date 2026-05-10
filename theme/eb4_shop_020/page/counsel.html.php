@@ -133,14 +133,7 @@ $counsel_part = explode(',', $config['cf_counsel_part']);
                     </label>
                 </div>
             </div>
-            <div class="row m-b-10">
-                <div class="col col-12">
-                    <label class="input required-mark">
-                        <i class="icon-append fas fa-pencil-alt"></i>
-                        <input type="text" name="cs_subject" placeholder="제목" required>
-                    </label>
-                </div>
-            </div>
+            
             <h6 class="f-s-16r f-w-700 m-b-5">상담 내용</h6>
             <label class="textarea required-mark m-b-30">
                 <?php echo $editor_html; ?>
@@ -269,18 +262,6 @@ function csregister_submit(f) {
             confirmButtonText: "확인"
         });
         f.cs_email.focus();
-        return false;
-    }
-
-    if (f.cs_subject.value == '') {
-        Swal.fire({
-            title: "중요!",
-            text: "제목을 입력해 주세요.",
-            confirmButtonColor: "#ab0000",
-            icon: "warning",
-            confirmButtonText: "확인"
-        });
-        f.cs_subject.focus();
         return false;
     }
 

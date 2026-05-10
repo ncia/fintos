@@ -7,13 +7,61 @@ if ($config['cf_editor'] == 'tuieditor') echo tuieditor_resource();
 ?>
 
 <style>
-<style>
-/* 카운트다운 상담신청 스타일 적용 */
-body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; }
-.shop-product-use-write { background: #fff; }
-.mdb-card-body { padding: 40px 50px; }
-@media (max-width: 767px) {
-    .mdb-card-body { padding: 30px 20px; }
+/* 통합 스타일 시트 - Pretendard 적용 */
+.shop-product-use-write { background: #fff; font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif; }
+.mdb-card-body { padding: 15px 20px !important; position: relative; }
+
+/* 상담후기 안내 문구 스타일 */
+.rating-guide-box { margin-bottom: 5px; text-align: center; }
+.rating-guide-box .guide-title { 
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif !important;
+    font-size: 18px !important; 
+    font-weight: 700 !important; 
+    color: #666 !important; 
+    line-height: 1.6 !important; 
+    margin: 0 !important; 
+    letter-spacing: -0.5px !important; 
+}
+.rating-guide-box .guide-desc { 
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif !important;
+    font-size: 18px !important; 
+    color: #666 !important; 
+    font-weight: 700 !important; 
+    margin: 5px 0 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* 에디터 자동 확장 */
+.note-editor.note-frame .note-editing-area .note-editable { height: auto !important; min-height: 135px !important; padding: 10px !important; }
+.note-editor.note-frame { margin-bottom: 10px !important; }
+
+/* 별점 영역 */
+.star-rating-wrapper { 
+    background: #fdfdfd; border: 1px solid #f1f3f5; 
+    margin-bottom: 15px !important; padding: 10px !important; 
+    border-radius: 16px; text-align: center; 
+    display: flex; flex-direction: column; align-items: center;
+}
+.star-rating { display: flex; gap: 8px; cursor: pointer; justify-content: center; margin-bottom: 10px !important; }
+.star-rating .star { font-size: 28px !important; color: #ddd; transition: transform 0.2s ease, color 0.2s ease; }
+.star-rating .star:hover { transform: scale(1.1); }
+.star-rating .star.active { color: #ffc107; }
+
+/* 버튼 */
+.shop-product-use-write .submit-btn { 
+    background: #007bff !important; color: #fff !important; 
+    height: 45px !important; width: 25% !important; border-radius: 8px !important;
+    font-size: 16px !important; font-weight: 700 !important; 
+    border: none; cursor: pointer; margin-top: 10px !important; margin-bottom: 20px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.shop-product-use-write .submit-btn:hover { background: #0069d9 !important; }
+
+/* 게스트 오버레이 */
+.guest-overlay { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(255,255,255,0.6); z-index: 100; 
+    display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px);
 }
 
 /* Material Input Style - Outlined with Blue Focus */
@@ -133,7 +181,7 @@ body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', san
     border-radius: 8px !important;
     font-size: 16px !important;
     font-weight: 700 !important;
-    width: 100%;
+    width: 50%;
     border: none;
     cursor: pointer;
     margin-top: 20px !important;
@@ -150,85 +198,51 @@ body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', san
 
 <?php /* ---------- 상담후기 쓰기 시작 ---------- */ ?>
 <div class="shop-product-use-write">
-    <div class="mdb-card-body">
+    <div class="mdb-card-body" style="position: relative;">
+        <?php if (!$is_member) { ?>
+        <div class="guest-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.6); z-index: 100; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(2px);">
+            <div style="text-align: center; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #f1f3f5; max-width: 320px; width: 90%;">
+                <div style="font-size: 40px; margin-bottom: 15px;">🔒</div>
+                <p style="color: #111; font-weight: 800; font-size: 17px; margin-bottom: 8px; letter-spacing: -0.5px;">회원 전용 서비스입니다</p>
+                <p style="color: #666; font-size: 14px; margin-bottom: 20px; line-height: 1.5;">상담후기를 작성하시려면<br>로그인이 필요합니다.</p>
+                <a href="<?php echo G5_BBS_URL; ?>/login.php" class="btn-e btn-e-md btn-e-blue" style="width: 100%; font-weight: 700; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">로그인 페이지로 이동</a>
+            </div>
+        </div>
+        <?php } ?>
         <form name="fitemuse" method="post" action="<?php echo G5_SHOP_URL; ?>/itemuseformupdate.php" onsubmit="return fitemuse_submit(this);" autocomplete="off" class="eyoom-form">
         <input type="hidden" name="w" value="<?php echo $w; ?>">
         <input type="hidden" name="it_id" value="<?php echo $it_id; ?>">
         <input type="hidden" name="is_id" value="<?php echo $is_id; ?>">
 
         <div class="product-use-write">
-            <div class="section-title">후기 제목</div>
-            <div class="input">
-                <input type="text" name="is_subject" value="<?php echo get_text($use['is_subject']); ?>" id="is_subject" required maxlength="250" placeholder="제목을 입력해주세요.">
-                <div class="required-dot"></div>
+            <?php /* 별점 선택 (최상단으로 이동 및 제목 삭제) */ ?>
+            <div class="star-rating-wrapper" style="background: #fdfdfd; border: 1px solid #f1f3f5; margin-bottom: 30px; padding: 20px 20px; border-radius: 16px; text-align: center; align-items: center;">
+                <div class="star-rating" style="justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-star star active" data-value="1"></i>
+                    <i class="fas fa-star star active" data-value="2"></i>
+                    <i class="fas fa-star star active" data-value="3"></i>
+                    <i class="fas fa-star star active" data-value="4"></i>
+                    <i class="fas fa-star star active" data-value="5"></i>
+                </div>
+                <div class="rating-guide-box">
+                    <p class="guide-title">⭐ <span style="color:#ffc107;">별점</span> 5점과 함께 정성스러운 후기를 작성해 주세요.</p>
+                    <p class="guide-desc">❤️ 남겨주신 후기는 소중한 피드백으로 🙏 더 만족스러운 경험을 약속드립니다.</p>
+                </div>
+                <input type="hidden" name="is_score" id="is_score" value="5" required>
             </div>
 
-            <div class="section-title">상세 내용</div>
+            
             <div class="write-edit-wrap">
                 <?php echo $editor_html; ?>
             </div>
 
-            <div class="section-title">평점 선택</div>
-            <div class="star-rating-wrapper">
-                <div class="star-rating">
-                    <i class="far fa-star star" data-value="1"></i>
-                    <i class="far fa-star star" data-value="2"></i>
-                    <i class="far fa-star star" data-value="3"></i>
-                    <i class="far fa-star star" data-value="4"></i>
-                    <i class="far fa-star star" data-value="5"></i>
-                </div>
-                <div class="rating-guide-box">
-                    <p class="rating-guide">⭐ 5점과 함께 정성스러운 후기를 작성해 주세요.<br>남겨주신 후기는 소중한 피드백으로 더 만족스러운 경험을 약속드립니다.</p>
-                </div>
-                <input type="hidden" name="is_score" id="is_score" value="<?php echo $is_score ? $is_score : ''; ?>" required>
-            </div>
 
-            <style>
-            .star-rating-wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-                margin-bottom: 30px;
-                background: #fdfdfd;
-                padding: 25px;
-                border: 1px solid #eee;
-                border-radius: 8px;
-            }
-            .star-rating {
-                display: flex;
-                gap: 8px;
-                cursor: pointer;
-            }
-            .star-rating .star {
-                font-size: 36px;
-                color: #ddd;
-                transition: transform 0.2s ease, color 0.2s ease;
-            }
-            .star-rating .star:hover {
-                transform: scale(1.1);
-            }
-            .star-rating .star.hover,
-            .star-rating .star.active {
-                color: #ffc107;
-            }
-            .rating-guide-box {
-                margin-top: 5px;
-            }
-            .rating-guide {
-                font-size: 15px;
-                color: #333;
-                font-weight: 500;
-                line-height: 1.5;
-                margin: 0;
-            }
-            </style>
 
             <script>
             $(document).ready(function() {
                 const $stars = $('.star-rating .star');
                 const $scoreInput = $('#is_score');
-                let currentScore = $scoreInput.val();
+                let currentScore = $scoreInput.val() || 5;
 
                 function updateStars(score, type) {
                     $stars.each(function() {
@@ -246,10 +260,8 @@ body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', san
                     });
                 }
 
-                // 초기화
-                if (currentScore) {
-                    updateStars(currentScore, 'active');
-                }
+                // 초기화 (기본 5점 설정)
+                updateStars(5, 'active');
 
                 $stars.on('mouseenter', function() {
                     const val = $(this).data('value');
@@ -275,6 +287,11 @@ body { background: #fff; margin: 0; padding: 0; font-family: 'Noto Sans KR', san
 
 <script type="text/javascript">
 function fitemuse_submit(f) {
+    <?php if (!$is_member) { ?>
+    alert("회원만 작성 가능합니다. 로그인 후 이용해주세요.");
+    location.href = "<?php echo G5_BBS_URL; ?>/login.php";
+    return false;
+    <?php } ?>
     <?php echo $editor_js; ?>
 
     return true;
@@ -317,22 +334,15 @@ $(document).ready(function(){
 });
 <?php } ?>
 
-<?php /* 다크모드 JS 시작 */ ?>
-const currentMode = localStorage.getItem("mode");
-
+<?php /* 에디터 초기 높이 강제 설정 및 다크모드 대응 */ ?>
 if (currentMode == "dark") {
-	document.body.classList.toggle("dark-mode");
-	<?php if($editor_html && preg_match('/ckeditor/i', $config['cf_editor'])) { ?>
-	CKEDITOR.on('instanceReady', function(e) {
-		e.editor.document.getBody().setStyle('background-color', '#000');
-		e.editor.document.getBody().setStyle('color', '#858585');
-	});
-	<?php } ?>
-    <?php if($editor_html && preg_match('/summernote/i', $config['cf_editor'])) { ?>
-	$(document).ready(function() {
-		// Summernote dark mode logic can be added here if needed
-	});
-	<?php } ?>
+    document.body.classList.toggle("dark-mode");
+    <?php if($editor_html && preg_match('/ckeditor/i', $config['cf_editor'])) { ?>
+    CKEDITOR.on('instanceReady', function(e) {
+        e.editor.document.getBody().setStyle('background-color', '#000');
+        e.editor.document.getBody().setStyle('color', '#858585');
+    });
+    <?php } ?>
 }
 
 <?php /* 다크모드 JS 끝 */ ?>

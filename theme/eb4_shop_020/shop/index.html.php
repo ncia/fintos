@@ -132,7 +132,7 @@ if (!defined('_EYOOM_')) exit;
                         color: #fff;
                     }
                     .fintos-poll-label {
-                        font-size: 14.8px;
+                        font-size: 16px;
                         font-weight: 700;
                         color: #4169e1;
                         margin-right: 10px;
@@ -142,7 +142,7 @@ if (!defined('_EYOOM_')) exit;
                         color: rgba(255,255,255,0.9);
                     }
                     .fintos-poll-text {
-                        font-size: 14.8px;
+                        font-size: 16px;
                         font-weight: 700;
                         word-break: keep-all;
                         line-height: 1.1;

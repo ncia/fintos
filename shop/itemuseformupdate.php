@@ -24,7 +24,7 @@ if ($w == "" || $w == "u") {
     $is_name     = addslashes(strip_tags($member['mb_name']));
     $is_password = $member['mb_password'];
 
-    if (!$is_subject) alert("제목을 입력하여 주십시오.");
+    // if (!$is_subject) alert("제목을 입력하여 주십시오.");
     if (!$is_content) alert("내용을 입력하여 주십시오.");
 }
 
@@ -52,7 +52,7 @@ if ($w == "")
                    is_score = '$is_score',
                    is_name = '$is_name',
                    is_password = '$is_password',
-                   is_subject = '$is_subject',
+                   is_subject = '".addslashes(cut_str(strip_tags($is_content), 100))."',
                    is_content = '$is_content',
                    is_time = '".G5_TIME_YMDHIS."',
                    is_ip = '{$_SERVER['REMOTE_ADDR']}' ";
@@ -77,7 +77,7 @@ else if ($w == "u")
         alert("비밀번호가 틀리므로 수정하실 수 없습니다.");
 
     $sql = " update {$g5['g5_shop_item_use_table']}
-                set is_subject = '$is_subject',
+                set is_subject = '".addslashes(cut_str(strip_tags($is_content), 100))."',
                     is_content = '$is_content',
                     is_score = '$is_score'
               where is_id = '$is_id' ";

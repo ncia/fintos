@@ -88,7 +88,7 @@ if (!defined('_EYOOM_')) exit;
     <p class="m-t-20">추천대상 입력전입니다.</p>
     <?php } ?>
 
-    <div id="itemqa"><?php include_once($skin_dir.'/itemqa.php'); ?></div>
+    <div id="itemqa"><?php include_once($shop_skin_path.'/itemqa.php'); ?></div>
 </section>
 <?php /* ---------- 추천대상 끝 ---------- */ ?>
 
@@ -117,7 +117,7 @@ if (!defined('_EYOOM_')) exit;
     <h2 class="h-hidden">상담후기</h2>
     <?php echo $shop->pg_anchor('sit_use'); ?>
 
-    <div id="itemuse"><?php include_once($skin_dir.'/itemuse.php'); ?></div>
+    <div id="itemuse"><?php include_once($shop_skin_path.'/itemuse.php'); ?></div>
 </section>
 <?php /* ---------- 상담후기 끝 ---------- */ ?>
 
