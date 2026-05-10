@@ -109,6 +109,76 @@ if ($config['cf_editor']) {
     line-height: 1.7; 
     color: #475569;
 }
+
+/* 후기 요약 섹션 */
+.review-summary-container {
+    display: flex;
+    background: #fff;
+    border: 1px solid #f1f3f5;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.score-summary-left { text-align: center; }
+.star-big {
+    font-size: 52px;
+    font-weight: 900;
+    color: #1e293b;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    letter-spacing: -1px;
+}
+.star-big i { color: #ffc107; font-size: 42px; }
+.total-reviews-text { color: #64748b; font-size: 18px; font-weight: 500; }
+
+.score-chart-right {
+    display: flex;
+    gap: 35px;
+    align-items: flex-end;
+}
+
+.chart-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+}
+
+.col-count { font-size: 14px; color: #94a3b8; margin-bottom: 10px; font-weight: 600; }
+.bar-container {
+    width: 14px;
+    height: 120px;
+    background: #f1f5f9;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.bar-value {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ff3b30;
+    border-radius: 20px;
+    transition: height 1s ease-out;
+}
+.col-label { font-size: 15px; font-weight: 700; color: #334155; }
+.col-desc { font-size: 12px; color: #94a3b8; margin-top: 4px; font-weight: 500; }
+
+@media (max-width: 991px) {
+    .review-summary-container { flex-direction: column; gap: 50px; padding: 40px 20px; }
+    .score-chart-right { gap: 12px; width: 100%; justify-content: center; }
+    .chart-col { width: 18%; }
+    .bar-container { height: 100px; }
+}
 </style>
 
 <div class="product-use-wrap-main">
@@ -120,6 +190,54 @@ if ($config['cf_editor']) {
         include_once($item_use_form_skin);
     }
     ?>
+
+    <?php 
+    // 후기 통계 데이터 계산
+    $score_stats = array(1=>0, 2=>0, 3=>0, 4=>0, 5=>0);
+    $total_score = 0;
+    $total_count = 0;
+
+    $stats_sql = "SELECT is_score, COUNT(*) as cnt FROM {$g5['g5_shop_item_use_table']} WHERE it_id = '$it_id' AND is_confirm = '1' GROUP BY is_score";
+    $stats_res = sql_query($stats_sql);
+    while($srow=sql_fetch_array($stats_res)) {
+        $score_stats[(int)$srow['is_score']] = (int)$srow['cnt'];
+        $total_score += (int)$srow['is_score'] * (int)$srow['cnt'];
+        $total_count += (int)$srow['cnt'];
+    }
+    $avg_score = $total_count > 0 ? round($total_score / $total_count, 2) : 0;
+    ?>
+
+    <!-- 후기 통계 요약 섹션 -->
+    <div class="review-summary-container">
+        <div class="score-summary-left">
+            <div class="star-big"><i class="fas fa-star"></i> <?php echo number_format($avg_score, 2); ?></div>
+            <div class="total-reviews-text">전체 상품 만족도 (<?php echo number_format($total_count); ?>건)</div>
+        </div>
+        <div class="score-chart-right">
+            <?php
+            $labels = array(
+                5 => '최고예요',
+                4 => '좋아요',
+                3 => '괜찮아요',
+                2 => '그저 그래요',
+                1 => '별로예요'
+            );
+            for($i=5; $i>=1; $i--) {
+                $count = $score_stats[$i];
+                $per = $total_count > 0 ? ($count / $total_count) * 100 : 0;
+                $active_class = $count > 0 ? 'active' : '';
+            ?>
+            <div class="chart-col <?php echo $active_class; ?>">
+                <span class="col-count" style="<?php echo $count > 0 ? 'color:#1e293b; font-weight:700;' : ''; ?>"><?php echo number_format($count); ?>건</span>
+                <div class="bar-container">
+                    <div class="bar-value" style="height:<?php echo $per; ?>%; <?php echo $i < 5 ? 'background:#e2e8f0;' : ''; ?>"></div>
+                </div>
+                <span class="col-label"><?php echo $i; ?>점</span>
+                <span class="col-desc">(<?php echo $labels[$i]; ?>)</span>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
 
     <div class="review-list-container m-t-40">
         <?php if ($use_cnt > 0) { ?>

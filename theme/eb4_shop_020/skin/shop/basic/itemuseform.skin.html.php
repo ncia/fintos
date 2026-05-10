@@ -225,7 +225,7 @@ if ($config['cf_editor'] == 'tuieditor') echo tuieditor_resource();
                     <i class="fas fa-star star active" data-value="5"></i>
                 </div>
                 <div class="rating-guide-box">
-                    <p class="guide-title">⭐ <span style="color:#ffc107;">별점</span> 5점과 함께 정성스러운 후기를 작성해 주세요.</p>
+                    <p class="guide-title">⭐ <span style="color:#ff3b30;">별점</span> 5점과 함께 정성스러운 후기를 작성해 주세요.</p>
                     <p class="guide-desc">❤️ 남겨주신 후기는 소중한 피드백으로 🙏 더 만족스러운 경험을 약속드립니다.</p>
                 </div>
                 <input type="hidden" name="is_score" id="is_score" value="5" required>
