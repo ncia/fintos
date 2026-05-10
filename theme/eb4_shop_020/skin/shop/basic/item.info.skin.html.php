@@ -19,12 +19,6 @@ if (!defined('_EYOOM_')) exit;
     <h2 class="h-hidden">상품 정보</h2>
     <?php echo $shop->pg_anchor('sit_inf'); ?>
 
-    <?php if ($it['it_basic']) { // 상품 기본설명 ?>
-    <h3 class="h-hidden">상품 기본설명</h3>
-    <blockquote class="hero">
-        <p><?php echo $it['it_basic']; ?></p>
-    </blockquote>
-    <?php } ?>
 
     <?php if ($it['it_explan']) { // 상품 상세설명 ?>
     <h3 class="h-hidden">상품 상세설명</h3>
