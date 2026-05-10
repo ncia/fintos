@@ -29,6 +29,18 @@ if ($w == "" || $w == "u") {
 
     // if (!$is_subject) alert("제목을 입력하여 주십시오.");
     if (!$is_content) alert("내용을 입력하여 주십시오.");
+
+    // 내용 글자수 체크 (최소 20자, 최대 1000자)
+    $pure_content = trim(strip_tags(stripslashes($is_content)));
+    $pure_content = str_replace('&nbsp;', ' ', $pure_content);
+    $content_len = mb_strlen($pure_content, 'UTF-8');
+
+    if ($content_len < 20) {
+        alert("상담후기 내용은 최소 20자 이상 작성해 주셔야 합니다. (현재 " . $content_len . "자)");
+    }
+    if ($content_len > 1000) {
+        alert("상담후기 내용은 최대 1000자까지 작성 가능합니다. (현재 " . $content_len . "자)");
+    }
 }
 
 if($is_mobile_shop)

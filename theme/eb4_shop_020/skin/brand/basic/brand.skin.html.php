@@ -53,9 +53,9 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
     margin: 0;
 }
 
-.brand-wrap {position:relative;overflow:hidden;padding:20px 0 0;min-height:160px; background: rgba(255,255,255,0.05); border-radius: 0; margin-bottom: 30px;}
-.brand-box .category-list {margin:0px auto; padding: 0 40px;} /* 좌우 여백 확보 */
-.brand-box .category-item {outline:none; text-align:center; padding: 10px 0 0; transition: all 0.3s ease;}
+.brand-wrap {position:relative;overflow:hidden;padding:20px 0 0;min-height:160px; background: transparent; border-radius: 0; margin-bottom: 12px;}
+.brand-box .category-list {margin:0px auto; padding: 0 40px; display: flex; overflow: hidden; white-space: nowrap;} /* 초기 로딩 시 세로 나열 방지 */
+.brand-box .category-item {outline:none; text-align:center; padding: 10px 0 0; transition: all 0.3s ease; flex: 0 0 11.11%; min-width: 80px;} /* slidesToShow 9 기준 */
 .brand-box .category-img {position:relative;width:85px;height:85px;margin:0 auto; padding: 5px; background: transparent;}
 .brand-box .category-img img {border-radius: 0;} /* 이미지 가공 */
 .brand-box .category-title {font-size:.9375rem;text-align:center;height:22px;line-height:22px; margin-bottom: 8px; color: #cbd5e0;} /* 옅은 회색으로 텍스트 색상 조절 */
@@ -98,6 +98,16 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
 @media (max-width:1199px) {
     .brand-wrap {min-height:150px; padding-top:20px}
     .brand-box .category-img {width:70px;height:70px;}
+    .brand-box .category-item {flex: 0 0 12.5%;} /* slidesToShow 8 기준 */
+}
+@media (max-width:991px) {
+    .brand-box .category-item {flex: 0 0 20%;} /* slidesToShow 5 기준 */
+}
+@media (max-width:767px) {
+    .brand-box .category-item {flex: 0 0 25%;} /* slidesToShow 4 기준 */
+}
+@media (max-width:576px) {
+    .brand-box .category-item {flex: 0 0 33.33%;} /* slidesToShow 3 기준 */
 }
 </style>
 

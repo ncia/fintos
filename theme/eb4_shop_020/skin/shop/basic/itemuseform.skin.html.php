@@ -293,6 +293,19 @@ function fitemuse_submit(f) {
     return false;
     <?php } ?>
     <?php echo $editor_js; ?>
+    
+    // 글자수 체크 추가
+    var content = f.is_content.value;
+    var text = content.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/gi, ' ').trim();
+    
+    if (text.length < 20) {
+        alert("상담후기 내용은 최소 20자 이상 작성해 주셔야 합니다. (현재 " + text.length + "자)");
+        return false;
+    }
+    if (text.length > 1000) {
+        alert("상담후기 내용은 최대 1000자까지 작성 가능합니다. (현재 " + text.length + "자)");
+        return false;
+    }
 
     return true;
 }
