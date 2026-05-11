@@ -1,0 +1,16 @@
+Array
+(
+    [type] => 1
+    [message] => Uncaught Error: Call to undefined function imagecreatefrompng() in C:\xampp\htdocs\gnu\lib\thumbnail.lib.php:327
+Stack trace:
+#0 C:\xampp\htdocs\gnu\lib\shop.lib.php(442): thumbnail('Gemini_Generate...', 'C:/xampp/htdocs...', 'C:/xampp/htdocs...', 500, 500, false, false, 'center', false, '80/0.5/3')
+#1 C:\xampp\htdocs\gnu\lib\shop.lib.php(2462): get_it_image('1776008318', 500, 500)
+#2 C:\xampp\htdocs\gnu\theme\eb4_shop_020\shop\index.html.php(818): get_itemuselist_thumbnail('1776008318', '<p>\xEC\x95\x88\xEB\x85\x95\xED\x95\x98\xEC\x84\xB8...', 500, 500)
+#3 C:\xampp\htdocs\gnu\eyoom\shop\index.php(36): include_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\gnu\shop\index.php(5): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\gnu\get_error.php(16): include_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown
+    [file] => C:\xampp\htdocs\gnu\lib\thumbnail.lib.php
+    [line] => 327
+)

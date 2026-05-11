@@ -33,10 +33,10 @@ if (!defined('_EYOOM_')) exit;
 .ebg-shop020-m {margin-left:-10px;margin-right:-10px}
 .ebg-shop020-m:after {content:"";display:block;clear:both}
 .ebg-shop020-m .ebgoods-item-wrap {padding:10px;width:25%;float:left}
-.ebg-shop020-m .ebgoods-item {position:relative;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out}
+.ebg-shop020-m .ebgoods-item {position:relative;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out; border: 1px solid #f0f0f0; padding: 5px; border-radius: 0px; background: #fff;}
 .ebg-shop020-m .goods-img {position:relative;overflow:hidden;margin-bottom:10px;background:#fff}
 .ebg-shop020-m .goods-img-in {position:relative;overflow:hidden;width:100%}
-.ebg-shop020-m .goods-img-in:before {content:"";display:block;padding-top:100%;background:#fff}
+.ebg-shop020-m .goods-img-in:before {content:"";display:block;padding-top:75%;background:#fff}
 .ebg-shop020-m .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-m .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
 .ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.10rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
@@ -138,20 +138,36 @@ if (!defined('_EYOOM_')) exit;
                                 <?php } ?>
 
                                 <?php if ($data['it_id'] == '1776008318') { ?>
-                                <div class="goods-rating" style="display:flex; justify-content:center; align-items:center; gap:1px; margin-top:8px; line-height:1;">
+                                <div class="goods-countdown-wrap" style="margin:10px 0; padding:6px 10px; background:#fff5f5; border:1px solid #feb2b2; border-radius:4px; display:flex; justify-content:space-between; align-items:center; line-height:1;">
+                                    <span style="color:#e53e3e; font-size:12px; font-weight:800; display:flex; align-items:center;"><i class="fas fa-exclamation-triangle" style="margin-right:5px; font-size:11px;"></i> 보장 범위 축소</span>
+                                    <div class="countdown-timer" data-time="2026-05-31 23:59:59" style="color:#2d3748; font-size:12px; font-weight:700; display:flex; align-items:center; gap:3px;">
+                                        <span class="days" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">일</span>
+                                        <span class="hours" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">시</span>
+                                        <span class="minutes" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">분</span>
+                                    </div>
+                                </div>
+
+                                <a href="<?php echo $data['href']; ?>#sit_use" class="goods-rating" style="display:flex; justify-content:center; align-items:center; gap:1px; margin-top:8px; line-height:1; text-decoration:none !important;">
                                     <div style="color:#ffc107; font-size:14px; display:flex; align-items:center; gap:1px;">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <div style="position:relative; display:inline-block; width:14px; height:14px; font-size:14px;">
-                                            <i class="far fa-star" style="color:rgba(255,255,255,0.2); position:absolute; left:0; top:0;"></i>
+                                            <i class="far fa-star" style="color:rgba(0,0,0,0.1); position:absolute; left:0; top:0;"></i>
                                             <div style="width:75%; overflow:hidden; position:absolute; left:0; top:0; white-space:nowrap;">
                                                 <i class="fas fa-star" style="color:#ffc107;"></i>
                                             </div>
                                         </div>
                                     </div>
                                     <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
+                                </a>
+                                <div class="goods-share" style="display:flex; justify-content:center; align-items:center; gap:8px; margin-top:12px;">
+                                    <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:32px; height:32px; border-radius:4px;"></a>
+                                    <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:32px; height:32px; border-radius:4px;"></a>
+                                    <a href="https://share.naver.com/share?url=<?php echo $data['sns_url']; ?>&title=<?php echo $data['sns_title']; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png" style="width:32px; height:32px; border-radius:4px;"></a>
+                                    <a href="https://band.us/plugin/share?body=<?php echo $data['sns_title']; ?>%0A<?php echo $data['sns_url']; ?>" target="_blank" title="네이버 밴드"><img src="<?php echo G5_URL; ?>/data/icon/naver_band.png" style="width:32px; height:32px; border-radius:4px;"></a>
+                                    <a href="javascript:void(0);" title="링크 복사" onclick="copy_goods_url('<?php echo G5_URL; ?>/shop/item.php?it_id=<?php echo $data['it_id']; ?>'); return false;"><img src="<?php echo G5_URL; ?>/data/icon/link_copy.png" style="width:32px; height:32px; border-radius:4px;"></a>
                                 </div>
                                 <?php } ?>
 
@@ -223,5 +239,39 @@ $(function() {
         }
     });
 });
+
+function updateCountdowns() {
+    $('.countdown-timer').each(function() {
+        var targetDate = new Date($(this).data('time')).getTime();
+        var now = new Date().getTime();
+        var distance = targetDate - now;
+
+        if (distance < 0) {
+            $(this).html("종료됨");
+            return;
+        }
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        $(this).find('.days').text(days < 10 ? '0' + days : days);
+        $(this).find('.hours').text(hours < 10 ? '0' + hours : hours);
+        $(this).find('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
+    });
+}
+
+setInterval(updateCountdowns, 1000);
+updateCountdowns();
+
+function copy_goods_url(url) {
+    var t = document.createElement("textarea");
+    document.body.appendChild(t);
+    t.value = url;
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+    alert('상품 주소가 복사되었습니다.');
+}
 </script>
 <?php } ?>
