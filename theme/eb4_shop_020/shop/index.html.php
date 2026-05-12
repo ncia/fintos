@@ -749,7 +749,15 @@ if (!defined('_EYOOM_')) exit;
     <div class="container">
         <style>
         /* 메인 리뷰 카드 스타일 (상담후기 스타일 계승) */
-        .review-main-in.slick-slider { margin-left: 5px !important; }
+        .review-main {
+            background: #f8fafc;
+            border-radius: 30px;
+            padding: 40px 20px;
+            border: 1px solid #f1f5f9;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+            margin-top: 20px;
+        }
+        .review-main-in.slick-slider { margin-left: 0 !important; }
         .review-main-in .slick-track { display: flex !important; }
         .review-main-in .slick-slide { height: inherit !important; display: flex !important; }
         .main-review-card {
