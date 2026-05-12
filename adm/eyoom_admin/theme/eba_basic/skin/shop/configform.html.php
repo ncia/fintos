@@ -29,6 +29,39 @@ $frm_submit .= $frm_eba_submit;
     .pg-anchor-in .nav-tabs li:nth-child(4) a, .pg-anchor-in .nav-tabs li:nth-child(5) a, .pg-anchor-in .nav-tabs li:nth-child(6) a {border-bottom:0}
     .adm-form-table .inline-group > span.span-lg-block {display:block;margin-bottom:10px}
 }
+/* 커스텀 데이터리스트 스타일 */
+.custom-datalist-wrapper { position: relative; display: block; }
+.custom-datalist {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 0; /* 입력창 바로 위로 다시 정렬 */
+    width: 220px;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    z-index: 1000;
+    display: none;
+    padding: 8px 0;
+}
+.custom-datalist::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 20px; /* 입력창 시작 부분에 맞게 조정 */
+    border-width: 8px;
+    border-style: solid;
+    border-color: #1e1e1e transparent transparent transparent;
+}
+.custom-datalist ul { list-style: none; padding: 0; margin: 0; }
+.custom-datalist li {
+    padding: 10px 20px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.custom-datalist li:hover { background: #333; color: #fff; }
 </style>
 
 <div class="admin-shop-configform">
@@ -363,7 +396,6 @@ $frm_submit .= $frm_eba_submit;
                     <div class="adm-form-td td-r">
                         <div class="d-flex align-items-center flex-wrap">
                             <section class="m-r-20">
-                                <label class="label">출력 여부</label>
                                 <label class="checkbox width-80px">
                                     <input type="checkbox" name="de_bodmi_use" id="de_bodmi_use" value="1" <?php echo $default['de_bodmi_use']?"checked":""; ?>>
                                     <i></i> 출력
@@ -450,7 +482,6 @@ $frm_submit .= $frm_eba_submit;
                     <div class="adm-form-td td-r">
                         <div class="d-flex align-items-center flex-wrap">
                             <section class="m-r-20">
-                                <label class="label">출력 여부</label>
                                 <label class="checkbox width-80px">
                                     <input type="checkbox" name="de_m_bodmi_use" id="de_m_bodmi_use" value="1" <?php echo $default['de_m_bodmi_use']?"checked":""; ?>>
                                     <i></i> 출력
@@ -532,6 +563,80 @@ $frm_submit .= $frm_eba_submit;
                             </section>
                         </div>
                         <div class="note"><strong>Note:</strong> 모바일 캐릭터 배너의 설정을 PC와 별도로 관리합니다. 'PC설정 가져오기' 버튼으로 현재 PC 설정을 빠르게 복사할 수 있습니다.</div>
+                    </div>
+                </div>
+                <div class="adm-form-tr">
+                    <div class="adm-form-td td-l">
+                        <label class="label">보험상품 전체 카운트다운</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="d-flex align-items-center flex-wrap">
+                            <section class="m-r-20">
+                                <label class="checkbox width-80px">
+                                    <input type="checkbox" name="de_all_bodmi_use" id="de_all_bodmi_use" value="1" <?php echo $default['de_all_bodmi_use']?"checked":""; ?>>
+                                    <i></i> 출력
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_all_bodmi_title" class="label">프로모션 문구</label>
+                                <div class="custom-datalist-wrapper">
+                                    <label class="input width-200px">
+                                        <input type="text" name="de_all_bodmi_title" value="<?php echo get_sanitize_input($default['de_all_bodmi_title']); ?>" id="de_all_bodmi_title" autocomplete="off" placeholder="선택하거나 직접 입력">
+                                    </label>
+                                    <div id="custom_title_options" class="custom-datalist">
+                                        <ul>
+                                            <li>상담 신청 사은품</li>
+                                            <li>가입 축하 사은품</li>
+                                            <li>첫상담 우대 지원</li>
+                                            <li>제휴 포인트 적립</li>
+                                            <li>친구 추천 보너스</li>
+                                            <li>보험료 인상 전환</li>
+                                            <li>운전자 보험 개정</li>
+                                            <li>한시적 가입 허용</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_all_bodmi_font_size" class="label">제목 글자 크기</label>
+                                <label class="select width-100px">
+                                    <select name="de_all_bodmi_font_size" id="de_all_bodmi_font_size">
+                                        <?php
+                                        $all_fs_arr = array();
+                                        for ($i=8; $i<=40; $i++) $all_fs_arr[] = (string)$i;
+                                        $all_current_fs = str_replace('px', '', $default['de_all_bodmi_font_size']);
+                                        $all_is_in_arr = false;
+                                        foreach($all_fs_arr as $all_fs) {
+                                            $all_selected = ($all_current_fs == $all_fs) ? 'selected':'';
+                                            if($all_selected) $all_is_in_arr = true;
+                                            echo "<option value='{$all_fs}' {$all_selected}>{$all_fs}</option>";
+                                        }
+                                        if (!$all_is_in_arr && $all_current_fs) {
+                                            echo "<option value='{$all_current_fs}' selected>{$all_current_fs}</option>";
+                                        }
+                                        ?>
+                                        <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_all_bodmi_font_color" class="label">글자 색상</label>
+                                <label class="input width-60px">
+                                    <input type="color" name="de_all_bodmi_font_color" value="<?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#000000'; ?>" id="de_all_bodmi_font_color" style="padding:2px; height:34px;">
+                                </label>
+                            </section>
+
+                            <section class="m-r-20">
+                                <label for="de_all_bodmi_target_date" class="label">설정 날짜</label>
+                                <label class="input width-150px">
+                                    <i class="icon-append far fa-calendar-alt" id="btn_all_target_date"></i>
+                                    <input type="text" name="de_all_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_all_bodmi_target_date']), 0, 10); ?>" id="de_all_bodmi_target_date" class="datepicker">
+                                </label>
+                            </section>
+
+
+                        </div>
+                        <div class="note"><strong>Note:</strong> 보험상품 전체에 적용될 카운트다운 배너를 설정합니다.</div>
                     </div>
                 </div>
             </div>
@@ -2530,3 +2635,46 @@ if($default['de_iche_use'] || $default['de_vbank_use'] || $default['de_hp_use'] 
     }
 }
 ?>
+<script>
+function sync_pc_to_mobile() {
+    if (confirm("현재 PC 캐릭터 배너의 설정을 모바일 설정으로 복사하시겠습니까?")) {
+        $("#de_m_bodmi_use").prop("checked", $("#de_bodmi_use").is(":checked"));
+        $("#de_m_bodmi_title").val($("#de_bodmi_title").val());
+        $("#de_m_bodmi_font_size").val($("#de_bodmi_font_size").val());
+        $("#de_m_bodmi_font_color").val($("#de_bodmi_font_color").val());
+        $("#de_m_bodmi_target_date").val($("#de_bodmi_target_date").val());
+        $("#de_m_bodmi_timer_font_size").val($("#de_bodmi_timer_font_size").val());
+        $("#de_m_bodmi_bg_color").val($("#de_bodmi_bg_color").val());
+        alert("복사되었습니다. 적용하기 버튼을 눌러 저장해 주세요.");
+    }
+}
+
+$(function() {
+    $("#btn_target_date").click(function() {
+        $("#de_bodmi_target_date").focus();
+    });
+    $("#btn_m_target_date").click(function() {
+        $("#de_m_bodmi_target_date").focus();
+    });
+    $("#btn_all_target_date").click(function() {
+        $("#de_all_bodmi_target_date").focus();
+    });
+
+    // 커스텀 데이터리스트 이벤트
+    $("#de_all_bodmi_title").on("click focus", function() {
+        $("#custom_title_options").fadeIn(200);
+    });
+
+    $("#custom_title_options li").on("click", function() {
+        var val = $(this).text();
+        $("#de_all_bodmi_title").val(val);
+        $("#custom_title_options").fadeOut(150);
+    });
+
+    $(document).on("click", function(e) {
+        if (!$(e.target).closest(".custom-datalist-wrapper").length) {
+            $("#custom_title_options").fadeOut(150);
+        }
+    });
+});
+</script>

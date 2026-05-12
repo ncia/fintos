@@ -3,6 +3,7 @@
  * skin file : /theme/THEME_NAME/skin/ebgoods/shop20_main/ebgoods.skin.html.php
  */
 if (!defined('_EYOOM_')) exit;
+global $default;
 ?>
 
 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
@@ -101,7 +102,12 @@ if (!defined('_EYOOM_')) exit;
         <?php if (is_array($eg_item)) { foreach ($eg_item as $k => $eb_goods) { ?>
         <div class="tab-pane <?php echo ($k==0) ? 'active': ''; ?> in" id="basic-tlb-<?php echo $eg_master['eg_code']; ?>-<?php echo ($k+1); ?>">
             <div class="ebg-shop020-m">
-                <?php if (count((array)$eb_goods['list']) > 0) { foreach ($eb_goods['list'] as $i => $data) { ?>
+                <?php if (count((array)$eb_goods['list']) > 0) { foreach ($eb_goods['list'] as $i => $data) { 
+                    $sns_url = G5_SHOP_URL.'/item.php?it_id='.$data['it_id'];
+                    $sns_title = get_text($data['it_name']);
+                    $data['sns_url'] = urlencode($sns_url);
+                    $data['sns_title'] = urlencode($sns_title);
+                ?>
                 <div class="ebgoods-item-wrap">
                     <div class="ebgoods-item">
                         <?php if ($eb_goods['gi_view_img'] == 'y') { ?>
@@ -137,24 +143,13 @@ if (!defined('_EYOOM_')) exit;
                                 <div class="goods-info"><?php echo $data['it_basic']?></div>
                                 <?php } ?>
 
-                                <?php if ($data['it_id'] == '1776008318') { // 원본 상품 ?>
-                                <div class="goods-countdown-wrap" style="margin:10px 0; padding:6px 10px; background:#fff5f5; border:1px solid #feb2b2; border-radius:4px; display:flex; justify-content:space-between; align-items:center; line-height:1;">
-                                    <span style="color:#e53e3e; font-size:12px; font-weight:800; display:flex; align-items:center;"><i class="fas fa-exclamation-triangle" style="margin-right:5px; font-size:11px;"></i> 보장 범위 축소</span>
-                                    <div class="countdown-timer" data-time="2026-05-31 23:59:59" style="color:#2d3748; font-size:12px; font-weight:700; display:flex; align-items:center; gap:3px;">
-                                        <span class="days" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">일</span>
-                                        <span class="hours" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">시</span>
-                                        <span class="minutes" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">분</span>
+                                <?php if ($default['de_all_bodmi_use']) { ?>
+                                <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 4px 10px; font-size: 12px; margin: 10px 0; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                    <div class="all-countdown-title" style="gap: 5px;">
+                                        <i class="fas fa-gift" style="font-size: 11px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
                                     </div>
-                                </div>
-                                <?php } ?>
-
-                                <?php if ($data['it_id'] == '1778489229') { // 복사본 상품 ?>
-                                <div class="goods-countdown-wrap" style="margin:10px 0; padding:6px 10px; background:#ebf8ff; border:1px solid #90cdf4; border-radius:4px; display:flex; justify-content:space-between; align-items:center; line-height:1;">
-                                    <span style="color:#3182ce; font-size:12px; font-weight:800; display:flex; align-items:center;"><i class="fas fa-gift" style="margin-right:5px; font-size:11px;"></i> 가입 축하 사은품</span>
-                                    <div class="countdown-timer" data-time="2026-05-31 23:59:59" style="color:#2d3748; font-size:12px; font-weight:700; display:flex; align-items:center; gap:3px;">
-                                        <span class="days" style="color:#3182ce; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">일</span>
-                                        <span class="hours" style="color:#3182ce; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">시</span>
-                                        <span class="minutes" style="color:#3182ce; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">분</span>
+                                    <div class="all-countdown-timer">
+                                        <!-- JS -->
                                     </div>
                                 </div>
                                 <?php } ?>
@@ -175,12 +170,12 @@ if (!defined('_EYOOM_')) exit;
                                     </div>
                                     <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
                                 </a>
-                                <div class="goods-share" style="display:flex; justify-content:center; align-items:center; gap:8px; margin-top:12px;">
-                                    <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:32px; height:32px; border-radius:4px;"></a>
-                                    <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:32px; height:32px; border-radius:4px;"></a>
-                                    <a href="https://share.naver.com/share?url=<?php echo $data['sns_url']; ?>&title=<?php echo $data['sns_title']; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png" style="width:32px; height:32px; border-radius:4px;"></a>
-                                    <a href="https://band.us/plugin/share?body=<?php echo $data['sns_title']; ?>%0A<?php echo $data['sns_url']; ?>" target="_blank" title="네이버 밴드"><img src="<?php echo G5_URL; ?>/data/icon/naver_band.png" style="width:32px; height:32px; border-radius:4px;"></a>
-                                    <a href="javascript:void(0);" title="링크 복사" onclick="copy_goods_url('<?php echo G5_URL; ?>/shop/item.php?it_id=<?php echo $data['it_id']; ?>'); return false;"><img src="<?php echo G5_URL; ?>/data/icon/link_copy.png" style="width:32px; height:32px; border-radius:4px;"></a>
+                                <div class="goods-share" style="display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:8px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
+                                    <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:30px; height:30px; border-radius:4px;"></a>
+                                    <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:30px; height:30px; border-radius:4px;"></a>
+                                    <a href="https://share.naver.com/share?url=<?php echo $data['sns_url']; ?>&title=<?php echo $data['sns_title']; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png" style="width:30px; height:30px; border-radius:4px;"></a>
+                                    <a href="https://band.us/plugin/share?body=<?php echo $data['sns_title']; ?>%0A<?php echo $data['sns_url']; ?>" target="_blank" title="네이버 밴드"><img src="<?php echo G5_URL; ?>/data/icon/naver_band.png" style="width:30px; height:30px; border-radius:4px;"></a>
+                                    <a href="javascript:void(0);" title="링크 복사" onclick="copy_goods_url('<?php echo G5_URL; ?>/shop/item.php?it_id=<?php echo $data['it_id']; ?>'); return false;"><img src="<?php echo G5_URL; ?>/data/icon/link_copy.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                 </div>
                                 <?php } ?>
 
@@ -253,29 +248,7 @@ $(function() {
     });
 });
 
-function updateCountdowns() {
-    $('.countdown-timer').each(function() {
-        var targetDate = new Date($(this).data('time')).getTime();
-        var now = new Date().getTime();
-        var distance = targetDate - now;
 
-        if (distance < 0) {
-            $(this).html("종료됨");
-            return;
-        }
-
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-        $(this).find('.days').text(days < 10 ? '0' + days : days);
-        $(this).find('.hours').text(hours < 10 ? '0' + hours : hours);
-        $(this).find('.minutes').text(minutes < 10 ? '0' + minutes : minutes);
-    });
-}
-
-setInterval(updateCountdowns, 1000);
-updateCountdowns();
 
 function copy_goods_url(url) {
     var t = document.createElement("textarea");

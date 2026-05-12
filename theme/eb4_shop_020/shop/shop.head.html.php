@@ -44,8 +44,52 @@ $is_darkmode = 'yes';
         .navbar-nav .nav-special.myins { right: 80px; }
     }
     .navbar-nav .nav-special a { color: #b5b5b5 !important; font-size: 0.9rem; }
-    @media (max-width: 991px) {
-        .navbar-nav .nav-special a { font-weight: bold; font-size: 0.9rem; }
+    .navbar-nav .nav-special a { font-weight: bold; font-size: 0.9rem; }
+    
+    
+    /* 보험상품 전체 카운트다운 전역 스타일 */
+    .all-countdown-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-weight: 800;
+        font-size: 13px;
+        margin: 10px 0;
+        line-height: 1;
+        min-height: 32px;
+    }
+    .all-countdown-title {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+    .all-countdown-timer {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-weight: 700;
+    }
+    .all-countdown-timer .num {
+        font-weight: 800;
+        color: inherit;
+        font-size: 12px;
+        min-width: auto;
+        text-align: center;
+        padding: 0 1px;
+    }
+    .all-countdown-timer .unit {
+        font-weight: 700;
+        color: #a0aec0 !important;
+        font-size: 11px;
+        margin-right: 4px;
+        margin-left: 0;
+    }
+    .all-countdown-timer .unit:last-child {
+        margin-right: 0;
     }
     </style>
     <?php /*----- header 시작 -----*/ ?>
@@ -567,4 +611,38 @@ $is_darkmode = 'yes';
         <div class="container">
             <main class="basic-body-main">
         <?php } ?>
+<script>
+function updateAllGlobalCountdown() {
+    const targetDateStr = '<?php echo $default['de_all_bodmi_target_date']; ?>';
+    if (!targetDateStr) return;
+    
+    const targetDate = new Date(targetDateStr.replace(/-/g, '/')).getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    $('.all-countdown-timer').each(function() {
+        if (diff <= 0) {
+            $(this).html("D-Day");
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        
+        const dStr = days.toString();
+        const hStr = hours.toString().padStart(2, '0');
+        const mStr = minutes.toString().padStart(2, '0');
+
+        $(this).html(`<span class="num">${dStr}</span><span class="unit">일</span><span class="num">${hStr}</span><span class="unit">시</span><span class="num">${mStr}</span><span class="unit">분</span>`);
+    });
+}
+
+$(document).ready(function() {
+    if ($('.all-countdown-timer').length > 0) {
+        updateAllGlobalCountdown();
+        setInterval(updateAllGlobalCountdown, 1000 * 60);
+    }
+});
+</script>
 <?php } // !$wmode ?>

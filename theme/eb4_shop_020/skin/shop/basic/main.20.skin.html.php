@@ -3,6 +3,7 @@
  * skin file : /theme/THEME_NAME/skin/shop/basic/main.20.skin.html.php
  */
 if (!defined('_EYOOM_')) exit;
+global $default;
 
 add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/slick/slick.min.css" type="text/css" media="screen">',0);
 ?>
@@ -121,6 +122,17 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/slick/s
                             </a>
                             <?php } ?>
                         </h4>
+
+                        <?php if ($default['de_all_bodmi_use']) { ?>
+                        <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 3px 8px; font-size: 11px; margin: 5px 0; border-radius: 4px; display: inline-flex; width: 100%; justify-content: space-between; align-items: center;">
+                            <div class="all-countdown-title" style="gap: 4px;">
+                                <i class="fas fa-gift" style="font-size: 10px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
+                            </div>
+                            <div class="all-countdown-timer">
+                                <!-- JS -->
+                            </div>
+                        </div>
+                        <?php } ?>
 
                         <?php if ($this->view_it_cust_price || $this->view_it_price) { ?>
                         <div class="product-price">

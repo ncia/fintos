@@ -3,6 +3,7 @@
  * skin file : /theme/THEME_NAME/skin/shop/basic/item.form.skin.html.php
  */
 if (!defined('_EYOOM_')) exit;
+global $default;
 
 /**
  * 브레드크럼 영역의 경계선 제거
@@ -40,6 +41,19 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
             </h1>
         </div>
     </div>
+
+    <?php if ($default['de_all_bodmi_use']) { ?>
+    <div class="container" style="max-width: 100%; padding: 0 40px; text-align: center; margin-top: 15px;">
+        <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>;">
+            <div class="all-countdown-title">
+                <i class="fas fa-gift"></i> <?php echo $default['de_all_bodmi_title']; ?>
+            </div>
+            <div class="all-countdown-timer">
+                <!-- JS로 업데이트됨 -->
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (이미지 + 내비게이션) */ ?>
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>

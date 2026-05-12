@@ -232,6 +232,12 @@ $check_sanitize_keys = array(
 'de_bodmi_font_color',          //글자 색상
 'de_bodmi_bg_color',            //날짜 배경 색상
 'de_bodmi_target_date',         //설정날짜
+'de_all_bodmi_title',           //프로모션 문구
+'de_all_bodmi_font_size',       //글자 크기
+'de_all_bodmi_font_color',      //글자 색상
+'de_all_bodmi_bg_color',        //배경 색상
+'de_all_bodmi_timer_font_size', //배경 글자 크기
+'de_all_bodmi_target_date',     //설정날짜
 'de_member_reg_coupon_use',     //신규회원 쿠폰발행 여부
 'de_member_reg_coupon_price',   //신규회원 쿠폰발행 쿠폰할인금액
 'de_member_reg_coupon_minimum', //주문최소금액
@@ -466,7 +472,14 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_m_bodmi_font_color         = '{$_POST['de_m_bodmi_font_color']}',
                 de_m_bodmi_bg_color           = '{$_POST['de_m_bodmi_bg_color']}',
                 de_m_bodmi_timer_font_size    = '{$_POST['de_m_bodmi_timer_font_size']}',
-                de_m_bodmi_target_date        = '" . substr($_POST['de_m_bodmi_target_date'], 0, 10) . "'
+                de_m_bodmi_target_date        = '" . substr($_POST['de_m_bodmi_target_date'], 0, 10) . "',
+                de_all_bodmi_use              = '{$_POST['de_all_bodmi_use']}',
+                de_all_bodmi_title            = '{$de_all_bodmi_title}',
+                de_all_bodmi_font_size        = '{$_POST['de_all_bodmi_font_size']}',
+                de_all_bodmi_font_color       = '{$_POST['de_all_bodmi_font_color']}',
+                de_all_bodmi_bg_color         = '{$_POST['de_all_bodmi_bg_color']}',
+                de_all_bodmi_timer_font_size  = '{$_POST['de_all_bodmi_timer_font_size']}',
+                de_all_bodmi_target_date      = '" . substr($_POST['de_all_bodmi_target_date'], 0, 10) . "'
                 ";
 if (defined('G5_SHOP_DIRECT_NAVERPAY') && G5_SHOP_DIRECT_NAVERPAY) {
     $sql .= "  ,de_naverpay_mid               = '{$de_naverpay_mid}',
