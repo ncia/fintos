@@ -26,7 +26,7 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
 
 /* Labels */
 .premium-product-list .rgba-banner-area {position:absolute;top:5px;right:5px;z-index:10}
-.premium-product-list .rgba-banner {height:18px;width:70px;line-height:18px;color:#fff;font-size:.6875rem;text-align:center;font-weight:400;position:relative;text-transform:uppercase;margin-bottom:2px;border-radius:2px;display:block}
+.premium-product-list .rgba-banner {height:25px;width:25px;line-height:25px;color:#fff;font-size:.6875rem;text-align:center;font-weight:400;position:relative;text-transform:uppercase;margin-bottom:2px;border-radius:50px;display:block}
 .premium-product-list .shop-rgba-dark {background:#363b43}
 .premium-product-list .shop-rgba-yellow {background:#ec8b00}
 .premium-product-list .shop-rgba-red {background:#ab0000}
@@ -68,9 +68,9 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
                             <?php echo $it_image; ?>
                         </a>
                         <div class="rgba-banner-area">
-                            <?php if ($list[$i]['it_type1']) { ?><span class="rgba-banner shop-rgba-dark">히트</span><?php } ?>
+                            <?php if ($list[$i]['it_type1']) { ?><span class="rgba-banner shop-rgba-dark">랜덤</span><?php } ?>
                             <?php if ($list[$i]['it_type2']) { ?><span class="rgba-banner shop-rgba-yellow">추천</span><?php } ?>
-                            <?php if ($list[$i]['it_type3']) { ?><span class="rgba-banner shop-rgba-red">신상</span><?php } ?>
+                            <?php if ($list[$i]['it_type3']) { ?><span class="rgba-banner shop-rgba-red">최신</span><?php } ?>
                             <?php if ($list[$i]['it_type4']) { ?><span class="rgba-banner shop-rgba-green">인기</span><?php } ?>
                         </div>
                     </div>

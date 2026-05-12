@@ -307,7 +307,7 @@ $item_view = 'zoom';
                                 </li>
 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-graduation-cap m-r-5 text-success"></i>보험 지식</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">🎓</span>보험 지식</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -330,7 +330,7 @@ $item_view = 'zoom';
                                     </div>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-hand-holding-heart m-r-5 text-crimson"></i>보험 케어</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">💝</span>보험 케어</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -348,7 +348,7 @@ $item_view = 'zoom';
 
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-shield-alt m-r-5 text-primary"></i>보험 상품</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">🛡️</span>보험 상품</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -371,7 +371,7 @@ $item_view = 'zoom';
                                     </div>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-file-signature m-r-5 text-warning"></i>보험 관리</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">📝</span>보험 관리</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -389,7 +389,7 @@ $item_view = 'zoom';
 
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-file-medical-alt m-r-5 text-info"></i>보장 점검</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">🔍</span>보장 점검</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -420,7 +420,7 @@ $item_view = 'zoom';
                                 </li>
                                 <li class="dropdown global-vip-menu">
                                     <a href="#" class="dropdown-toggle nav-link" id="dropdownVipButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-crown m-r-5 text-warning"></i>VIP 서비스
+                                        <span class="m-r-5">💎</span>VIP 서비스
                                     </a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -443,7 +443,7 @@ $item_view = 'zoom';
                                     </div>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><i class="fas fa-life-ring m-r-5 text-secondary"></i>고객지원</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">🎧</span>고객지원</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>

@@ -64,7 +64,7 @@ global $default;
 .ebg-shop020-m .shop-rgba-dark {background:#363b43}
 .ebg-shop020-m .shop-rgba-default {background:#A6A6A6}
 .ebg-shop020-m .rgba-banner-area {position:absolute;top:5px;right:5px}
-.ebg-shop020-m .rgba-banner {height:18px;width:70px;line-height:18px;color:#fff;font-size:.6875rem;text-align:center;font-weight:400;position:relative;text-transform:uppercase;margin-bottom:2px;border-radius:2px}
+.ebg-shop020-m .rgba-banner {height:25px;width:25px;line-height:25px;color:#fff;font-size:.6875rem;text-align:center;font-weight:400;position:relative;text-transform:uppercase;margin-bottom:2px;border-radius:50%}
 .ebg-shop020-m .ebgoods-item:hover .goods-name a {text-decoration:underline}
 @media (max-width:1199px) {
     .ebg-shop020-m {margin-left:-5px;margin-right:-5px}
@@ -86,6 +86,7 @@ global $default;
 <div class="ebg-shop020-m-wrap">
     <div class="ebg-shop020-m-header">
         <div class="ebg-shop020-m-title">
+            <span class="m-r-7">🛍️</span>
             <?php if ($eg_master['eg_link']) { ?>
             <a href="<?php echo $eg_master['eg_link']; ?>" target="<?php echo $eg_master['eg_target']; ?>"><strong><?php echo $eg_master['eg_subject']; ?></strong></a>
             <?php } else { ?>
@@ -118,7 +119,7 @@ global $default;
                                     <?php echo $data['it_image']; ?>
                                     <?php } ?>
                                     <?php if ($eb_goods['gi_view_it_icon']) { ?>
-                                    <?php echo $data['it_icon']; ?>
+                                    <?php echo str_replace(array('히트', '신상'), array('랜덤', '최신'), $data['it_icon']); ?>
                                     <?php } ?>
                                 </div>
                             </div>
