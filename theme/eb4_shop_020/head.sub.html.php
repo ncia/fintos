@@ -18,7 +18,36 @@ if (!defined('_EYOOM_')) exit;
 <?php } ?>
 <?php
 if ($config['cf_add_meta']) echo $config['cf_add_meta'];
+
+// 오픈 그래프(OG) 태그 설정
+$og_title = $g5_head_title;
+$og_description = $config['cf_title'];
+$og_site_name = $config['cf_title'];
+$og_type = 'website';
+$og_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$og_image = G5_URL . '/theme/eb4_shop_020/image/site_logo.png'; // 기본 로고 이미지 경로 (PNG 권장)
+
+// 상품 상세 페이지일 경우
+if (defined('_SHOP_') && isset($it) && isset($it['it_id']) && $it['it_id']) {
+    $og_title = get_text($it['it_name']) . ' | ' . $config['cf_title'];
+    $og_description = $it['it_basic'] ? get_text($it['it_basic']) : get_text($it['it_name']);
+    $og_type = 'product';
+    if (function_exists('get_it_imageurl')) {
+        $og_image = get_it_imageurl($it['it_id']);
+    }
+}
 ?>
+<meta property="og:type" content="<?php echo $og_type; ?>">
+<meta property="og:title" content="<?php echo $og_title; ?>">
+<meta property="og:description" content="<?php echo $og_description; ?>">
+<meta property="og:image" content="<?php echo $og_image; ?>">
+<meta property="og:url" content="<?php echo $og_url; ?>">
+<meta property="og:site_name" content="<?php echo $og_site_name; ?>">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?php echo $og_title; ?>">
+<meta name="twitter:description" content="<?php echo $og_description; ?>">
+<meta name="twitter:image" content="<?php echo $og_image; ?>">
+
 
 <title><?php echo $g5_head_title; ?></title>
 <link rel="stylesheet" href="<?php echo $css_href; ?>">

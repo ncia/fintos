@@ -742,63 +742,78 @@ if (!defined('_EYOOM_')) exit;
     </div>
 </div>
 
-<div class="shop-main-section-basic border-bottom-1">
-    <div class="container">
-        <div class="main-section-basic-row">
-            <div class="main-section-basic-l">
-                <?php /* EB슬라이더 - shop020_main_5 (6) */ ?>
-                <?php echo eb_slider('1659316859'); ?>
-            </div>
-            <div class="main-section-basic-r">
-                <?php /* ---------- 할인상품 시작 ---------- */ ?>
-                <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
-                <div class="adm-edit-btn btn-edit-mode" style="margin-top:-25px;">
-                    <div class="btn-group">
-                        <a href="<?php echo G5_ADMIN_URL; ?>/?dir=shop&amp;pid=configform&amp;amode=ittype&amp;thema=<?php echo $theme; ?>&amp;wmode=1" onclick="eb_admset_modal(this.href); return false;" class="ae-btn-l"><i class="far fa-edit"></i> 유형별 상품진열 설정</a>
-                        <a href="<?php echo G5_ADMIN_URL; ?>/?dir=shop&amp;pid=configform&amp;thema=<?php echo $theme; ?>#anc_scf_index" target="_blank" class="ae-btn-r" title="새창 열기">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-                <?php } ?>
-                
-                <?php if($default['de_type5_list_use']) { ?>
-                <section>
-                    <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(5); ?>"><strong>할인 <span>상품</span></strong></a></h2>
-                        <a href="<?php echo shop_type_url(5); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
-                    </div>
-                    <?php
-                    $list = new item_list($skin_dir.'/'.$default['de_type5_list_skin']);
-                    $list->set_type(5);
-                    $list->set_view('it_id', false);
-                    $list->set_view('it_name', true);
-                    $list->set_view('it_basic', true);
-                    $list->set_view('it_cust_price', true);
-                    $list->set_view('it_price', true);
-                    $list->set_view('it_icon', true);
-                    $list->set_view('sns', true);
-                    $list->set_view('star', true);
-                    echo $list->run();
-                    ?>
-                </section>
-                <?php } ?>
-                <?php /* ---------- 할인상품 끝 ---------- */ ?>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <?php if ($main_review == 'yes') { ?>
 <div class="shop-main-section4">
     <div class="container">
-        <?php /* ---------- 메인 사용후기 시작 ---------- */ ?>
+        <style>
+        /* 메인 리뷰 카드 스타일 (상담후기 스타일 계승) */
+        .review-main-in .slick-track { display: flex !important; }
+        .review-main-in .slick-slide { height: inherit !important; display: flex !important; }
+        .main-review-card {
+            background: #fff;
+            border: 1px solid #f1f3f5;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 0; /* 마진 제거 (패딩으로 대체) */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        .main-review-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .main-review-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .main-review-profile { width: 45px; height: 45px; border-radius: 50%; overflow: hidden; background: #f8fafc; border: 1px solid #f1f3f5; flex-shrink: 0; }
+        .main-review-profile img { width: 100%; height: 100%; object-fit: cover; }
+        .main-review-profile .no-img { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 24px; }
+        .main-review-user { display: flex; flex-direction: column; gap: 1px; }
+        .main-review-name { font-size: 18px; font-weight: 700; color: #1e293b; letter-spacing: -0.5px; }
+        .main-review-time { color: #94a3b8; font-size: 13px; font-weight: 400; }
+        .main-review-stars { margin-left: auto; display: flex; gap: 2px; }
+        .main-review-stars i { color: #ffc107; font-size: 16px; }
+        .main-review-stars i.empty { color: #e9ecef; }
+        .main-review-body { font-size: 14px; line-height: 1.6; color: #475569; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; min-height: 90px; margin-bottom: 15px; }
+        .main-review-item-name { margin-top: auto; padding-top: 15px; font-size: 12px; color: #94a3b8; font-weight: 600; border-top: 1px solid #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        /* 슬라이더 내부 아이템 간격 확보 */
+        .review-item { padding: 10px; box-sizing: border-box; }
+        </style>
         <?php
-        $sql = " select a.is_id, a.is_subject, a.is_content, a.it_id, b.it_name
+        // 시간 경과 표시 함수 (중복 정의 방지)
+        if (!function_exists('time_elapsed_string')) {
+            function time_elapsed_string($datetime, $full = false) {
+                $now = new DateTime;
+                $ago = new DateTime($datetime);
+                $diff = $now->diff($ago);
+                $diff->w = floor($diff->d / 7);
+                $diff->d -= $diff->w * 7;
+                $string = array('y' => '년','m' => '개월','w' => '주','d' => '일','h' => '시간','i' => '분','s' => '초');
+                foreach ($string as $k => &$v) {
+                    if ($diff->$k) { $v = $diff->$k . $v; } else { unset($string[$k]); }
+                }
+                if (!$full) $string = array_slice($string, 0, 1);
+                return $string ? implode(', ', $string) . ' 전' : '방금 전';
+            }
+        }
+
+        // 이름 마스킹 함수 (예: 양수경 -> 양*경)
+        if (!function_exists('get_masked_name')) {
+            function get_masked_name($name) {
+                $len = mb_strlen($name, 'UTF-8');
+                if ($len <= 1) return $name;
+                if ($len == 2) return mb_substr($name, 0, 1, 'UTF-8') . '*';
+                return mb_substr($name, 0, 1, 'UTF-8') . str_repeat('*', $len - 2) . mb_substr($name, $len - 1, 1, 'UTF-8');
+            }
+        }
+
+        $sql = " select a.is_id, a.is_subject, a.is_content, a.is_score, a.is_time, a.mb_id, a.is_name, a.it_id, b.it_name
                     from `{$g5['g5_shop_item_use_table']}` a join `{$g5['g5_shop_item_table']}` b on (a.it_id=b.it_id)
                     where a.is_confirm = '1'
-                    order by a.is_id desc
-                    limit 0,10 ";
+                    order by a.is_time desc, a.is_id desc
+                    limit 0,16 ";
         $result = sql_query($sql);
         
         for($i=0; $row=sql_fetch_array($result); $i++) {
@@ -812,22 +827,55 @@ if (!defined('_EYOOM_')) exit;
             }
         
             $review_href = G5_SHOP_URL.'/item.php?it_id='.$row['it_id'].'#sit_use';
+            
+            // 이름 마스킹 처리
+            $masked_name = get_masked_name($row['is_name']);
+            
+            // 프로필 이미지 경로 확인
+            $mb_id = $row['mb_id'];
+            $profile_img = '';
+            $is_profile = false;
+            if ($mb_id) {
+                $dir = substr($mb_id,0,2);
+                if (is_file(G5_DATA_PATH.'/member_image/'.$dir.'/'.$mb_id.'.gif')) {
+                    $profile_img = G5_DATA_URL.'/member_image/'.$dir.'/'.$mb_id.'.gif';
+                    $is_profile = true;
+                } else if (is_file(G5_DATA_PATH.'/member/'.$dir.'/'.$mb_id.'.gif')) {
+                    $profile_img = G5_DATA_URL.'/member/'.$dir.'/'.$mb_id.'.gif';
+                    $is_profile = true;
+                }
+            }
         ?>
             <div class="review-item">
-                <div class="review-item-in">
-                    <a href="<?php echo $review_href; ?>">
-                        <div class="review-img animate-img-hvr2">
-                            <div class="review-img-in">
-                                <?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 500, 500); ?>
-                            </div>
+                <a href="<?php echo $review_href; ?>" class="main-review-card">
+                    <div class="main-review-meta">
+                        <div class="main-review-profile">
+                            <?php if ($is_profile) { ?>
+                                <img src="<?php echo $profile_img; ?>?v=<?php echo time(); ?>" alt="profile">
+                            <?php } else { ?>
+                                <div class="no-img"><i class="fas fa-user-circle"></i></div>
+                            <?php } ?>
                         </div>
-                    </a>
-                    <div class="review-cont">
-                        <h4 class="ellipsis"><a href="<?php echo $review_href; ?>"><?php echo get_text(cut_str($row['is_subject'], 50)); ?></a></h4>
-                        <h5 class="ellipsis"><a href="<?php echo $review_href; ?>"><?php echo $row['it_name']; ?></a></h5>
-                        <p class="ellipsis-2"><?php echo get_text(cut_str(strip_tags($row['is_content']), 90), 1); ?></p>
+                        <div class="main-review-user">
+                            <span class="main-review-name"><?php echo $masked_name; ?></span>
+                            <span class="main-review-time"><?php echo time_elapsed_string($row['is_time']); ?></span>
+                        </div>
+                        <div class="main-review-stars">
+                            <?php 
+                            for($s=1; $s<=5; $s++) {
+                                $star_class = ($s <= (int)$row['is_score']) ? 'fas fa-star' : 'fas fa-star empty';
+                                echo '<i class="'.$star_class.'"></i>';
+                            }
+                            ?>
+                        </div>
                     </div>
-                </div>
+                    <div class="main-review-body">
+                        <?php echo cut_str(strip_tags($row['is_content']), 150); ?>
+                    </div>
+                    <div class="main-review-item-name">
+                        <i class="fas fa-shopping-bag m-r-5"></i> <?php echo $row['it_name']; ?>
+                    </div>
+                </a>
             </div>
         <?php
         }
@@ -842,23 +890,30 @@ if (!defined('_EYOOM_')) exit;
         $('.review-main-in').slick({
             dots: true,
             infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             autoplay: true,
             autoplaySpeed: 5000,
             responsive: [
                 {
-                    breakpoint: 1200,
+                    breakpoint: 1400,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 3
                     }
                 },
                 {
-                    breakpoint: 992,
+                    breakpoint: 1100,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
                     }
                 }
             ]

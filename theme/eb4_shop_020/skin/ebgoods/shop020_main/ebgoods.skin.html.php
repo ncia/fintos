@@ -154,7 +154,7 @@ global $default;
                                 </div>
                                 <?php } ?>
 
-                                <?php if ($data['it_id'] == '1776008318' || $data['it_id'] == '1778489229') { ?>
+                                <?php if (in_array($data['it_id'], array('1776008318', '1778489229', '1775931123', '1774196980', '1775880472'))) { ?>
                                 <a href="<?php echo $data['href']; ?>#sit_use" class="goods-rating" style="display:flex; justify-content:center; align-items:center; gap:1px; margin-top:8px; line-height:1; text-decoration:none !important;">
                                     <div style="color:#ffc107; font-size:14px; display:flex; align-items:center; gap:1px;">
                                         <i class="fas fa-star"></i>
@@ -170,6 +170,8 @@ global $default;
                                     </div>
                                     <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
                                 </a>
+                                <?php } ?>
+
                                 <div class="goods-share" style="display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:8px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
                                     <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                     <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:30px; height:30px; border-radius:4px;"></a>
@@ -177,7 +179,6 @@ global $default;
                                     <a href="https://band.us/plugin/share?body=<?php echo $data['sns_title']; ?>%0A<?php echo $data['sns_url']; ?>" target="_blank" title="네이버 밴드"><img src="<?php echo G5_URL; ?>/data/icon/naver_band.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                     <a href="javascript:void(0);" title="링크 복사" onclick="copy_goods_url('<?php echo G5_URL; ?>/shop/item.php?it_id=<?php echo $data['it_id']; ?>'); return false;"><img src="<?php echo G5_URL; ?>/data/icon/link_copy.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                 </div>
-                                <?php } ?>
 
                                 <?php if ($eb_goods['gi_view_sns'] == 'y') { ?>
                                 <div class="goods-sns">

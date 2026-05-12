@@ -50,17 +50,35 @@ if ($config['cf_editor']) {
 <style>
 .product-use-wrap-main { padding-top: 30px; }
 
-/* 후기 리스트 2열 배치 */
+/* 후기 리스트 4열 배치 */
 .review-list-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
     margin-top: 40px;
 }
 
+@media (max-width: 1200px) {
+    .review-list-container { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 991px) {
+    .review-list-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
     .review-list-container { grid-template-columns: 1fr; }
 }
+
+<?php
+// 이름 마스킹 함수 (예: 양수경 -> 양*경, 최고관리자 -> 최***자)
+if (!function_exists('get_masked_name')) {
+    function get_masked_name($name) {
+        $len = mb_strlen($name, 'UTF-8');
+        if ($len <= 1) return $name;
+        if ($len == 2) return mb_substr($name, 0, 1, 'UTF-8') . '*';
+        return mb_substr($name, 0, 1, 'UTF-8') . str_repeat('*', $len - 2) . mb_substr($name, $len - 1, 1, 'UTF-8');
+    }
+}
+?>
 
 /* 후기 카드 스타일 */
 .fintos-review-card {
@@ -72,6 +90,7 @@ if ($config['cf_editor']) {
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     display: flex;
     flex-direction: column;
+    min-height: 250px;
 }
 
 /* 별점 영역 */
@@ -273,7 +292,7 @@ if ($config['cf_editor']) {
                         <?php } ?>
                     </div>
                     <div class="user-info-text">
-                        <span class="user-name"><?php echo $info['is_name']; ?></span>
+                        <span class="user-name"><?php echo get_masked_name($info['is_name']); ?></span>
                         <span class="time-ago"><?php echo time_elapsed_string($info['is_time']); ?></span>
                     </div>
 
@@ -289,9 +308,20 @@ if ($config['cf_editor']) {
                 </div>
 
                 <!-- 3. 후기 본문 -->
-                <div class="review-content-row">
+                <div class="review-content-row" style="flex: 1;">
                     <?php echo $info['is_content']; ?>
                 </div>
+
+                <!-- 4. 관리 버튼 (최고관리자 또는 작성자) -->
+                <?php if ($is_admin || ($is_member && $mb_id === $info['mb_id'])) { ?>
+                <div class="review-manage-btns" style="margin-top:20px; text-align:right;">
+                    <a href="<?php echo $info['it_use_edit']; ?>" class="itemuse_update" style="font-size:13px; color:#cbd5e1; margin-right:15px; text-decoration:none; transition:color 0.2s;"><i class="far fa-edit m-r-5"></i>수정</a>
+                    <a href="<?php echo $info['it_use_del']; ?>" class="itemuse_delete" style="font-size:13px; color:#cbd5e1; text-decoration:none; transition:color 0.2s;"><i class="far fa-trash-alt m-r-5"></i>삭제</a>
+                </div>
+                <style>
+                .review-manage-btns a:hover { color: #94a3b8 !important; }
+                </style>
+                <?php } ?>
             </div>
             <?php } ?>
         <?php } else { ?>
