@@ -398,19 +398,19 @@ $is_darkmode = 'yes';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-spell-check m-r-5 text-info"></i>보험 용어 사전</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_dictionary.php" class="dropdown-item nav-link"><span class="m-r-5">📕</span>보험 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/healthcare_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-medical m-r-5 text-primary"></i>의료 용어 사전</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/healthcare_dictionary.php" class="dropdown-item nav-link"><span class="m-r-5">🏥</span>의료 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/economy_dictionary.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-chart-line m-r-5 text-success"></i>경제 용어 사전</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/economy_dictionary.php" class="dropdown-item nav-link"><span class="m-r-5">📈</span>경제 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-tasks m-r-5 text-primary"></i>보험 상식 퀴즈</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><span class="m-r-5">🧩</span>보험 상식 퀴즈</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/mbti_recommend.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-user-tag m-r-5 text-warning"></i>MBTI별 상품 추천</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/mbti_recommend.php" class="dropdown-item nav-link"><span class="m-r-5">👤</span>MBTI별 상품 추천</a>
                                             </li>
                                         </ul>
                                     </div>
