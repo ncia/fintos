@@ -133,14 +133,14 @@ $frm_submit .= $frm_eba_submit;
                 <div class="adm-form-info">
                     <div class="cont-text-bg">
                         <p class="bg-info">
-                            <i class="fas fa-info-circle"></i> 상품관리에서 선택한 상품의 타입대로 쇼핑몰 초기화면에 출력합니다. (상품 타입 히트/추천/최신/인기/할인)<br>
+                            <i class="fas fa-info-circle"></i> 상품관리에서 선택한 상품의 타입대로 쇼핑몰 초기화면에 출력합니다. (상품 타입 랜덤/추천/최신/인기/할인)<br>
                             <i class="fas fa-info-circle"></i> 각 타입별로 선택된 상품이 없으면 쇼핑몰 초기화면에 출력하지 않습니다.
                         </p>
                     </div>
                 </div>
                 <div class="adm-form-tr">
                     <div class="adm-form-td td-l">
-                        <label class="label">히트상품출력</label>
+                        <label class="label">랜덤상품출력</label>
                     </div>
                     <div class="adm-form-td td-r">
                         <div class="inline-group">

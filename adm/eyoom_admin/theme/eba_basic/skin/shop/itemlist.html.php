@@ -185,7 +185,7 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                             <input type="radio" name="itype" id="itype0" value="" <?php echo !$itype ? 'checked': ''; ?>><i></i>전체
                         </label>
                         <label class="radio" for="itype1">
-                            <input type="radio" name="itype" id="itype1" value="1" <?php echo $itype == '1' ? 'checked': ''; ?>><i></i>히트
+                            <input type="radio" name="itype" id="itype1" value="1" <?php echo $itype == '1' ? 'checked': ''; ?>><i></i>랜덤
                         </label>
                         <label class="radio" for="itype2">
                             <input type="radio" name="itype" id="itype2" value="2" <?php echo $itype == '2' ? 'checked': ''; ?>><i></i><span class="text-orange">추천<span>
@@ -196,9 +196,7 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                         <label class="radio" for="itype4">
                             <input type="radio" name="itype" id="itype4" value="4" <?php echo $itype == '4' ? 'checked': ''; ?>><i></i><span class="text-teal">인기</span>
                         </label>
-                        <label class="radio" for="itype5">
-                            <input type="radio" name="itype" id="itype5" value="5" <?php echo $itype == '5' ? 'checked': ''; ?>><i></i><span class="text-purple">할인</span>
-                        </label>
+
                     </div>
                 </div>
             </div>
@@ -300,7 +298,7 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                             <div class="itemlist-image"><a href="<?php echo $list[$i]['href']; ?>" target="_blank"><?php echo $list[$i]['image']; ?></a></div>
                         </td>
                         <td>
-                            <label class='input width-400px'><input type='text' name='it_name[<?php echo $i; ?>]' id='it_name_<?php echo $i; ?>' value='<?php echo get_text($list[$i]['it_name']); ?>' required></label><div class='item-type-divider'></div><div class='item-type-box'><div class='inline-group item-type-group'><label class='checkbox' for='it_type1_<?php echo $i; ?>'><input type='checkbox' name='it_type1[<?php echo $i; ?>]' id='it_type1_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type1'] ? 'checked': ''; ?>><i></i><span>히트</span></label><label class='checkbox' for='it_type2_<?php echo $i; ?>'><input type='checkbox' name='it_type2[<?php echo $i; ?>]' id='it_type2_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type2'] ? 'checked': ''; ?>><i></i><span class='text-orange'>추천</span></label><label class='checkbox' for='it_type3_<?php echo $i; ?>'><input type='checkbox' name='it_type3[<?php echo $i; ?>]' id='it_type3_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type3'] ? 'checked': ''; ?>><i></i><span class='text-crimson'>신상</span></label><label class='checkbox' for='it_type4_<?php echo $i; ?>'><input type='checkbox' name='it_type4[<?php echo $i; ?>]' id='it_type4_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type4'] ? 'checked': ''; ?>><i></i><span class='text-teal'>인기</span></label><label class='checkbox' for='it_type5_<?php echo $i; ?>'><input type='checkbox' name='it_type5[<?php echo $i; ?>]' id='it_type5_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type5'] ? 'checked': ''; ?>><i></i><span class='text-purple'>할인</span></label></div></div>
+                            <label class='input width-400px'><input type='text' name='it_name[<?php echo $i; ?>]' id='it_name_<?php echo $i; ?>' value='<?php echo get_text($list[$i]['it_name']); ?>' required></label><div class='item-type-divider'></div><div class='item-type-box'><div class='inline-group item-type-group'><label class='checkbox' for='it_type1_<?php echo $i; ?>'><input type='checkbox' name='it_type1[<?php echo $i; ?>]' id='it_type1_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type1'] ? 'checked': ''; ?>><i></i><span>랜덤</span></label><label class='checkbox' for='it_type2_<?php echo $i; ?>'><input type='checkbox' name='it_type2[<?php echo $i; ?>]' id='it_type2_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type2'] ? 'checked': ''; ?>><i></i><span class='text-orange'>추천</span></label><label class='checkbox' for='it_type3_<?php echo $i; ?>'><input type='checkbox' name='it_type3[<?php echo $i; ?>]' id='it_type3_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type3'] ? 'checked': ''; ?>><i></i><span class='text-crimson'>신상</span></label><label class='checkbox' for='it_type4_<?php echo $i; ?>'><input type='checkbox' name='it_type4[<?php echo $i; ?>]' id='it_type4_<?php echo $i; ?>' value='1' <?php echo $list[$i]['it_type4'] ? 'checked': ''; ?>><i></i><span class='text-teal'>인기</span></label></div></div>
                         </td>
                         <td>
                             <label class="input width-80px"><input type="text" name="it_order[<?php echo $i; ?>]" id="it_order_<?php echo $i; ?>" value="<?php echo $list[$i]['it_order']; ?>">

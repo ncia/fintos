@@ -303,7 +303,7 @@ $frm_submit .= $frm_eba_submit;
                     <div class="adm-form-td td-r td-rs">
                         <div class="inline-group">
                             <label class="checkbox">
-                                <input type="checkbox" name="it_type1" id="it_type1" value="1" <?php echo ($it['it_type1'] ? "checked" : ""); ?>><i></i><span>히트</span>
+                                <input type="checkbox" name="it_type1" id="it_type1" value="1" <?php echo ($it['it_type1'] ? "checked" : ""); ?>><i></i><span>랜덤</span>
                             </label>
                             <label class="checkbox">
                                 <input type="checkbox" name="it_type2" id="it_type2" value="1" <?php echo ($it['it_type2'] ? "checked" : ""); ?> ><i></i><span class="text-orange">추천</span>
@@ -314,9 +314,7 @@ $frm_submit .= $frm_eba_submit;
                             <label class="checkbox">
                                 <input type="checkbox" name="it_type4" id="it_type4" value="1" <?php echo ($it['it_type4'] ? "checked" : ""); ?>><i></i><span class="text-teal">인기</span>
                             </label>
-                            <label class="checkbox">
-                                <input type="checkbox" name="it_type5" id="it_type5" value="1" <?php echo ($it['it_type5'] ? "checked" : ""); ?>><i></i><span class="text-purple">할인</span>
-                            </label>
+
                         </div>
                         <div class="note"><strong>Note:</strong> 메인화면에 유형별로 출력할때 사용합니다.<br>이곳에 체크하게되면 상품리스트에서 유형별로 정렬할때 체크된 상품이 가장 먼저 출력됩니다.</div>
                         <div class="adm-form-td-rs">
