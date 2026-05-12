@@ -421,13 +421,13 @@ $is_darkmode = 'yes';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/insurance_claim.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-calendar-plus m-r-5 text-blue"></i>보험금 청구 예약</a>
+                                                <a href="<?php echo G5_URL; ?>/insurance_claim.php" class="dropdown-item nav-link"><span class="m-r-5">📅</span>보험금 청구 예약</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim_review" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-teal"></i>보험금 청구 후기</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim_review" class="dropdown-item nav-link"><span class="m-r-5">💬</span>보험금 청구 후기</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=daily_health" class="dropdown-item nav-link"><i class="fas fa-fw fa-notes-medical m-r-5 text-success"></i>데일리 건강 정보</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=daily_health" class="dropdown-item nav-link"><span class="m-r-5">🥗</span>데일리 건강 정보</a>
                                             </li>
                                         </ul>
                                     </div>
