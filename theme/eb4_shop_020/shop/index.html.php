@@ -403,6 +403,33 @@ if (!defined('_EYOOM_')) exit;
                         letter-spacing: -0.5px;
                         word-break: keep-all;
                     }
+                    .bodmi-overlay-countdown {
+                        position: absolute;
+                        top: 55%;
+                        left: 34%;
+                        transform: translate(-50%, 0);
+                        width: 55%;
+                        pointer-events: none;
+                    }
+                    .all-countdown-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 4px 10px;
+                        border-radius: 6px;
+                        font-weight: 700;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                    }
+                    .all-countdown-title {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        font-size: 13px;
+                    }
+                    .all-countdown-timer {
+                        font-size: 15px;
+                        letter-spacing: -0.5px;
+                    }
 
                     @media (max-width:1024px) {
                         .bodmi-bubble-text {
@@ -423,6 +450,16 @@ if (!defined('_EYOOM_')) exit;
                         <a href="<?php echo G5_URL; ?>/countdown_counsel.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
                             <div class="bodmi-bubble-text"><?php echo $bodmi_title; ?></div>
+                            <?php if ($default['de_all_bodmi_use']) { ?>
+                            <div class="bodmi-overlay-countdown">
+                                <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color'] ? $default['de_all_bodmi_bg_color'] : '#fff'; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#007bff'; ?>; color: <?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#007bff'; ?>;">
+                                    <div class="all-countdown-title">
+                                        <i class="fas fa-clock"></i> <?php echo $default['de_all_bodmi_title']; ?>
+                                    </div>
+                                    <div class="all-countdown-timer" id="bodmi_timer">00일 00시 00분</div>
+                                </div>
+                            </div>
+                            <?php } ?>
 
                         </a>
                     </div>
@@ -439,8 +476,36 @@ if (!defined('_EYOOM_')) exit;
                                 const serverTime = parseInt(data) * 1000;
                                 const clientTime = new Date().getTime();
                                 serverTimeOffset = serverTime - clientTime;
+                                updateBodmiCountdown();
                             }
                         });
+                    }
+
+                    function updateBodmiCountdown() {
+                        const targetDateStr = '<?php 
+                            echo $default['de_all_bodmi_target_date'] ? substr($default['de_all_bodmi_target_date'], 0, 10) : '2026-05-01'; 
+                        ?>';
+                        const targetDate = new Date(targetDateStr.replace(/-/g, '/') + ' 00:00:00').getTime();
+                        const now = new Date().getTime() + serverTimeOffset;
+                        const diff = targetDate - now;
+
+                        const timerEl = document.getElementById('bodmi_timer');
+                        if (!timerEl) return;
+
+                        if (diff <= 0) {
+                            timerEl.innerHTML = "D-Day";
+                            return;
+                        }
+
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                        
+                        const dStr = days.toString().padStart(2, '0');
+                        const hStr = hours.toString().padStart(2, '0');
+                        const mStr = minutes.toString().padStart(2, '0');
+
+                        timerEl.innerHTML = `${dStr}일 ${hStr}시 ${mStr}분`;
                     }
 
 
@@ -448,6 +513,7 @@ if (!defined('_EYOOM_')) exit;
 
                     $(document).ready(function() {
                         syncServerTime();
+                        setInterval(updateBodmiCountdown, 1000); // 1초마다 화면 업데이트
                         setInterval(syncServerTime, 1000 * 60); // 1분마다 서버 시간 동기화
                     });
                     </script>
