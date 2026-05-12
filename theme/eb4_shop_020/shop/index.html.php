@@ -529,14 +529,14 @@ if (!defined('_EYOOM_')) exit;
 <?php } ?>
 <?php /* ---------- 쇼핑몰 브랜드 끝 ---------- */ ?>
 
-<div class="shop-main-section-basic <?php if ($eyoom['use_brand'] == 'n') { ?>border-top-1<?php } ?> border-bottom--1">
+<div class="shop-main-section-basic <?php if ($eyoom['use_brand'] == 'n') { ?>border-top-1<?php } ?> border-bottom--1" style="background:#1a1d21; padding:60px 0;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (1) */ ?>
                 <?php echo eb_slider('1658993441'); ?>
             </div>
-            <div class="main-section-basic-r">
+            <div class="main-section-basic-r dark-section-title">
                 <?php /* EB상품추출 - shop020_main */ ?>
                 <?php echo eb_goods('1652073560'); ?>
             </div>
@@ -549,14 +549,14 @@ if (!defined('_EYOOM_')) exit;
     <?php echo eb_slider('1652230190'); ?>
 </div>
 
-<div class="shop-main-section-basic border-bottom-1">
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (2) */ ?>
                 <?php echo eb_slider('1659255375'); ?>
             </div>
-            <div class="main-section-basic-r">
+            <div class="main-section-basic-r dark-section-title">
                 <?php /* ---------- 히트상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
@@ -576,7 +576,7 @@ if (!defined('_EYOOM_')) exit;
                         <a href="<?php echo shop_type_url(1); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
-                    $list = new item_list($skin_dir.'/'.$default['de_type1_list_skin']);
+                    $list = new item_list(EYOOM_CORE_PATH.'/shop/list.premium.skin.php');
                     $list->set_type(1);
                     $list->set_view('it_img', true);
                     $list->set_view('it_id', false);
@@ -597,61 +597,14 @@ if (!defined('_EYOOM_')) exit;
     </div>
 </div>
 
-<div class="shop-main-section-basic border-bottom-1">
-    <div class="container">
-        <div class="main-section-basic-row">
-            <div class="main-section-basic-l">
-                <?php /* EB슬라이더 - shop020_main_5 (3) */ ?>
-                <?php echo eb_slider('1659257180'); ?>
-            </div>
-            <div class="main-section-basic-r">
-                <?php /* ---------- 추천상품 시작 ---------- */ ?>
-                <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
-                <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
-                    <div class="btn-group">
-                        <a href="<?php echo G5_ADMIN_URL; ?>/?dir=shop&amp;pid=configform&amp;amode=ittype&amp;thema=<?php echo $theme; ?>&amp;wmode=1" onclick="eb_admset_modal(this.href); return false;" class="ae-btn-l"><i class="far fa-edit"></i> 유형별 상품진열 설정</a>
-                        <a href="<?php echo G5_ADMIN_URL; ?>/?dir=shop&amp;pid=configform&amp;thema=<?php echo $theme; ?>#anc_scf_index" target="_blank" class="ae-btn-r" title="새창 열기">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-                <?php } ?>
-                
-                <?php if($default['de_type2_list_use']) { ?>
-                <section>
-                    <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(2); ?>"><strong>추천 <span>상품</span></strong></a></h2>
-                        <a href="<?php echo shop_type_url(2); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
-                    </div>
-                    <?php
-                    $list = new item_list($skin_dir.'/'.$default['de_type2_list_skin']);
-                    $list->set_type(2);
-                    $list->set_view('it_id', false);
-                    $list->set_view('it_name', true);
-                    $list->set_view('it_basic', true);
-                    $list->set_view('it_cust_price', true);
-                    $list->set_view('it_price', true);
-                    $list->set_view('it_icon', true);
-                    $list->set_view('sns', true);
-                    $list->set_view('star', true);
-                    echo $list->run();
-                    ?>
-                </section>
-                <?php } ?>
-                <?php /* ---------- 추천상품 끝 ---------- */ ?>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="shop-main-section-basic border-bottom--1">
+<div class="shop-main-section-basic border-bottom--1" style="background:#1a1d21; padding:60px 0;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (4) */ ?>
                 <?php echo eb_slider('1659312032'); ?>
             </div>
-            <div class="main-section-basic-r">
+            <div class="main-section-basic-r dark-section-title">
                 <?php /* ---------- 최신상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
@@ -671,7 +624,7 @@ if (!defined('_EYOOM_')) exit;
                         <a href="<?php echo shop_type_url(3); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
-                    $list = new item_list($skin_dir.'/'.$default['de_type3_list_skin']);
+                    $list = new item_list(EYOOM_CORE_PATH.'/shop/list.premium.skin.php');
                     $list->set_type(3);
                     $list->set_view('it_id', false);
                     $list->set_view('it_name', true);
@@ -691,18 +644,65 @@ if (!defined('_EYOOM_')) exit;
     </div>
 </div>
 
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0;">
+    <div class="container">
+        <div class="main-section-basic-row">
+            <div class="main-section-basic-l">
+                <?php /* EB슬라이더 - shop020_main_5 (3) */ ?>
+                <?php echo eb_slider('1659257180'); ?>
+            </div>
+            <div class="main-section-basic-r dark-section-title">
+                <?php /* ---------- 추천상품 시작 ---------- */ ?>
+                <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
+                <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
+                    <div class="btn-group">
+                        <a href="<?php echo G5_ADMIN_URL; ?>/?dir=shop&amp;pid=configform&amp;amode=ittype&amp;thema=<?php echo $theme; ?>&amp;wmode=1" onclick="eb_admset_modal(this.href); return false;" class="ae-btn-l"><i class="far fa-edit"></i> 유형별 상품진열 설정</a>
+                        <a href="<?php echo G5_ADMIN_URL; ?>/?dir=shop&amp;pid=configform&amp;thema=<?php echo $theme; ?>#anc_scf_index" target="_blank" class="ae-btn-r" title="새창 열기">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <?php } ?>
+                
+                <?php if($default['de_type2_list_use']) { ?>
+                <section>
+                    <div class="main-heading">
+                        <h2><a href="<?php echo shop_type_url(2); ?>"><strong>추천 <span>상품</span></strong></a></h2>
+                        <a href="<?php echo shop_type_url(2); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
+                    </div>
+                    <?php
+                    $list = new item_list(EYOOM_CORE_PATH.'/shop/list.premium.skin.php');
+                    $list->set_type(2);
+                    $list->set_view('it_id', false);
+                    $list->set_view('it_name', true);
+                    $list->set_view('it_basic', true);
+                    $list->set_view('it_cust_price', true);
+                    $list->set_view('it_price', true);
+                    $list->set_view('it_icon', true);
+                    $list->set_view('sns', true);
+                    $list->set_view('star', true);
+                    echo $list->run();
+                    ?>
+                </section>
+                <?php } ?>
+                <?php /* ---------- 추천상품 끝 ---------- */ ?>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php /* ---------- 이벤트박스 시작 ---------- */ ?>
 <?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxevent.skin.html.php'); // 이벤트 ?>
 <?php /* ---------- 이벤트박스 끝 ---------- */ ?>
 
-<div class="shop-main-section-basic border-bottom-1">
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (5) */ ?>
                 <?php echo eb_slider('1659316824'); ?>
             </div>
-            <div class="main-section-basic-r">
+            <div class="main-section-basic-r dark-section-title">
                 <?php /* ---------- 인기상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-25px;">
@@ -722,7 +722,7 @@ if (!defined('_EYOOM_')) exit;
                         <a href="<?php echo shop_type_url(4); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
-                    $list = new item_list($skin_dir.'/'.$default['de_type4_list_skin']);
+                    $list = new item_list(EYOOM_CORE_PATH.'/shop/list.premium.skin.php');
                     $list->set_type(4);
                     $list->set_view('it_id', false);
                     $list->set_view('it_name', true);
