@@ -822,7 +822,7 @@ if (!defined('_EYOOM_')) exit;
                     from `{$g5['g5_shop_item_use_table']}` a join `{$g5['g5_shop_item_table']}` b on (a.it_id=b.it_id)
                     where a.is_confirm = '1'
                     order by a.is_time desc, a.is_id desc
-                    limit 0,16 ";
+                    limit 0,20 ";
         $result = sql_query($sql);
         
         for($i=0; $row=sql_fetch_array($result); $i++) {
