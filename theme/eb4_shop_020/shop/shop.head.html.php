@@ -439,16 +439,16 @@ $is_darkmode = 'yes';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><span class="m-r-5">✨</span>최신 상품</a>
+                                                <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><span class="m-r-5">🎲</span>랜덤 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(4); ?>" class="dropdown-item nav-link"><span class="m-r-5">🔥</span>인기 상품</a>
+                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><span class="m-r-5">✨</span>최신 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo shop_type_url(2); ?>" class="dropdown-item nav-link"><span class="m-r-5">💝</span>추천 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><span class="m-r-5">🎲</span>랜덤 상품</a>
+                                                <a href="<?php echo shop_type_url(4); ?>" class="dropdown-item nav-link"><span class="m-r-5">🔥</span>인기 상품</a>
                                             </li>
                                         </ul>
                                     </div>
