@@ -456,6 +456,9 @@ $item_view = 'zoom';
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-question-circle m-r-5 text-warning"></i>FAQ</a>
                                             </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=event" class="dropdown-item nav-link"><i class="fas fa-fw fa-gift m-r-5 text-pink"></i>이벤트</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>

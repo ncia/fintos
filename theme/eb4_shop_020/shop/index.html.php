@@ -251,6 +251,9 @@ if (!defined('_EYOOM_')) exit;
                             height: auto;
                             min-height: 150px;
                         }
+                        .fintos-poll-options {
+                            grid-template-columns: 1fr;
+                        }
                     }
                     </style>
 

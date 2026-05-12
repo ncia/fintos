@@ -137,7 +137,7 @@ if (!defined('_EYOOM_')) exit;
                                 <div class="goods-info"><?php echo $data['it_basic']?></div>
                                 <?php } ?>
 
-                                <?php if ($data['it_id'] == '1776008318') { ?>
+                                <?php if ($data['it_id'] == '1776008318') { // 원본 상품 ?>
                                 <div class="goods-countdown-wrap" style="margin:10px 0; padding:6px 10px; background:#fff5f5; border:1px solid #feb2b2; border-radius:4px; display:flex; justify-content:space-between; align-items:center; line-height:1;">
                                     <span style="color:#e53e3e; font-size:12px; font-weight:800; display:flex; align-items:center;"><i class="fas fa-exclamation-triangle" style="margin-right:5px; font-size:11px;"></i> 보장 범위 축소</span>
                                     <div class="countdown-timer" data-time="2026-05-31 23:59:59" style="color:#2d3748; font-size:12px; font-weight:700; display:flex; align-items:center; gap:3px;">
@@ -146,7 +146,20 @@ if (!defined('_EYOOM_')) exit;
                                         <span class="minutes" style="color:#e53e3e; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">분</span>
                                     </div>
                                 </div>
+                                <?php } ?>
 
+                                <?php if ($data['it_id'] == '1778489229') { // 복사본 상품 ?>
+                                <div class="goods-countdown-wrap" style="margin:10px 0; padding:6px 10px; background:#ebf8ff; border:1px solid #90cdf4; border-radius:4px; display:flex; justify-content:space-between; align-items:center; line-height:1;">
+                                    <span style="color:#3182ce; font-size:12px; font-weight:800; display:flex; align-items:center;"><i class="fas fa-gift" style="margin-right:5px; font-size:11px;"></i> 가입 축하 사은품</span>
+                                    <div class="countdown-timer" data-time="2026-05-31 23:59:59" style="color:#2d3748; font-size:12px; font-weight:700; display:flex; align-items:center; gap:3px;">
+                                        <span class="days" style="color:#3182ce; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">일</span>
+                                        <span class="hours" style="color:#3182ce; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">시</span>
+                                        <span class="minutes" style="color:#3182ce; min-width:18px; text-align:center;">00</span><span style="font-size:11px; color:#a0aec0;">분</span>
+                                    </div>
+                                </div>
+                                <?php } ?>
+
+                                <?php if ($data['it_id'] == '1776008318' || $data['it_id'] == '1778489229') { ?>
                                 <a href="<?php echo $data['href']; ?>#sit_use" class="goods-rating" style="display:flex; justify-content:center; align-items:center; gap:1px; margin-top:8px; line-height:1; text-decoration:none !important;">
                                     <div style="color:#ffc107; font-size:14px; display:flex; align-items:center; gap:1px;">
                                         <i class="fas fa-star"></i>
