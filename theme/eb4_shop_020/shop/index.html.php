@@ -387,30 +387,15 @@ if (!defined('_EYOOM_')) exit;
                         color-scheme: light; /* 다크 모드 반전 방지 */
                     }
                     .bodmi-wrapper img { filter: none !important; }
-                    .bodmi-bubble-text {
-                        position: absolute;
-                        top: 28%;
-                        left: 33%;
-                        transform: translate(-50%, -50%);
-                        font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '13.5'; ?>px;
-                        font-weight: 800;
-                        color: <?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#555'; ?>;
 
-                        text-align: center;
-                        width: 50%;
-                        pointer-events: none;
-                        line-height: 1.2;
-                        letter-spacing: -0.5px;
-                        word-break: keep-all;
-                    }
-                    .bodmi-overlay-countdown {
+                    .bodmi-countdown-box {
                         position: absolute;
-                        top: 55%;
+                        top: calc(55% + 17px);
                         left: 5%;
                         width: 90%;
                         pointer-events: none;
                     }
-                    .all-countdown-container {
+                    .bodmi-countdown-container {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
@@ -419,21 +404,21 @@ if (!defined('_EYOOM_')) exit;
                         font-weight: 700;
                         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
                     }
-                    .all-countdown-title {
+                    .bodmi-countdown-title {
                         display: flex;
                         align-items: center;
                         gap: 6px;
                         font-size: 13px;
                     }
-                    .all-countdown-timer {
-                        font-size: 15px;
+                    .bodmi-countdown-timer {
+                        font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '15'; ?>px;
                         letter-spacing: -0.5px;
                     }
 
                     @media (max-width:1024px) {
-                        .bodmi-bubble-text {
-                            font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13.5'; ?>px !important;
-                            color: <?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#555'; ?> !important;
+
+                        .bodmi-countdown-timer {
+                            font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13'; ?>px !important;
                         }
 
                     }
@@ -448,14 +433,14 @@ if (!defined('_EYOOM_')) exit;
                     <div class="m-b-10 bodmi-wrapper">
                         <a href="<?php echo G5_URL; ?>/countdown_counsel.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
-                            <div class="bodmi-bubble-text"><?php echo $bodmi_title; ?></div>
-                            <?php if ($default['de_all_bodmi_use']) { ?>
-                            <div class="bodmi-overlay-countdown">
-                                <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color'] ? $default['de_all_bodmi_bg_color'] : '#fff'; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#007bff'; ?>; color: <?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#007bff'; ?>;">
-                                    <div class="all-countdown-title">
-                                        <i class="fas fa-clock"></i> <?php echo $default['de_all_bodmi_title']; ?>
+
+                            <?php if ($bodmi_use) { ?>
+                            <div class="bodmi-countdown-box">
+                                <div class="bodmi-countdown-container" style="background: #fff; border: 1px solid <?php echo $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] ? $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] : '#007bff'; ?>; color: <?php echo $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] ? $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] : '#007bff'; ?>;">
+                                    <div class="bodmi-countdown-title">
+                                        <i class="fas fa-clock"></i> <?php echo $bodmi_title; ?>
                                     </div>
-                                    <div class="all-countdown-timer" id="bodmi_timer">00일 00시 00분</div>
+                                    <div class="bodmi-countdown-timer" id="bodmi_timer">00일 00시 00분</div>
                                 </div>
                             </div>
                             <?php } ?>
@@ -482,7 +467,8 @@ if (!defined('_EYOOM_')) exit;
 
                     function updateBodmiCountdown() {
                         const targetDateStr = '<?php 
-                            echo $default['de_all_bodmi_target_date'] ? substr($default['de_all_bodmi_target_date'], 0, 10) : '2026-05-01'; 
+                            $target_date = G5_IS_MOBILE ? $default['de_m_bodmi_target_date'] : $default['de_bodmi_target_date'];
+                            echo $target_date ? substr($target_date, 0, 10) : '2026-05-01'; 
                         ?>';
                         const targetDate = new Date(targetDateStr.replace(/-/g, '/') + ' 00:00:00').getTime();
                         const now = new Date().getTime() + serverTimeOffset;

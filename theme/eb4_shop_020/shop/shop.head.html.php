@@ -83,7 +83,7 @@ $is_darkmode = 'yes';
     }
     .all-countdown-timer .unit {
         font-weight: 700;
-        color: #a0aec0 !important;
+        color: <?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#007bff'; ?> !important;
         font-size: 11px;
         margin-right: 4px;
         margin-left: 0;
