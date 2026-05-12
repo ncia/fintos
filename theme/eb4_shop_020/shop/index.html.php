@@ -644,7 +644,7 @@ if (!defined('_EYOOM_')) exit;
     </div>
 </div>
 
-<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0;">
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0; border-top: 1px solid #30363d;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
