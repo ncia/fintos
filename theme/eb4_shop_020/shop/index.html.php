@@ -529,7 +529,7 @@ if (!defined('_EYOOM_')) exit;
 <?php } ?>
 <?php /* ---------- 쇼핑몰 브랜드 끝 ---------- */ ?>
 
-<div class="shop-main-section-basic <?php if ($eyoom['use_brand'] == 'n') { ?>border-top-1<?php } ?> border-bottom--1" style="background:#1a1d21; padding:60px 0;">
+<div class="shop-main-section-basic <?php if ($eyoom['use_brand'] == 'n') { ?>border-top-1<?php } ?> border-bottom--1" style="background:#1a1d21;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
@@ -597,7 +597,7 @@ if (!defined('_EYOOM_')) exit;
     </div>
 </div>
 
-<div class="shop-main-section-basic border-bottom--1" style="background:#1a1d21; padding:60px 0;">
+<div class="shop-main-section-basic border-bottom--1" style="background:#1a1d21;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
