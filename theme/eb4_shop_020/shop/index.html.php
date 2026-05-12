@@ -667,7 +667,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type2_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(2); ?>">👍 <strong>추천 <span>상품</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(2); ?>">🌟 <strong>추천 <span>상품</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(2); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
