@@ -353,19 +353,16 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-star m-r-5 text-orange"></i>최신 상품</a>
+                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><span class="m-r-5">🌟</span>최신 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(4); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-fire m-r-5 text-red"></i>인기 상품</a>
+                                                <a href="<?php echo shop_type_url(4); ?>" class="dropdown-item nav-link"><span class="m-r-5">🔥</span>인기 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(2); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-thumbs-up m-r-5 text-blue"></i>추천 상품</a>
+                                                <a href="<?php echo shop_type_url(2); ?>" class="dropdown-item nav-link"><span class="m-r-5">👍</span>추천 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-bolt m-r-5 text-warning"></i>히트 상품</a>
-                                            </li>
-                                            <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(5); ?>" class="dropdown-item nav-link"><i class="fas fa-fw fa-percent m-r-5 text-success"></i>할인 상품</a>
+                                                <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><span class="m-r-5">⚡</span>히트 상품</a>
                                             </li>
                                         </ul>
                                     </div>
