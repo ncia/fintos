@@ -549,7 +549,7 @@ if (!defined('_EYOOM_')) exit;
     <?php echo eb_slider('1652230190'); ?>
 </div>
 
-<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0;">
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
@@ -644,7 +644,7 @@ if (!defined('_EYOOM_')) exit;
     </div>
 </div>
 
-<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0; border-top: 1px solid #30363d;">
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; border-top: 1px solid #30363d;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
@@ -695,7 +695,7 @@ if (!defined('_EYOOM_')) exit;
 <?php include_once(EYOOM_THEME_SHOP_SKIN_PATH.'/boxevent.skin.html.php'); // 이벤트 ?>
 <?php /* ---------- 이벤트박스 끝 ---------- */ ?>
 
-<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21; padding:60px 0;">
+<div class="shop-main-section-basic border-bottom-1" style="background:#1a1d21;">
     <div class="container">
         <div class="main-section-basic-row">
             <div class="main-section-basic-l">
