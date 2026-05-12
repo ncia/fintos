@@ -203,7 +203,6 @@ $check_sanitize_keys = array(
     'de_bodmi_title',               //말풍선 제목
     'de_bodmi_font_size',           //글자 크기
     'de_bodmi_font_color',          //글자 색상
-    'de_bodmi_bg_color',            //날짜 배경 색상
     'de_bodmi_target_date',         //설정날짜
     'de_all_bodmi_title',           //프로모션 문구
     'de_all_bodmi_font_size',       //글자 크기
@@ -481,8 +480,6 @@ if ($_POST['amode'] == 'ittype') {
                     de_bodmi_title                = '{$de_bodmi_title}',
                     de_bodmi_font_size            = '{$_POST['de_bodmi_font_size']}',
                     de_bodmi_font_color           = '{$_POST['de_bodmi_font_color']}',
-                    de_bodmi_bg_color             = '{$_POST['de_bodmi_bg_color']}',
-                    de_bodmi_timer_font_size      = '{$_POST['de_bodmi_timer_font_size']}',
                     de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "',
 
                     de_all_bodmi_use              = '{$_POST['de_all_bodmi_use']}',

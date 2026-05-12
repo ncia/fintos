@@ -442,35 +442,7 @@ $frm_submit .= $frm_eba_submit;
                                     <input type="text" name="de_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_bodmi_target_date']), 0, 10); ?>" id="de_bodmi_target_date" class="datepicker">
                                 </label>
                             </section>
-                            <section class="m-r-20">
-                                <label for="de_bodmi_timer_font_size" class="label">배경 글자 크기</label>
-                                <label class="select width-100px">
-                                    <select name="de_bodmi_timer_font_size" id="de_bodmi_timer_font_size">
-                                        <?php
-                                        $tfs_arr = array();
-                                        for ($i=8; $i<=40; $i++) $tfs_arr[] = (string)$i;
-                                        $current_tfs = str_replace('px', '', $default['de_bodmi_timer_font_size']);
-                                        if (!$current_tfs) $current_tfs = '16';
-                                        $is_in_tarr = false;
-                                        foreach($tfs_arr as $tfs) {
-                                            $selected = ($current_tfs == $tfs) ? 'selected':'';
-                                            if($selected) $is_in_tarr = true;
-                                            echo "<option value='{$tfs}' {$selected}>{$tfs}</option>";
-                                        }
-                                        if (!$is_in_tarr && $current_tfs) {
-                                            echo "<option value='{$current_tfs}' selected>{$current_tfs}</option>";
-                                        }
-                                        ?>
-                                        <option value="direct">직접입력</option>
-                                    </select><i></i>
-                                </label>
-                            </section>
-                            <section>
-                                <label for="de_bodmi_bg_color" class="label">배경 색상</label>
-                                <label class="input width-60px">
-                                    <input type="color" name="de_bodmi_bg_color" value="<?php echo $default['de_bodmi_bg_color'] ? $default['de_bodmi_bg_color'] : '#000000'; ?>" id="de_bodmi_bg_color" style="padding:2px; height:34px;">
-                                </label>
-                            </section>
+
                         </div>
                         <div class="note"><strong>Note:</strong> 보드미 캐릭터 배너의 말풍선 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
                     </div>
