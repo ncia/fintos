@@ -53,12 +53,12 @@ global $default;
 .ebg-shop020-b:after {content:"";display:block;clear:both}
 .ebg-shop020-b .ebgoods-item-wrap {padding:0}
 .ebg-shop020-b .ebgoods-item {position:relative;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out}
-.ebg-shop020-b .goods-img {position:absolute;top:0;left:0;width:50px;height:50px;margin-bottom:10px;background:#fff}
+.ebg-shop020-b .goods-img {display:none}
 .ebg-shop020-b .goods-img .badge {position:absolute;top:-4px;left:-4px;z-index:1}
 .ebg-shop020-b .goods-img-in {position:relative;overflow:hidden;width:100%}
 .ebg-shop020-b .goods-img-in:before {content:"";display:block;padding-top:100%;background:#fff}
 .ebg-shop020-b .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
-.ebg-shop020-b .goods-description {position:relative;margin-left:60px}
+.ebg-shop020-b .goods-description {position:relative;margin-left:0}
 .ebg-shop020-b .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
 .ebg-shop020-b .goods-description .goods-name {position:relative;overflow:hidden;margin:0 0 5px;font-size:.9375rem;font-weight:700}
 .ebg-shop020-b .goods-description .goods-name a {color:#000}
@@ -104,17 +104,7 @@ global $default;
                 <?php if (count((array)$eb_goods['list']) > 0) { foreach ($eb_goods['list'] as $i => $data) { ?>
                 <div class="ebgoods-item-wrap">
                     <div class="ebgoods-item">
-                        <?php if ($eb_goods['gi_view_img'] == 'y') { ?>
-                        <a href="<?php echo $data['href']; ?>">
-                            <div class="goods-img">
-                                <div class="goods-img-in">
-                                    <?php if($data['it_image']) { ?>
-                                    <?php echo $data['it_image']; ?>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </a>
-                        <?php } ?>
+
 
                         <div class="goods-description">
                             <div class="goods-description-in">
