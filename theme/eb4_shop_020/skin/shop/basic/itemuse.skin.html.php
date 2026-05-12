@@ -56,6 +56,11 @@ if ($config['cf_editor']) {
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-top: 40px;
+    background: #f8fafc;
+    border-radius: 0px;
+    padding: 10px 20px;
+    border: 1px solid #f1f5f9;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
 }
 
 @media (max-width: 1200px) {
