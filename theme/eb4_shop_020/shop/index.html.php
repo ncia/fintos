@@ -572,7 +572,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type1_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(1); ?>"><strong>랜덤 <span>상품</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(1); ?>">🎲 <strong>랜덤 <span>상품</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(1); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
@@ -620,7 +620,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type3_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(3); ?>"><strong>최신 <span>상품</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(3); ?>">✨ <strong>최신 <span>상품</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(3); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
@@ -667,7 +667,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type2_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(2); ?>"><strong>추천 <span>상품</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(2); ?>">👍 <strong>추천 <span>상품</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(2); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
@@ -718,7 +718,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type4_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(4); ?>"><strong>인기 <span>상품</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(4); ?>">🔥 <strong>인기 <span>상품</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(4); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php
