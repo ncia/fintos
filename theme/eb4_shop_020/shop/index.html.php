@@ -403,29 +403,13 @@ if (!defined('_EYOOM_')) exit;
                         letter-spacing: -0.5px;
                         word-break: keep-all;
                     }
-                    .bodmi-countdown-clock {
-                        position: absolute;
-                        top: 55%;
-                        left: 34%;
-                        transform: translate(-50%, 0);
-                        background-color: <?php echo $default['de_bodmi_bg_color'] ? $default['de_bodmi_bg_color'] : '#000'; ?>;
-                        color: #fff;
-                        padding: 4px 10px;
-                        border-radius: 5px;
-                        font-size: <?php echo $default['de_bodmi_timer_font_size'] ? str_replace('px', '', $default['de_bodmi_timer_font_size']) : '16'; ?>px;
-                        font-weight: 800;
-                        pointer-events: none;
-                        white-space: nowrap;
-                    }
+
                     @media (max-width:1024px) {
                         .bodmi-bubble-text {
                             font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13.5'; ?>px !important;
                             color: <?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#555'; ?> !important;
                         }
-                        .bodmi-countdown-clock {
-                            background-color: <?php echo $default['de_m_bodmi_bg_color'] ? $default['de_m_bodmi_bg_color'] : '#000'; ?> !important;
-                            font-size: <?php echo $default['de_m_bodmi_timer_font_size'] ? str_replace('px', '', $default['de_m_bodmi_timer_font_size']) : '16'; ?>px !important;
-                        }
+
                     }
 
                     </style>
@@ -439,7 +423,7 @@ if (!defined('_EYOOM_')) exit;
                         <a href="<?php echo G5_URL; ?>/countdown_counsel.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
                             <div class="bodmi-bubble-text"><?php echo $bodmi_title; ?></div>
-                            <div class="bodmi-countdown-clock" id="bodmi_timer">00일 00시 00분</div>
+
                         </a>
                     </div>
                     <?php } ?>
@@ -455,42 +439,15 @@ if (!defined('_EYOOM_')) exit;
                                 const serverTime = parseInt(data) * 1000;
                                 const clientTime = new Date().getTime();
                                 serverTimeOffset = serverTime - clientTime;
-                                updateBodmiCountdown();
                             }
                         });
                     }
 
-                    function updateBodmiCountdown() {
-                        const targetDateStr = '<?php 
-                            $target_date = G5_IS_MOBILE ? $default['de_m_bodmi_target_date'] : $default['de_bodmi_target_date'];
-                            echo $target_date ? substr($target_date, 0, 10) : '2026-05-01'; 
-                        ?>';
-                        const targetDate = new Date(targetDateStr.replace(/-/g, '/') + ' 00:00:00').getTime();
-                        const now = new Date().getTime() + serverTimeOffset;
-                        const diff = targetDate - now;
 
-                        const timerEl = document.getElementById('bodmi_timer');
-                        if (!timerEl) return;
 
-                        if (diff <= 0) {
-                            timerEl.innerHTML = "D-Day";
-                            return;
-                        }
-
-                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                        
-                        const dStr = days.toString().padStart(2, '0');
-                        const hStr = hours.toString().padStart(2, '0');
-                        const mStr = minutes.toString().padStart(2, '0');
-
-                        timerEl.innerHTML = `${dStr}일 ${hStr}시 ${mStr}분`;
-                    }
 
                     $(document).ready(function() {
                         syncServerTime();
-                        setInterval(updateBodmiCountdown, 1000); // 1초마다 화면 업데이트
                         setInterval(syncServerTime, 1000 * 60); // 1분마다 서버 시간 동기화
                     });
                     </script>
