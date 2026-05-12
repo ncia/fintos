@@ -102,11 +102,9 @@ if (!defined('_EYOOM_')) exit;
                         <?php if ($item['ei_text']) { ?>
                         <p><?php echo stripslashes($item['ei_text']); ?></p>
                         <?php } ?>
-                        <?php /*
                         <?php if($item['ei_end']) { ?>
                         <span class="shop020-countdown" data-countdown="<?php echo date('Y-m-d',strtotime($item['ei_end'])); ?>"></span>
                         <?php } ?>
-                        */ ?>
 
                         <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                         <div class="adm-edit-btn btn-edit-mode" style="top:40px;z-index:3">
@@ -139,7 +137,7 @@ if (!defined('_EYOOM_')) exit;
                             <img src="<?php echo $ebslider_skin_url; ?>/image/01.jpg" alt="">
                         </div>
                         <h3 class="ellipsis">메인 카운트다운 1</h3>
-                        <?php /* <span class="shop020-countdown" data-countdown="2027-03-20"></span> */ ?>
+                        <span class="shop020-countdown" data-countdown="2027-03-20"></span>
                     </div>
                     <div class="swiper-slide">
                         <h2 class="ellipsis">TIME SALE</h2>
@@ -147,7 +145,7 @@ if (!defined('_EYOOM_')) exit;
                             <img src="<?php echo $ebslider_skin_url; ?>/image/02.jpg" alt="">
                         </div>
                         <h3 class="ellipsis">메인 카운트다운 2</h3>
-                        <?php /* <span class="shop020-countdown" data-countdown="2027-08-05"></span> */ ?>
+                        <span class="shop020-countdown" data-countdown="2027-08-05"></span>
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
