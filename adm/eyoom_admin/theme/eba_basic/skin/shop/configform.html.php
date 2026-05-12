@@ -403,9 +403,21 @@ $frm_submit .= $frm_eba_submit;
                             </section>
                             <section class="m-r-20">
                                 <label for="de_bodmi_title" class="label">말풍선 제목</label>
-                                <label class="input width-150px">
-                                    <input type="text" name="de_bodmi_title" value="<?php echo get_sanitize_input($default['de_bodmi_title']); ?>" id="de_bodmi_title">
-                                </label>
+                                <div class="custom-datalist-wrapper">
+                                    <label class="input width-200px">
+                                        <input type="text" name="de_bodmi_title" value="<?php echo get_sanitize_input($default['de_bodmi_title']); ?>" id="de_bodmi_title" autocomplete="off" placeholder="선택하거나 직접 입력">
+                                    </label>
+                                    <div id="pc_title_options" class="custom-datalist">
+                                        <ul>
+                                            <li>보험료 인상 안내</li>
+                                            <li>실손보험 개정 안내</li>
+                                            <li>암보험 보장 강화</li>
+                                            <li>운전자보험 법규 변경</li>
+                                            <li>한시적 가입 혜택</li>
+                                            <li>선착순 무료 상담</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </section>
                             <section class="m-r-20">
                                 <label for="de_bodmi_font_size" class="label">제목 글자 크기</label>
@@ -2519,31 +2531,27 @@ if($default['de_iche_use'] || $default['de_vbank_use'] || $default['de_hp_use'] 
 }
 ?>
 <script>
-function sync_pc_to_mobile() {
-    if (confirm("현재 PC 캐릭터 배너의 설정을 모바일 설정으로 복사하시겠습니까?")) {
-        $("#de_m_bodmi_use").prop("checked", $("#de_bodmi_use").is(":checked"));
-        $("#de_m_bodmi_title").val($("#de_bodmi_title").val());
-        $("#de_m_bodmi_font_size").val($("#de_bodmi_font_size").val());
-        $("#de_m_bodmi_font_color").val($("#de_bodmi_font_color").val());
-        $("#de_m_bodmi_target_date").val($("#de_bodmi_target_date").val());
-        $("#de_m_bodmi_timer_font_size").val($("#de_bodmi_timer_font_size").val());
-        $("#de_m_bodmi_bg_color").val($("#de_bodmi_bg_color").val());
-        alert("복사되었습니다. 적용하기 버튼을 눌러 저장해 주세요.");
-    }
-}
+
 
 $(function() {
     $("#btn_target_date").click(function() {
         $("#de_bodmi_target_date").focus();
     });
-    $("#btn_m_target_date").click(function() {
-        $("#de_m_bodmi_target_date").focus();
-    });
     $("#btn_all_target_date").click(function() {
         $("#de_all_bodmi_target_date").focus();
     });
 
-    // 커스텀 데이터리스트 이벤트
+    // 커스텀 데이터리스트 이벤트 (PC 카운트다운)
+    $("#de_bodmi_title").on("click focus", function() {
+        $("#pc_title_options").fadeIn(200);
+    });
+    $("#pc_title_options li").on("click", function() {
+        var val = $(this).text();
+        $("#de_bodmi_title").val(val);
+        $("#pc_title_options").fadeOut(150);
+    });
+
+    // 커스텀 데이터리스트 이벤트 (보험상품 전체)
     $("#de_all_bodmi_title").on("click focus", function() {
         $("#custom_title_options").fadeIn(200);
     });
@@ -2556,7 +2564,7 @@ $(function() {
 
     $(document).on("click", function(e) {
         if (!$(e.target).closest(".custom-datalist-wrapper").length) {
-            $("#custom_title_options").fadeOut(150);
+            $(".custom-datalist").fadeOut(150);
         }
     });
 });
