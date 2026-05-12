@@ -406,9 +406,8 @@ if (!defined('_EYOOM_')) exit;
                     .bodmi-overlay-countdown {
                         position: absolute;
                         top: 55%;
-                        left: 34%;
-                        transform: translate(-50%, 0);
-                        width: 55%;
+                        left: 5%;
+                        width: 90%;
                         pointer-events: none;
                     }
                     .all-countdown-container {
