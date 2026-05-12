@@ -53,12 +53,12 @@ global $default;
 .ebg-shop020-b:after {content:"";display:block;clear:both}
 .ebg-shop020-b .ebgoods-item-wrap {padding:0}
 .ebg-shop020-b .ebgoods-item {position:relative;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out}
-.ebg-shop020-b .goods-img {position:absolute;top:0;left:0;width:50px;height:50px;margin-bottom:10px;background:#fff}
+.ebg-shop020-b .goods-img {display:none}
 .ebg-shop020-b .goods-img .badge {position:absolute;top:-4px;left:-4px;z-index:1}
 .ebg-shop020-b .goods-img-in {position:relative;overflow:hidden;width:100%}
 .ebg-shop020-b .goods-img-in:before {content:"";display:block;padding-top:100%;background:#fff}
 .ebg-shop020-b .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
-.ebg-shop020-b .goods-description {position:relative;margin-left:60px}
+.ebg-shop020-b .goods-description {position:relative;margin-left:0}
 .ebg-shop020-b .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
 .ebg-shop020-b .goods-description .goods-name {position:relative;overflow:hidden;margin:0 0 5px;font-size:.9375rem;font-weight:700}
 .ebg-shop020-b .goods-description .goods-name a {color:#000}
@@ -104,33 +104,23 @@ global $default;
                 <?php if (count((array)$eb_goods['list']) > 0) { foreach ($eb_goods['list'] as $i => $data) { ?>
                 <div class="ebgoods-item-wrap">
                     <div class="ebgoods-item">
-                        <?php if ($eb_goods['gi_view_img'] == 'y') { ?>
-                        <a href="<?php echo $data['href']; ?>">
-                            <div class="goods-img">
-                                <div class="goods-img-in">
-                                    <?php if($data['it_image']) { ?>
-                                    <?php echo $data['it_image']; ?>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </a>
-                        <?php } ?>
+
 
                         <div class="goods-description">
                             <div class="goods-description-in">
-                                <h4 class="goods-name ellipsis">
+                                <h4 class="goods-name">
                                     <span class="<?php if($i==0) { ?>text-crimson<?php } else { ?>text-gray<?php } ?>"><?php echo ($i+1); ?>.</span>
-                                    <a href="<?php echo $data['href']; ?>">
+                                    <a href="<?php echo $data['href']; ?>" style="font-size: 1.05rem; line-height: 1.5;">
                                         <?php echo $data['it_name']?>
                                     </a>
                                 </h4>
 
                                 <?php if ($default['de_all_bodmi_use']) { ?>
-                                <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 3px 8px; font-size: 11px; margin: 5px 0; border-radius: 4px; display: inline-flex;">
-                                    <div class="all-countdown-title" style="gap: 4px;">
-                                        <i class="fas fa-gift" style="font-size: 10px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
+                                <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 6px 12px; font-size: 13px; margin: 8px 0 15px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; width: 100%; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                                    <div class="all-countdown-title" style="display: flex; align-items: center; gap: 6px; font-weight: 700;">
+                                        <i class="fas fa-gift" style="font-size: 12px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
                                     </div>
-                                    <div class="all-countdown-timer">
+                                    <div class="all-countdown-timer" style="font-weight: 800; font-family: 'Pretendard', sans-serif;">
                                         <!-- JS -->
                                     </div>
                                 </div>
