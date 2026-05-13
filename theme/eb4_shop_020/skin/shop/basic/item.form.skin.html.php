@@ -76,9 +76,9 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
             if ($br['br_code']) {
                 $br_cd = $br['br_code'];
                 if ($br['br_img']) {
-                    $br['img_url'] = G5_DATA_URL.'/brand/'.$br['br_img'];
+                    $br['img_url'] = G5_DATA_URL.'/brand/square_logo/'.$br['br_img'];
                 } else {
-                    $br['img_url'] = G5_URL.'/data/brand/'.rawurlencode($br['br_name']).'.png';
+                    $br['img_url'] = G5_URL.'/data/brand/square_logo/'.rawurlencode($br['br_name']).'.png';
                 }
                 
                 // 브랜드 상세 스킨 (shop/basic/brand.skin.html.php) 인클루드

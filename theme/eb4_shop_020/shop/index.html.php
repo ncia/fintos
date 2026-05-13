@@ -403,16 +403,22 @@ if (!defined('_EYOOM_')) exit;
                         border-radius: 6px;
                         font-weight: 700;
                         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                        min-height: 32px;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
                     }
                     .bodmi-countdown-title {
                         display: flex;
                         align-items: center;
                         gap: 6px;
                         font-size: 13px;
+                        white-space: nowrap;
                     }
                     .bodmi-countdown-timer {
                         font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '15'; ?>px;
                         letter-spacing: -0.5px;
+                        font-variant-numeric: tabular-nums;
+                        white-space: nowrap;
                     }
 
                     @media (max-width:1024px) {
@@ -675,7 +681,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type2_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(2); ?>">🌟 <strong>추천 상품 <span>보기</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(2); ?>">💝 <strong>추천 상품 <span>보기</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(2); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php

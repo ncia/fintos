@@ -330,7 +330,7 @@ $item_view = 'zoom';
                                     </div>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">💝</span>보험 케어</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">💖</span>보험 케어</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -391,26 +391,26 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/pharmacy_info.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-pills m-r-5 text-pink"></i>약국 정보 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/pharmacy_info.php" class="dropdown-item nav-link"><span class="m-r-5">💊</span>약국 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/hospital_info.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-hospital m-r-5 text-warning"></i>병원 정보 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/hospital_info.php" class="dropdown-item nav-link"><span class="m-r-5">🏥</span>병원 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/disease_code.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-search m-r-5 text-primary"></i>상병 코드 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/disease_code.php" class="dropdown-item nav-link"><span class="m-r-5">📖</span>상병 코드 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/getPharmacyMdfeeList.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-invoice-dollar m-r-5 text-info"></i>수가 정보 조회</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/getPharmacyMdfeeList.php" class="dropdown-item nav-link"><span class="m-r-5">💵</span>수가 정보 조회</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/surgery_1_3_1_5_search.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-search-plus m-r-5 text-success"></i>종 수술명 검색</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/surgery_1_3_1_5_search.php" class="dropdown-item nav-link"><span class="m-r-5">🔬</span>종 수술명 검색</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/insurance_check.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-clipboard-list m-r-5 text-success"></i>보험 통합 조회</a>
+                                                <a href="<?php echo G5_URL; ?>/insurance_check.php" class="dropdown-item nav-link"><span class="m-r-5">📋</span>보험 통합 조회</a>
                                             </li>
 
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL; ?>/NonPaymentItemHospList2.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-hand-holding-usd m-r-5 text-danger"></i>병원 비급여 항목</a>
+                                                <a href="<?php echo G5_SHOP_URL; ?>/NonPaymentItemHospList2.php" class="dropdown-item nav-link"><span class="m-r-5">💰</span>병원 비급여 항목</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -422,39 +422,39 @@ $item_view = 'zoom';
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_info" class="dropdown-item nav-link"><i class="fas fa-fw fa-info-circle m-r-5 text-info"></i>VIP 서비스 안내</a>
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_info" class="dropdown-item nav-link"><span class="m-r-5">💎</span>VIP 서비스 안내</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=vip_consult" class="dropdown-item nav-link"><i class="fas fa-fw fa-user-md m-r-5 text-success"></i>의료 지원 서비스</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=vip_consult" class="dropdown-item nav-link"><span class="m-r-5">🩺</span>의료 지원 서비스</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_benefit" class="dropdown-item nav-link"><i class="fas fa-fw fa-gavel m-r-5 text-primary"></i>법률 지원 서비스</a>
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=vip_benefit" class="dropdown-item nav-link"><span class="m-r-5">⚖️</span>법률 지원 서비스</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=tax_consult" class="dropdown-item nav-link"><i class="fas fa-fw fa-file-invoice-dollar m-r-5 text-danger"></i>세무 지원 서비스</a>
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=tax_consult" class="dropdown-item nav-link"><span class="m-r-5">🧾</span>세무 지원 서비스</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=dispute_support" class="dropdown-item nav-link"><i class="fas fa-fw fa-balance-scale m-r-5 text-secondary"></i>분쟁 지원 서비스</a>
+                                                <a href="<?php echo G5_URL; ?>/shop/content.php?co_id=dispute_support" class="dropdown-item nav-link"><span class="m-r-5">🤝</span>분쟁 지원 서비스</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">🎧</span>고객지원</a>
+                                    <a href="#" class="dropdown-toggle nav-link"><span class="m-r-5">🔔</span>고객지원</a>
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice" class="dropdown-item nav-link"><i class="fas fa-fw fa-bell m-r-5 text-info"></i>공지사항</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=notice" class="dropdown-item nav-link"><span class="m-r-5">📢</span>공지사항</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/qalist.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-comment-dots m-r-5 text-success"></i>1:1문의</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/qalist.php" class="dropdown-item nav-link"><span class="m-r-5">💬</span>1:1문의</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><i class="fas fa-fw fa-question-circle m-r-5 text-warning"></i>FAQ</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/faq.php" class="dropdown-item nav-link"><span class="m-r-5">❓</span>FAQ</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=event" class="dropdown-item nav-link"><i class="fas fa-fw fa-gift m-r-5 text-pink"></i>이벤트</a>
+                                                <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=event" class="dropdown-item nav-link"><span class="m-r-5">🎁</span>이벤트</a>
                                             </li>
                                         </ul>
                                     </div>

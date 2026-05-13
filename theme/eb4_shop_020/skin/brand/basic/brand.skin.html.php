@@ -114,7 +114,7 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
 <?php if ($br['br_name']) { ?>
 <div class="brand-hero">
     <div class="hero-logo-box">
-        <img src="<?php echo $br['img_url']?>" alt="<?php echo $br['br_name']; ?>" onerror="this.src='<?php echo G5_URL; ?>/data/brand/<?php echo rawurlencode($br['br_name']); ?>.png';">
+        <img src="<?php echo $br['img_url']?>" alt="<?php echo $br['br_name']; ?>" onerror="this.src='<?php echo G5_URL; ?>/data/brand/square_logo/<?php echo rawurlencode($br['br_name']); ?>.png';">
     </div>
     <h2 class="hero-title"><?php echo $br['br_name']; ?></h2>
 </div>
@@ -128,7 +128,7 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
                 <a href="<?php echo G5_SHOP_URL; ?>/brand.php?br_cd=<?php echo urlencode($list[$i]['br_code']); ?>">
                     <div class="category-title ellipsis"><?php echo $list[$i]['br_name']; ?></div>
                     <div class="category-img">
-                        <img src="<?php echo $list[$i]['img_url']?>" class="img-fluid" alt="<?php echo $list[$i]['br_name']; ?>" onerror="this.src='<?php echo G5_URL; ?>/data/brand/<?php echo rawurlencode($list[$i]['br_name']); ?>.png'; this.onerror=function(){this.style.display='none'};">
+                        <img src="<?php echo $list[$i]['img_url']?>" class="img-fluid" alt="<?php echo $list[$i]['br_name']; ?>" onerror="this.src='<?php echo G5_URL; ?>/data/brand/square_logo/<?php echo rawurlencode($list[$i]['br_name']); ?>.png'; this.onerror=function(){this.style.display='none'};">
                     </div>
                 </a>
             </div>

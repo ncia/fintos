@@ -59,8 +59,8 @@ global $default;
 .ebg-shop020-b .goods-img-in:before {content:"";display:block;padding-top:100%;background:#fff}
 .ebg-shop020-b .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-b .goods-description {position:relative;margin-left:0}
-.ebg-shop020-b .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
-.ebg-shop020-b .goods-description .goods-name {position:relative;overflow:hidden;margin:0 0 5px;font-size:.9375rem;font-weight:700}
+.ebg-shop020-b .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 4px}
+.ebg-shop020-b .goods-description .goods-name {position:relative;overflow:hidden;margin:0;font-size:.9rem;font-weight:500}
 .ebg-shop020-b .goods-description .goods-name a {color:#000}
 .ebg-shop020-b .goods-description .goods-name a:hover {text-decoration:underline}
 .ebg-shop020-b .goods-description .title-price {font-size:.9375rem;color:#ab0000;margin-right:7px}
@@ -108,6 +108,7 @@ global $default;
 
                         <div class="goods-description">
                             <div class="goods-description-in">
+
                                 <h4 class="goods-name ellipsis">
                                     <span class="<?php if($i==0) { ?>text-crimson<?php } else { ?>text-gray<?php } ?>"><?php echo ($i+1); ?>.</span>
                                     <a href="<?php echo $data['href']; ?>">

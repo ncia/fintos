@@ -77,6 +77,17 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
                 </div>
 
                 <div class="goods-description">
+                    <?php
+                    // 브랜드 와이드 로고 가져오기
+                    if ($list[$i]['it_brand']) {
+                        $br_info = sql_fetch("select br_code, br_img_wide from {$g5['eyoom_brand']} where br_name = '".sql_real_escape_string($list[$i]['it_brand'])."'");
+                        if ($br_info['br_img_wide']) {
+                            $br_img_wide_url = G5_DATA_URL.'/brand/wide_logo/'.$br_info['br_img_wide'];
+                            $br_href = G5_SHOP_URL.'/brand.php?br_cd='.urlencode($br_info['br_code']);
+                            echo '<div style="text-align:center; margin-top:5px;"><a href="'.$br_href.'"><img src="'.$br_img_wide_url.'" style="height:20px; width:auto;"></a></div>';
+                        }
+                    }
+                    ?>
                     <h4 class="goods-name">
                         <a href="<?php echo $it_href; ?>"><?php echo $it_name; ?></a>
                     </h4>
