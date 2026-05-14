@@ -37,7 +37,7 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     <div class="shop-item-title-v2" style="background: #0d1116; padding: 0px 0 10px; border-bottom: none;">
         <div class="container" style="max-width: 1290px; padding: 0; border-bottom: 1px solid #1a202c; padding-bottom: 50px; margin: 0 auto 10px;">
             <h2 style="color: #fff; font-size: 24px; font-weight: 600; margin: 0 0 0 10px; display: flex; align-items: center; line-height: 1.2;">
-                <i class="fas fa-pills" style="color: #f43f5e; margin-right: 15px;"></i><strong>상품 상세</strong>&nbsp;<span style="color: #94a3b8; font-weight: 400;">정보</span>
+                <i class="fas fa-info-circle" style="color: #f43f5e; margin-right: 15px;"></i><strong>상품 상세</strong>&nbsp;<span style="color: #94a3b8; font-weight: 400;">정보</span>
             </h2>
         </div>
     </div>

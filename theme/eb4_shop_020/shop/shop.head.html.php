@@ -551,10 +551,10 @@ $is_darkmode = 'yes';
                                 </li>
                                 <li class="nav-social-btns" style="display: flex; align-items: center; gap: 5px; padding-left: 5px; margin-right: 15px;">
                                     <a href="https://blog.naver.com/fintos" target="_blank" style="padding: 0; line-height: 1; display: flex;">
-                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/naver_blog_icon.png" width="28" height="28" style="border-radius: 50px; vertical-align: middle;" title="">
                                     </a>
                                     <a href="http://pf.kakao.com/_YOUR_KAKAO_ID" target="_blank" style="padding: 0; line-height: 1; display: flex;">
-                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="28" height="28" style="border-radius: 4px; vertical-align: middle;">
+                                        <img src="<?php echo EYOOM_THEME_URL; ?>/image/main/kakao_icon.png" width="28" height="28" style="border-radius: 50px; vertical-align: middle;" title="">
                                     </a>
                                 </li>
                                 <?php if ($is_darkmode == 'yes') { ?>
