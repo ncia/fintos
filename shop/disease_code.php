@@ -42,19 +42,12 @@ include_once(G5_PATH.'/head.php');
 
 <script>
 $(document).ready(function() {
-    let diseaseSearchTimer = null;
-
     function searchDiseaseCode(page = 1) {
         const searchText = $('#diseaseSearchText').val().trim();
         if (!searchText) {
             $('#diseaseResultArea').html('<div class="text-center py-5 my-5"><i class="fas fa-info-circle fa-4x text-light mb-4"></i><h5 class="fw-bold text-dark">검색어를 입력해 주세요.</h5></div>');
             $('#diseasePagination').empty();
             return;
-        }
-
-        let diseaseType = 'SICK_NM';
-        if (/^[a-zA-Z]/.test(searchText)) {
-            diseaseType = 'SICK_CD';
         }
 
         $('#diseaseResultArea').html('<div class="text-center py-5 my-5"><div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"><span class="visually-hidden">Loading...</span></div><p class="m-t-20 text-muted f-s-15">상병 코드를 조회 중입니다...</p></div>');
@@ -64,12 +57,9 @@ $(document).ready(function() {
             type: 'GET',
             cache: false,
             data: {
-                diseaseType: diseaseType,
                 searchText: searchText,
                 pageNo: page,
-                numOfRows: 20,
-                sickType: '1',
-                medTp: '1'
+                numOfRows: 20
             },
             dataType: 'json',
             success: function(res) {
@@ -85,12 +75,7 @@ $(document).ready(function() {
         let totalCount = 0;
         let itemsData = null;
 
-        if (res && res.response && res.response.body) {
-            totalCount = parseInt(res.response.body.totalCount || 0);
-            if (res.response.body.items) {
-                itemsData = res.response.body.items.item;
-            }
-        } else if (res && res.body) {
+        if (res && res.body) {
             totalCount = parseInt(res.body.totalCount || 0);
             if (res.body.items) {
                 itemsData = res.body.items.item;
@@ -110,9 +95,9 @@ $(document).ready(function() {
         html += '<tbody class="f-s-16">';
         
         items.forEach(function(item) {
-            const sickCd = typeof item.sickCd === 'object' ? '' : (item.sickCd || '');
-            const sickNm = typeof item.sickNm === 'object' ? '' : (item.sickNm || '');
-            const sickEnm = typeof item.sickEngNm === 'object' ? '' : (item.sickEngNm || '');
+            const sickCd = item.sickCd || '';
+            const sickNm = item.sickNm || '';
+            const sickEnm = item.sickEngNm || '';
 
             html += '<tr>';
             html += '<td class="text-center fw-bold text-primary font-monospace">' + sickCd + '</td>';
