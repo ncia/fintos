@@ -54,7 +54,7 @@ $is_darkmode = 'yes';
         justify-content: space-between;
         padding: 6px 12px;
         border-radius: 4px;
-        font-weight: 800;
+        font-weight: <?php echo $default['de_all_bodmi_font_weight'] ? $default['de_all_bodmi_font_weight'] : '800'; ?>;
         font-size: 13px;
         margin: 10px 0;
         line-height: 1;
@@ -64,9 +64,10 @@ $is_darkmode = 'yes';
         display: flex;
         align-items: center;
         gap: 5px;
-        font-weight: 800;
+        font-weight: <?php echo $default['de_all_bodmi_font_weight'] ? $default['de_all_bodmi_font_weight'] : '800'; ?>;
         white-space: nowrap;
     }
+    .bodmi-countdown-title { font-weight: 700; }
     .all-countdown-timer {
         display: flex;
         align-items: center;

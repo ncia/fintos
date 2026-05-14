@@ -401,7 +401,7 @@ if (!defined('_EYOOM_')) exit;
                         align-items: center;
                         padding: 4px 10px;
                         border-radius: 6px;
-                        font-weight: 700;
+                        font-weight: <?php echo $default['de_bodmi_font_weight'] ? $default['de_bodmi_font_weight'] : '700'; ?>;
                         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
                         min-height: 32px;
                         -webkit-font-smoothing: antialiased;

@@ -210,6 +210,8 @@ $check_sanitize_keys = array(
     'de_all_bodmi_bg_color',        //배경 색상
     'de_all_bodmi_timer_font_size', //배경 글자 크기
     'de_all_bodmi_target_date',     //설정날짜
+    'de_bodmi_font_weight',         //PC 글자 두께
+    'de_all_bodmi_font_weight',     //전체 글자 두께
 );
 
 foreach( $check_sanitize_keys as $key ){
@@ -480,6 +482,7 @@ if ($_POST['amode'] == 'ittype') {
                     de_bodmi_title                = '{$de_bodmi_title}',
                     de_bodmi_font_size            = '{$_POST['de_bodmi_font_size']}',
                     de_bodmi_font_color           = '{$_POST['de_bodmi_font_color']}',
+                    de_bodmi_font_weight          = '{$de_bodmi_font_weight}',
                     de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "',
 
                     de_all_bodmi_use              = '{$_POST['de_all_bodmi_use']}',
@@ -487,6 +490,7 @@ if ($_POST['amode'] == 'ittype') {
                     de_all_bodmi_font_size        = '{$_POST['de_all_bodmi_font_size']}',
                     de_all_bodmi_font_color       = '{$_POST['de_all_bodmi_font_color']}',
                     de_all_bodmi_bg_color         = '{$_POST['de_all_bodmi_bg_color']}',
+                    de_all_bodmi_font_weight      = '{$de_all_bodmi_font_weight}',
                     de_all_bodmi_timer_font_size  = '{$_POST['de_all_bodmi_timer_font_size']}',
                     de_all_bodmi_target_date      = '" . substr($_POST['de_all_bodmi_target_date'], 0, 10) . "'
                     ";

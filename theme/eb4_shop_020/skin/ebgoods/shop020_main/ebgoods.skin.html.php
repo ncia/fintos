@@ -184,7 +184,8 @@ global $default;
                                 </a>
                                 <?php } ?>
 
-                                <div class="goods-share" style="display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:8px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
+                                <div class="goods-share" style="display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:5px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
+                                    <a href="javascript:void(0);" title="공유"><img src="<?php echo G5_URL; ?>/data/icon/share_icon.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                     <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                     <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:30px; height:30px; border-radius:4px;"></a>
                                     <a href="https://share.naver.com/share?url=<?php echo $data['sns_url']; ?>&title=<?php echo $data['sns_title']; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png" style="width:30px; height:30px; border-radius:4px;"></a>

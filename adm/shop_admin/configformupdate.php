@@ -255,6 +255,8 @@ $check_sanitize_keys = array(
 'cf_icode_server_ip',           // 아이코드 ip
 'cf_icode_server_port',         // 아이코드 port
 'cf_icode_token_key',           // 아이코드 토큰키 (JSON버전)
+'de_bodmi_font_weight',      //글자 두께
+'de_all_bodmi_font_weight',  //글자 두께
 );
 
 foreach( $check_sanitize_keys as $key ){
@@ -462,6 +464,7 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_bodmi_use                  = '{$de_bodmi_use}',
                 de_bodmi_title                = '{$de_bodmi_title}',
                 de_bodmi_font_size            = '{$_POST['de_bodmi_font_size']}',
+                de_bodmi_font_weight          = '{$de_bodmi_font_weight}',
                 de_bodmi_font_color           = '{$_POST['de_bodmi_font_color']}',
                 de_bodmi_bg_color             = '{$_POST['de_bodmi_bg_color']}',
                 de_bodmi_timer_font_size      = '{$_POST['de_bodmi_timer_font_size']}',
@@ -476,6 +479,7 @@ $sql = " update {$g5['g5_shop_default_table']}
                 de_all_bodmi_use              = '{$_POST['de_all_bodmi_use']}',
                 de_all_bodmi_title            = '{$de_all_bodmi_title}',
                 de_all_bodmi_font_size        = '{$_POST['de_all_bodmi_font_size']}',
+                de_all_bodmi_font_weight      = '{$de_all_bodmi_font_weight}',
                 de_all_bodmi_font_color       = '{$_POST['de_all_bodmi_font_color']}',
                 de_all_bodmi_bg_color         = '{$_POST['de_all_bodmi_bg_color']}',
                 de_all_bodmi_timer_font_size  = '{$_POST['de_all_bodmi_timer_font_size']}',

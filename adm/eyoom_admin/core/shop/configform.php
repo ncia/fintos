@@ -230,6 +230,16 @@ if( ! isset($config['cf_toss_client_key']) ){
     sql_query($sql, false);
 }
 
+// 카운트다운 글자 두께 필드 추가
+if(!isset($default['de_bodmi_font_weight'])) {
+    sql_query(" ALTER TABLE `{$g5['g5_shop_default_table']}`
+                    ADD `de_bodmi_font_weight` varchar(10) NOT NULL DEFAULT '' AFTER `de_bodmi_font_size` ", true);
+}
+if(!isset($default['de_all_bodmi_font_weight'])) {
+    sql_query(" ALTER TABLE `{$g5['g5_shop_default_table']}`
+                    ADD `de_all_bodmi_font_weight` varchar(10) NOT NULL DEFAULT '' AFTER `de_all_bodmi_font_size` ", true);
+}
+
 if( function_exists('pg_setting_check') ){
     pg_setting_check(true);
 }

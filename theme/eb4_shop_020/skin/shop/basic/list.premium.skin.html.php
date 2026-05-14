@@ -36,7 +36,7 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
 .premium-product-list .all-countdown-container {display: flex; justify-content: space-between; align-items: center; width: 100%;}
 
 /* SNS Share */
-.premium-product-list .goods-share {display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:8px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);}
+.premium-product-list .goods-share {display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:5px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);}
 
 @media (max-width:1199px) {
     .premium-product-list .item-list-wrap {width:50%;}
@@ -122,6 +122,7 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
                     </a>
 
                     <div class="goods-share">
+                        <a href="javascript:void(0);" title="공유"><img src="<?php echo G5_URL; ?>/data/icon/share_icon.png" style="width:30px; height:30px; border-radius:4px;"></a>
                         <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:30px; height:30px; border-radius:4px;"></a>
                         <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:30px; height:30px; border-radius:4px;"></a>
                         <a href="https://share.naver.com/share?url=<?php echo $data_sns_url; ?>&title=<?php echo $data_sns_title; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png" style="width:30px; height:30px; border-radius:4px;"></a>

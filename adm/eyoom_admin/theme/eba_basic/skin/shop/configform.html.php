@@ -442,6 +442,20 @@ $frm_submit .= $frm_eba_submit;
                                 </label>
                             </section>
                             <section class="m-r-20">
+                                <label for="de_bodmi_font_weight" class="label">글자 두께</label>
+                                <label class="select width-120px">
+                                    <select name="de_bodmi_font_weight" id="de_bodmi_font_weight">
+                                        <option value="">두께선택</option>
+                                        <?php
+                                        for ($i=100; $i<=900; $i+=100) {
+                                            $selected = ($default['de_bodmi_font_weight'] == $i) ? 'selected':'';
+                                            echo "<option value='{$i}' {$selected}>{$i}</option>";
+                                        }
+                                        ?>
+                                    </select><i></i>
+                                </label>
+                            </section>
+                            <section class="m-r-20">
                                 <label for="de_bodmi_font_color" class="label">글자 색상</label>
                                 <label class="input width-60px">
                                     <input type="color" name="de_bodmi_font_color" value="<?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#000000'; ?>" id="de_bodmi_font_color" style="padding:2px; height:34px;">
@@ -511,6 +525,20 @@ $frm_submit .= $frm_eba_submit;
                                         }
                                         ?>
                                         <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </section>
+                            <section class="m-r-20">
+                                <label for="de_all_bodmi_font_weight" class="label">글자 두께</label>
+                                <label class="select width-120px">
+                                    <select name="de_all_bodmi_font_weight" id="de_all_bodmi_font_weight">
+                                        <option value="">두께선택</option>
+                                        <?php
+                                        for ($i=100; $i<=900; $i+=100) {
+                                            $selected = ($default['de_all_bodmi_font_weight'] == $i) ? 'selected':'';
+                                            echo "<option value='{$i}' {$selected}>{$i}</option>";
+                                        }
+                                        ?>
                                     </select><i></i>
                                 </label>
                             </section>

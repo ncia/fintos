@@ -53,7 +53,7 @@ $(document).ready(function() {
         $('#diseaseResultArea').html('<div class="text-center py-5 my-5"><div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"><span class="visually-hidden">Loading...</span></div><p class="m-t-20 text-muted f-s-15">상병 코드를 조회 중입니다...</p></div>');
 
         $.ajax({
-            url: '<?php echo G5_SHOP_URL; ?>/disease_api.php',
+            url: './disease_api.php',
             type: 'GET',
             cache: false,
             data: {
