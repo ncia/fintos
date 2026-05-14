@@ -93,7 +93,7 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
         <?php } ?>
         <div class="adm-form-tr">
             <div class="adm-form-td td-l">
-                <label for="br_img" class="label">브랜드 이미지</label>
+                <label for="br_img" class="label">브랜드 이미지 (스퀘어)</label>
             </div>
             <div class="adm-form-td td-r">
                 <div class="input">
@@ -101,8 +101,28 @@ $g5_page_path = '<li class="breadcrumb-item"><a href="'.correct_goto_url(G5_ADMI
                 </div>
                 <?php if ($br['img_url']) { ?>
                 <label for="del_br_img" class="checkbox"><input type="checkbox" id="del_br_img" name="del_br_img" value="1"><i></i> [<?php echo $br['br_img']; ?>] 삭제</label>
+                <div class="m-t-10">
+                    <img src="<?php echo $br['img_url']; ?>" width="100" class="img-fluid">
+                </div>
                 <?php } ?>
-                <div class="note"><strong>Note:</strong> 브랜드 대표 이미지를 등록해 주세요.</div>
+                <div class="note"><strong>Note:</strong> 브랜드 대표 이미지(정사각형 권장)를 등록해 주세요.</div>
+            </div>
+        </div>
+        <div class="adm-form-tr">
+            <div class="adm-form-td td-l">
+                <label for="br_img_wide" class="label">브랜드 이미지 (와이드)</label>
+            </div>
+            <div class="adm-form-td td-r">
+                <div class="input">
+                    <input type="file" class="form-control" id="br_img_wide" name="br_img_wide" value="파일선택">
+                </div>
+                <?php if ($br['img_wide_url']) { ?>
+                <label for="del_br_img_wide" class="checkbox"><input type="checkbox" id="del_br_img_wide" name="del_br_img_wide" value="1"><i></i> [<?php echo $br['br_img_wide']; ?>] 삭제</label>
+                <div class="m-t-10">
+                    <img src="<?php echo $br['img_wide_url']; ?>" width="200" class="img-fluid">
+                </div>
+                <?php } ?>
+                <div class="note"><strong>Note:</strong> 가로형 브랜드 이미지를 등록해 주세요.</div>
             </div>
         </div>
     </div>

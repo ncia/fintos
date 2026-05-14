@@ -45,9 +45,14 @@ if ($_POST['act_button'] == "선택수정") {
         $br_no = $_POST['br_no'][$k];
 
         $row = sql_fetch("select * from {$g5['eyoom_brand']} where br_no = '{$br_no}' ");
-        $br_logofile = G5_DATA_PATH.'/brand/'.$row['br_img'];
-        if (file_exists($br_logofile) && !is_dir($br_logofile)) {
-            unlink($br_logofile);
+        $br_imgfile = G5_DATA_PATH.'/brand/square_logo/'.$row['br_img'];
+        if ($row['br_img'] && file_exists($br_imgfile) && !is_dir($br_imgfile)) {
+            unlink($br_imgfile);
+        }
+
+        $br_img_widefile = G5_DATA_PATH.'/brand/wide_logo/'.$row['br_img_wide'];
+        if ($row['br_img_wide'] && file_exists($br_img_widefile) && !is_dir($br_img_widefile)) {
+            unlink($br_img_widefile);
         }
         
         // 브랜드 정보 삭제

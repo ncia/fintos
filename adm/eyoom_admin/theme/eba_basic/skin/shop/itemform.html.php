@@ -297,13 +297,10 @@ $brand_logos_json = json_encode($brand_logos);
                         <label for="it_brand_logo" class="label">보험회사 로고</label>
                     </div>
                     <div class="adm-form-td td-r td-rs">
-                        <label class="input">
-                            <input type="text" name="it_brand_logo" value="<?php echo get_text($it['it_brand_logo']); ?>" id="it_brand_logo">
-                        </label>
-                        <div id="it_brand_logo_preview" class="m-t-10" style="display: <?php echo $it['it_brand_logo'] ? 'block': 'none'; ?>;">
-                            <img src="<?php echo $it['it_brand_logo']; ?>" style="max-width: 300px; height: auto; border: 1px solid #ddd; padding: 5px; background: #fff;">
+                        <input type="hidden" name="it_brand_logo" value="<?php echo get_text($it['it_brand_logo']); ?>" id="it_brand_logo">
+                        <div id="it_brand_logo_preview" style="display: <?php echo $it['it_brand_logo'] ? 'block': 'none'; ?>;">
+                            <img src="<?php echo $it['it_brand_logo']; ?>" style="height: 60px; width: auto; border: 1px solid #ddd; padding: 5px; background: #fff;">
                         </div>
-                        <div class="note"><strong>Note:</strong> 보험회사 로고 이미지 경로(URL)를 입력해 주세요.</div>
                         <div class="adm-form-td-rs">
                             <div class="inline-group">
                                 <label for="chk_ca_it_brand_logo" class="checkbox"><input type="checkbox" name="chk_ca_it_brand_logo" value="1" id="chk_ca_it_brand_logo"><i></i>분류적용</label>
@@ -313,15 +310,21 @@ $brand_logos_json = json_encode($brand_logos);
                     </div>
                 </div>
 
-                <div class="adm-form-tr">
+                <div class="adm-form-tr adm-sm-100">
                     <div class="adm-form-td td-l">
                         <label for="it_name" class="label">상품명</label>
                     </div>
-                    <div class="adm-form-td td-r">
+                    <div class="adm-form-td td-r td-rs">
                         <label class="input">
                             <input type="text" name="it_name" value="<?php echo get_text(cut_str($it['it_name'], 250, "")); ?>" id="it_name" required>
                         </label>
                         <div class="note"><strong>Note:</strong> HTML 입력이 불가합니다.</div>
+                        <div class="adm-form-td-rs">
+                            <div class="inline-group">
+                                <label for="chk_ca_it_name" class="checkbox"><input type="checkbox" name="chk_ca_it_name" value="1" id="chk_ca_it_name"><i></i>분류적용</label>
+                                <label for="chk_all_it_name" class="checkbox"><input type="checkbox" name="chk_all_it_name" value="1" id="chk_all_it_name"><i></i>전체적용</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="adm-form-tr adm-sm-100">
@@ -2138,5 +2141,10 @@ $(function() {
             $('#it_brand_logo_preview').hide();
         }
     });
+
+    // 페이지 로드 시 이미 선택된 브랜드가 있다면 로고 표시
+    if ($('#it_brand').val()) {
+        $('#it_brand').trigger('change');
+    }
 });
 </script>

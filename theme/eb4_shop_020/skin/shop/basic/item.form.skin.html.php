@@ -33,27 +33,16 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     </div>
     <?php }?>
 
-    <?php /* 상품명을 강조하는 상단 프리미엄 헤더 블록 */ ?>
-    <div class="shop-item-title-block" style="background: #0d1116; padding: 25px 0; margin-bottom: 0; border-bottom: 1px solid #1a202c;">
-        <div class="container" style="max-width: 100%; padding: 0 40px;">
-            <h1 style="color: #fff; font-size: 24px; font-weight: 800; margin: 0; text-align: center; letter-spacing: -1px;">
-                <?php echo stripslashes($it['it_name']); ?>
-            </h1>
+    <?php /* 새로운 상품 상세 정보 헤더 블록 - pharmacy_info.php 스타일 적용 */ ?>
+    <div class="shop-item-title-v2" style="background: #0d1116; padding: 0px 0 10px; border-bottom: none;">
+        <div class="container" style="max-width: 1290px; padding: 0; border-bottom: 1px solid #1a202c; padding-bottom: 50px; margin: 0 auto 10px;">
+            <h2 style="color: #fff; font-size: 24px; font-weight: 600; margin: 0 0 0 10px; display: flex; align-items: center; line-height: 1.2;">
+                <i class="fas fa-pills" style="color: #f43f5e; margin-right: 15px;"></i><strong>상품 상세</strong>&nbsp;<span style="color: #94a3b8; font-weight: 400;">정보</span>
+            </h2>
         </div>
     </div>
 
-    <?php if ($default['de_all_bodmi_use']) { ?>
-    <div class="container" style="max-width: 100%; padding: 0 40px; text-align: center; margin-top: 15px;">
-        <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>;">
-            <div class="all-countdown-title">
-                <i class="fas fa-gift"></i> <?php echo $default['de_all_bodmi_title']; ?>
-            </div>
-            <div class="all-countdown-timer">
-                <!-- JS로 업데이트됨 -->
-            </div>
-        </div>
-    </div>
-    <?php } ?>
+
 
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (이미지 + 내비게이션) */ ?>
     <?php /* 첨부 이미지 스타일의 풀와이드 비주얼 영역 (3개 이미지 동시 출력 슬라이더) */ ?>

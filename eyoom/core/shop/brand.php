@@ -19,7 +19,7 @@ if (!$br['br_no'])
     alert('등록된 브랜드가 없습니다.');
 
 if ($br['br_img']) {
-    $br['img_url'] = G5_DATA_URL.'/brand/'.$br['br_img'];
+    $br['img_url'] = G5_DATA_URL.'/brand/square_logo/'.$br['br_img'];
 }
 
 include_once(G5_SHOP_PATH.'/_head.php');

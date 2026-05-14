@@ -14,7 +14,7 @@ auth_check($auth[$sub_menu], 'w');
 check_admin_token();
 
 $br_no = (int) clean_xss_tags(trim($_POST['br_no']));
-$br_code = (int) clean_xss_tags(trim($_POST['br_code']));
+$br_code = clean_xss_tags(trim($_POST['br_code']));
 $br_name = clean_xss_tags(trim($_POST['br_name']));
 $br_basic = clean_xss_tags(trim($_POST['br_basic']));
 $br_open = clean_xss_tags(trim($_POST['br_open']));
@@ -39,6 +39,7 @@ if ($w == 'u') {
     $sql = "select * from {$g5['eyoom_brand']} where br_no = '{$br_no}' limit 1";
     $br = sql_fetch($sql);
     $br_img = $br['br_img'];
+    $br_img_wide = $br['br_img_wide'];
 }
 
 /**
@@ -46,15 +47,25 @@ if ($w == 'u') {
  */
 @mkdir(G5_DATA_PATH.'/brand/', G5_DIR_PERMISSION);
 @chmod(G5_DATA_PATH.'/brand/', G5_DIR_PERMISSION);
+@mkdir(G5_DATA_PATH.'/brand/square_logo/', G5_DIR_PERMISSION);
+@chmod(G5_DATA_PATH.'/brand/square_logo/', G5_DIR_PERMISSION);
+@mkdir(G5_DATA_PATH.'/brand/wide_logo/', G5_DIR_PERMISSION);
+@chmod(G5_DATA_PATH.'/brand/wide_logo/', G5_DIR_PERMISSION);
 
 /**
  * 이미지 삭제
  */
 if ($w == 'u') {
-    $br_imgfile = G5_DATA_PATH.'/brand/'.$br_img;
+    $br_imgfile = G5_DATA_PATH.'/brand/square_logo/'.$br_img;
     if ($_POST['del_br_img'] && file_exists($br_imgfile) && !is_dir($br_imgfile)) {
         @unlink($br_imgfile);
         $br_img = '';
+    }
+
+    $br_img_widefile = G5_DATA_PATH.'/brand/wide_logo/'.$br_img_wide;
+    if ($_POST['del_br_img_wide'] && file_exists($br_img_widefile) && !is_dir($br_img_widefile)) {
+        @unlink($br_img_widefile);
+        $br_img_wide = '';
     }
 }
 
@@ -69,7 +80,7 @@ if (is_uploaded_file($_FILES['br_img']['tmp_name'])) {
     if (!preg_match("/\.(jpg|gif|png)$/i", $_FILES['br_img']['name'])) {
         $file_upload_msg .= $_FILES['br_img']['name'] . '은(는) jpg/gif/png 파일이 아닙니다.\\n';
     } else {
-        $dest_path = G5_DATA_PATH.'/brand/'.$file_name;
+        $dest_path = G5_DATA_PATH.'/brand/square_logo/'.$file_name;
 
         move_uploaded_file($_FILES['br_img']['tmp_name'], $dest_path);
         chmod($dest_path, G5_FILE_PERMISSION);
@@ -81,10 +92,27 @@ if (is_uploaded_file($_FILES['br_img']['tmp_name'])) {
     }
 }
 
+if (is_uploaded_file($_FILES['br_img_wide']['tmp_name'])) {
+    $ext = $qfile->get_file_ext($_FILES['br_img_wide']['name']);
+    $file_name = md5(time().$_FILES['br_img_wide']['name'])."_wide.".$ext;
+    if (!preg_match("/\.(jpg|gif|png)$/i", $_FILES['br_img_wide']['name'])) {
+        $file_upload_msg .= $_FILES['br_img_wide']['name'] . '은(는) jpg/gif/png 파일이 아닙니다.\\n';
+    } else {
+        $dest_path = G5_DATA_PATH.'/brand/wide_logo/'.$file_name;
+
+        move_uploaded_file($_FILES['br_img_wide']['tmp_name'], $dest_path);
+        chmod($dest_path, G5_FILE_PERMISSION);
+
+        if (file_exists($dest_path)) {
+            $br_img_wide = $file_name;
+        }
+    }
+}
+
 /**
  * 브랜드 대표이미지 정보
  */
-$sql_common .= " br_img = '" . $br_img . "', ";
+$sql_common .= " br_img = '" . $br_img . "', br_img_wide = '" . $br_img_wide . "', ";
 
 if ($w == '') {
     $max = sql_fetch("select max(br_sort) as snum from {$g5['eyoom_brand']} where 1 ");

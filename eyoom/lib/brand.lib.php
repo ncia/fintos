@@ -17,7 +17,7 @@ function eb_brand($skin_dir = 'basic') {
     $result = sql_query($sql);
     for ($i=0; $row=sql_fetch_array($result); $i++) {
         if ($row['br_img']) {
-            $row['img_url'] = G5_DATA_URL.'/brand/'.$row['br_img'];
+            $row['img_url'] = G5_DATA_URL.'/brand/square_logo/'.$row['br_img'];
         }
 
         $list[$i] = $row;

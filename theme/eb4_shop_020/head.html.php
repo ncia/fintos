@@ -321,7 +321,7 @@ $item_view = 'zoom';
                                                 <a href="<?php echo G5_SHOP_URL ?>/economy_dictionary.php" class="dropdown-item nav-link"><span class="m-r-5">📈</span>경제 용어 사전</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><span class="m-r-5">🧩</span>보험 상식 퀴즈</a>
+                                                <a href="<?php echo G5_SHOP_URL ?>/insurance_quiz.php" class="dropdown-item nav-link"><span class="m-r-5">💡</span>보험 상식 퀴즈</a>
                                             </li>
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_SHOP_URL ?>/mbti_recommend.php" class="dropdown-item nav-link"><span class="m-r-5">👤</span>MBTI별 상품 추천</a>
@@ -356,7 +356,7 @@ $item_view = 'zoom';
                                                 <a href="<?php echo shop_type_url(1); ?>" class="dropdown-item nav-link"><span class="m-r-5">🎲</span>랜덤 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
-                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><span class="m-r-5">✨</span>최신 상품</a>
+                                                <a href="<?php echo shop_type_url(3); ?>" class="dropdown-item nav-link"><span class="m-r-5">🆕</span>최신 상품</a>
                                             </li>
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo shop_type_url(2); ?>" class="dropdown-item nav-link"><span class="m-r-5">💝</span>추천 상품</a>
@@ -372,6 +372,9 @@ $item_view = 'zoom';
                                     <a href="#" class="cate-dropdown-open dorpdown-toggle" data-bs-toggle="dropdown"></a>
                                     <div class="dropdown-menu">
                                         <ul>
+                                            <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_SHOP_URL; ?>/insurance_diagnosis.php" class="dropdown-item nav-link"><span class="m-r-5">🪄</span>AI 보험진단 분석</a>
+                                            </li>
                                             <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_URL; ?>/insurance_analysis.php" class="dropdown-item nav-link"><span class="m-r-5">🧐</span>보험증권 분석</a>
                                             </li>

@@ -1,6 +1,6 @@
 <?php
 include_once('./_common.php');
-include_once(G5_PATH.'/head.php');
+include_once(G5_SHOP_PATH.'/shop.head.php');
 ?>
 
 <div class="disease-code-container container m-t-30 m-b-50">
@@ -200,5 +200,5 @@ $(document).ready(function() {
 </style>
 
 <?php
-include_once(G5_PATH.'/tail.php');
+include_once(G5_SHOP_PATH.'/shop.tail.php');
 ?>

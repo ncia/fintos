@@ -22,6 +22,7 @@ $br = array(
     'br_basic'=>'',
     'br_sort'=>'',
     'br_open'=>'',
+    'br_img_wide'=>'',
 );
 
 if ($w == "")
@@ -44,8 +45,12 @@ if ($br_no) {
     $br = sql_fetch("select * from {$g5['eyoom_brand']} where br_no = '{$br_no}' ");
     
     if ($br['br_img']) {
-        $br['img_url'] = G5_DATA_URL.'/brand/'.$br['br_img'];
-    }   
+        $br['img_url'] = G5_DATA_URL.'/brand/square_logo/'.$br['br_img'];
+    }
+
+    if ($br['br_img_wide']) {
+        $br['img_wide_url'] = G5_DATA_URL.'/brand/wide_logo/'.$br['br_img_wide'];
+    }
 }
 
 /**

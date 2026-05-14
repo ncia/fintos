@@ -260,7 +260,7 @@ if (!defined('_EYOOM_')) exit;
                     <div class="fintos-poll-container">
                         <div class="fintos-poll-box">
                             <div class="fintos-poll-header">
-                                <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임에 참여하세요!</span>
+                                <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임에 참여하셨나요?</span>
                                 <div class="fintos-poll-question">
                                     Q. <?php echo htmlspecialchars($random_poll['question']); ?>
                                 </div>
@@ -634,7 +634,7 @@ if (!defined('_EYOOM_')) exit;
                 <?php if($default['de_type3_list_use']) { ?>
                 <section>
                     <div class="main-heading">
-                        <h2><a href="<?php echo shop_type_url(3); ?>">✨ <strong>최신 상품 <span>보기</span></strong></a></h2>
+                        <h2><a href="<?php echo shop_type_url(3); ?>">🆕 <strong>최신 상품 <span>보기</span></strong></a></h2>
                         <a href="<?php echo shop_type_url(3); ?>" class="heading-more-btn"><i class="fas fa-plus"></i></a>
                     </div>
                     <?php

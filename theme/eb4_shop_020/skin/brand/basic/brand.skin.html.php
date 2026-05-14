@@ -72,7 +72,7 @@ $brand_hero_bg = EYOOM_THEME_URL . '/image/brand_bg/bg_' . $rand_bg_idx . '.png'
 /* Slick Arrows Styling */
 .brand-box .category-list button.slick-arrow {
     position: absolute;
-    top: 50%;
+    top: 65%;
     margin-top: -15px;
     z-index: 10;
     width: 30px;
