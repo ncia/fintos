@@ -16,7 +16,7 @@ include_once(G5_PATH.'/head.php');
             <div class="row g-3 align-items-end">
                 <div class="col-md-10">
                     <label class="form-label f-s-15 fw-bold text-dark w-100 text-center"><i class="fas fa-search m-r-5 text-secondary"></i>상병 코드 또는 상병명</label>
-                    <input type="text" id="diseaseSearchText" class="form-control border-gray-200 py-2 rounded-3" placeholder="상병 코드 또는 상병명을 입력하세요 (예: J06, 감기)">
+                    <input type="text" id="diseaseSearchText" class="form-control border-gray-200 py-2 rounded-3" placeholder="상병 코드 또는 상병명을 입력하세요 (예: A000, 콜레라)">
                 </div>
                 <div class="col-md-2">
                     <button type="button" id="diseaseSearchBtn" class="btn btn-primary w-100 py-2 rounded-3 shadow-sm hover-up f-s-15 fw-bold transition">조회하기</button>
@@ -159,15 +159,14 @@ $(document).ready(function() {
         if (page) searchDiseaseCode(page);
     });
 
-    // 실시간 검색 (선택 사항 - 모달에 있던 로직)
-    /*
+    // 실시간 검색 지원
+    let diseaseSearchTimer = null;
     $('#diseaseSearchText').on('input', function() {
         clearTimeout(diseaseSearchTimer);
         diseaseSearchTimer = setTimeout(function() {
             searchDiseaseCode(1);
         }, 500);
     });
-    */
 });
 </script>
 
