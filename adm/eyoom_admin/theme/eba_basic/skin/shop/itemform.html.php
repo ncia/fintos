@@ -21,6 +21,16 @@ $frm_eba_submit .= '</div>';
 $frm_submit .= $frm_eba_submit;
 ?>
 
+<?php
+// 보험회사 로고 데이터 가져오기
+$brand_logos = array();
+$br_res = sql_query("select br_name, br_img_wide from {$g5['eyoom_brand']} where br_img_wide != ''");
+while($br_row = sql_fetch_array($br_res)) {
+    $brand_logos[$br_row['br_name']] = G5_DATA_URL.'/brand/wide_logo/'.$br_row['br_img_wide'];
+}
+$brand_logos_json = json_encode($brand_logos);
+?>
+
 <style>
 .admin-shop-itemform .sit_option {margin:0 0 20px;padding:0;border:1px solid var(--tbc-default)}
 .admin-shop-itemform .sit_option .sit-option-list {position:relative;padding:10px;border-bottom:1px solid var(--tbc-default)}
@@ -251,6 +261,58 @@ $frm_submit .= $frm_eba_submit;
                         <?php } ?>
                     </div>
                 </div>
+
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_brand" class="label">보험회사</label>
+                    </div>
+                    <div class="adm-form-td td-r td-rs">
+                        <div class="inline-group">
+                            <label class="select width-250px">
+                                <select name="it_brand" id="it_brand">
+                                    <option value="" <?php echo !$it['it_brand'] ? 'selected': ''; ?>>::보험회사 선택::</option>
+                                    <?php
+                                    $brand_options = array('삼성생명', 'KB라이프', 'DB생명', '흥국생명', '한화생명', '라이나생보', '신한라이프', '하나생명', '농협생명', '교보생명', '동양생명', '메트라이프', '처브라이프', 'AIG', 'ABL', 'AIA생명', '미래에셋생명', 'IM라이프', 'KDB생명', '푸본현대생명', '카디프생명', '삼성화재', 'KB손보', 'DB손보', '흥국화재', '한화손보', '라이나손보', '하나손보', '농협손보', '현대해상', '롯데손보', '메리츠화재');
+                                    foreach ($brand_options as $opt) {
+                                        $selected = ($it['it_brand'] == $opt) ? ' selected' : '';
+                                        echo '<option value="'.$opt.'"'.$selected.'>'.$opt.'</option>';
+                                    }
+                                    ?>
+                                </select><i></i>
+                            </label>
+                            <input type="hidden" name="it_brand_prev" value="<?php echo get_text($it['it_brand']); ?>">
+                        </div>
+                        <div class="note"><strong>Note:</strong> 보험회사를 선택해 주세요.</div>
+                        <div class="adm-form-td-rs">
+                            <div class="inline-group">
+                                <label for="chk_ca_it_brand" class="checkbox"><input type="checkbox" name="chk_ca_it_brand" value="1" id="chk_ca_it_brand"><i></i>분류적용</label>
+                                <label for="chk_all_it_brand" class="checkbox"><input type="checkbox" name="chk_all_it_brand" value="1" id="chk_all_it_brand"><i></i>전체적용</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adm-form-tr adm-sm-100">
+                    <div class="adm-form-td td-l">
+                        <label for="it_brand_logo" class="label">보험회사 로고</label>
+                    </div>
+                    <div class="adm-form-td td-r td-rs">
+                        <label class="input">
+                            <input type="text" name="it_brand_logo" value="<?php echo get_text($it['it_brand_logo']); ?>" id="it_brand_logo">
+                        </label>
+                        <div id="it_brand_logo_preview" class="m-t-10" style="display: <?php echo $it['it_brand_logo'] ? 'block': 'none'; ?>;">
+                            <img src="<?php echo $it['it_brand_logo']; ?>" style="max-width: 300px; height: auto; border: 1px solid #ddd; padding: 5px; background: #fff;">
+                        </div>
+                        <div class="note"><strong>Note:</strong> 보험회사 로고 이미지 경로(URL)를 입력해 주세요.</div>
+                        <div class="adm-form-td-rs">
+                            <div class="inline-group">
+                                <label for="chk_ca_it_brand_logo" class="checkbox"><input type="checkbox" name="chk_ca_it_brand_logo" value="1" id="chk_ca_it_brand_logo"><i></i>분류적용</label>
+                                <label for="chk_all_it_brand_logo" class="checkbox"><input type="checkbox" name="chk_all_it_brand_logo" value="1" id="chk_all_it_brand_logo"><i></i>전체적용</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="adm-form-tr">
                     <div class="adm-form-td td-l">
                         <label for="it_name" class="label">상품명</label>
@@ -355,35 +417,6 @@ $frm_submit .= $frm_eba_submit;
                             <div class="inline-group">
                                 <label for="chk_ca_it_origin" class="checkbox"><input type="checkbox" name="chk_ca_it_origin" value="1" id="chk_ca_it_origin"><i></i>분류적용</label>
                                 <label for="chk_all_it_origin" class="checkbox"><input type="checkbox" name="chk_all_it_origin" value="1" id="chk_all_it_origin"><i></i>전체적용</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="adm-form-tr adm-sm-100">
-                    <div class="adm-form-td td-l">
-                        <label for="it_brand" class="label">보험회사</label>
-                    </div>
-                    <div class="adm-form-td td-r td-rs">
-                        <div class="inline-group">
-                            <label class="select width-250px">
-                                <select name="it_brand" id="it_brand">
-                                    <option value="">:: 보험회사 선택 ::</option>
-                                    <?php
-                                    $brand_options = array('삼성생명', 'KB라이프', 'DB생명', '흥국생명', '한화생명', '라이나생보', '신한라이프', '하나생명', '농협생명', '교보생명', '동양생명', '메트라이프', '처브라이프', 'AIG', 'ABL', 'AIA생명', '미래에셋생명', 'IM라이프', 'KDB생명', '푸본현대생명', '카디프생명', '삼성화재', 'KB손보', 'DB손보', '흥국화재', '한화손보', '라이나손보', '하나손보', '농협손보', '현대해상', '롯데손보', '메리츠화재');
-                                    foreach ($brand_options as $opt) {
-                                        $selected = ($it['it_brand'] == $opt) ? ' selected' : '';
-                                        echo '<option value="'.$opt.'"'.$selected.'>'.$opt.'</option>';
-                                    }
-                                    ?>
-                                </select><i></i>
-                            </label>
-                            <input type="hidden" name="it_brand_prev" value="<?php echo get_text($it['it_brand']); ?>">
-                        </div>
-                        <div class="note"><strong>Note:</strong> 보험회사를 선택해 주세요.</div>
-                        <div class="adm-form-td-rs">
-                            <div class="inline-group">
-                                <label for="chk_ca_it_brand" class="checkbox"><input type="checkbox" name="chk_ca_it_brand" value="1" id="chk_ca_it_brand"><i></i>분류적용</label>
-                                <label for="chk_all_it_brand" class="checkbox"><input type="checkbox" name="chk_all_it_brand" value="1" id="chk_all_it_brand"><i></i>전체적용</label>
                             </div>
                         </div>
                     </div>
@@ -2079,4 +2112,31 @@ function categorychange(f)
 }
 
 categorychange(document.fitemform);
+
+$(function() {
+    var brandLogos = <?php echo $brand_logos_json; ?>;
+    var brandAlias = {
+        'KB손보': 'KB손해보험',
+        'DB손보': 'DB손해보험',
+        '하나손보': '하나손해보험',
+        '농협손보': 'NH농협손해보험',
+        '롯데손보': '롯데손해보험',
+        'AIG': 'AIG손해보험',
+        '농협생명': 'NH농협생명',
+        'ABL': 'ABL생명'
+    };
+
+    $('#it_brand').on('change', function() {
+        var brandName = $(this).val();
+        var targetName = brandAlias[brandName] || brandName;
+        
+        if (brandLogos[targetName]) {
+            $('#it_brand_logo').val(brandLogos[targetName]);
+            $('#it_brand_logo_preview').show().find('img').attr('src', brandLogos[targetName]);
+        } else {
+            $('#it_brand_logo').val('');
+            $('#it_brand_logo_preview').hide();
+        }
+    });
+});
 </script>
