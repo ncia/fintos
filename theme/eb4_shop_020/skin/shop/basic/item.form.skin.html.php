@@ -52,7 +52,11 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/fotoram
     .item-multi-slider { max-width: 1290px; width: 100%; height: 323px; overflow: hidden; margin: 0 auto; position: relative; background: #0d1116; }
     .slick-items .slick-list { margin: 0 -5px !important; }
     .slick-items .slick-slide { padding: 0 5px; outline: none; background: #0d1116; }
-    .slick-items img { width: 430px; height: 323px; object-fit: contain; display: block; background: #fff; margin: 0 auto; }
+    .slick-items img { width: 430px; height: 215px; object-fit: contain; display: block; background: #fff; margin: 0 auto; }
+
+    /* 슬라이더 초기화 전 세로 나열 방지 */
+    .slick-items:not(.slick-initialized) { display: flex; overflow: hidden; }
+    .slick-items:not(.slick-initialized) > div { width: 33.333%; flex-shrink: 0; }
 
     /* 브랜드 섹션 스타일 */
     .item-brand-area { margin-bottom: 20px; }
