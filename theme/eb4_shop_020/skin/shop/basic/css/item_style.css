@@ -252,3 +252,13 @@
 
 /*---------- Item Use, Item Qa Paging ----------*/
 .pg_current {background-color:#3f4678;border-color:#3f4678}
+
+/* 보험 가입 안내 가이드 반응형 스타일 */
+.insurance-guide {box-sizing:border-box}
+@media (max-width: 767px) {
+    .insurance-guide {padding:20px 15px !important}
+    .insurance-guide h3 {font-size:20px !important}
+    .insurance-guide table {min-width:500px}
+    /* 테이블 감싸는 가로 스크롤 영역을 위한 헬퍼 클래스 (필요 시) */
+    .insurance-guide-scroll {width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:25px}
+}
