@@ -402,7 +402,7 @@ $frm_submit .= $frm_eba_submit;
                                 </label>
                             </span>
                             <span class="span-lg-block">
-                                <label for="de_bodmi_title" class="label">말풍선 제목</label>
+                                <label for="de_bodmi_title" class="label">프로모션 문구</label>
                                 <div class="custom-datalist-wrapper">
                                     <label class="input width-200px">
                                         <input type="text" name="de_bodmi_title" value="<?php echo get_sanitize_input($default['de_bodmi_title']); ?>" id="de_bodmi_title" autocomplete="off" placeholder="선택하거나 직접 입력">
@@ -469,7 +469,94 @@ $frm_submit .= $frm_eba_submit;
                                 </label>
                             </span>
                         </div>
-                        <div class="note"><strong>Note:</strong> 보드미 캐릭터 배너의 말풍선 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
+                        <div class="note"><strong>Note:</strong> 보드미 캐릭터 배너의 프로모션 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
+                    </div>
+                </div>
+
+                <div class="adm-form-tr">
+                    <div class="adm-form-td td-l">
+                        <label class="label">모바일 카운트다운 설정</label>
+                    </div>
+                    <div class="adm-form-td td-r">
+                        <div class="inline-group">
+                            <span class="span-lg-block">
+                                <label class="checkbox width-100px">
+                                    <input type="checkbox" name="de_m_bodmi_use" id="de_m_bodmi_use" value="1" <?php echo $default['de_m_bodmi_use']?"checked":""; ?>>
+                                    <i></i> 출력
+                                </label>
+                            </span>
+                            <span class="span-lg-block">
+                                <label for="de_m_bodmi_title" class="label">프로모션 문구</label>
+                                <div class="custom-datalist-wrapper">
+                                    <label class="input width-200px">
+                                        <input type="text" name="de_m_bodmi_title" value="<?php echo get_sanitize_input($default['de_m_bodmi_title']); ?>" id="de_m_bodmi_title" autocomplete="off" placeholder="선택하거나 직접 입력">
+                                    </label>
+                                    <div id="mo_title_options" class="custom-datalist">
+                                        <ul>
+                                            <li>보험료 인상 안내</li>
+                                            <li>실손보험 개정 안내</li>
+                                            <li>암보험 보장 강화</li>
+                                            <li>운전자보험 법규 변경</li>
+                                            <li>한시적 가입 혜택</li>
+                                            <li>선착순 무료 상담</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                            <span class="span-lg-block">
+                                <label for="de_m_bodmi_font_size" class="label">제목 글자 크기</label>
+                                <label class="select width-100px">
+                                    <select name="de_m_bodmi_font_size" id="de_m_bodmi_font_size">
+                                        <?php
+                                        $fs_arr = array();
+                                        for ($i=8; $i<=40; $i++) $fs_arr[] = (string)$i;
+                                        $current_fs = str_replace('px', '', $default['de_m_bodmi_font_size']);
+                                        $is_in_arr = false;
+                                        foreach($fs_arr as $fs) {
+                                            $selected = ($current_fs == $fs) ? 'selected':'';
+                                            if($selected) $is_in_arr = true;
+                                            echo "<option value='{$fs}' {$selected}>{$fs}</option>";
+                                        }
+                                        if (!$is_in_arr && $current_fs) {
+                                            echo "<option value='{$current_fs}' selected>{$current_fs}</option>";
+                                        }
+                                        ?>
+                                        <option value="direct">직접입력</option>
+                                    </select><i></i>
+                                </label>
+                            </span>
+                            <span class="span-lg-block">
+                                <label for="de_m_bodmi_font_weight" class="label">글자 두께</label>
+                                <label class="select width-120px">
+                                    <select name="de_m_bodmi_font_weight" id="de_m_bodmi_font_weight">
+                                        <option value="">두께선택</option>
+                                        <?php
+                                        for ($i=100; $i<=900; $i+=100) {
+                                            $selected = ($default['de_m_bodmi_font_weight'] == $i) ? 'selected':'';
+                                            echo "<option value='{$i}' {$selected}>{$i}</option>";
+                                        }
+                                        ?>
+                                    </select><i></i>
+                                </label>
+                            </span>
+                            <span class="span-lg-block" style="vertical-align:top;">
+                                <label for="de_m_bodmi_font_color" class="label">글자 색상</label>
+                                <label class="input width-60px">
+                                    <input type="color" name="de_m_bodmi_font_color" value="<?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#000000'; ?>" id="de_m_bodmi_font_color" style="padding:1px; height:40px; cursor:pointer;">
+                                </label>
+                            </span>
+                            <span class="span-lg-block">
+                                <label for="de_m_bodmi_target_date" class="label">설정 날짜</label>
+                                <label class="input width-150px">
+                                    <i class="icon-append far fa-calendar-alt" id="btn_m_target_date"></i>
+                                    <input type="text" name="de_m_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_m_bodmi_target_date']), 0, 10); ?>" id="de_m_bodmi_target_date" class="datepicker">
+                                </label>
+                            </span>
+                            <span class="span-lg-block">
+                                <button type="button" class="btn-e btn-e-dark" onclick="sync_pc_to_mobile();">PC설정 복사</button>
+                            </span>
+                        </div>
+                        <div class="note"><strong>Note:</strong> 모바일 보드미 캐릭터 배너의 프로모션 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
                     </div>
                 </div>
 
@@ -2311,7 +2398,7 @@ $(function() {
     $("#de_bodmi_font_size").on("change", function() {
         var val = $(this).val();
         if (val == 'direct') {
-            var new_fs = prompt("글글자 크기를 입력하세요 (예: 13.5, 단위 제외)", "");
+            var new_fs = prompt("글자 크기를 입력하세요 (예: 13.5, 단위 제외)", "");
             if (new_fs) {
                 // 숫자인지 확인 (간단히)
                 new_fs = parseFloat(new_fs);
@@ -2354,7 +2441,7 @@ $(function() {
     $("#de_m_bodmi_font_size").on("change", function() {
         var val = $(this).val();
         if (val == 'direct') {
-            var new_fs = prompt("모바일 제목 글자 크기를 입력하세요 (예: 13.5, 단위 제외)", "");
+            var new_fs = prompt("모바일 프로모션 문구 글자 크기를 입력하세요 (예: 13.5, 단위 제외)", "");
             if (new_fs) {
                 new_fs = parseFloat(new_fs);
                 if (!isNaN(new_fs)) {
@@ -2575,6 +2662,16 @@ $(function() {
         var val = $(this).text();
         $("#de_bodmi_title").val(val);
         $("#pc_title_options").fadeOut(150);
+    });
+
+    // 커스텀 데이터리스트 이벤트 (모바일 카운트다운)
+    $("#de_m_bodmi_title").on("click focus", function() {
+        $("#mo_title_options").fadeIn(200);
+    });
+    $("#mo_title_options li").on("click", function() {
+        var val = $(this).text();
+        $("#de_m_bodmi_title").val(val);
+        $("#mo_title_options").fadeOut(150);
     });
 
     // 커스텀 데이터리스트 이벤트 (보험상품 전체)

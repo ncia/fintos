@@ -384,7 +384,13 @@ if (!defined('_EYOOM_')) exit;
                     <style>
                     .bodmi-wrapper { 
                         position: relative; 
-                        color-scheme: light; /* 다크 모드 반전 방지 */
+                        color-scheme: light;
+                    }
+                    .pc-only { display: block; }
+                    .mobile-only { display: none; }
+                    @media (max-width:1024px) {
+                        .pc-only { display: none; }
+                        .mobile-only { display: block; }
                     }
                     .bodmi-wrapper img { filter: none !important; }
 
@@ -401,19 +407,26 @@ if (!defined('_EYOOM_')) exit;
                         align-items: center;
                         padding: 4px 10px;
                         border-radius: 6px;
-                        font-weight: <?php echo $default['de_bodmi_font_weight'] ? $default['de_bodmi_font_weight'] : '700'; ?>;
                         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
                         min-height: 32px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
+                        
+                        /* 기본 PC 설정 */
+                        font-weight: <?php echo $default['de_bodmi_font_weight'] ? $default['de_bodmi_font_weight'] : '700'; ?>;
+                        border: 1px solid <?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#007bff'; ?>;
+                        color: <?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#007bff'; ?>;
+                        background: #fff;
                     }
                     .bodmi-countdown-title {
                         display: flex;
                         align-items: center;
                         gap: 6px;
-                        font-size: 13px;
+                        font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '13'; ?>px;
                         white-space: nowrap;
                     }
+                    .bodmi-countdown-title .mo-title { display: none; }
+                    
                     .bodmi-countdown-timer {
                         font-size: <?php echo $default['de_bodmi_font_size'] ? str_replace('px', '', $default['de_bodmi_font_size']) : '15'; ?>px;
                         letter-spacing: -0.5px;
@@ -422,35 +435,43 @@ if (!defined('_EYOOM_')) exit;
                     }
 
                     @media (max-width:1024px) {
-
-                        .bodmi-countdown-timer {
-                            font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13'; ?>px !important;
+                        .bodmi-countdown-container {
+                            font-weight: <?php echo $default['de_m_bodmi_font_weight'] ? $default['de_m_bodmi_font_weight'] : '700'; ?>;
+                            border-color: <?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#007bff'; ?>;
+                            color: <?php echo $default['de_m_bodmi_font_color'] ? $default['de_m_bodmi_font_color'] : '#007bff'; ?>;
                         }
-
+                        .bodmi-countdown-title .pc-title { display: none; }
+                        .bodmi-countdown-title .mo-title { display: inline; }
+                        
+                        .bodmi-countdown-title {
+                            font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13'; ?>px;
+                        }
+                        .bodmi-countdown-timer {
+                            font-size: <?php echo $default['de_m_bodmi_font_size'] ? str_replace('px', '', $default['de_m_bodmi_font_size']) : '13'; ?>px;
+                        }
                     }
 
                     </style>
                     <?php 
-                    $bodmi_use = G5_IS_MOBILE ? $default['de_m_bodmi_use'] : $default['de_bodmi_use'];
-                    if($bodmi_use) { 
-                        $bodmi_title = G5_IS_MOBILE ? $default['de_m_bodmi_title'] : $default['de_bodmi_title'];
-
+                    $bodmi_pc_use = $default['de_bodmi_use'];
+                    $bodmi_mo_use = $default['de_m_bodmi_use'];
+                    
+                    if($bodmi_pc_use || $bodmi_mo_use) { 
                     ?>
-                    <div class="m-b-10 bodmi-wrapper">
+                    <div class="m-b-10 bodmi-wrapper <?php echo !$bodmi_pc_use ? 'mobile-only':''; ?> <?php echo !$bodmi_mo_use ? 'pc-only':''; ?>">
                         <a href="<?php echo G5_URL; ?>/countdown_counsel.php" class="animate-img-hvr2 d-block border-radius-5 overflow-hidden">
                             <img src="<?php echo EYOOM_THEME_URL; ?>/image/cat_banner.png" class="img-fluid bodmi_countdown" alt="보드미의 카운트다운">
 
-                            <?php if ($bodmi_use) { ?>
                             <div class="bodmi-countdown-box">
-                                <div class="bodmi-countdown-container" style="background: #fff; border: 1px solid <?php echo $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] ? $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] : '#007bff'; ?>; color: <?php echo $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] ? $default[G5_IS_MOBILE ? 'de_m_bodmi_font_color' : 'de_bodmi_font_color'] : '#007bff'; ?>;">
+                                <div class="bodmi-countdown-container">
                                     <div class="bodmi-countdown-title">
-                                        <i class="fas fa-clock"></i> <?php echo $bodmi_title; ?>
+                                        <i class="fas fa-clock"></i> 
+                                        <span class="pc-title"><?php echo $default['de_bodmi_title']; ?></span>
+                                        <span class="mo-title"><?php echo $default['de_m_bodmi_title']; ?></span>
                                     </div>
                                     <div class="bodmi-countdown-timer" id="bodmi_timer">00일 00시 00분</div>
                                 </div>
                             </div>
-                            <?php } ?>
-
                         </a>
                     </div>
                     <?php } ?>
@@ -472,10 +493,9 @@ if (!defined('_EYOOM_')) exit;
                     }
 
                     function updateBodmiCountdown() {
-                        const targetDateStr = '<?php 
-                            $target_date = G5_IS_MOBILE ? $default['de_m_bodmi_target_date'] : $default['de_bodmi_target_date'];
-                            echo $target_date ? substr($target_date, 0, 10) : '2026-05-01'; 
-                        ?>';
+                        const pcTargetDate = '<?php echo substr($default['de_bodmi_target_date'], 0, 10); ?>';
+                        const moTargetDate = '<?php echo substr($default['de_m_bodmi_target_date'], 0, 10); ?>';
+                        const targetDateStr = (window.innerWidth <= 1024) ? moTargetDate : pcTargetDate;
                         const targetDate = new Date(targetDateStr.replace(/-/g, '/') + ' 00:00:00').getTime();
                         const now = new Date().getTime() + serverTimeOffset;
                         const diff = targetDate - now;

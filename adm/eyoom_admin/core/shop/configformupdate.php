@@ -204,6 +204,7 @@ $check_sanitize_keys = array(
     'de_bodmi_font_size',           //글자 크기
     'de_bodmi_font_color',          //글자 색상
     'de_bodmi_target_date',         //설정날짜
+    'de_all_bodmi_use',             //전체 보드미 캐릭터 출력여부
     'de_all_bodmi_title',           //프로모션 문구
     'de_all_bodmi_font_size',       //글자 크기
     'de_all_bodmi_font_color',      //글자 색상
@@ -212,6 +213,12 @@ $check_sanitize_keys = array(
     'de_all_bodmi_target_date',     //설정날짜
     'de_bodmi_font_weight',         //PC 글자 두께
     'de_all_bodmi_font_weight',     //전체 글자 두께
+    'de_m_bodmi_use',               //모바일 보드미 캐릭터 출력여부
+    'de_m_bodmi_title',             //모바일 말풍선 제목
+    'de_m_bodmi_font_size',         //모바일 글자 크기
+    'de_m_bodmi_font_color',        //모바일 글자 색상
+    'de_m_bodmi_font_weight',       //모바일 글자 두께
+    'de_m_bodmi_target_date',       //모바일 설정날짜
 );
 
 foreach( $check_sanitize_keys as $key ){
@@ -480,19 +487,26 @@ if ($_POST['amode'] == 'ittype') {
                     de_member_reg_coupon_minimum  = '{$de_member_reg_coupon_minimum}',
                     de_bodmi_use                  = '{$de_bodmi_use}',
                     de_bodmi_title                = '{$de_bodmi_title}',
-                    de_bodmi_font_size            = '{$_POST['de_bodmi_font_size']}',
-                    de_bodmi_font_color           = '{$_POST['de_bodmi_font_color']}',
+                    de_bodmi_font_size            = '{$de_bodmi_font_size}',
+                    de_bodmi_font_color           = '{$de_bodmi_font_color}',
                     de_bodmi_font_weight          = '{$de_bodmi_font_weight}',
                     de_bodmi_target_date          = '" . substr($de_bodmi_target_date, 0, 10) . "',
 
-                    de_all_bodmi_use              = '{$_POST['de_all_bodmi_use']}',
+                    de_m_bodmi_use                = '{$de_m_bodmi_use}',
+                    de_m_bodmi_title              = '{$de_m_bodmi_title}',
+                    de_m_bodmi_font_size          = '{$de_m_bodmi_font_size}',
+                    de_m_bodmi_font_color         = '{$de_m_bodmi_font_color}',
+                    de_m_bodmi_font_weight        = '{$de_m_bodmi_font_weight}',
+                    de_m_bodmi_target_date        = '" . substr($de_m_bodmi_target_date, 0, 10) . "',
+
+                    de_all_bodmi_use              = '{$de_all_bodmi_use}',
                     de_all_bodmi_title            = '{$de_all_bodmi_title}',
-                    de_all_bodmi_font_size        = '{$_POST['de_all_bodmi_font_size']}',
-                    de_all_bodmi_font_color       = '{$_POST['de_all_bodmi_font_color']}',
-                    de_all_bodmi_bg_color         = '{$_POST['de_all_bodmi_bg_color']}',
+                    de_all_bodmi_font_size        = '{$de_all_bodmi_font_size}',
+                    de_all_bodmi_font_color       = '{$de_all_bodmi_font_color}',
+                    de_all_bodmi_bg_color         = '{$de_all_bodmi_bg_color}',
                     de_all_bodmi_font_weight      = '{$de_all_bodmi_font_weight}',
-                    de_all_bodmi_timer_font_size  = '{$_POST['de_all_bodmi_timer_font_size']}',
-                    de_all_bodmi_target_date      = '" . substr($_POST['de_all_bodmi_target_date'], 0, 10) . "'
+                    de_all_bodmi_timer_font_size  = '{$de_all_bodmi_timer_font_size}',
+                    de_all_bodmi_target_date      = '" . substr($de_all_bodmi_target_date, 0, 10) . "'
                     ";
     if (defined('G5_SHOP_DIRECT_NAVERPAY') && G5_SHOP_DIRECT_NAVERPAY) {
         $sql .= "  ,de_naverpay_mid               = '{$de_naverpay_mid}',
