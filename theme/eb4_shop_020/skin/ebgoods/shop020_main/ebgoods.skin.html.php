@@ -46,7 +46,7 @@ global $default;
 .ebg-shop020-m .goods-description .title-price {font-size:1.0625rem;font-weight:700;color:#ab0000;margin-right:7px}
 .ebg-shop020-m .goods-description .line-through {font-size:.875rem;color:#959595;text-decoration:line-through;font-weight:400;white-space:nowrap}
 .ebg-shop020-m .goods-description .goods-id {color:#757575;display:block;font-size:.8125rem;margin-top:10px}
-.ebg-shop020-m .goods-description .goods-info {position:relative;overflow:hidden;min-height:38px;color:#959595;font-size:14px;margin-top:10px;text-align:center}
+.ebg-shop020-m .goods-description .goods-info {position:relative;overflow:hidden;min-height:38px;color:#454545;font-size:14px;margin-top:10px;text-align:center}
 .ebg-shop020-m .goods-description .goods-sns {position:relative;height:30px;margin-top:10px}
 .ebg-shop020-m .goods-description .goods-sns ul {position:absolute;top:0;right:0;margin:0;padding:0;list-style:none}
 .ebg-shop020-m .goods-description .goods-sns ul:after {content:"";display:block;clear:both}
@@ -187,7 +187,7 @@ global $default;
                                             </div>
                                         </div>
                                     </div>
-                                    <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
+                                    <span style="color:#bb3312; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
                                 </a>
                                 <?php } ?>
 

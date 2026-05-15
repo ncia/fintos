@@ -142,7 +142,7 @@ global $default;
                                 </div>
                             </div>
                         </div>
-                        <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
+                        <span style="color:#bb3312; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
                     </a>
                     <?php } ?>
 

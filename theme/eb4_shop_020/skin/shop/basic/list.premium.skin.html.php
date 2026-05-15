@@ -22,7 +22,7 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
 .premium-product-list .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.10rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
 .premium-product-list .goods-name a {color:#ff8a37;text-decoration:none}
 .premium-product-list .goods-name a:hover {text-decoration:underline}
-.premium-product-list .goods-info {position:relative;overflow:hidden;min-height:38px;color:#959595;font-size:14px;margin-top:10px;text-align:center;line-height:1.4}
+.premium-product-list .goods-info {position:relative;overflow:hidden;min-height:38px;color:#454545;font-size:14px;margin-top:10px;text-align:center;line-height:1.4}
 
 /* Labels */
 .premium-product-list .rgba-banner-area {position:absolute;top:5px;right:5px;z-index:10}
@@ -121,7 +121,7 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
                                 </div>
                             </div>
                         </div>
-                        <span style="color:#cbd5e0; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
+                        <span style="color:#bb3312; font-size:13px; font-weight:700; margin-left:6px; position:relative; top:1px;">평점 4.75</span>
                     </a>
 
                     <div class="goods-share">

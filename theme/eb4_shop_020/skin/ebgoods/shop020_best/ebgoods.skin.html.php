@@ -60,13 +60,13 @@ global $default;
 .ebg-shop020-b .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-b .goods-description {position:relative;margin-left:0}
 .ebg-shop020-b .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 4px}
-.ebg-shop020-b .goods-description .goods-name {position:relative;overflow:hidden;margin:0;font-size:.9rem;font-weight:500}
-.ebg-shop020-b .goods-description .goods-name a {color:#000}
+.ebg-shop020-b .goods-description .goods-name {position:relative;overflow:hidden;margin:0;font-size:.9rem;font-weight:700;color:#ff8a37;white-space:nowrap;text-overflow:ellipsis}
+.ebg-shop020-b .goods-description .goods-name a {color:#ff8a37}
 .ebg-shop020-b .goods-description .goods-name a:hover {text-decoration:underline}
 .ebg-shop020-b .goods-description .title-price {font-size:.9375rem;color:#ab0000;margin-right:7px}
 .ebg-shop020-b .goods-description .line-through {font-size:.9375rem;color:#959595;text-decoration:line-through;font-weight:400;white-space:nowrap}
 .ebg-shop020-b .goods-description .goods-id {color:#757575;display:block;font-size:.8125rem;margin-top:10px}
-.ebg-shop020-b .goods-description .goods-info {position:relative;overflow:hidden;height:38px;color:#959595;font-size:.8125rem;margin-top:10px}
+.ebg-shop020-b .goods-description .goods-info {position:relative;overflow:hidden;height:1.4em;color:#959595;font-size:.8125rem;margin-top:10px;text-align:left;white-space:nowrap;text-overflow:ellipsis}
 .ebg-shop020-b .goods-description .goods-sns {position:relative;height:30px;margin-top:10px}
 .ebg-shop020-b .goods-description .goods-sns ul {position:absolute;top:0;right:0;margin:0;padding:0;list-style:none}
 .ebg-shop020-b .goods-description .goods-sns ul:after {content:"";display:block;clear:both}
@@ -77,7 +77,14 @@ global $default;
 .ebg-shop020-b .goods-description .goods-sns ul li:hover .twitter-icon {background:#4698e0}
 .ebg-shop020-b .goods-description-bottom {position:relative;overflow:hidden;padding:10px 0;border-top:1px solid #e5e5e5;font-size:.8125rem}
 .ebg-shop020-b .ebgoods-item:hover .goods-name a {text-decoration:underline}
-@media (max-width:576px) {
+
+    /* 순위 배지 스타일 (Cyber Neon) */
+    .ebg-shop020-b .rank-badge {display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:4px;background:rgba(0,0,0,0.5);font-size:12px;font-weight:800;margin-right:8px;vertical-align:middle;box-shadow:inset 0 1px 3px rgba(0,0,0,0.5)}
+    .ebg-shop020-b .rank-1 {color:#00F2FF;border:1px solid rgba(0,242,255,0.4);text-shadow:0 0 5px rgba(0,242,255,0.5)}
+    .ebg-shop020-b .rank-2 {color:#BCFF00;border:1px solid rgba(188,255,0,0.4);text-shadow:0 0 5px rgba(188,255,0,0.5)}
+    .ebg-shop020-b .rank-3 {color:#FF00D4;border:1px solid rgba(255,0,212,0.4);text-shadow:0 0 5px rgba(255,0,212,0.5)}
+
+    @media (max-width:576px) {
     .ebg-shop020-b-wrap {margin:0 0 30px}
 }
 </style>
@@ -110,21 +117,16 @@ global $default;
                             <div class="goods-description-in">
 
                                 <h4 class="goods-name ellipsis">
-                                    <span class="<?php if($i==0) { ?>text-crimson<?php } else { ?>text-gray<?php } ?>"><?php echo ($i+1); ?>.</span>
+                                    <span class="rank-badge rank-<?php echo ($i+1); ?>"><?php echo ($i+1); ?></span>
                                     <a href="<?php echo $data['href']; ?>">
                                         <?php echo $data['it_name']?>
                                     </a>
                                 </h4>
 
                                 <?php if ($default['de_all_bodmi_use']) { ?>
-                                <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 3px 8px; font-size: 11px; margin: 5px 0; border-radius: 4px; display: inline-flex;">
-                                    <div class="all-countdown-title" style="gap: 4px;">
-                                        <i class="fas fa-gift" style="font-size: 10px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
+                                    <div class="goods-info" style="display: block; min-height: 20px; color: #959595; font-size: 14px; font-weight: 400; margin-top: 5px; text-align: left; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <?php echo $data['it_basic'] ? cut_str($data['it_basic'], 40) : $default['de_all_bodmi_title']; ?>
                                     </div>
-                                    <div class="all-countdown-timer">
-                                        <!-- JS -->
-                                    </div>
-                                </div>
                                 <?php } ?>
 
                                 <?php /* 가격 정보 숨김 */ ?>
