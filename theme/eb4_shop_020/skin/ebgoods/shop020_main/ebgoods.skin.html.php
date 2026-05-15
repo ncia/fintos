@@ -41,7 +41,7 @@ global $default;
 .ebg-shop020-m .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-m .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
 .ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.10rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
-.ebg-shop020-m .goods-description .goods-name a {color:#000}
+.ebg-shop020-m .goods-description .goods-name a {color:#ff8a37}
 .ebg-shop020-m .goods-description .goods-name a:hover {text-decoration:underline}
 .ebg-shop020-m .goods-description .title-price {font-size:1.0625rem;font-weight:700;color:#ab0000;margin-right:7px}
 .ebg-shop020-m .goods-description .line-through {font-size:.875rem;color:#959595;text-decoration:line-through;font-weight:400;white-space:nowrap}
@@ -66,6 +66,11 @@ global $default;
 .ebg-shop020-m .rgba-banner-area {position:absolute;top:5px;right:5px}
 .ebg-shop020-m .rgba-banner {height:25px;width:25px;line-height:25px;color:#fff;font-size:.6875rem;text-align:center;font-weight:400;position:relative;text-transform:uppercase;margin-bottom:2px;border-radius:50%}
 .ebg-shop020-m .ebgoods-item:hover .goods-name a {text-decoration:underline}
+
+/* SNS Share */
+.ebg-shop020-m .goods-share {display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:5px; padding:5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);}
+.ebg-shop020-m .goods-share img {width:30px; height:30px; border-radius:4px; display:block}
+
 @media (max-width:1199px) {
     .ebg-shop020-m {margin-left:-5px;margin-right:-5px}
     .ebg-shop020-m .ebgoods-item-wrap {width:50%;padding:5px}
@@ -80,6 +85,8 @@ global $default;
     .ebg-shop020-m-tabs li {margin-left:0;margin-right:20px}
     .ebg-shop020-m {margin-left:-2px;margin-right:-2px}
     .ebg-shop020-m .ebgoods-item-wrap {padding:5px 2px}
+    .ebg-shop020-m .goods-share {gap:2px; padding:3px;}
+    .ebg-shop020-m .goods-share img {width:24px; height:24px;}
 }
 </style>
 
@@ -184,13 +191,13 @@ global $default;
                                 </a>
                                 <?php } ?>
 
-                                <div class="goods-share" style="display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:5px; padding:5px 5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);">
-                                    <a href="javascript:void(0);" title="공유"><img src="<?php echo G5_URL; ?>/data/icon/share_icon.png" style="width:30px; height:30px; border-radius:4px;"></a>
-                                    <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png" style="width:30px; height:30px; border-radius:4px;"></a>
-                                    <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png" style="width:30px; height:30px; border-radius:4px;"></a>
-                                    <a href="https://share.naver.com/share?url=<?php echo $data['sns_url']; ?>&title=<?php echo $data['sns_title']; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png" style="width:30px; height:30px; border-radius:4px;"></a>
-                                    <a href="https://band.us/plugin/share?body=<?php echo $data['sns_title']; ?>%0A<?php echo $data['sns_url']; ?>" target="_blank" title="네이버 밴드"><img src="<?php echo G5_URL; ?>/data/icon/naver_band.png" style="width:30px; height:30px; border-radius:4px;"></a>
-                                    <a href="javascript:void(0);" title="링크 복사" onclick="copy_goods_url('<?php echo G5_URL; ?>/shop/item.php?it_id=<?php echo $data['it_id']; ?>'); return false;"><img src="<?php echo G5_URL; ?>/data/icon/link_copy.png" style="width:30px; height:30px; border-radius:4px;"></a>
+                                <div class="goods-share">
+                                    <a href="javascript:void(0);" title="공유"><img src="<?php echo G5_URL; ?>/data/icon/share_icon.png"></a>
+                                    <a href="javascript:void(0);" title="카카오톡 공유"><img src="<?php echo G5_URL; ?>/data/icon/kakaotalk.png"></a>
+                                    <a href="javascript:void(0);" title="카카오채널"><img src="<?php echo G5_URL; ?>/data/icon/kakao_ch.png"></a>
+                                    <a href="https://share.naver.com/share?url=<?php echo $data['sns_url']; ?>&title=<?php echo $data['sns_title']; ?>" target="_blank" title="네이버 블로그"><img src="<?php echo G5_URL; ?>/data/icon/naver_blog.png"></a>
+                                    <a href="https://band.us/plugin/share?body=<?php echo $data['sns_title']; ?>%0A<?php echo $data['sns_url']; ?>" target="_blank" title="네이버 밴드"><img src="<?php echo G5_URL; ?>/data/icon/naver_band.png"></a>
+                                    <a href="javascript:void(0);" title="링크 복사" onclick="copy_goods_url('<?php echo G5_URL; ?>/shop/item.php?it_id=<?php echo $data['it_id']; ?>'); return false;"><img src="<?php echo G5_URL; ?>/data/icon/link_copy.png"></a>
                                 </div>
 
                                 <?php if ($eb_goods['gi_view_sns'] == 'y') { ?>

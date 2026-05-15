@@ -329,7 +329,7 @@ $frm_submit .= $frm_eba_submit;
                             </span>
                             <span class="span-lg-block">
                                 <label for="de_type4_img_height" class="label">이미지 높이</label>
-                                <label class="input width-120px"">
+                                <label class="input width-120px">
                                     <input type="text" name="de_type4_img_height" value="<?php echo get_sanitize_input($default['de_type4_img_height']); ?>" id="de_type4_img_height">
                                 </label>
                             </span>
@@ -394,14 +394,14 @@ $frm_submit .= $frm_eba_submit;
                         <label class="label">PC 카운트다운 설정</label>
                     </div>
                     <div class="adm-form-td td-r">
-                        <div class="d-flex align-items-center flex-wrap">
-                            <section class="m-r-20">
-                                <label class="checkbox width-80px">
+                        <div class="inline-group">
+                            <span class="span-lg-block">
+                                <label class="checkbox width-100px">
                                     <input type="checkbox" name="de_bodmi_use" id="de_bodmi_use" value="1" <?php echo $default['de_bodmi_use']?"checked":""; ?>>
                                     <i></i> 출력
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_bodmi_title" class="label">말풍선 제목</label>
                                 <div class="custom-datalist-wrapper">
                                     <label class="input width-200px">
@@ -418,8 +418,8 @@ $frm_submit .= $frm_eba_submit;
                                         </ul>
                                     </div>
                                 </div>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_bodmi_font_size" class="label">제목 글자 크기</label>
                                 <label class="select width-100px">
                                     <select name="de_bodmi_font_size" id="de_bodmi_font_size">
@@ -440,8 +440,8 @@ $frm_submit .= $frm_eba_submit;
                                         <option value="direct">직접입력</option>
                                     </select><i></i>
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_bodmi_font_weight" class="label">글자 두께</label>
                                 <label class="select width-120px">
                                     <select name="de_bodmi_font_weight" id="de_bodmi_font_weight">
@@ -454,21 +454,20 @@ $frm_submit .= $frm_eba_submit;
                                         ?>
                                     </select><i></i>
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block" style="vertical-align:top;">
                                 <label for="de_bodmi_font_color" class="label">글자 색상</label>
                                 <label class="input width-60px">
-                                    <input type="color" name="de_bodmi_font_color" value="<?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#000000'; ?>" id="de_bodmi_font_color" style="padding:2px; height:34px;">
+                                    <input type="color" name="de_bodmi_font_color" value="<?php echo $default['de_bodmi_font_color'] ? $default['de_bodmi_font_color'] : '#000000'; ?>" id="de_bodmi_font_color" style="padding:1px; height:40px; cursor:pointer;">
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_bodmi_target_date" class="label">설정 날짜</label>
                                 <label class="input width-150px">
                                     <i class="icon-append far fa-calendar-alt" id="btn_target_date"></i>
                                     <input type="text" name="de_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_bodmi_target_date']), 0, 10); ?>" id="de_bodmi_target_date" class="datepicker">
                                 </label>
-                            </section>
-
+                            </span>
                         </div>
                         <div class="note"><strong>Note:</strong> 보드미 캐릭터 배너의 말풍선 문구와 카운트다운 설정날짜를 실시간으로 반영합니다.</div>
                     </div>
@@ -479,14 +478,14 @@ $frm_submit .= $frm_eba_submit;
                         <label class="label">보험상품 전체 카운트다운</label>
                     </div>
                     <div class="adm-form-td td-r">
-                        <div class="d-flex align-items-center flex-wrap">
-                            <section class="m-r-20">
-                                <label class="checkbox width-80px">
+                        <div class="inline-group">
+                            <span class="span-lg-block">
+                                <label class="checkbox width-100px">
                                     <input type="checkbox" name="de_all_bodmi_use" id="de_all_bodmi_use" value="1" <?php echo $default['de_all_bodmi_use']?"checked":""; ?>>
                                     <i></i> 출력
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_all_bodmi_title" class="label">프로모션 문구</label>
                                 <div class="custom-datalist-wrapper">
                                     <label class="input width-200px">
@@ -505,8 +504,8 @@ $frm_submit .= $frm_eba_submit;
                                         </ul>
                                     </div>
                                 </div>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_all_bodmi_font_size" class="label">제목 글자 크기</label>
                                 <label class="select width-100px">
                                     <select name="de_all_bodmi_font_size" id="de_all_bodmi_font_size">
@@ -527,8 +526,8 @@ $frm_submit .= $frm_eba_submit;
                                         <option value="direct">직접입력</option>
                                     </select><i></i>
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block">
                                 <label for="de_all_bodmi_font_weight" class="label">글자 두께</label>
                                 <label class="select width-120px">
                                     <select name="de_all_bodmi_font_weight" id="de_all_bodmi_font_weight">
@@ -541,22 +540,21 @@ $frm_submit .= $frm_eba_submit;
                                         ?>
                                     </select><i></i>
                                 </label>
-                            </section>
-                            <section class="m-r-20">
+                            </span>
+                            <span class="span-lg-block" style="vertical-align:top;">
                                 <label for="de_all_bodmi_font_color" class="label">글자 색상</label>
                                 <label class="input width-60px">
-                                    <input type="color" name="de_all_bodmi_font_color" value="<?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#000000'; ?>" id="de_all_bodmi_font_color" style="padding:2px; height:34px;">
+                                    <input type="color" name="de_all_bodmi_font_color" value="<?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#000000'; ?>" id="de_all_bodmi_font_color" style="padding:1px; height:40px; cursor:pointer;">
                                 </label>
-                            </section>
+                            </span>
 
-                            <section class="m-r-20">
+                            <span class="span-lg-block">
                                 <label for="de_all_bodmi_target_date" class="label">설정 날짜</label>
                                 <label class="input width-150px">
                                     <i class="icon-append far fa-calendar-alt" id="btn_all_target_date"></i>
                                     <input type="text" name="de_all_bodmi_target_date" value="<?php echo substr(get_sanitize_input($default['de_all_bodmi_target_date']), 0, 10); ?>" id="de_all_bodmi_target_date" class="datepicker">
                                 </label>
-                            </section>
-
+                            </span>
 
                         </div>
                         <div class="note"><strong>Note:</strong> 보험상품 전체에 적용될 카운트다운 배너를 설정합니다.</div>

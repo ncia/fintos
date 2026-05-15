@@ -116,7 +116,25 @@
 .itemuse-iframe-modal .modal-body {
     padding: 0;
 }
+:root {
+    --brand-color: #ff8a37;
+}
+
+/* 모든 상품 리스트 및 상세페이지 상품명 색상 강제 적용 */
+body .product-description .product-name a,
+body .product-description .goods-name a,
+body .premium-product-list .goods-name a,
+body .ebg-shop020-m .goods-name a,
+body .ebg-shop020-b .goods-name a,
+body .product-main-10 .product-name a,
+body .shop-product-form .product-title {
+    color: var(--brand-color) !important;
+}
+
+/* 브랜드 로고 스타일 정리 */
+.brand-logo-wrap { text-align: center; margin-top: 5px; }
+.brand-logo-img { height: 20px; width: auto; }
+
 #itemuse-iframe {
     background: transparent;
 }
-

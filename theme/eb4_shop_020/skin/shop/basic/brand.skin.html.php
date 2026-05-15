@@ -79,6 +79,22 @@ $brand_bg_url = $tmp_theme_url . '/image/brand_bg/bg_' . $random_bg_num . '.png'
     margin-right: 5px;
     font-size: 0.875rem;
 }
+
+/* Brand Info Box */
+.brand-info-box {background: rgba(0,0,0,0.1); padding: 25px; border-radius: 0; margin: 20px auto 0; position: relative; z-index: 10; text-align: left;}
+.brand-info-box .info-content {color: #fff; font-size: 1rem; line-height: 1.7; text-shadow: 0 1px 4px rgba(0,0,0,0.5); word-break: keep-all; margin-bottom: 15px;}
+.brand-info-box .info-details {color: #fff; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 1rem; width: 100%; text-shadow: 0 1px 4px rgba(0,0,0,0.5); display: flex; justify-content: space-around; align-items: flex-start; opacity: 0.9; text-align: center;}
+.brand-info-box .info-details > div {flex: 1; min-width: 0; padding: 0 5px;}
+.brand-info-box .info-details span {display: block; font-size: 0.875rem; margin-bottom: 5px; opacity: 0.8;}
+.brand-info-box .info-details .info-value {font-size: 1rem; font-weight: bold; color: #fff;}
+
+@media (max-width: 767px) {
+    .brand-info-box {padding: 15px; width: 100% !important;}
+    .brand-info-box .info-details {flex-wrap: wrap; justify-content: center; gap: 15px 10px;}
+    .brand-info-box .info-details > div {flex: 0 0 30%; min-width: 80px;}
+    .brand-info-box .info-details > div:nth-child(n+4) {margin-top: 5px;}
+    .brand-title h3 {font-size: 1.5rem;}
+}
 </style>
 
 <div class="shop-list">
@@ -135,26 +151,26 @@ $brand_bg_url = $tmp_theme_url . '/image/brand_bg/bg_' . $random_bg_num . '.png'
                 // 브랜드별 텍스트 박스 너비 오프셋 개별 설정
                 $box_offset = ($br_cd == '1773820549') ? '60px' : '70px';
         ?>
-        <div style="background: rgba(0,0,0,0.1); padding: 25px; border-radius: 0; margin: 20px auto 0; position: relative; z-index: 10; width: calc(100% - <?php echo $box_offset; ?>); text-align: left;">
-            <p style="color: #fff; font-size: 1rem; line-height: 1.7; text-shadow: 0 1px 4px rgba(0,0,0,0.5); word-break: keep-all; margin-bottom: 15px;">
+        <div class="brand-info-box" style="width: calc(100% - <?php echo $box_offset; ?>);">
+            <p class="info-content">
                 <?php echo $brand_desc[$br_cd]; ?>
             </p>
-            <div style="color: #fff; margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 1rem; width: 100%; text-shadow: 0 1px 4px rgba(0,0,0,0.5); display: flex; justify-content: space-around; align-items: flex-start; opacity: 0.9; text-align: center;">
+            <div class="info-details">
                 <div>
                     <span>고객센터</span>
-                    <div style="font-size: 1rem; margin-top: 5px; font-weight: bold; color: #fff;"><?php echo $c_nums[0]; ?></div>
+                    <div class="info-value"><?php echo $c_nums[0]; ?></div>
                 </div>
                 <div>
                     <span>모니터링</span>
-                    <div style="font-size: 1rem; margin-top: 5px; font-weight: bold; color: #fff;"><?php echo $c_nums[1]; ?></div>
+                    <div class="info-value"><?php echo $c_nums[1]; ?></div>
                 </div>
                 <div>
                     <span>전산헬프</span>
-                    <div style="font-size: 1rem; margin-top: 5px; font-weight: bold; color: #fff;"><?php echo $c_nums[2]; ?></div>
+                    <div class="info-value"><?php echo $c_nums[2]; ?></div>
                 </div>
                 <div>
                     <span>청구팩스</span>
-                    <div style="font-size: 1rem; margin-top: 5px; font-weight: bold; color: #fff;"><?php echo $c_nums[3]; ?></div>
+                    <div class="info-value"><?php echo $c_nums[3]; ?></div>
                 </div>
                 <div>
                     <span>보험약관</span>
