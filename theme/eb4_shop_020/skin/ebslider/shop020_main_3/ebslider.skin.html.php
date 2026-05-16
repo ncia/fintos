@@ -74,6 +74,7 @@ if (!defined('_EYOOM_')) exit;
         <div class="swiper swiper-m3">
             <div class="swiper-wrapper">
                 <?php foreach ($slider as $k => $item) { ?>
+                <?php if ($item['ei_state'] == '2') continue; ?>
                 <div class="swiper-slide animate-img-hvr2">
                     <?php if ($item['href_1']) { ?>
                     <a href="<?php echo $item['href_1']; ?>" target="<?php echo $item['target_1']; ?>">
@@ -116,7 +117,22 @@ if (!defined('_EYOOM_')) exit;
         </div>
     </div>
     <?php } ?>
-    <?php if ($es_default) { ?>
+    <?php 
+    // 실제 출력할 아이템이 있는지 다시 한번 체크
+    $visible_item_cnt = 0;
+    if (is_array($slider)) {
+        foreach ($slider as $item) {
+            if ($item['ei_state'] == '1') $visible_item_cnt++;
+        }
+    }
+    
+    if ($es_default && $visible_item_cnt == 0 && ($is_admin != 'super' || G5_IS_MOBILE)) {
+        // 아이템이 하나도 없고 관리자가 아니라면 샘플을 보여주지 않고 종료
+        return;
+    }
+    
+    if ($es_default) { 
+    ?>
     <div class="ebs-shop020-m3">
         <div class="swiper swiper-m3">
             <div class="swiper-wrapper">

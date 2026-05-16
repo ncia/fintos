@@ -25,7 +25,10 @@ $ei_period      = isset($_POST['ei_period']) ? clean_xss_tags(trim($_POST['ei_pe
 $ei_start       = isset($_POST['ei_start']) ? clean_xss_tags(trim($_POST['ei_start'])) : '';
 $ei_end         = isset($_POST['ei_end']) ? clean_xss_tags(trim($_POST['ei_end'])) : '';
 $ei_view_level  = isset($_POST['ei_view_level']) ? clean_xss_tags(trim($_POST['ei_view_level'])) : '';
-$wmode          = isset($_POST['wmode']) ? clean_xss_tags(trim($_POST['wmode'])) : '';
+$wmode          = isset($_POST['wmode']) ? clean_xss_tags(trim($_POST['wmode'])) : (isset($_GET['wmode']) ? clean_xss_tags(trim($_GET['wmode'])) : '');
+if (!$wmode) {
+    $wmode      = isset($_POST['smode']) ? clean_xss_tags(trim($_POST['smode'])) : (isset($_GET['smode']) ? clean_xss_tags(trim($_GET['smode'])) : '');
+}
 
 /**
  * 노출 기간
@@ -177,6 +180,7 @@ $thema->save_ebslider_item($es_code, $ei_theme);
  * 모달창 닫고 리로드하기
  */
 if ($wmode) {
+    alert($msg);
     echo "<script>window.parent.close_modal_and_reload();</script>";
     exit;
 }

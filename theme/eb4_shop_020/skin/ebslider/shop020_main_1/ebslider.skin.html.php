@@ -105,6 +105,7 @@ if (!defined('_EYOOM_')) exit;
         <div id="ebs_shop020_m1" class="swiper swiper-m1">
             <div class="swiper-wrapper">
                 <?php foreach ($slider as $k => $item) { ?>
+                <?php if ($item['ei_state'] == '2') continue; ?>
                 <div class="swiper-slide">
                     <?php if ($item['href_1']) { ?>
                     <a href="<?php echo $item['href_1']; ?>" target="<?php echo $item['target_1']; ?>">
@@ -154,6 +155,7 @@ if (!defined('_EYOOM_')) exit;
             <div thumbsSlider="" id="ebs_shop020_m1_thumbs" class="swiper swiper-thumbs">
                 <div class="swiper-wrapper">
                     <?php foreach ($slider as $k => $item) { ?>
+                    <?php if ($item['ei_state'] == '2') continue; ?>
                     <div class="swiper-slide swiper-pagination-progress">
                         <div class="swiper-progress-bar-wrap">
                             <div class="swiper-progress-bar"></div>
@@ -168,7 +170,22 @@ if (!defined('_EYOOM_')) exit;
         </div>
     </div>
     <?php } ?>
-    <?php if ($es_default) { ?>
+    <?php 
+    // 실제 출력할 아이템이 있는지 다시 한번 체크
+    $visible_item_cnt = 0;
+    if (is_array($slider)) {
+        foreach ($slider as $item) {
+            if ($item['ei_state'] == '1') $visible_item_cnt++;
+        }
+    }
+    
+    if ($es_default && $visible_item_cnt == 0 && ($is_admin != 'super' || G5_IS_MOBILE)) {
+        // 아이템이 하나도 없고 관리자가 아니라면 샘플을 보여주지 않고 종료
+        return;
+    }
+    
+    if ($es_default) { 
+    ?>
     <div class="ebs-shop020-m1">
         <div id="ebs_shop020_m1" class="swiper swiper-m1">
             <div class="swiper-wrapper">
