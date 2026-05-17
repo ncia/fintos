@@ -260,7 +260,7 @@ if (!defined('_EYOOM_')) exit;
                     <div class="fintos-poll-container">
                         <div class="fintos-poll-box">
                             <div class="fintos-poll-header">
-                                <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임에 참여하셨나요?</span>
+                                <span class="fintos-poll-badge">⚖️ 보험 밸런스 게임에 참여 하셨나요?</span>
                                 <div class="fintos-poll-question">
                                     Q. <?php echo htmlspecialchars($random_poll['question']); ?>
                                 </div>
