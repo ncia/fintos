@@ -17,8 +17,8 @@ $ei_state       = isset($_POST['ei_state']) ? clean_xss_tags(trim($_POST['ei_sta
 $ei_sort        = isset($_POST['ei_sort']) ? clean_xss_tags(trim($_POST['ei_sort'])) : '';
 $ei_title       = isset($_POST['ei_title']) ? clean_xss_tags(trim($_POST['ei_title'])) : '';
 $ei_subtitle    = isset($_POST['ei_subtitle']) ? clean_xss_tags(trim($_POST['ei_subtitle'])) : '';
-$ei_links       = isset($_POST['ei_link']) ? (array) $_POST['ei_link'] : array();
-$ei_target      = isset($_POST['ei_target']) ? (array) $_POST['ei_target'] : array();
+$ei_links       = isset($_POST['ei_link']) ? (array) $_POST['ei_link'] : '';
+$ei_target      = isset($_POST['ei_target']) ? (array) $_POST['ei_target'] : '';
 $ei_text        = isset($_POST['ei_text']) ? clean_xss_tags(trim($_POST['ei_text'])) : '';
 $ei_theme       = isset($_POST['theme']) ? clean_xss_tags(trim($_POST['theme'])) : '';
 $ei_period      = isset($_POST['ei_period']) ? clean_xss_tags(trim($_POST['ei_period'])) : '';
@@ -185,5 +185,4 @@ if ($wmode) {
     exit;
 }
 
-$wmode_str = $wmode ? '&wmode=1' : '';
-alert($msg, G5_ADMIN_URL . '/?dir=theme&pid=ebslider_itemform&es_code='.$es_code.'&'.$qstr.'&thema='.$ei_theme.'&w=u&iw=u'.$wmode_str.'&ei_no='.$ei_no);
+//alert($msg, G5_ADMIN_URL . '/?dir=theme&amp;pid=ebslider_itemform&amp;es_code='.$es_code.'&amp;'.$qstr.'&amp;thema='.$ei_theme.'&amp;w=u&amp;iw=u&amp;wmode=1&amp;ei_no='.$ei_no);

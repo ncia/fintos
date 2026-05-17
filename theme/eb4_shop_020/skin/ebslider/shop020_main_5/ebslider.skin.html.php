@@ -77,7 +77,6 @@ if (!defined('_EYOOM_')) exit;
         <div class="swiper swiper-m5">
             <div class="swiper-wrapper">
                 <?php foreach ($slider as $k => $item) { ?>
-                <?php if ($item['ei_state'] == '2') continue; ?>
                 <div class="swiper-slide animate-img-hvr3">
                     <?php if ($item['href_1']) { ?>
                     <a href="<?php echo $item['href_1']; ?>" target="<?php echo $item['target_1']; ?>">

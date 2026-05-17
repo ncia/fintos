@@ -566,20 +566,11 @@ if (!defined('_EYOOM_')) exit;
 <div class="shop-main-section-basic <?php if ($eyoom['use_brand'] == 'n') { ?>border-top-1<?php } ?> border-bottom--1" style="background:#1a1d21;">
     <div class="container">
         <div class="main-section-basic-row">
-            <?php 
-            $es_1658993441 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1658993441'");
-            $ei_active_check = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1658993441' and ei_state = '1'");
-            $banner_show = ($es_1658993441['es_state'] == '1' && $ei_active_check['cnt'] > 0) ? true: false;
-            
-            if ($banner_show || ($is_admin == 'super' && !G5_IS_MOBILE)) { 
-            ?>
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (1) */ ?>
                 <?php echo eb_slider('1658993441'); ?>
             </div>
-            <?php } ?>
-
-            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show) { ?>style="width:100%;"<?php } ?>>
+            <div class="main-section-basic-r dark-section-title">
                 <?php /* EB상품추출 - shop020_main */ ?>
                 <?php echo eb_goods('1652073560'); ?>
             </div>
