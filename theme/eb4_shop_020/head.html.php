@@ -338,6 +338,9 @@ $item_view = 'zoom';
                                                 <a href="<?php echo G5_URL; ?>/insurance_claim.php" class="dropdown-item nav-link"><span class="m-r-5">📅</span>보험금 청구 예약</a>
                                             </li>
                                             <li class="dropdown-submenu">
+                                                <a href="<?php echo G5_URL; ?>/insurance_claim_check.php" class="dropdown-item nav-link"><span class="m-r-5">🔍</span>보험금 청구 조회</a>
+                                            </li>
+                                            <li class="dropdown-submenu">
                                                 <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=claim_review" class="dropdown-item nav-link"><span class="m-r-5">💬</span>보험금 청구 후기</a>
                                             </li>
                                             <li class="dropdown-submenu">
