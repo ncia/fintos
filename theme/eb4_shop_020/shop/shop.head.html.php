@@ -50,6 +50,7 @@ $is_darkmode = 'yes';
     /* 보험상품 전체 카운트다운 전역 스타일 */
     .all-countdown-container {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         padding: 6px 12px;
@@ -59,6 +60,7 @@ $is_darkmode = 'yes';
         margin: 10px 0;
         line-height: 1;
         min-height: 32px;
+        gap: 6px 10px;
     }
     .all-countdown-title {
         display: flex;
@@ -66,6 +68,7 @@ $is_darkmode = 'yes';
         gap: 5px;
         font-weight: <?php echo $default['de_all_bodmi_font_weight'] ? $default['de_all_bodmi_font_weight'] : '800'; ?>;
         white-space: nowrap;
+        flex-shrink: 0;
     }
     .bodmi-countdown-title { font-weight: 700; }
     .all-countdown-timer {
@@ -73,6 +76,7 @@ $is_darkmode = 'yes';
         align-items: center;
         gap: 0;
         font-weight: 700;
+        white-space: nowrap;
     }
     .all-countdown-timer .num {
         font-weight: 800;

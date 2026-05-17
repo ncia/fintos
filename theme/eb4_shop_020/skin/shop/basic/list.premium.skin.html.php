@@ -53,7 +53,7 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
 .premium-product-list .shop-rgba-green {background:#00897b}
 
 /* Countdown */
-.premium-product-list .all-countdown-container {display: flex; justify-content: space-between; align-items: center; width: 100%;}
+.premium-product-list .all-countdown-container {display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; gap: 6px 10px;}
 
 /* SNS Share */
 .premium-product-list .goods-share {display:flex; width:fit-content; margin:15px auto 0; justify-content:center; align-items:center; gap:5px; padding:5px; background:#fcfcfc; border:1px solid #f0f0f0; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.03);}

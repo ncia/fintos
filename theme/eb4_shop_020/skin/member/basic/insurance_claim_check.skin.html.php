@@ -239,7 +239,7 @@ if (!defined('_GNUBOARD_')) exit;
             <h1 class="header-title">
                 🔍 보험금 청구 <span>실시간 조회</span>
             </h1>
-            <p class="header-subtitle">접수 완료된 보험금 청구 내역과 진행 상태를 이모지 기반의 명확한 화면에서 편리하게 확인하세요.</p>
+            <p class="header-subtitle">접수 완료된 보험금 청구 내역과 진행 상태를 편리하게 확인하세요.</p>
         </div>
 
         <div class="layout-body">
@@ -247,8 +247,8 @@ if (!defined('_GNUBOARD_')) exit;
             <div class="board-grid">
                 <div class="board-card">
                     <span class="board-icon">📱</span>
-                    <h3 class="board-title">3초 간편 간이인증</h3>
-                    <p class="board-desc">아이디와 비밀번호 찾기 없이 간편한 휴대폰 본인 인증만으로 즉시 조회가 안전하게 개시됩니다.</p>
+                    <h3 class="board-title">3초 간편 인증</h3>
+                    <p class="board-desc">아이디와 비밀번호 찾기 없이 간편한 휴대폰 본인 인증만으로 즉시 조회가 가능합니다.</p>
                 </div>
                 <div class="board-card">
                     <span class="board-icon">⚡</span>
