@@ -108,9 +108,27 @@ if (!defined('_EYOOM_')) exit;
                     <div class="adm-edit-btn btn-edit-mode" style="top:40px;z-index:3">
                         <div class="btn-group">
                             <a href="<?php echo G5_ADMIN_URL; ?>/?dir=theme&pid=ebslider_itemform&thema=<?php echo $theme; ?>&es_code=<?php echo $es_code; ?>&ei_no=<?php echo $item['ei_no']; ?>&w=u&iw=u&wmode=1" onclick="eb_admset_modal(this.href); return false;" class="ae-item-btn"><i class="far fa-edit"></i> EB슬라이더 아이템 설정</a>
+                            <?php if ($es_code == '1659255375') { ?>
+                            <a href="<?php echo G5_ADMIN_URL; ?>/?dir=theme&amp;pid=ebslider_form&amp;es_code=1659255375&amp;w=u" class="ae-btn-r" title="EB슬라이더 설정">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <?php } else if ($es_code == '1659257180') { ?>
+                            <a href="<?php echo G5_ADMIN_URL; ?>/?dir=theme&amp;pid=ebslider_form&amp;es_code=1659257180&amp;w=u" class="ae-btn-r" title="EB슬라이더 설정">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <?php } else if ($es_code == '1659312032') { ?>
+                            <a href="<?php echo G5_ADMIN_URL; ?>/?dir=theme&amp;pid=ebslider_form&amp;es_code=1659312032&amp;w=u" class="ae-btn-r" title="EB슬라이더 설정">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <?php } else if ($es_code == '1659316824') { ?>
+                            <a href="<?php echo G5_ADMIN_URL; ?>/?dir=theme&amp;pid=ebslider_form&amp;es_code=1659316824&amp;w=u" class="ae-btn-r" title="EB슬라이더 설정">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <?php } else { ?>
                             <a href="<?php echo G5_ADMIN_URL; ?>/?dir=theme&pid=ebslider_itemform&thema=<?php echo $theme; ?>&es_code=<?php echo $es_code; ?>&ei_no=<?php echo $item['ei_no']; ?>&w=u&iw=u" target="_blank" class="ae-btn-r" title="새창 열기">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
+                            <?php } ?>
                         </div>
                     </div>
                     <?php } ?>

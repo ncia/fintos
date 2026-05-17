@@ -4,6 +4,26 @@
  */
 if (!defined('_EYOOM_')) exit;
 
+// 현재 타입에 따른 배너 슬라이더 코드 설정
+$es_code_banner = '';
+if ($this->type == 1) {
+    $es_code_banner = '1659255375'; // 랜덤 상품
+} else if ($this->type == 2) {
+    $es_code_banner = '1659257180'; // 추천 상품
+} else if ($this->type == 3) {
+    $es_code_banner = '1659312032'; // 최신 상품
+} else if ($this->type == 4) {
+    $es_code_banner = '1659316824'; // 인기 상품
+}
+
+// 만약 해당 타입에 매핑된 배너 코드가 있다면 상태를 판별
+$banner_show_2 = false;
+if ($es_code_banner) {
+    $es_slider_info = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '{$es_code_banner}'");
+    $ei_active_check_info = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '{$es_code_banner}' and ei_state = '1'");
+    $banner_show_2 = ($es_slider_info['es_state'] == '1' && $ei_active_check_info['cnt'] > 0) ? true: false;
+}
+
 add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">', 0);
 ?>
 
@@ -15,14 +35,14 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
 .premium-product-list .item-list {position:relative;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out; border: 1px solid #f0f0f0; padding: 5px; border-radius: 0px; background: #fff;}
 .premium-product-list .goods-img {position:relative;overflow:hidden;margin-bottom:10px;background:#fff}
 .premium-product-list .goods-img-in {position:relative;overflow:hidden;width:100%}
-.premium-product-list .goods-img-in:before {content:"";display:block;padding-top:75%;background:#fff}
+.premium-product-list .goods-img-in:before {content:"";display:block;padding-top:<?php echo !$banner_show_2 ? '85%' : '75%'; ?>;background:#fff}
 .premium-product-list .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 
 .premium-product-list .goods-description {position:relative;overflow:hidden;padding:0 0 10px}
-.premium-product-list .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.10rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
+.premium-product-list .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:<?php echo !$banner_show_2 ? '1.25rem' : '1.10rem'; ?>;font-weight:700;line-height:1.4;height:<?php echo !$banner_show_2 ? '55px' : '47px'; ?>;text-align:center}
 .premium-product-list .goods-name a {color:#ff8a37;text-decoration:none}
 .premium-product-list .goods-name a:hover {text-decoration:underline}
-.premium-product-list .goods-info {position:relative;overflow:hidden;min-height:38px;color:#454545;font-size:14px;margin-top:10px;text-align:center;line-height:1.4}
+.premium-product-list .goods-info {position:relative;overflow:hidden;min-height:<?php echo !$banner_show_2 ? '42px' : '38px'; ?>;color:#454545;font-size:<?php echo !$banner_show_2 ? '15px' : '14px'; ?>;margin-top:10px;text-align:center;line-height:1.4}
 
 /* Labels */
 .premium-product-list .rgba-banner-area {position:absolute;top:5px;right:5px;z-index:10}

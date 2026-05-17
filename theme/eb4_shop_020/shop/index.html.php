@@ -563,14 +563,21 @@ if (!defined('_EYOOM_')) exit;
 <?php } ?>
 <?php /* ---------- 쇼핑몰 브랜드 끝 ---------- */ ?>
 
+<?php 
+$es_1658993441 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1658993441'");
+$ei_active_check_1 = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1658993441' and ei_state = '1'");
+$banner_show_1 = ($es_1658993441['es_state'] == '1' && $ei_active_check_1['cnt'] > 0) ? true: false;
+?>
 <div class="shop-main-section-basic <?php if ($eyoom['use_brand'] == 'n') { ?>border-top-1<?php } ?> border-bottom--1" style="background:#1a1d21;">
     <div class="container">
         <div class="main-section-basic-row">
+            <?php if ($banner_show_1) { ?>
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (1) */ ?>
                 <?php echo eb_slider('1658993441'); ?>
             </div>
-            <div class="main-section-basic-r dark-section-title">
+            <?php } ?>
+            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_1) { ?>style="width:100%; max-width:100%; border-left:0; padding-left:0;"<?php } ?>>
                 <?php /* EB상품추출 - shop020_main */ ?>
                 <?php echo eb_goods('1652073560'); ?>
             </div>
@@ -596,15 +603,14 @@ if ($es_1652230190['es_state'] == '1' && ($ei_active_check['cnt'] > 0 || ($is_ad
             $es_1659255375 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1659255375'");
             $ei_active_check = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1659255375' and ei_state = '1'");
             $banner_show_2 = ($es_1659255375['es_state'] == '1' && $ei_active_check['cnt'] > 0) ? true: false;
-            
-            if ($banner_show_2 || ($is_admin == 'super' && !G5_IS_MOBILE)) { 
             ?>
+            <?php if ($banner_show_2) { ?>
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (2) */ ?>
                 <?php echo eb_slider('1659255375'); ?>
             </div>
             <?php } ?>
-            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_2) { ?>style="width:100%;"<?php } ?>>
+            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_2) { ?>style="width:100%; max-width:100%; border-left:0; padding-left:0;"<?php } ?>>
                 <?php /* ---------- 히트상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
@@ -652,15 +658,14 @@ if ($es_1652230190['es_state'] == '1' && ($ei_active_check['cnt'] > 0 || ($is_ad
             $es_1659312032 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1659312032'");
             $ei_active_check = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1659312032' and ei_state = '1'");
             $banner_show_4 = ($es_1659312032['es_state'] == '1' && $ei_active_check['cnt'] > 0) ? true: false;
-            
-            if ($banner_show_4 || ($is_admin == 'super' && !G5_IS_MOBILE)) { 
             ?>
+            <?php if ($banner_show_4) { ?>
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (4) */ ?>
                 <?php echo eb_slider('1659312032'); ?>
             </div>
             <?php } ?>
-            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_4) { ?>style="width:100%;"<?php } ?>>
+            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_4) { ?>style="width:100%; max-width:100%; border-left:0; padding-left:0;"<?php } ?>>
                 <?php /* ---------- 최신상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
@@ -707,15 +712,14 @@ if ($es_1652230190['es_state'] == '1' && ($ei_active_check['cnt'] > 0 || ($is_ad
             $es_1659257180 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1659257180'");
             $ei_active_check = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1659257180' and ei_state = '1'");
             $banner_show_3 = ($es_1659257180['es_state'] == '1' && $ei_active_check['cnt'] > 0) ? true: false;
-            
-            if ($banner_show_3 || ($is_admin == 'super' && !G5_IS_MOBILE)) { 
             ?>
+            <?php if ($banner_show_3) { ?>
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (3) */ ?>
                 <?php echo eb_slider('1659257180'); ?>
             </div>
             <?php } ?>
-            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_3) { ?>style="width:100%;"<?php } ?>>
+            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_3) { ?>style="width:100%; max-width:100%; border-left:0; padding-left:0;"<?php } ?>>
                 <?php /* ---------- 추천상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-10px;">
@@ -766,15 +770,14 @@ if ($es_1652230190['es_state'] == '1' && ($ei_active_check['cnt'] > 0 || ($is_ad
             $es_1659316824 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1659316824'");
             $ei_active_check = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1659316824' and ei_state = '1'");
             $banner_show_5 = ($es_1659316824['es_state'] == '1' && $ei_active_check['cnt'] > 0) ? true: false;
-            
-            if ($banner_show_5 || ($is_admin == 'super' && !G5_IS_MOBILE)) { 
             ?>
+            <?php if ($banner_show_5) { ?>
             <div class="main-section-basic-l">
                 <?php /* EB슬라이더 - shop020_main_5 (5) */ ?>
                 <?php echo eb_slider('1659316824'); ?>
             </div>
             <?php } ?>
-            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_5) { ?>style="width:100%;"<?php } ?>>
+            <div class="main-section-basic-r dark-section-title" <?php if (!$banner_show_5) { ?>style="width:100%; max-width:100%; border-left:0; padding-left:0;"<?php } ?>>
                 <?php /* ---------- 인기상품 시작 ---------- */ ?>
                 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
                 <div class="adm-edit-btn btn-edit-mode" style="margin-top:-25px;">

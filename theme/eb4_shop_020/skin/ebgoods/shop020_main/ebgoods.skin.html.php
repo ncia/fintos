@@ -4,6 +4,11 @@
  */
 if (!defined('_EYOOM_')) exit;
 global $default;
+
+// 좌측 배너 1658993441 활성화 상태 판별
+$es_1658993441 = sql_fetch("select es_state from {$g5['eyoom_slider']} where es_code = '1658993441'");
+$ei_active_check_1 = sql_fetch("select count(*) as cnt from {$g5['eyoom_slider_item']} where es_code = '1658993441' and ei_state = '1'");
+$banner_show_1 = ($es_1658993441['es_state'] == '1' && $ei_active_check_1['cnt'] > 0) ? true: false;
 ?>
 
 <?php if ($is_admin == 'super' && !G5_IS_MOBILE) { ?>
@@ -37,16 +42,16 @@ global $default;
 .ebg-shop020-m .ebgoods-item {position:relative;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out; border: 1px solid #f0f0f0; padding: 5px; border-radius: 0px; background: #fff;}
 .ebg-shop020-m .goods-img {position:relative;overflow:hidden;margin-bottom:10px;background:#fff}
 .ebg-shop020-m .goods-img-in {position:relative;overflow:hidden;width:100%}
-.ebg-shop020-m .goods-img-in:before {content:"";display:block;padding-top:75%;background:#fff}
+.ebg-shop020-m .goods-img-in:before {content:"";display:block;padding-top:<?php echo !$banner_show_1 ? '85%' : '75%'; ?>;background:#fff}
 .ebg-shop020-m .goods-img-in img {display:block;max-width:100% !important;height:auto !important;position:absolute;top:0;left:0;right:0;bottom:0}
 .ebg-shop020-m .goods-description .goods-description-in {position:relative;overflow:hidden;padding:0 0 10px}
-.ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:1.10rem;font-weight:700;line-height:1.4;height:47px;text-align:center}
+.ebg-shop020-m .goods-description .goods-name {position:relative;overflow:hidden;margin:10px 0 5px;font-size:<?php echo !$banner_show_1 ? '1.25rem' : '1.10rem'; ?>;font-weight:700;line-height:1.4;height:<?php echo !$banner_show_1 ? '55px' : '47px'; ?>;text-align:center}
 .ebg-shop020-m .goods-description .goods-name a {color:#ff8a37}
 .ebg-shop020-m .goods-description .goods-name a:hover {text-decoration:underline}
 .ebg-shop020-m .goods-description .title-price {font-size:1.0625rem;font-weight:700;color:#ab0000;margin-right:7px}
 .ebg-shop020-m .goods-description .line-through {font-size:.875rem;color:#959595;text-decoration:line-through;font-weight:400;white-space:nowrap}
 .ebg-shop020-m .goods-description .goods-id {color:#757575;display:block;font-size:.8125rem;margin-top:10px}
-.ebg-shop020-m .goods-description .goods-info {position:relative;overflow:hidden;min-height:38px;color:#454545;font-size:14px;margin-top:10px;text-align:center}
+.ebg-shop020-m .goods-description .goods-info {position:relative;overflow:hidden;min-height:<?php echo !$banner_show_1 ? '42px' : '38px'; ?>;color:#454545;font-size:<?php echo !$banner_show_1 ? '15px' : '14px'; ?>;margin-top:10px;text-align:center}
 .ebg-shop020-m .goods-description .goods-sns {position:relative;height:30px;margin-top:10px}
 .ebg-shop020-m .goods-description .goods-sns ul {position:absolute;top:0;right:0;margin:0;padding:0;list-style:none}
 .ebg-shop020-m .goods-description .goods-sns ul:after {content:"";display:block;clear:both}

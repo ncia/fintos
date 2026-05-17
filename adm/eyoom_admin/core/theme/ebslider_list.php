@@ -88,6 +88,31 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     $list[$i]['es_chg_code']    = "&lt;?php echo eb_slider('{$row['es_code']}'); ?&gt;";
 }
 
+// 슬라이더마스터제목을 강제 변경 (DB 변경 없이 화면 노출 데이터만 스왑)
+foreach ($list as $k => $v) {
+    if ($v['es_code'] == '1659312032') {
+        $list[$k]['es_subject'] = 'shop020_main_5 (3)';
+    } else if ($v['es_code'] == '1659257180') {
+        $list[$k]['es_subject'] = 'shop020_main_5 (4)';
+    }
+}
+
+// shop020_main_5 (3) [1659257180] 와 shop020_main_5 (4) [1659312032] 의 위치를 맞바꿈 (DB 변경 없이 배열 순서만 스왑)
+$idx_3 = -1;
+$idx_4 = -1;
+foreach ($list as $k => $v) {
+    if ($v['es_code'] == '1659257180') {
+        $idx_3 = $k;
+    } else if ($v['es_code'] == '1659312032') {
+        $idx_4 = $k;
+    }
+}
+if ($idx_3 !== -1 && $idx_4 !== -1) {
+    $temp = $list[$idx_3];
+    $list[$idx_3] = $list[$idx_4];
+    $list[$idx_4] = $temp;
+}
+
 /**
  * 페이징
  */
