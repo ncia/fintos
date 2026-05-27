@@ -124,9 +124,9 @@ add_stylesheet('<link rel="stylesheet" href="'.EYOOM_THEME_URL.'/plugins/slick/s
                         </h4>
 
                         <?php if ($default['de_all_bodmi_use']) { ?>
-                        <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 3px 8px; font-size: 11px; margin: 5px 0; border-radius: 4px;">
-                            <div class="all-countdown-title" style="gap: 4px;">
-                                <i class="fas fa-gift" style="font-size: 10px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
+                        <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 3px 8px; margin: 5px 0; border-radius: 4px;">
+                            <div class="all-countdown-title">
+                                🎁 <?php echo $default['de_all_bodmi_title']; ?>
                             </div>
                             <div class="all-countdown-timer">
                                 <!-- JS -->

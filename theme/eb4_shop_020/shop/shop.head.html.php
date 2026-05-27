@@ -56,7 +56,6 @@ $is_darkmode = 'yes';
         padding: 6px 12px;
         border-radius: 4px;
         font-weight: <?php echo $default['de_all_bodmi_font_weight'] ? $default['de_all_bodmi_font_weight'] : '800'; ?>;
-        font-size: 13px;
         margin: 10px 0;
         line-height: 1;
         min-height: 32px;
@@ -67,8 +66,13 @@ $is_darkmode = 'yes';
         align-items: center;
         gap: 5px;
         font-weight: <?php echo $default['de_all_bodmi_font_weight'] ? $default['de_all_bodmi_font_weight'] : '800'; ?>;
+        font-size: <?php echo $default['de_all_bodmi_font_size'] ? $default['de_all_bodmi_font_size'] : '16'; ?>px;
         white-space: nowrap;
         flex-shrink: 0;
+    }
+    .all-countdown-title i {
+        font-size: 0.95em !important;
+        vertical-align: middle;
     }
     .bodmi-countdown-title { font-weight: 700; }
     .all-countdown-timer {
@@ -76,12 +80,12 @@ $is_darkmode = 'yes';
         align-items: center;
         gap: 0;
         font-weight: 700;
+        font-size: <?php echo $default['de_all_bodmi_font_size'] ? $default['de_all_bodmi_font_size'] : '16'; ?>px;
         white-space: nowrap;
     }
     .all-countdown-timer .num {
         font-weight: 800;
         color: inherit;
-        font-size: 12px;
         min-width: auto;
         text-align: center;
         padding: 0 1px;
@@ -89,7 +93,7 @@ $is_darkmode = 'yes';
     .all-countdown-timer .unit {
         font-weight: 700;
         color: <?php echo $default['de_all_bodmi_font_color'] ? $default['de_all_bodmi_font_color'] : '#007bff'; ?> !important;
-        font-size: 11px;
+        font-size: 0.85em;
         margin-right: 4px;
         margin-left: 0;
     }

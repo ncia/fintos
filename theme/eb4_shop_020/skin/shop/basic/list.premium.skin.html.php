@@ -118,11 +118,11 @@ add_stylesheet('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/l
                     <div class="goods-info"><?php echo $it_basic; ?></div>
 
                     <?php if ($default['de_all_bodmi_use']) { ?>
-                    <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 4px 10px; font-size: 12px; margin: 10px 0; border-radius: 4px;">
-                        <div class="all-countdown-title" style="display:flex; align-items:center; gap: 5px; font-weight:700;">
-                            <i class="fas fa-gift" style="font-size: 11px;"></i> <?php echo $default['de_all_bodmi_title']; ?>
+                    <div class="all-countdown-container" style="background: <?php echo $default['de_all_bodmi_bg_color']; ?>; border: 1px solid <?php echo $default['de_all_bodmi_font_color']; ?>; color: <?php echo $default['de_all_bodmi_font_color']; ?>; padding: 4px 10px; margin: 10px 0; border-radius: 4px;">
+                        <div class="all-countdown-title">
+                            🎁 <?php echo $default['de_all_bodmi_title']; ?>
                         </div>
-                        <div class="all-countdown-timer" style="font-weight:700;">
+                        <div class="all-countdown-timer">
                             <?php echo rand(100, 150); ?>일 <?php echo sprintf("%02d", rand(0, 23)); ?>시 <?php echo sprintf("%02d", rand(0, 59)); ?>분
                         </div>
                     </div>

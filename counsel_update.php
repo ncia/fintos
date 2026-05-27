@@ -29,6 +29,10 @@ $c_mbti      = isset($_POST['c_mbti']) ? clean_xss_tags(trim($_POST['c_mbti'])) 
 
 $c_item_name = isset($_POST['subject']) ? clean_xss_tags(trim($_POST['subject'])) : '';
 
+$c_sido      = isset($_POST['c_sido'])      ? clean_xss_tags(trim($_POST['c_sido']))      : '';
+$c_gugun     = isset($_POST['c_gugun'])     ? clean_xss_tags(trim($_POST['c_gugun']))     : '';
+$c_address   = trim($c_sido . ' ' . $c_gugun);
+
 $c_pet_type  = isset($_POST['c_pet_type']) ? clean_xss_tags(trim($_POST['c_pet_type'])) : '';
 $c_pet_name  = isset($_POST['c_pet_name']) ? clean_xss_tags(trim($_POST['c_pet_name'])) : '';
 $c_pet_breed = isset($_POST['c_pet_breed']) ? clean_xss_tags(trim($_POST['c_pet_breed'])) : '';
@@ -116,7 +120,7 @@ if ($source == 'pet_insurance')          $source_ko = '반려동물보험';
 if ($source == 'insurance_counsel')      $source_ko = '상품별보험상담';
 
 if ($source == 'countdown_counsel') {
-    $range = "카운트다운!A:I";
+    $range = "카운트다운!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로 (사이트 주소)
@@ -124,12 +128,13 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
-        $counsel_time,  // G열: 상담가능시간
-        $c_kakaotalk,   // H열: 카카오채널
-        $c_mailling     // I열: 문자이메일
+        $c_address,     // G열: 주소
+        $counsel_time,  // H열: 상담가능시간
+        $c_kakaotalk,   // I열: 카카오채널
+        $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'mbti_insurance_counsel') {
-    $range = "MBTI보험추천!A:J";
+    $range = "MBTI보험추천!A:K";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -138,25 +143,27 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // E열: 연락처
         $c_birth,       // F열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // G열: 성별
+        $c_address,     // H열: 주소
+        $counsel_time,  // I열: 상담가능시간
+        $c_kakaotalk,   // J열: 카카오채널
+        $c_mailling     // K열: 문자이메일
+    ];
+} else if ($source == 'insurance_age') {
+    $range = "보험나이알기!A:J";
+    $values = [
+        G5_TIME_YMDHIS, // A열: 날짜
+        $site_address,         // B열: 경로
+        $c_name,        // C열: 이름
+        $c_hp,          // D열: 연락처
+        $c_birth,       // E열: 생년월일
+        ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
+        $c_address,     // G열: 주소
         $counsel_time,  // H열: 상담가능시간
         $c_kakaotalk,   // I열: 카카오채널
         $c_mailling     // J열: 문자이메일
     ];
-} else if ($source == 'insurance_age') {
-    $range = "보험나이알기!A:I";
-    $values = [
-        G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로
-        $c_name,        // C열: 이름
-        $c_hp,          // D열: 연락처
-        $c_birth,       // E열: 생년월일
-        ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
-        $counsel_time,  // G열: 상담가능시간
-        $c_kakaotalk,   // H열: 카카오채널
-        $c_mailling     // I열: 문자이메일
-    ];
 } else if ($source == 'insurance_check') {
-    $range = "보험통합조회!A:I";
+    $range = "보험통합조회!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -164,12 +171,13 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
-        $counsel_time,  // G열: 상담가능시간
-        $c_kakaotalk,   // H열: 카카오채널
-        $c_mailling     // I열: 문자이메일
+        $c_address,     // G열: 주소
+        $counsel_time,  // H열: 상담가능시간
+        $c_kakaotalk,   // I열: 카카오채널
+        $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'insurance_analysis') {
-    $range = "보험증권분석!A:I";
+    $range = "보험증권분석!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -177,12 +185,13 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
-        $counsel_time,  // G열: 상담가능시간
-        $c_kakaotalk,   // H열: 카카오채널
-        $c_mailling     // I열: 문자이메일
+        $c_address,     // G열: 주소
+        $counsel_time,  // H열: 상담가능시간
+        $c_kakaotalk,   // I열: 카카오채널
+        $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'insurance_remodeling') {
-    $range = "보험리모델링!A:I";
+    $range = "보험리모델링!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -190,9 +199,10 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
-        $counsel_time,  // G열: 상담가능시간
-        $c_kakaotalk,   // H열: 카카오채널
-        $c_mailling     // I열: 문자이메일
+        $c_address,     // G열: 주소
+        $counsel_time,  // H열: 상담가능시간
+        $c_kakaotalk,   // I열: 카카오채널
+        $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'pet_insurance') {
     $range = "펫보험상담!A:L";
@@ -211,7 +221,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // L열: 문자이메일
     ];
 } else if ($source == 'insurance_claim') {
-    $range = "보험금청구예약!A:I";
+    $range = "보험금청구예약!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -219,12 +229,13 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
-        $counsel_time,  // G열: 상담가능시간
-        $c_kakaotalk,   // H열: 카카오채널
-        $c_mailling     // I열: 문자이메일
+        $c_address,     // G열: 주소
+        $counsel_time,  // H열: 상담가능시간
+        $c_kakaotalk,   // I열: 카카오채널
+        $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'insurance_counsel') {
-    $range = "상품별보험상담!A:J";
+    $range = "상품별보험상담!A:K";
     
     // 폼에서 넘어온 값에서 말머리 제거
     $full_item_name = str_replace('[상품상담]', '', $c_item_name);
@@ -240,9 +251,10 @@ if ($source == 'countdown_counsel') {
         $c_hp,          // E열: 연락처
         $c_birth,       // F열: 생년월일
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // G열: 성별
-        $counsel_time,  // H열: 상담가능시간
-        $c_kakaotalk,   // I열: 카카오채널
-        $c_mailling     // J열: 문자이메일
+        $c_address,     // H열: 주소
+        $counsel_time,  // I열: 상담가능시간
+        $c_kakaotalk,   // J열: 카카오채널
+        $c_mailling     // K열: 문자이메일
     ];
 } else {
     // 상품 상담 등의 경우 (기본값)
@@ -276,6 +288,7 @@ $sql = "INSERT INTO `{$g5['g5_shop_item_table']}_counsel` SET
             is_hp = '{$c_hp}',
             is_birth = '{$c_birth}',
             is_sex = '{$c_sex}',
+            is_address = '{$c_address}',
             is_counsel_time = '{$counsel_time}',
             is_kakao_agree = '{$is_kakao_db}',
             is_email_sms_agree = '{$is_email_db}',
