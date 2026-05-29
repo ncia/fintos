@@ -261,7 +261,7 @@
                         <h5>정보 수신 동의</h5>
                         
                         <label class="checkbox-container">
-                            (필수) 개인정보 수집 및 활용 동의
+                            (필수) 개인정보 수집ㆍ활용 동의
                             <input type="checkbox" id="c_agree" name="c_agree" value="1" checked required>
                             <span class="checkmark"></span>
                         </label>
@@ -273,7 +273,7 @@
                         </label>
 
                         <label class="checkbox-container">
-                            (선택) 이메일, 문자메시지 핀토스 수신 동의
+                            (선택) 마케팅 정보 수신 동의
                             <input type="checkbox" id="c_mailling" name="c_mailling" value="1" checked>
                             <span class="checkmark"></span>
                         </label>

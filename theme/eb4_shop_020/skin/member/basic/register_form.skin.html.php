@@ -713,14 +713,14 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
             <div class="field-label" style="margin-left:5px;">정보 수신 동의</div>
             <div class="checkbox-group">
                 <label class="checkbox-container">
-                    <input type="checkbox" name="mb_kakaotalk" value="1" id="reg_mb_kakaotalk" <?php echo ($w=='' || $member['mb_kakaotalk']) ? 'checked' : ''; ?>>
+                    <input type="checkbox" name="c_agree" value="1" id="c_agree" required checked>
                     <span class="checkmark"></span>
-                    (선택) 카카오톡 핀토스 보험 채널 추가 동의
+                    (필수) 개인정보 수집ㆍ활용 동의
                 </label>
                 <label class="checkbox-container">
                     <input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo ($w=='' || $member['mb_mailling']) ? 'checked' : ''; ?>>
                     <span class="checkmark"></span>
-                    (선택) 이메일, 문자메시지 핀토스 수신 동의
+                    (선택) 마케팅 정보 수신 동의
                 </label>
             </div>
 

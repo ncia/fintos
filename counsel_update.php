@@ -22,8 +22,8 @@ $c_birth     = isset($_POST['c_birth'])     ? clean_xss_tags(trim($_POST['c_birt
 $c_sex       = isset($_POST['c_sex'])       ? clean_xss_tags(trim($_POST['c_sex']))       : (isset($_POST['mb_sex'])  ? clean_xss_tags(trim($_POST['mb_sex']))  : '');
 $c_ampm      = isset($_POST['c_ampm'])      ? clean_xss_tags(trim($_POST['c_ampm']))      : (isset($_POST['counsel_time_type']) ? clean_xss_tags(trim($_POST['counsel_time_type'])) : '');
 $c_time      = isset($_POST['c_time'])      ? clean_xss_tags(trim($_POST['c_time']))      : (isset($_POST['counsel_time_hour']) ? clean_xss_tags(trim($_POST['counsel_time_hour'])) : '');
-$c_kakaotalk = (isset($_POST['c_kakaotalk']) || isset($_POST['agree_kakao'])) ? 'YES' : 'NO';
-$c_mailling  = (isset($_POST['c_mailling']) || isset($_POST['agree_mailling'])) ? 'YES' : 'NO';
+$c_kakaotalk = (isset($_POST['c_kakaotalk']) || isset($_POST['agree_kakao'])) ? '동의' : '미동의';
+$c_mailling  = (isset($_POST['c_mailling']) || isset($_POST['agree_mailling'])) ? '동의' : '미동의';
 $it_id       = isset($_POST['it_id']) ? clean_xss_tags(trim($_POST['it_id'])) : '';
 $c_mbti      = isset($_POST['c_mbti']) ? clean_xss_tags(trim($_POST['c_mbti'])) : '';
 
@@ -105,7 +105,6 @@ include_once(G5_LIB_PATH.'/google_sheet.lib.php');
 $sheet_id = '1t3OElFyO6HlUm7qtf8ASE5PTEk5qAq6IzALsaV4XSA0';
 $site_address = preg_replace('#^https?://#', '', G5_URL); // http://, https:// 제거
 $site_address = rtrim($site_address, '/'); // 끝에 붙은 / 제거
-
 
 // 구글 시트에 기록할 경로명 (한글로 복구)
 $source_ko = $source;
@@ -221,7 +220,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // L열: 문자이메일
     ];
 } else if ($source == 'insurance_claim') {
-    $range = "보험금청구예약!A:J";
+    $range = "보험금청구예약!A:L";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -231,8 +230,10 @@ if ($source == 'countdown_counsel') {
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
         $c_address,     // G열: 주소
         $counsel_time,  // H열: 상담가능시간
-        $c_kakaotalk,   // I열: 카카오채널
-        $c_mailling     // J열: 문자이메일
+        '',             // I열: 질문1
+        '',             // J열: 질문2
+        $c_kakaotalk,   // K열: 필수
+        $c_mailling     // L열: 선택
     ];
 } else if ($source == 'insurance_counsel') {
     $range = "상품별보험상담!A:K";
@@ -277,8 +278,8 @@ if ($source == 'countdown_counsel') {
 $result = update_google_sheet($sheet_id, $range, $values);
 
 // 데이터베이스 저장
-$is_kakao_db = $c_kakaotalk == 'YES' ? 'Y' : 'N';
-$is_email_db = $c_mailling == 'YES' ? 'Y' : 'N';
+$is_kakao_db = $c_kakaotalk == '동의' ? 'Y' : 'N';
+$is_email_db = $c_mailling == '동의' ? 'Y' : 'N';
 
 // DB 저장 시에도 한글 경로명($source_ko) 사용
 $sql = "INSERT INTO `{$g5['g5_shop_item_table']}_counsel` SET 
