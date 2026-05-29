@@ -111,10 +111,10 @@ $site_address = rtrim($site_address, '/'); // 끝에 붙은 / 제거
 $source_ko = $source;
 if ($source == 'countdown_counsel')      $source_ko = '보험상담';
 if ($source == 'mbti_insurance_counsel') $source_ko = 'MBTI추천보험';
-if ($source == 'insurance_age')          $source_ko = '보험나이알기';
-if ($source == 'insurance_check')        $source_ko = '보험통합조회';
-if ($source == 'insurance_analysis')     $source_ko = '보험증권분석';
-if ($source == 'insurance_remodeling')   $source_ko = '보험리모델링';
+if ($source == 'insurance_age')          $source_ko = '보험상담';
+if ($source == 'insurance_check')        $source_ko = '보험상담';
+if ($source == 'insurance_analysis')     $source_ko = '보험상담';
+if ($source == 'insurance_remodeling')   $source_ko = '보험상담';
 if ($source == 'insurance_claim')        $source_ko = '보험금청구예약';
 if ($source == 'pet_insurance')          $source_ko = '반려동물보험';
 if ($source == 'insurance_counsel')      $source_ko = '상품별보험상담';
@@ -149,7 +149,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // K열: 문자이메일
     ];
 } else if ($source == 'insurance_age') {
-    $range = "보험나이알기!A:J";
+    $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -163,7 +163,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'insurance_check') {
-    $range = "보험통합조회!A:J";
+    $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -177,7 +177,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'insurance_analysis') {
-    $range = "보험증권분석!A:J";
+    $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
@@ -191,7 +191,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // J열: 문자이메일
     ];
 } else if ($source == 'insurance_remodeling') {
-    $range = "보험리모델링!A:J";
+    $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로
