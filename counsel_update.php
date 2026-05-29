@@ -236,7 +236,7 @@ if ($source == 'countdown_counsel') {
         $c_mailling     // L열: 선택
     ];
 } else if ($source == 'insurance_counsel') {
-    $range = "상품별보험상담!A:K";
+    $range = "보험상담!A:J";
     
     // 폼에서 넘어온 값에서 말머리 제거
     $full_item_name = str_replace('[상품상담]', '', $c_item_name);
@@ -246,16 +246,15 @@ if ($source == 'countdown_counsel') {
     $item_value = '=HYPERLINK("' . $item_url . '", "' . $full_item_name . '")';
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로
-        $item_value,    // C열: 상품 (가공된 상품명 + 하이퍼링크)
-        $c_name,        // D열: 이름
-        $c_hp,          // E열: 연락처
-        $c_birth,       // F열: 생년월일
-        ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // G열: 성별
-        $c_address,     // H열: 주소
-        $counsel_time,  // I열: 상담가능시간
-        $c_kakaotalk,   // J열: 카카오채널
-        $c_mailling     // K열: 문자이메일
+        $item_value,    // B열: 경로 (어떤 상품인지 알 수 있도록 상품명 하이퍼링크 삽입)
+        $c_name,        // C열: 이름
+        $c_hp,          // D열: 연락처
+        $c_birth,       // E열: 생년월일
+        ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
+        $c_address,     // G열: 주소
+        $counsel_time,  // H열: 상담가능시간
+        $c_kakaotalk,   // I열: 카카오채널
+        $c_mailling     // J열: 문자이메일
     ];
 } else {
     // 상품 상담 등의 경우 (기본값)

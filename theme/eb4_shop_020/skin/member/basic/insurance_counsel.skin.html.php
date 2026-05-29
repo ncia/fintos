@@ -260,23 +260,19 @@
                     <div class="agreement-section">
                         <h5>정보 수신 동의</h5>
                         
-                        <label class="checkbox-container">
-                            (필수) 개인정보 수집ㆍ활용 동의
-                            <input type="checkbox" id="c_agree" name="c_agree" value="1" checked required>
-                            <span class="checkmark"></span>
-                        </label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="c_agree" name="c_agree" value="1" checked required>
+                                <span class="checkmark"></span>
+                                (필수) 개인정보 수집ㆍ활용 동의
+                            </label>
 
-                        <label class="checkbox-container">
-                            (선택) 카카오톡 핀토스 보험 채널 추가 동의
-                            <input type="checkbox" id="c_kakaotalk" name="c_kakaotalk" value="1" checked>
-                            <span class="checkmark"></span>
-                        </label>
-
-                        <label class="checkbox-container">
-                            (선택) 마케팅 정보 수신 동의
-                            <input type="checkbox" id="c_mailling" name="c_mailling" value="1" checked>
-                            <span class="checkmark"></span>
-                        </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="c_mailling" name="c_mailling" value="1" checked>
+                                <span class="checkmark"></span>
+                                (선택) 마케팅 정보 수신 동의
+                            </label>
+                        </div>
                     </div>
 
                     <button type="submit" class="submit-btn">상담 신청하기</button>
