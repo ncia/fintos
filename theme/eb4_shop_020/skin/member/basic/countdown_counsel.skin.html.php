@@ -315,9 +315,9 @@ if (!defined('_GNUBOARD_')) exit;
                             (필수) 개인정보 수집 및 활용 동의
                         </label>
                         <label class="checkbox-container">
-                            <input type="checkbox" name="c_kakaotalk" value="1" id="c_kakaotalk" checked>
+                            <input type="checkbox" name="c_kakaotalk" value="1" id="c_kakaotalk" required checked>
                             <span class="checkmark"></span>
-                            (선택) 카카오톡 핀토스 보험 채널 수신 동의
+                            (필수) 카카오톡 핀토스 보험 채널 수신 동의
                         </label>
                         <label class="checkbox-container">
                             <input type="checkbox" name="c_mailling" value="1" id="c_mailling" checked>
