@@ -109,7 +109,7 @@ $site_address = rtrim($site_address, '/'); // 끝에 붙은 / 제거
 
 // 구글 시트에 기록할 경로명 (한글로 복구)
 $source_ko = $source;
-if ($source == 'countdown_counsel')      $source_ko = '카운트다운';
+if ($source == 'countdown_counsel')      $source_ko = '보험상담';
 if ($source == 'mbti_insurance_counsel') $source_ko = 'MBTI추천보험';
 if ($source == 'insurance_age')          $source_ko = '보험나이알기';
 if ($source == 'insurance_check')        $source_ko = '보험통합조회';
@@ -120,7 +120,7 @@ if ($source == 'pet_insurance')          $source_ko = '반려동물보험';
 if ($source == 'insurance_counsel')      $source_ko = '상품별보험상담';
 
 if ($source == 'countdown_counsel') {
-    $range = "카운트다운!A:J";
+    $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
         $site_address,         // B열: 경로 (사이트 주소)
