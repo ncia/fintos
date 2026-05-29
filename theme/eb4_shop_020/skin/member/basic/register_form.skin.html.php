@@ -324,34 +324,53 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     color: #007bff;
     margin-right: 4px;
 }
-#captcha { position: relative !important; border: none !important; padding: 0 !important; margin: 0 80px 0 0 !important; width: 248px !important; }
+#captcha { 
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: relative !important; 
+    border: none !important; 
+    padding: 0 !important; 
+    margin: 0 !important; 
+    width: 100% !important; 
+    flex-wrap: wrap !important;
+}
 #captcha legend { display: none; }
 #captcha_img { 
+    order: 1;
     height: 45px !important; 
+    width: 120px !important;
     border: 1px solid #007bff !important; 
     border-radius: 8px !important; 
     margin: 0 !important;
+    flex-shrink: 0 !important;
+    object-fit: cover;
 }
 #captcha_key {
+    order: 2;
     height: 45px !important;
+    width: 120px !important;
     border: 1px solid #007bff !important;
     border-radius: 8px !important;
     padding: 0 12px;
-    width: 120px;
     font-size: 16px;
     outline: none;
-    margin-left: 3px !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    background-color: #fff !important;
+    color: #1f2937 !important;
 }
 #captcha #captcha_mp3 {
-    position: absolute;
-    top: 0;
-    right: -28px;
-    width: 45px;
-    height: 45px;
+    order: 3;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 45px !important;
+    height: 45px !important;
     background: #f5f5f5;
     border: 1px solid #c5c5c5;
+    border-radius: 8px !important;
     box-sizing: border-box;
-    background-image: none;
     font-size: 0;
     text-indent: -9999em;
     overflow: hidden;
@@ -369,15 +388,16 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     text-indent: 0;
 }
 #captcha #captcha_reload {
-    position: absolute;
-    top: 0;
-    right: -75px;
-    width: 45px;
-    height: 45px;
+    order: 4;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 45px !important;
+    height: 45px !important;
     background: #f5f5f5;
     border: 1px solid #c5c5c5;
+    border-radius: 8px !important;
     box-sizing: border-box;
-    background-image: none;
     z-index: 2;
     font-size: 0;
     text-indent: -9999em;

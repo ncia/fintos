@@ -230,10 +230,10 @@ if ($source == 'countdown_counsel') {
         ($c_sex == 'M' ? '남성' : ($c_sex == 'F' || $c_sex == 'W' ? '여성' : $c_sex)), // F열: 성별
         $c_address,     // G열: 주소
         $counsel_time,  // H열: 상담가능시간
-        '',             // I열: 질문1
-        '',             // J열: 질문2
-        $c_kakaotalk,   // K열: 필수
-        $c_mailling     // L열: 선택
+        '',             // I열: (빈칸)
+        '',             // J열: (빈칸)
+        $c_kakaotalk,   // K열: 카카오채널
+        $c_mailling     // L열: 문자이메일
     ];
 } else if ($source == 'insurance_counsel') {
     $range = "보험상담!A:J";
