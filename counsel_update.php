@@ -123,7 +123,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로 (사이트 주소)
+        '카운트다운',         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -152,7 +152,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로
+        '보험나이알기',         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -166,7 +166,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로
+        '보험통합조회',         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -180,7 +180,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로
+        '보험증권분석',         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
@@ -194,7 +194,7 @@ if ($source == 'countdown_counsel') {
     $range = "보험상담!A:J";
     $values = [
         G5_TIME_YMDHIS, // A열: 날짜
-        $site_address,         // B열: 경로
+        '보험리모델링',         // B열: 경로
         $c_name,        // C열: 이름
         $c_hp,          // D열: 연락처
         $c_birth,       // E열: 생년월일
